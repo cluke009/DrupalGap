@@ -1,7 +1,7 @@
 var drupalgap_page_node_edit_nid;
 var drupalgap_page_node_edit_type;
 
-$('#drupalgap_page_node_edit').live('pageshow', function () {
+$(document).ready(function () {
   try {
     // Clear form fields.
     $('#drupalgap_page_node_edit_title').val("");

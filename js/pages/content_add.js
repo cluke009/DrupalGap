@@ -1,4 +1,4 @@
-$('#drupalgap_page_content_add').live('pageshow', function () {
+$(document).ready(function () {
   try {
     // Grab list of content type permissions for this user.
     content_types_list = drupalgap_services_content_types_list();

@@ -1,4 +1,4 @@
-$('#drupalgap_page_content').live('pageshow', function () {
+$(document).ready(function () {
   try {
     // Clear the list.
     $("#drupalgap_page_content_list").html("");

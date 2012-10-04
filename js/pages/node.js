@@ -2,7 +2,7 @@ var drupalgap_page_node;
 // Other's set this nid so this page knows which node to load.
 var drupalgap_page_node_nid;
 
-$('#drupalgap_page_node').live('pageshow', function () {
+$(document).ready(function () {
   try {
     // Clear any previous node edit id reference.
     drupalgap_page_node_edit_nid = null;
