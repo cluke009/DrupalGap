@@ -8,8 +8,7 @@ $(document).ready(function () {
     // Populate user account template place holders.
 
     // Username.
-    $('#drupalgap_page_user h1')
-      .html(drupalgap_user.name);
+    $('#drupalgap_page_user h1').html(drupalgap_user.name);
 
     // User created date.
     // (Drupal's time value(s) must be multiplied by 1000 since JavaScript deals in milliseconds for the Unix Epoch????)

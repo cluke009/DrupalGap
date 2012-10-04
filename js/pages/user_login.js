@@ -30,16 +30,14 @@ $('#drupalgap_page_user_login').live('pageshow', function () {
 $('#drupalgap_user_login_submit').live('click', function () {
   try {
     // grab name and validate it
-    var name = $('#drupalgap_user_login_name')
-      .val();
+    var name = $('#drupalgap_user_login_name').val();
     if (!name) {
       alert('Please enter your user name.');
       return false;
     }
 
     // grab pass and validate it
-    var pass = $('#drupalgap_user_login_pass')
-      .val();
+    var pass = $('#drupalgap_user_login_pass').val();
     if (!pass) {
       alert('Please enter your password.');
       return false;
