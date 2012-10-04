@@ -153,6 +153,9 @@ var drupalgap_services = {
             data: options.data,
             dataType: options.dataType,
             async: options.async,
+            beforeSend: function(jqXHR){
+              jqXHR.withCredentials = true;
+            },
             error: function (jqXHR, textStatus, errorThrown) {
               result = {
                 "jqXHR": jqXHR,
@@ -193,7 +196,7 @@ var drupalgap_services = {
         }
         else {
           // Asynchronously...
-
+          console.log('asyc')
           // Show the page loading message.
           // $.mobile.showPageLoadingMsg();
 
@@ -205,6 +208,7 @@ var drupalgap_services = {
             dataType: options.dataType,
             async: options.async,
             error: options.error,
+            beforeSend: function(jqXHR){jqXHR.withCredentials = true;},
             success: options.success
           };
 
@@ -380,12 +384,12 @@ function drupalgap_services_get_load_from_local_storage_default(options) {
   case "get":
     // Node retrieve resource.
     if (options.resource_path.indexOf("node/") != -1) {
-      if ($.mobile.activePage.attr('id') == "drupalgap_page_node_edit") {
+      if ($('div').attr('id') == "drupalgap_page_node_edit") {
         options.load_from_local_storage = "0";
       }
     }
     else if (options.resource_path.indexOf("comment/") != -1) {
-      if ($.mobile.activePage.attr('id') == "drupalgap_page_comment_edit") {
+      if ($('div').attr('id') == "drupalgap_page_comment_edit") {
         options.load_from_local_storage = "0";
       }
     }
