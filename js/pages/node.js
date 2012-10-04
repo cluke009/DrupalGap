@@ -1,6 +1,5 @@
 var drupalgap_page_node;
-// Other's set this nid so this page knows which node to load.
-var drupalgap_page_node_nid;
+var drupalgap_page_node_nid = window.localStorage.getItem("drupalgap_nid");
 
 $(document).ready(function () {
   try {
@@ -11,6 +10,7 @@ $(document).ready(function () {
     drupalgap_page_comment_edit_nid = null;
 
     // Build service call options to load the node.
+
     options = {
       "nid": drupalgap_page_node_nid,
       "error": function (jqXHR, textStatus, errorThrown) {
