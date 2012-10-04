@@ -11,7 +11,8 @@ $('#drupalgap_page_dashboard').live('pagebeforeshow', function () {
     $('#drupalgap_page_dashboard_navbar_anonymous').hide();
     $('#drupalgap_page_dashboard_navbar_authenticated').hide();
 
-    if (drupalgap_user.uid == 0) { // user is not logged in...
+    if (drupalgap_user.uid == 0) {
+      // user is not logged in...
       $('#drupalgap_page_dashboard_navbar_anonymous').show();
       $('#drupalgap_page_dashboard_header_user h2').hide();
 
