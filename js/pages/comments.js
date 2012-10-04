@@ -1,7 +1,7 @@
 // Others set this node id so this page knows which comments to load.
-var drupalgap_page_comments_nid;
+var drupalgap_page_comments_nid = drupalgap_node_load().nid;
 
-$('#drupalgap_page_comments').live('pageshow', function () {
+$(document).ready(function () {
   try {
     // Clear the list.
     $("#drupalgap_page_comments_list").html("");
@@ -42,7 +42,6 @@ $('#drupalgap_page_comments').live('pageshow', function () {
 
             // If there are any comments, add each to the container, otherwise show an empty message.
             $.each(results.comments, function (index, obj) {
-
               // Build comment html.
               html = drupalgap_services_comment_render(obj.comment);
 
