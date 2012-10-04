@@ -54,7 +54,6 @@ var drupalgap_services = {
     result = null;
 
     try {
-
       // Validate options.
       // TODO - need to validate all other options and turn this into a function.
       if (!options.resource_path) {
@@ -145,7 +144,6 @@ var drupalgap_services = {
 
         // Make the call, synchronously or asynchronously...
         if (options.async == false) {
-
           // Synchronously.
           $.ajax({
             url: service_resource_call_url,
@@ -153,6 +151,7 @@ var drupalgap_services = {
             data: options.data,
             dataType: options.dataType,
             async: options.async,
+            xhrFields: { withCredentials: true },
             beforeSend: function(jqXHR){
               jqXHR.withCredentials = true;
             },
@@ -196,7 +195,6 @@ var drupalgap_services = {
         }
         else {
           // Asynchronously...
-          console.log('asyc')
           // Show the page loading message.
           // $.mobile.showPageLoadingMsg();
 
@@ -208,6 +206,7 @@ var drupalgap_services = {
             dataType: options.dataType,
             async: options.async,
             error: options.error,
+            xhrFields: { withCredentials: true },
             beforeSend: function(jqXHR){jqXHR.withCredentials = true;},
             success: options.success
           };
@@ -292,6 +291,7 @@ var drupalgap_services = {
 
     // Save the result to local storage, if necessary.
     if (options.save_to_local_storage == "1") {
+
       window.localStorage.setItem(options.local_storage_key, JSON.stringify(data));
       console.log("saving service resource to local storage (" + options.local_storage_key + ")");
     }
