@@ -195,7 +195,7 @@ var drupalgap_services = {
           // Asynchronously...
 
           // Show the page loading message.
-          $.mobile.showPageLoadingMsg();
+          // $.mobile.showPageLoadingMsg();
 
           // Setup ajax options.
           ajax_options = {
@@ -278,7 +278,7 @@ var drupalgap_services = {
   /* Asynchronous ajax success call back function. */
   "resource_call_success": function (data) {
     // Hide the page loading message.
-    $.mobile.hidePageLoadingMsg();
+    // $.mobile.hidePageLoadingMsg();
 
     // Print data to console.
     console.log(JSON.stringify(data));

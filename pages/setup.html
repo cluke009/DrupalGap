@@ -1,8 +1,15 @@
-<div data-role="page" id="drupalgap_page_setup">
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>DrupalGap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../css/debug.css">
+</head>
+<body>
+
+  <div data-role="page" id="drupalgap_page_setup">
     <div data-role="header">
-      <a href="welcome.html" data-icon="back" class="ui-btn-left">Back</a>
       <h1>DrupalGap Setup</h1>
-      <a href="http://www.drupalgap.org" data-icon="gear" class="ui-btn-right">Help</a>
     </div><!-- /header -->
     <div data-role="header" data-theme="c">
       <h3>1. Enable Module</h3>
@@ -14,11 +21,23 @@
       <h3>2. Add Drupal Site</h3>
     </div><!-- /header -->
     <div data-role="content">
-      <input type="text" id="drupalgap_page_setup_site_url" value="http://www.drupalgap.org"/>
+      <input type="text" id="drupalgap_page_setup_site_url" value="http://test.localhost:8082"/>
         <p></p>
         <fieldset>
         <div><button type="button" data-theme="b" id="drupalgap_page_setup_connect">Connect</button></div>
       </fieldset>
       <p>Enable the DrupalGap module on your Drupal site, enter the URL to your Drupal site and press 'Connect'.</p>
     </div><!-- /content -->
-</div><!-- /page -->
+  </div><!-- /page -->
+
+  <!-- Zepto lib -->
+  <script src="../js/zepto.min.js"></script>
+  <!-- Services JS -->
+  <script src="../js/services/drupalgap.js"></script>
+  <script src="../js/services/services.js"></script>
+  <script src="../js/services/system.js"></script>
+  <script src="../js/drupalgap.js"></script>
+  <!-- This page -->
+  <script src="../js/pages/setup.js"></script>
+</body>
+</html>

@@ -70,7 +70,7 @@ $('#drupalgap_page_setup_connect').live('click', function () {
           },
           "success": function () {
             // Go to the dashboard.
-            $.mobile.changePage("dashboard.html", "slideup");
+            // $.mobile.changePage("dashboard.html", "slideup");
           }
         };
         drupalgap_services_resource_system_connect.resource_call(inner_options);

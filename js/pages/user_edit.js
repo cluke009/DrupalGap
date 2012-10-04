@@ -86,7 +86,7 @@ $('#drupalgap_user_edit_submit').live('click', function () {
       "success": function (data) {
         if (data.uid) {
           // user update successful...
-          $.mobile.changePage("user.html", "slideup");
+          // $.mobile.changePage("user.html", "slideup");
         }
         else {
           // update failed...

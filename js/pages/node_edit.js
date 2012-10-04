@@ -87,7 +87,7 @@ $('#drupalgap_page_node_edit_submit').live('click', function () {
         "success": function (node) {
           // Created node successfully, view the node.
           drupalgap_page_node_nid = node.nid;
-          $.mobile.changePage("node.html");
+          // $.mobile.changePage("node.html");
         },
       };
       drupalgap_services_node_create.resource_call(options);
@@ -111,7 +111,7 @@ $('#drupalgap_page_node_edit_submit').live('click', function () {
             },
             "success": function (data) {
               // Node was updated properly.
-              $.mobile.changePage("node.html");
+              // $.mobile.changePage("node.html");
             },
           };
           drupalgap_services_node_update.resource_call(node_update_options);
@@ -132,10 +132,10 @@ $('#drupalgap_page_node_edit_cancel').live('click', function () {
   try {
     // If it's a new node, send back to content add, otherwise send back to node
     if (!drupalgap_page_node_edit_nid) {
-      $.mobile.changePage("content_add.html");
+      // $.mobile.changePage("content_add.html");
     }
     else {
-      $.mobile.changePage("node.html");
+      // $.mobile.changePage("node.html");
     }
   }
   catch (error) {
@@ -161,7 +161,7 @@ $('#drupalgap_page_node_edit_delete').live('click', function () {
               alert(errorThrown);
             },
             "success": function (data) {
-              $.mobile.changePage("content.html");
+              // $.mobile.changePage("content.html");
             },
           };
           drupalgap_services_node_delete.resource_call(node_delete_options);

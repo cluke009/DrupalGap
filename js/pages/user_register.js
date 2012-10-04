@@ -5,7 +5,7 @@ $('#drupalgap_page_user_register').live('pageshow', function () {
   try {
     if (drupalgap_user.uid != 0) {
       alert("Already logged in!");
-      $.mobile.changePage("dashboard.html", "slideup");
+      // $.mobile.changePage("dashboard.html", "slideup");
     }
   }
   catch (error) {
@@ -92,7 +92,7 @@ $('#drupalgap_user_register_submit').live('click', function () {
             break;
           }
 
-          $.mobile.changePage("dashboard.html", "slideup");
+          // $.mobile.changePage("dashboard.html", "slideup");
         }
         else {
           // User registration was not successful...

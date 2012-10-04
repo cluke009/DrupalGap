@@ -75,7 +75,7 @@ $('#drupalgap_button_user_logout').live("click", function () {
       "success": function () {
         // TODO - changing to the dashboard here has strange behavior,
         // it would be best to go to the dashboard instead.
-        $.mobile.changePage("user_login.html", "slideup");
+        // $.mobile.changePage("user_login.html", "slideup");
         // $.mobile.changePage("dashboard.html",{reloadPage:true},{allowSamePageTranstion:true},{transition:'none'});
       },
     };

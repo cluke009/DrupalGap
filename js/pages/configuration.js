@@ -14,7 +14,7 @@ $('#drupalgap_page_configuration_button_reset').live('click', function () {
     if (confirm("Are you sure you want to reset DrupalGap? All of your changes are safe online at " + drupalgap_settings.site_path.replace("http://", "") + ".")) {
       // clear all local storage
       window.localStorage.clear();
-      $.mobile.changePage("welcome.html", "slideup");
+      // $.mobile.changePage("welcome.html", "slideup");
     }
   }
   catch (error) {

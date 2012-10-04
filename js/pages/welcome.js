@@ -40,7 +40,7 @@ $('#drupalgap_page_welcome_button_demo').live('click', function () {
           },
           "success": function () {
             // Go to the dashboard.
-            $.mobile.changePage("dashboard.html", "slideup");
+            // $.mobile.changePage("dashboard.html", "slideup");
           }
         };
         drupalgap_services_resource_system_connect.resource_call(options);
