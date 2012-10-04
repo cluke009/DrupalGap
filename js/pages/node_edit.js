@@ -1,4 +1,4 @@
-var drupalgap_page_node_nid = drupalgap_node_load()
+var drupalgap_page_node_edit_nid = drupalgap_node_load().nid;
 var drupalgap_page_node_edit_type;
 
 $(document).ready(function () {
