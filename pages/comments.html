@@ -1,14 +1,39 @@
-<div data-role="page" id="drupalgap_page_comments">
-  <div data-role="header">
-  	<a href="node.html" data-icon="home" class="ui-btn-left">Back</a>
-    <h1>Comments</h1>
-  </div><!-- /header -->
-  <div data-role="header" data-theme="c">
-    	<h3></h3>
-  </div><!-- /header -->
-  <div data-role="content" id="drupalgap_page_comments_list">
-  </div><!-- /content -->
-  <div data-role="content">
-  	<a href="comment_edit.html" data-role='button' data-theme="b" style='display: none;' id='drupalgap_page_comments_button_comment_add'>Add Comment</a>
-  </div><!-- /content -->
-</div><!-- /page -->
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>DrupalGap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../css/debug.css">
+</head>
+<body>
+
+  <div data-role="page" id="drupalgap_page_comments">
+    <div data-role="header">
+      <a href="node.html" data-icon="home" class="ui-btn-left">Back</a>
+      <h1>Comments</h1>
+    </div><!-- /header -->
+    <div data-role="header" data-theme="c">
+      <h3></h3>
+    </div><!-- /header -->
+    <div data-role="content" id="drupalgap_page_comments_list">
+    </div><!-- /content -->
+    <div data-role="content">
+      <a href="comment_edit.html" data-role='button' data-theme="b" style='display: none;' id='drupalgap_page_comments_button_comment_add'>Add Comment</a>
+    </div><!-- /content -->
+  </div><!-- /page -->
+
+  <!-- Zepto lib -->
+  <script src="../js/zepto.min.js"></script>
+
+  <!-- Services JS -->
+  <script src="../js/services/drupalgap.js"></script>
+  <script src="../js/services/services.js"></script>
+  <script src="../js/services/system.js"></script>
+  <script src="../js/pages/setup.js"></script>
+  <script src="../js/drupalgap.js"></script>
+  <script src="../js/services/comment.js"></script>
+
+  <!-- This page -->
+  <script src="../js/pages/comments.js"></script>
+</body>
+</html>

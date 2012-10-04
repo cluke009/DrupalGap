@@ -1,13 +1,37 @@
-<div data-role="page" id="drupalgap_page_user">
-  <div data-role="header">
-  	<a href="dashboard.html" data-icon="home" class="ui-btn-left">Home</a>
-    <h1></h1>
-    <a href="user_edit.html" data-icon="gear" class="ui-btn-right">Edit</a>
-  </div><!-- /header -->
-  <div data-role="content">
-  	<div>
-  		<h2>Member since</h2>
-  		<p id="drupalgap_page_user_created"></p>
-  	</div>
-  </div><!-- /content -->
-</div><!-- /page -->
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>DrupalGap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../css/debug.css">
+</head>
+<body>
+
+  <div data-role="page" id="drupalgap_page_user">
+    <div data-role="header">
+      <a href="dashboard.html" data-icon="home" class="ui-btn-left">Home</a>
+      <h1></h1>
+      <a href="user_edit.html" data-icon="gear" class="ui-btn-right">Edit</a>
+    </div><!-- /header -->
+    <div data-role="content">
+      <div>
+        <h2>Member since</h2>
+        <p id="drupalgap_page_user_created"></p>
+      </div>
+    </div><!-- /content -->
+  </div><!-- /page -->
+
+  <!-- Zepto lib -->
+  <script src="../js/zepto.min.js"></script>
+
+  <!-- Services JS -->
+  <script src="../js/services/drupalgap.js"></script>
+  <script src="../js/services/services.js"></script>
+  <script src="../js/services/system.js"></script>
+  <script src="../js/drupalgap.js"></script>
+  <script src="../js/services/user.js"></script>
+
+  <!-- This page -->
+  <script src="../js/pages/user.js"></script>
+</body>
+</html>

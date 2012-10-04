@@ -1,26 +1,50 @@
-<div data-role="page" id="drupalgap_page_dashboard">
-  	<div data-role="header">
-    	<h1></h1>
-  	</div><!-- /header -->
-  	<div data-role="header" data-theme="b" id="drupalgap_page_dashboard_header_user">
-    	<h2></h2>
-  	</div><!-- /header -->
-  	<div data-role="navbar" id="drupalgap_page_dashboard_navbar_anonymous">
-		<ul>
-			<li><a href="user_login.html" data-role="button" id="drupalgap_button_user_login">Login</a></li>
-			<li><a href="user_register.html" data-role="button" id="drupalgap_button_user_register">Register</a></li>
-		</ul>
-	</div><!-- /navbar -->
-	<div data-role="navbar" id="drupalgap_page_dashboard_navbar_authenticated">
-		<ul>
-			<li><a href="user.html" data-role="button" id="drupalgap_button_user_account">My Account</a></li>
-			<li><a href="#" data-role="button" id="drupalgap_button_user_logout">Logout</a></li>
-		</ul>
-	</div><!-- /navbar -->
-	<div data-role="content">
-			<p><a href="content.html" data-role="button" id="drupalgap_button_content" style='display: none;'>Content</a></p>
-			<p><a href="comments_all.html" data-role="button" id="drupalgap_button_comments" style='display: none;'>Comments</a></p>
-	  	<hr />
-	  	<p><a href="configuration.html" data-role="button">DrupalGap Configuration</a></p>
-	</div><!-- /content -->
-</div><!-- /page -->
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>DrupalGap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../css/debug.css">
+</head>
+<body>
+
+  <div data-role="page" id="drupalgap_page_dashboard">
+    <div data-role="header">
+      <h1></h1>
+    </div><!-- /header -->
+    <div data-role="header" data-theme="b" id="drupalgap_page_dashboard_header_user">
+      <h2></h2>
+    </div><!-- /header -->
+    <div data-role="navbar" id="drupalgap_page_dashboard_navbar_anonymous">
+    <ul>
+      <li><a href="user_login.html" data-role="button" id="drupalgap_button_user_login">Login</a></li>
+      <li><a href="user_register.html" data-role="button" id="drupalgap_button_user_register">Register</a></li>
+    </ul>
+    </div><!-- /navbar -->
+    <div data-role="navbar" id="drupalgap_page_dashboard_navbar_authenticated">
+      <ul>
+        <li><a href="user.html" data-role="button" id="drupalgap_button_user_account">My Account</a></li>
+        <li><a href="#" data-role="button" id="drupalgap_button_user_logout">Logout</a></li>
+      </ul>
+    </div><!-- /navbar -->
+    <div data-role="content">
+      <p><a href="content.html" data-role="button" id="drupalgap_button_content" style='display: none;'>Content</a></p>
+      <p><a href="comments_all.html" data-role="button" id="drupalgap_button_comments" style='display: none;'>Comments</a></p>
+      <hr />
+      <p><a href="configuration.html" data-role="button">DrupalGap Configuration</a></p>
+    </div><!-- /content -->
+  </div><!-- /page -->
+
+  <!-- Zepto lib -->
+  <script src="../js/zepto.min.js"></script>
+
+  <!-- Services JS -->
+  <script src="../js/services/drupalgap.js"></script>
+  <script src="../js/services/services.js"></script>
+  <script src="../js/services/system.js"></script>
+  <script src="../js/pages/setup.js"></script>
+  <script src="../js/drupalgap.js"></script>
+
+  <!-- This page -->
+  <script src="../js/pages/dashboard.js"></script>
+</body>
+</html>
