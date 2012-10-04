@@ -1,4 +1,4 @@
-$('#drupalgap_page_user').live('pageshow', function () {
+$(document).ready(function () {
   try {
     if (drupalgap_user.uid == 0) {
       // $.mobile.changePage("dashboard.html", "slideup");
