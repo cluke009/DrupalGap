@@ -37,9 +37,11 @@ $(document).ready(function () {
       "success": function (content) {
         // If there is any content, add each to the list, otherwise show an
         // empty message.
+        console.log(content)
         if ($(content.nodes).length > 0) {
+
           $.each(content.nodes, function (index, obj) {
-            html = "<a href='node.html' id='" + obj.node.nid + "'>" + obj.node.title + "</a>";
+            html = "<a href='node.html' type='"+ obj.node.type + "' id='" + obj.node.nid + "'>" + obj.node.title + "</a>";
             $("#drupalgap_page_content_list").append($("<li></li>", {
               "html": html
             }));
@@ -70,5 +72,6 @@ $('#drupalgap_page_content_list a').live("click", function () {
   // Save a reference to the node id.
   node = drupalgap_node_load();
   node.nid = $(this).attr('id');
+  node.type = $(this).attr('type');
   drupalgap_node_save(node);
 });

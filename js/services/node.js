@@ -158,15 +158,17 @@ var drupalgap_services_node_update = {
       // Build body argument according to Drupal version.
       var body;
       if (drupalgap_site_settings.variable.drupal_core == "6") {
-        body = "node[body]=" + encodeURIComponent(node.body);
+        data = "body=" + encodeURIComponent(node.body);
       }
       else if (drupalgap_site_settings.variable.drupal_core == "7") {
-        body = "node[language]=und&node[body][und][0][value]=" + encodeURIComponent(node.body);
+        // body = "node[language]=und&node[body][und][0][value]=" + encodeURIComponent(node.body);
+        body = "language=" + node.language;
+        body += "&body[und][0][value]=" + encodeURIComponent(node.body);
       }
-
+      console.log(node)
       // Build the data string and options for the service call.
-      data = "node[type]=" + node.type;
-      data += "&node[title]=" + encodeURIComponent(node.title);
+      data = "type=" + node.type;
+      data += "&title=" + encodeURIComponent(node.title);
       data += "&" + body;
       options = {
         "resource_path": this.resource_path({
@@ -274,6 +276,7 @@ function drupalgap_node_load() {
   if (!drupalgap_node) { // no settings found in local storage, setup defaults...
     drupalgap_node = {};
     drupalgap_node.nid = ""; // examples: http://my-drupal-site.com, http://10.0.2.2/my-localhost-drupal
+    drupalgap_node.type = "";
     // drupalgap_node.base_path = "/?q=";
     // drupalgap_node.services_endpoint_default = "drupalgap";
     // drupalgap_node.demo = false;
@@ -286,7 +289,6 @@ function drupalgap_node_load() {
 }
 
 function drupalgap_node_save(settings) {
-  console.log(settings)
   window.localStorage.setItem("drupalgap_node", JSON.stringify(settings));
   drupalgap_node = settings;
   return drupalgap_node;
