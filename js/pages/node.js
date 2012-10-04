@@ -1,5 +1,6 @@
 var drupalgap_page_node;
-var drupalgap_page_node_nid = window.localStorage.getItem("drupalgap_nid");
+
+var drupalgap_page_node_nid = drupalgap_node_load().nid;
 
 $(document).ready(function () {
   try {

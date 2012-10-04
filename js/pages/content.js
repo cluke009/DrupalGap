@@ -68,5 +68,7 @@ $(document).ready(function () {
 // When a content list item is clicked.
 $('#drupalgap_page_content_list a').live("click", function () {
   // Save a reference to the node id.
-  window.localStorage.setItem("drupalgap_nid", $(this).attr('id'));
+  node = drupalgap_node_load();
+  node.nid = $(this).attr('id');
+  drupalgap_node_save(node);
 });

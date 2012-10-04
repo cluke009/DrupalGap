@@ -1,4 +1,4 @@
-var drupalgap_page_node_edit_nid;
+var drupalgap_page_node_nid = drupalgap_node_load()
 var drupalgap_page_node_edit_type;
 
 $(document).ready(function () {
@@ -13,10 +13,8 @@ $(document).ready(function () {
         alert("drupalgap_page_node_edit - failed to load content type (" + drupalgap_page_node_edit_type + ")");
         return false;
       }
-      $('#drupalgap_page_node_edit h1')
-        .html("Create " + content_type.name);
-      $('#drupalgap_page_node_edit_delete')
-        .hide();
+      $('#drupalgap_page_node_edit h1').html("Create " + content_type.name);
+      $('#drupalgap_page_node_edit_delete').hide();
     }
     else {
       // Existing node.

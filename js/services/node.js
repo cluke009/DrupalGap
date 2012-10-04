@@ -268,3 +268,26 @@ var drupalgap_services_node_delete = {
     drupalgap_page_node_edit_type = null;
   },
 };
+
+function drupalgap_node_load() {
+  drupalgap_node = window.localStorage.getItem("drupalgap_node");
+  if (!drupalgap_node) { // no settings found in local storage, setup defaults...
+    drupalgap_node = {};
+    drupalgap_node.nid = ""; // examples: http://my-drupal-site.com, http://10.0.2.2/my-localhost-drupal
+    // drupalgap_node.base_path = "/?q=";
+    // drupalgap_node.services_endpoint_default = "drupalgap";
+    // drupalgap_node.demo = false;
+    drupalgap_node_save(drupalgap_node);
+  }
+  else {
+    drupalgap_node = JSON.parse(drupalgap_node);
+  }
+  return drupalgap_node;
+}
+
+function drupalgap_node_save(settings) {
+  console.log(settings)
+  window.localStorage.setItem("drupalgap_node", JSON.stringify(settings));
+  drupalgap_node = settings;
+  return drupalgap_node;
+}
