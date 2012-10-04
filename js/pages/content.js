@@ -32,7 +32,7 @@ $(document).ready(function () {
           alert(textStatus);
         }
         // Refresh the list.
-        $("#drupalgap_page_content_list").listview("destroy").listview();
+        // $("#drupalgap_page_content_list").listview("destroy").listview();
       },
       "success": function (content) {
         // If there is any content, add each to the list, otherwise show an
@@ -53,7 +53,7 @@ $(document).ready(function () {
         }
 
         // Refresh the list.
-        $("#drupalgap_page_content_list").listview("destroy").listview();
+        // $("#drupalgap_page_content_list").listview("destroy").listview();
       },
     };
     // Make the service call to retrieve content.
