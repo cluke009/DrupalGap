@@ -273,13 +273,11 @@ var drupalgap_services_node_delete = {
 
 function drupalgap_node_load() {
   drupalgap_node = window.localStorage.getItem("drupalgap_node");
-  if (!drupalgap_node) { // no settings found in local storage, setup defaults...
+  if (!drupalgap_node) {
+    // no settings found in local storage, setup defaults...
     drupalgap_node = {};
-    drupalgap_node.nid = ""; // examples: http://my-drupal-site.com, http://10.0.2.2/my-localhost-drupal
+    drupalgap_node.nid = "";
     drupalgap_node.type = "";
-    // drupalgap_node.base_path = "/?q=";
-    // drupalgap_node.services_endpoint_default = "drupalgap";
-    // drupalgap_node.demo = false;
     drupalgap_node_save(drupalgap_node);
   }
   else {

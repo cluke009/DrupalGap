@@ -1,10 +1,10 @@
 // Other's set this nid so this page knows which node to load.
-var drupalgap_page_comment_edit_nid;
+var drupalgap_page_comment_edit_nid = drupalgap_node_load().nid;
 var drupalgap_page_comment_edit_content_type;
 // Other's set this cid so this page knows which comment to load (if any).
 var drupalgap_page_comment_edit_cid;
 
-$('#drupalgap_page_comment_edit').live('pageshow', function () {
+$(document).ready(function () {
   try {
     // Load node.
     nid = drupalgap_page_comment_edit_nid;

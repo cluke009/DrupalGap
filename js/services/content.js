@@ -3,7 +3,6 @@
  *
  * @return
  *  A JSON object containing a list of {node_types} table data.
- *
  */
 function drupalgap_services_content_types_list() {
   // If we have a copy of the content types list use it, otherwise make the

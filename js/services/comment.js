@@ -7,6 +7,8 @@ var drupalgap_services_comment_create = {
 
   "resource_call": function (caller_options) {
     try {
+        console.log('comment');
+
       // Extract comment from caller options.
       comment = caller_options.comment;
 
@@ -379,6 +381,32 @@ function drupalgap_services_comment_render(comment) {
 
 // When a comment list item is clicked...
 $('a.drupalgap_comment_edit').live("click", function () {
-  drupalgap_page_comment_edit_cid = $(this).attr('cid');
-  drupalgap_page_comment_edit_nid = $(this).attr('nid');
+  comment = drupalgap_comment_load();
+  comment.nid = $(this).attr('nid');
+  comment.cid = $(this).attr('cid');
+  drupalgap_comment_save(comment);
 });
+
+function drupalgap_comment_load() {
+  drupalgap_comment = window.localStorage.getItem("drupalgap_comment");
+  if (!drupalgap_comment) { // no settings found in local storage, setup defaults...
+    drupalgap_comment = {};
+    drupalgap_comment.nid = "";
+    drupalgap_comment.cid = ""; // examples: http://my-drupal-site.com, http://10.0.2.2/my-localhost-drupal
+    // drupalgap_comment.type = "";
+    // drupalgap_node.base_path = "/?q=";
+    // drupalgap_node.services_endpoint_default = "drupalgap";
+    // drupalgap_node.demo = false;
+    drupalgap_comment_save(drupalgap_comment);
+  }
+  else {
+    drupalgap_comment = JSON.parse(drupalgap_comment);
+  }
+  return drupalgap_comment;
+}
+
+function drupalgap_comment_save(settings) {
+  window.localStorage.setItem("drupalgap_comment", JSON.stringify(settings));
+  drupalgap_comment = settings;
+  return drupalgap_comment;
+}
