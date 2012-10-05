@@ -1,4 +1,7 @@
-$('#drupalgap_page_dashboard').live('pagebeforeshow', function () {
+/**
+ * Dashboard page is ready.
+ */
+$(document).ready(function () {
   try {
     // Display site name.
     site_name = drupalgap_site_settings.variable.site_name;
@@ -14,7 +17,7 @@ $('#drupalgap_page_dashboard').live('pagebeforeshow', function () {
     if (drupalgap_user.uid == 0) {
       // user is not logged in...
       $('#drupalgap_page_dashboard_navbar_anonymous').show();
-      $('#drupalgap_page_dashboard_header_user h2').hide();
+      $('#drupalgap_page_dashboard_header_user').hide();
 
       // Determine what to do with the user registration button based on the site settings.
       switch (drupalgap_site_settings.variable.user_register) {
@@ -36,7 +39,7 @@ $('#drupalgap_page_dashboard').live('pagebeforeshow', function () {
     else {
       // User is logged in.
       $('#drupalgap_page_dashboard_navbar_authenticated').show();
-      $('#drupalgap_page_dashboard_header_user h2').html("Hi, " + drupalgap_user.name);
+      $('#drupalgap_page_dashboard_header_user').html("Hi, " + drupalgap_user.name);
     }
 
     // Load user access permissions.
@@ -61,6 +64,9 @@ $('#drupalgap_page_dashboard').live('pagebeforeshow', function () {
   }
 });
 
+/**
+ * Logout submit.
+ */
 $('#drupalgap_button_user_logout').live("click", function () {
   try {
     // Build the service call options.
@@ -74,10 +80,7 @@ $('#drupalgap_button_user_logout').live("click", function () {
         }
       },
       "success": function () {
-        // TODO - changing to the dashboard here has strange behavior,
-        // it would be best to go to the dashboard instead.
-        // $.mobile.changePage("user_login.html", "slideup");
-        // $.mobile.changePage("dashboard.html",{reloadPage:true},{allowSamePageTranstion:true},{transition:'none'});
+        // Success.
       },
     };
     // Make the service call.
@@ -86,5 +89,7 @@ $('#drupalgap_button_user_logout').live("click", function () {
   catch (error) {
     console.log("drupalgap_button_user_logout - " + error);
   }
+
+  // Stop the click from executing any further.
   return false;
 });
