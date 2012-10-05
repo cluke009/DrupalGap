@@ -85,7 +85,6 @@ var drupalgap_services_comment_retrieve = {
    */
   "resource_call": function (caller_options) {
     try {
-
       // Validate incoming parameters.
       valid = true;
       if (!caller_options.cid) {
@@ -179,7 +178,7 @@ var drupalgap_services_comment_update = {
         "error": function (jqXHR, textStatus, errorThrown) {},
         "success": function (data) {
           // Clear the comment edit cid.
-          drupalgap_page_comment_edit_cid = null;
+          // drupalgap_page_comment_edit_cid = null;
         },
       };
 

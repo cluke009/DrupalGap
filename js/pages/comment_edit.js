@@ -13,10 +13,6 @@ $(document).ready(function () {
         alert("drupalgap_page_comment_edit - failed to load node (" + nid + ")");
       },
       "success": function (drupalgap_page_comment_edit_node) {
-
-        // Set the page nid in case it wasn't set.
-        drupalgap_page_node_nid = nid;
-
         // Check the status of this node's comments.
         switch (drupalgap_page_comment_edit_node.comment) {
         case "0":
@@ -43,11 +39,6 @@ $(document).ready(function () {
         // Set node title header text.
         $('#drupalgap_page_comment_edit h3').html(drupalgap_page_comment_edit_node.title);
 
-        // Set the visibility on the subject field
-        if (drupalgap_page_comment_edit_content_type.comment_subject_field != "1") {
-          $('#drupalgap_page_comment_edit_subject_container').hide();
-        }
-
         if (drupalgap_page_comment_edit_cid) {
           // Existing comment.
 
@@ -63,7 +54,6 @@ $(document).ready(function () {
 
               // Add comment details to form fields.
               $('#drupalgap_page_comment_edit_subject').val(comment.subject);
-
               // Comment body.
               var body;
               if (drupalgap_site_settings.variable.drupal_core == "6") {
@@ -86,8 +76,6 @@ $(document).ready(function () {
         }
         else {
           // New comment.
-
-          // Set header text.
           $('#drupalgap_page_comment_edit h1').html("Add Comment");
         }
       },
@@ -149,8 +137,6 @@ $('#drupalgap_page_comment_edit_submit').live('click', function () {
     }
     else {
       // New comment.
-
-      // Create the comment.
       options = {
         "comment": {
           "nid": drupalgap_page_comment_edit_nid,
