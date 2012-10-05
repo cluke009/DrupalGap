@@ -1,21 +1,13 @@
 /**
  * Handles the login page show event.
  */
-$('#drupalgap_page_user_login').live('pageshow', function () {
+$(document).ready(function () {
   try {
     // if user is already logged in, send them to the dashboard
     if (drupalgap_user.uid != 0) {
-      alert("Already logged in!");
+      console.log("Already logged in!");
       // $.mobile.changePage("dashboard.html", "slideup");
       return;
-    }
-
-    // if in demo mode, prepopulate login fields
-    // TODO - this type of code should live in the future idea of
-    // hook_page_user_login, since it is custom for a particular app
-    if (drupalgap_settings.demo) {
-      $('#drupalgap_user_login_name').val("demo");
-      $('#drupalgap_user_login_pass').val("drupalgap2012");
     }
   }
   catch (error) {
@@ -29,14 +21,14 @@ $('#drupalgap_page_user_login').live('pageshow', function () {
  */
 $('#drupalgap_user_login_submit').live('click', function () {
   try {
-    // grab name and validate it
+    // Grab name and validate it.
     var name = $('#drupalgap_user_login_name').val();
     if (!name) {
       alert('Please enter your user name.');
       return false;
     }
 
-    // grab pass and validate it
+    // Grab pass and validate it.
     var pass = $('#drupalgap_user_login_pass').val();
     if (!pass) {
       alert('Please enter your password.');
@@ -54,10 +46,6 @@ $('#drupalgap_user_login_submit').live('click', function () {
         else {
           alert(textStatus);
         }
-        // show user result error msg
-        $('#drupalgap_page_user_login_messages').html(drupalgap_services_resource_call_result.errorThrown).show();
-        // clear password field
-        $('#drupalgap_user_login_pass').val("");
       },
       "success": function () {
         // $.mobile.changePage("dashboard.html", "slideup");
