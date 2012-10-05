@@ -93,11 +93,6 @@ $('#drupalgap_user_edit_submit').live('click', function () {
         }
         else {
           // update failed...
-
-          // Clear any existing messages.
-          $('#drupalgap_page_user_edit_messages').html("");
-          $('#drupalgap_page_user_edit_messages').append("<li>" + data.errorThrown + "</li>");
-          $('#drupalgap_page_user_edit_messages').show();
         }
       }
     };
@@ -109,6 +104,6 @@ $('#drupalgap_user_edit_submit').live('click', function () {
     console.log("drupalgap_user_edit_submit");
     console.log(error);
   }
-
-  return false; // stop the click from executing any further
+  // Stop the click from executing any further.
+  return false;
 });
