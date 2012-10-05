@@ -1,3 +1,6 @@
+/**
+ * Create content ready.
+ */
 $(document).ready(function () {
   try {
     // Grab list of content type permissions for this user.
@@ -17,14 +20,19 @@ $(document).ready(function () {
       }
     });
     // Refresh the content type list.
-    $("#drupalgap_page_content_add_list").listview("destroy").listview();
+    // $("#drupalgap_page_content_add_list").listview("destroy").listview();
   }
   catch (error) {
     console.log("drupalgap_page_content_add - " + error);
   }
 });
-
+/**
+ * Save the content type to localStorage.
+ * @return {string}
+ */
 $("#drupalgap_page_content_add_list li a").live("click", function () {
   // Let the node_edit page know what type of node we're creating.
-  drupalgap_page_node_edit_type = $(this).attr('id');
+  node = drupalgap_node_load();
+  node.type = $(this).attr('id');
+  drupalgap_node_save(node);
 });
