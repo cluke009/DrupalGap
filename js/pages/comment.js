@@ -1,7 +1,10 @@
 // Other's set this cid so this page knows which comment to load.
-var drupalgap_page_comment_cid;
+var drupalgap_page_comment_cid = drupalgap_comment_load().cid;
 
-$('#drupalgap_page_comment').live('pageshow', function () {
+/**
+ * Single comment page is ready.
+ */
+$(document).ready(function () {
   try {
     // Load comment.
     options = {

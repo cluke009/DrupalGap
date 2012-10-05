@@ -1,4 +1,7 @@
-$('#drupalgap_page_comments_all').live('pageshow', function () {
+/**
+ * All comments page is ready.
+ */
+$(document).ready(function () {
   try {
     // Clear the list.
     $("#drupalgap_page_comments_all_list").html("");
@@ -8,7 +11,7 @@ $('#drupalgap_page_comments_all').live('pageshow', function () {
       "path": "views_datasource/drupalgap_comments",
       "error": function (jqXHR, textStatus, errorThrown) {
         // Refresh the list.
-        $("#drupalgap_page_comments_all_list").listview("destroy").listview();
+        // $("#drupalgap_page_comments_all_list").listview("destroy").listview();
       },
       "success": function (comments_result) {
 
@@ -25,12 +28,10 @@ $('#drupalgap_page_comments_all').live('pageshow', function () {
             "html": "Sorry, there are no published comments."
           }));
         }
-
         // Refresh the list.
-        $("#drupalgap_page_comments_all_list").listview("destroy").listview();
+        // $("#drupalgap_page_comments_all_list").listview("destroy").listview();
       },
     };
-
     // Retrieve comments
     drupalgap_views_datasource_retrieve.resource_call(views_options);
   }
@@ -40,8 +41,12 @@ $('#drupalgap_page_comments_all').live('pageshow', function () {
   }
 });
 
-// When a comment list item is clicked...
-$('#drupalgap_page_comments_all_list a').live("click", function () {
+/**
+ * Preserve comment ID between pages.
+ */
+$('#drupalgap_page_comments_all_list li a').live("click", function () {
   // Save a reference to the comment id.
-  drupalgap_page_comment_cid = $(this).attr('cid');
+  var drupalgap_comment = drupalgap_comment_load();
+  drupalgap_comment.cid = $(this).attr('cid');
+  drupalgap_comment_save(drupalgap_comment);
 });
