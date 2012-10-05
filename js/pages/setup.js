@@ -1,4 +1,4 @@
-$('#drupalgap_page_setup').live('pageshow', function () {
+$(document).ready(function () {
   try {
     // @todo - perform system connect test to drupalgap.org
     // @todo - implement a service resource that performs an initial system connect handshake
@@ -9,20 +9,11 @@ $('#drupalgap_page_setup').live('pageshow', function () {
   }
 });
 
-// When the site url text field is clicked...
-$('#drupalgap_page_setup_site_url').live('click', function () {
-  // Remove 'drupalgap.org' from the text field for quick-n-easy user experience
-  if ($('#drupalgap_page_setup_site_url').val() == "http://www.drupalgap.org") {
-    $('#drupalgap_page_setup_site_url').val("http://www.");
-  }
-});
-
 $('#drupalgap_page_setup_connect').live('click', function () {
   try {
     // Grab input url and validate.
     // @todo - better validation here
-    var url = $('#drupalgap_page_setup_site_url')
-      .val();
+    var url = $('#drupalgap_page_setup_site_url').val();
     if (!url) {
       alert("Enter your Drupal site's URL.");
       return false;
@@ -32,7 +23,9 @@ $('#drupalgap_page_setup_connect').live('click', function () {
     if (url.indexOf("localhost") != -1) {
       warning_msg = "Warning: Entering localhost has known problems with Android devices and emulators. ";
       warning_msg += "You may have to use 10.0.2.2 instead. Do you want to continue?";
-      if (!confirm(warning_msg)) return false;
+      if (!confirm(warning_msg)) {
+        return false;
+      }
     }
 
     // Update settings with new site url path.
@@ -82,10 +75,5 @@ $('#drupalgap_page_setup_connect').live('click', function () {
     console.log("drupalgap_page_setup_connect");
     console.log(error);
   }
-  return false;
-});
-
-$('#drupalgap_page_setup_help').live('click', function () {
-  alert("Please visit the DrupalGap project page for help topics.");
   return false;
 });

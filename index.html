@@ -1,42 +1,48 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <title>DrupalGap</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <title>DrupalGap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../css/debug.css">
+</head>
+<body>
 
-    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+  <div id="drupalgap_page_setup">
+    <h1>DrupalGap Setup</h1>
+    <h3>1. Enable Module</h3>
+    <p><a href="http://drupal.org/project/drupalgap">Enable the DrupalGap module.</a></p>
+    <h3>2. Enable <a href="http://www.w3.org/TR/cors/">CORS</a></h3>
+    <p>Add this code to the end of settings.php.</p>
+    <p>This will allow your app to connect to Drupal from any domain.</p>
+<pre>
 
-    <link rel="stylesheet" href="jquery.mobile-1.0.min.css" />
-    <script src="jquery-1.6.4.min.js"></script>
-    <script src="jquery.mobile-1.0.min.js"></script>
+if (isset($_SERVER['HTTP_ORIGIN'])){
+  $origin = $_SERVER['HTTP_ORIGIN'];
+  drupal_add_http_header('Access-Control-Allow-Origin', $origin);
+  drupal_add_http_header('Access-Control-Allow-Credentials', 'true');
+  drupal_add_http_header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+}
 
-    <link rel="stylesheet" href="drupalgap/drupalgap.css" />
-    <script src="drupalgap/services/comment.js"></script>
-    <script src="drupalgap/services/content.js"></script>
-    <script src="drupalgap/services/drupalgap.js"></script>
-    <script src="drupalgap/services/node.js"></script>
-    <script src="drupalgap/services/services.js"></script>
-    <script src="drupalgap/services/system.js"></script>
-    <script src="drupalgap/services/user.js"></script>
-    <script src="drupalgap/services/views_datasource.js"></script>
-    <script src="drupalgap/pages/comment.js"></script>
-    <script src="drupalgap/pages/comment_edit.js"></script>
-    <script src="drupalgap/pages/comments_all.js"></script>
-    <script src="drupalgap/pages/comments.js"></script>
-    <script src="drupalgap/pages/configuration.js"></script>
-    <script src="drupalgap/pages/content.js"></script>
-    <script src="drupalgap/pages/content_add.js"></script>
-    <script src="drupalgap/pages/dashboard.js"></script>
-    <script src="drupalgap/pages/node.js"></script>
-    <script src="drupalgap/pages/node_edit.js"></script>
-    <script src="drupalgap/pages/setup.js"></script>
-    <script src="drupalgap/pages/user.js"></script>
-    <script src="drupalgap/pages/user_edit.js"></script>
-    <script src="drupalgap/pages/user_login.js"></script>
-    <script src="drupalgap/pages/user_register.js"></script>
-    <script src="drupalgap/pages/welcome.js"></script>
-    <script src="drupalgap/drupalgap.js"></script>
-  </head>
-  <body>
-  </body>
+</pre>
+
+    </div>
+    <h3>3. Add your drupal site</h3>
+    <p>Enter the URL to your Drupal site and press 'Connect'.</p>
+    <input type="text" id="drupalgap_page_setup_site_url" value="http://localhost:8082"/>
+    <button type="button" data-theme="b" id="drupalgap_page_setup_connect">Connect</button>
+    <p>This will stored in localStorage and is referenced in code to make all requests.</p>
+  </div><!-- /page -->
+
+  <!-- Zepto lib -->
+  <script src="js/jquery-1.8.2.js"></script>
+
+  <!-- Services JS -->
+  <script src="js/services/drupalgap.js"></script>
+  <script src="js/services/services.js"></script>
+  <script src="js/services/system.js"></script>
+  <script src="js/drupalgap.js"></script>
+
+  <!-- This page -->
+  <script src="js/pages/setup.js"></script>
+</body>
 </html>
