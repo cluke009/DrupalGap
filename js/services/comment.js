@@ -298,20 +298,20 @@ var drupalgap_services_comment_node_comments = {
 function drupalgap_services_comment_render(comment) {
   try {
     // Can the user administer comments?
-    administer_comments = drupalgap_services_user_access({
-      "permission": "administer comments"
-    });
+    // administer_comments = drupalgap_services_user_access({
+    //   "permission": "administer comments"
+    // });
 
-    // Can the user edit their own comments?
-    edit_own_comments = drupalgap_services_user_access({
-      "permission": "edit own comments"
-    });
+    // // Can the user edit their own comments?
+    // edit_own_comments = drupalgap_services_user_access({
+    //   "permission": "edit own comments"
+    // });
 
     // Determine if edit link should be shown.
     show_edit_link = false;
-    if (administer_comments || (edit_own_comments && comment.uid == drupalgap_user.uid)) {
-      show_edit_link = true;
-    }
+    // if (administer_comments || (edit_own_comments && comment.uid == drupalgap_user.uid)) {
+    //   show_edit_link = true;
+    // }
 
     // Extract comment creation date depending on where it came from.
     if (drupalgap_site_settings.variable.drupal_core == "6") {
@@ -386,14 +386,11 @@ $('a.drupalgap_comment_edit').live("click", function () {
 
 function drupalgap_comment_load() {
   drupalgap_comment = window.localStorage.getItem("drupalgap_comment");
-  if (!drupalgap_comment) { // no settings found in local storage, setup defaults...
+  if (!drupalgap_comment) {
+    // no settings found in local storage, setup defaults...
     drupalgap_comment = {};
     drupalgap_comment.nid = "";
-    drupalgap_comment.cid = ""; // examples: http://my-drupal-site.com, http://10.0.2.2/my-localhost-drupal
-    // drupalgap_comment.type = "";
-    // drupalgap_node.base_path = "/?q=";
-    // drupalgap_node.services_endpoint_default = "drupalgap";
-    // drupalgap_node.demo = false;
+    drupalgap_comment.cid = "";
     drupalgap_comment_save(drupalgap_comment);
   }
   else {
