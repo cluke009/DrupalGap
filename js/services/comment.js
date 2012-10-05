@@ -160,13 +160,13 @@ var drupalgap_services_comment_update = {
         data = "comment=" + encodeURIComponent(comment.body);
       }
       else if (drupalgap_site_settings.variable.drupal_core == "7") {
-        data = "comment_body[und][0][value]=" + encodeURIComponent(comment.body);
+        data = "comment_body[" + comment.language + "][0][value]=" + encodeURIComponent(comment.body);
       }
-
       // If they provided a subject, add it to the data string.
       if (comment.subject) {
         data += "&subject=" + encodeURIComponent(comment.subject);
       }
+      data += "&nid=" + comment.nid;
 
       // Build the options for the service call.
       options = {
@@ -175,8 +175,6 @@ var drupalgap_services_comment_update = {
         }),
         "type": this.resource_type,
         "data": data,
-        "cid": comment.cid,
-        "nid": comment.nid,
         "async": true,
         "error": function (jqXHR, textStatus, errorThrown) {},
         "success": function (data) {
