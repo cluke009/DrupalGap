@@ -17,7 +17,7 @@ $(document).ready(function () {
     if (drupalgap_user.uid == 0) {
       // user is not logged in...
       $('#drupalgap_page_dashboard_navbar_anonymous').show();
-      $('#drupalgap_page_dashboard_header_user').hide();
+      $('#drupalgap_page_dashboard_navbar_authenticated').hide();
 
       // Determine what to do with the user registration button based on the site settings.
       switch (drupalgap_site_settings.variable.user_register) {
@@ -43,24 +43,24 @@ $(document).ready(function () {
     }
 
     // Load user access permissions.
-    access_content = drupalgap_services_user_access({
-      "permission": "access content"
-    });
-    access_comments = drupalgap_services_user_access({
-      "permission": "access comments"
-    });
+    // access_content = drupalgap_services_user_access({
+    //   "permission": "access content"
+    // });
+    // access_comments = drupalgap_services_user_access({
+    //   "permission": "access comments"
+    // });
 
-    // Set visibility on other buttons.
-    if (access_content) {
-      $('#drupalgap_button_content').show();
-    }
-    if (access_comments) {
-      $('#drupalgap_button_comments').show();
-    }
+    // // Set visibility on other buttons.
+    // if (access_content) {
+    //   $('#drupalgap_button_content').show();
+    // }
+    // if (access_comments) {
+    //   $('#drupalgap_button_comments').show();
+    // }
   }
   catch (error) {
-    console.log("drupalgap_page_dashboard");
-    console.log(error);
+    console.error("errorThrown: 'drupalgap_page_dashboard'");
+    console.error(error);
   }
 });
 
