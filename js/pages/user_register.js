@@ -1,10 +1,10 @@
 /**
  * Handles the register page show event.
  */
-$('#drupalgap_page_user_register').live('pageshow', function () {
+$(document).ready(function () {
   try {
     if (drupalgap_user.uid != 0) {
-      alert("Already logged in!");
+      console.log("Already logged in!");
       // $.mobile.changePage("dashboard.html", "slideup");
     }
   }
@@ -49,7 +49,6 @@ $('#drupalgap_user_register_submit').live('click', function () {
     }
 
     // Build service call options.
-    // user_registration = drupalgap_services_user_register(name,mail,pass);
     options = {
       "name": name,
       "mail": mail,
@@ -96,28 +95,16 @@ $('#drupalgap_user_register_submit').live('click', function () {
         }
         else {
           // User registration was not successful...
-
-          // Clear any existing messages.
-          $('#drupalgap_page_user_register_messages').html("");
-
-          // Show error messages.
-          $.each(user_registration.form_errors, function (field, message) {
-            $('#drupalgap_page_user_register_messages').append("<li>" + message + "</li>");
-          });
-          $('#drupalgap_page_user_register_messages').show();
         }
       },
     };
-
     // Make the service call.
-    // drupalgap_services_user_register.resource_call(options);
     drupalgap_services_drupalgap_user_register.resource_call(options);
   }
   catch (error) {
     console.log("drupalgap_user_register_submit - " + error);
     alert("drupalgap_user_register_submit - " + error);
   }
-
-  // stop the click from executing any further
+  // Stop the click from executing any further.
   return false;
 });
