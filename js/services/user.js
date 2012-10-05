@@ -153,15 +153,10 @@ var drupalgap_services_user_update = {
 
       // add name and e-mail to resource call data
       data = "";
-      data += "name=" + encodeURIComponent(caller_options.user.name);
-      data += "&mail=" + encodeURIComponent(caller_options.user.mail);
-
-      if (caller_options.user.current_pass) data += "&current_pass=" + encodeURIComponent(caller_options.user.current_pass);
-      // TODO - get change password working... (not sure this option is even provided by the services user update resouce)
-      /*if (caller_options.user.pass1)
-        data += "&account[pass1]=" + encodeURIComponent(caller_options.user.pass1);
-      if (caller_options.user.pass2)
-        data += "&account[pass2]=" + encodeURIComponent(caller_options.user.pass2);*/
+      data += "name=" + encodeURIComponent(caller_options.name);
+      data += "&mail=" + encodeURIComponent(caller_options.mail);
+      data += "&current_pass=" + encodeURIComponent(caller_options.current_pass);
+      data += "&pass=" + encodeURIComponent(caller_options.pass1);
 
       // Build the service resource call options.
       //, "save_to_local_storage":"0"
