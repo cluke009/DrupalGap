@@ -14,16 +14,14 @@
     <h3>2. Enable <a href="http://www.w3.org/TR/cors/">CORS</a></h3>
     <p>Add this code to the end of settings.php.</p>
     <p>This will allow your app to connect to Drupal from any domain.</p>
-<pre>
-
-if (isset($_SERVER['HTTP_ORIGIN'])){
-  $origin = $_SERVER['HTTP_ORIGIN'];
-  drupal_add_http_header('Access-Control-Allow-Origin', $origin);
-  drupal_add_http_header('Access-Control-Allow-Credentials', 'true');
-  drupal_add_http_header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-}
-
-</pre>
+    <pre>
+      if (isset($_SERVER['HTTP_ORIGIN'])){
+        $origin = $_SERVER['HTTP_ORIGIN'];
+        drupal_add_http_header('Access-Control-Allow-Origin', $origin);
+        drupal_add_http_header('Access-Control-Allow-Credentials', 'true');
+        drupal_add_http_header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+      }
+    </pre>
 
     </div>
     <h3>3. Add your drupal site</h3>
