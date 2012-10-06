@@ -1,3 +1,21 @@
+/*******************************************************************************
+ *
+ * Configure your site here
+ *
+ ******************************************************************************/
+
+drupal_settings = {
+  site_path: 'http://localhost:8082',
+  endpoint: 'rest',
+  base_path: '?q=',
+}
+
+
+/*******************************************************************************
+ *
+ * DO NOT EDIT BELOW THIS LINE
+ *
+ ******************************************************************************/
 var drupal_services_resource_call_result;
 
 //function drupal_services_resource_call
@@ -151,6 +169,7 @@ var drupal_services = {
             data: options.data,
             dataType: options.dataType,
             async: options.async,
+            contentType: 'application/x-www-form-urlencoded',
             xhrFields: { withCredentials: true },
             beforeSend: function(jqXHR){
               jqXHR.withCredentials = true;
@@ -206,6 +225,7 @@ var drupal_services = {
             dataType: options.dataType,
             async: options.async,
             error: options.error,
+            contentType: 'application/x-www-form-urlencoded',
             xhrFields: { withCredentials: true },
             beforeSend: function(jqXHR){jqXHR.withCredentials = true;},
             success: options.success
@@ -396,8 +416,11 @@ function drupal_services_get_load_from_local_storage_default(options) {
     break;
   case "post":
     // User login/logout/register resources.
-    if (
-    options.resource_path.indexOf("user/login") != -1 || options.resource_path.indexOf("user/logout") != -1 || options.resource_path.indexOf("user/register") != -1) {}
+    var login = options.resource_path.indexOf("user/login");
+    var register = options.resource_path.indexOf("user/register");
+    var logout = options.resource_path.indexOf("user/logout");
+
+    if (login  != -1 || logout != -1 || register != -1) {}
     // Node create resource.
     else if (options.resource_path.indexOf("node.json") != -1) {}
     // Comment create resource.
