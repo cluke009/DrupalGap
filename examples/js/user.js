@@ -2,15 +2,6 @@
  * Prepare elements for this page.
  */
 $(function () {
-  // Hide tabs.
-  $('#section_user_register').hide();
-  $('#section_user_edit').hide();
-  $('#section_user_retrieve').hide();
-  $('#section_user_create').hide();
-  $('#section_user_index').hide();
-
-  $('#input_user_retrieve_uid').val('1'),
-
   // Tab swapping.
   $('a').click(function () {
     var target = $(this.rel);
