@@ -1,21 +1,16 @@
+/**
+ * Make services.system.connect call
+ */
 $('#system_connect_submit').live('click', function () {
   try {
-    // Update settings with new site url path.
-    // settings = drupalgap_settings_load();
-    // settings.site_path = url;
-    // drupalgap_settings_save(settings);
-
     // Perform system connect to see if DrupalGap is setup properly on Drupal site.
     options = {
       "error": function (jqXHR, textStatus, errorThrown) {
-        // Clear the site path and re-save the settings to start over.
-        // settings.site_path = "";
-        // drupalgap_settings_save(settings);
         if (errorThrown) {
-          console.log(errorThrown);
+          console.error(errorThrown);
         }
         else {
-          console.log("Error connecting. Please check that the URL is typed correctly, with no trailing slashes.");
+          console.error("Error connecting. Please check that the URL is typed correctly, with no trailing slashes.");
         }
       },
       "success": function (inner_data) {
@@ -24,7 +19,6 @@ $('#system_connect_submit').live('click', function () {
 
         // Make a call to the DrupalGap bundled system connect resource.
         inner_options = {
-          "load_from_local_storage": "0",
           "error": function (jqXHR, textStatus, errorThrown) {
             if (errorThrown) {
               console.log(errorThrown);
@@ -34,18 +28,25 @@ $('#system_connect_submit').live('click', function () {
             }
           },
           "success": function () {
-            // Go to the dashboard.
-            // $.mobile.changePage("dashboard.html", "slideup");
+            // Success...
           }
         };
-        // drupalgap_services_resource_system_connect.resource_call(inner_options);
       },
     };
+    // Make service call.
     drupal_services_system_connect.resource_call(options);
   }
   catch (error) {
-    console.log("drupalgap_page_setup_connect");
-    console.log(error);
+    console.log("errorThrown: drupal_page_setup_connect");
+    console.error(error);
   }
   return false;
 });
+
+/**
+ * Clear localStorage so we can load new settings.
+ */
+$('#system_connect_clear_submit').live('click', function () {
+  localStorage.clear();
+  console.log("localStorage cleared");
+})

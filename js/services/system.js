@@ -19,7 +19,7 @@ var drupal_services_system_connect = {
         "resource_path": this.resource_path,
         "async": true,
         "success": this.success,
-        "error": this.error
+        "error": this.error,
       };
 
       // Attach error/success hooks if provided.
@@ -34,17 +34,17 @@ var drupal_services_system_connect = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupal_services_system_connect.resource_call");
-      console.log(error);
+      console.log("errorThrown: drupal_services_system_connect.resource_call");
+      console.error(error);
     }
   },
 
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
-      alert(errorThrown);
+      console.error(errorThrown);
     }
     else {
-      alert(textStatus);
+      console.log(textStatus);
     }
   },
 
