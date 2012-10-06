@@ -8,6 +8,7 @@ drupal_settings = {
   site_path: 'http://localhost:8082',
   endpoint: 'rest',
   base_path: '?q=',
+  debug: 0
 }
 
 
@@ -16,17 +17,23 @@ drupal_settings = {
  * DO NOT EDIT BELOW THIS LINE
  *
  ******************************************************************************/
- if (typeof console  != "undefined")
-    if (typeof console.log != 'undefined')
-        console.olog = console.log;
-    else
-        console.olog = function() {};
 
-console.log = function(message) {
-    console.olog(message);
-    $('#debugDiv pre').prepend(message);
-};
-console.error = console.debug = console.info =  console.log
+// Dynamically load debug files
+$(document).ready( function() {
+  if (drupal_settings.debug = 1) {
+    $("head").append("<link>");
+    css = $("head").children(":last");
+    css.attr({
+      rel:  "stylesheet",
+      type: "text/css",
+      href: "../css/debug.css"
+    });
+    var js = document.createElement("script");
+    js.type = "text/javascript";
+    js.src = "../js/debug.js";
+    $("head").append(js);
+  }
+});
 
 var drupal_services_resource_call_result;
 
@@ -170,7 +177,7 @@ var drupal_services = {
         console.log(JSON.stringify({
           "path": service_resource_call_url,
           "options": options
-        }));
+        }, undefined, 2));
 
         // Make the call, synchronously or asynchronously...
         if (options.async == false) {
@@ -199,14 +206,14 @@ var drupal_services = {
           });
 
           // Print service resource call debug info to console.
-          console.log(JSON.stringify(result));
+          console.log(JSON.stringify(result, undefined, 2));
 
           // If there wasn't an error from the service call...
           if (!result.errorThrown) {
 
             // Save the result to local storage, if necessary.
             if (options.save_to_local_storage == "1") {
-              window.localStorage.setItem(options.local_storage_key, JSON.stringify(result));
+              window.localStorage.setItem(options.local_storage_key, JSON.stringify(result, undefined, 2));
               console.log("saving service resource to local storage (" + options.local_storage_key + ")");
             }
             else {
@@ -287,7 +294,7 @@ var drupal_services = {
     }
     catch (error) {
       console.log("resource_call - " + error);
-      console.log(JSON.stringify(options));
+      console.log(JSON.stringify(options, undefined, 2));
     }
   },
 
@@ -299,7 +306,7 @@ var drupal_services = {
       "textStatus": textStatus,
       "errorThrown": errorThrown,
     };
-    console.log(JSON.stringify(result));
+    console.log(JSON.stringify(result, undefined, 2));
 
     // Alert the user.
     if (errorThrown) {
@@ -316,7 +323,7 @@ var drupal_services = {
     // $.mobile.hidePageLoadingMsg();
 
     // Print data to console.
-    console.log(JSON.stringify(data));
+    console.log(JSON.stringify(data, undefined, 2));
 
     // TODO - Understand why the options variable is available here,
     // and why the this.options approach didn't work as expected earlier.
@@ -324,7 +331,7 @@ var drupal_services = {
     // Save the result to local storage, if necessary.
     if (options.save_to_local_storage == "1") {
 
-      window.localStorage.setItem(options.local_storage_key, JSON.stringify(data));
+      window.localStorage.setItem(options.local_storage_key, JSON.stringify(data, undefined, 2));
       console.log("saving service resource to local storage (" + options.local_storage_key + ")");
     }
     else {
@@ -527,7 +534,7 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
   // a list of local storage keys, that way this dependency
   // removal mechanism can be more dynamic/automated.
   console.log("drupal_services_resource_clean_local_storage_dependencies");
-  console.log(JSON.stringify(options));
+  console.log(JSON.stringify(options, undefined, 2));
   switch (options.type.toLowerCase()) {
   case "get":
     break;

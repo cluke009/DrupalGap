@@ -16,21 +16,6 @@ $('#system_connect_submit').live('click', function () {
       "success": function (inner_data) {
         // Session id came back, everything is ok...
         console.log("Setup Complete!");
-
-        // Make a call to the DrupalGap bundled system connect resource.
-        inner_options = {
-          "error": function (jqXHR, textStatus, errorThrown) {
-            if (errorThrown) {
-              console.log(errorThrown);
-            }
-            else {
-              console.log("Error connecting. Please check that the URL is typed correctly, with no trailing slashes.");
-            }
-          },
-          "success": function () {
-            // Success...
-          }
-        };
       },
     };
     // Make service call.
