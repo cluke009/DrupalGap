@@ -16,6 +16,18 @@ drupal_settings = {
  * DO NOT EDIT BELOW THIS LINE
  *
  ******************************************************************************/
+ if (typeof console  != "undefined")
+    if (typeof console.log != 'undefined')
+        console.olog = console.log;
+    else
+        console.olog = function() {};
+
+console.log = function(message) {
+    console.olog(message);
+    $('#debugDiv pre').prepend(message);
+};
+console.error = console.debug = console.info =  console.log
+
 var drupal_services_resource_call_result;
 
 //function drupal_services_resource_call
