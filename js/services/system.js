@@ -126,3 +126,113 @@ var drupal_services_system_get_variable = {
     console.log("Removed from local storage (" + key + ")");
   },
 };
+
+var drupal_services_system_set_variable = {
+  "resource_path": "system/set_variable.json",
+  "resource_type": "post",
+
+  /**
+   * Makes a Service call to Drupal's System Set Variable resource.
+   *
+   * @return
+   *   The value of the drupal variable, and NULL if the service call failed.
+   */
+  "resource_call": function (caller_options) {
+    try {
+      data = 'name=' + encodeURIComponent(caller_options.name);
+      data += '&value=' + encodeURIComponent(caller_options.value);
+      // Set default options.
+      options = {
+        "load_from_local_storage": "0",
+        "resource_path": this.resource_path,
+        "async": true,
+        "success": this.success,
+        "error": this.error,
+        "data": data
+      };
+
+      // Attach error/success hooks if provided.
+      if (caller_options.error) {
+        options.hook_error = caller_options.error;
+      }
+      if (caller_options.success) {
+        options.hook_success = caller_options.success;
+      }
+
+      // this.resource_result = drupal_services_resource_call(options);
+      drupal_services.resource_call(options);
+    }
+    catch (error) {
+      console.log("errorThrown: drupal_services_system_set_variable.resource_call");
+      console.error(error);
+    }
+  },
+
+  "error": function (jqXHR, textStatus, errorThrown) {
+    if (errorThrown) {
+      console.error(errorThrown);
+    }
+    else {
+      console.log(textStatus);
+    }
+  },
+
+  "success": function (data) {
+    // Reset get variable.
+    drupal_services_system_get_variable.local_storage_remove();
+  },
+};
+
+var drupal_services_system_del_variable = {
+  "resource_path": "system/del_variable.json",
+  "resource_type": "post",
+
+  /**
+   * Makes a Service call to Drupal's System Del Variable resource.
+   *
+   * @return
+   *   The value of the drupal variable, and NULL if the service call failed.
+   */
+  "resource_call": function (caller_options) {
+    try {
+      // Set default options.
+      options = {
+        "load_from_local_storage": "0",
+        "resource_path": this.resource_path,
+        "async": true,
+        "success": this.success,
+        "error": this.error,
+        "data": 'name=' + encodeURIComponent(caller_options.name)
+      };
+
+      // Attach error/success hooks if provided.
+      if (caller_options.error) {
+        options.hook_error = caller_options.error;
+      }
+      if (caller_options.success) {
+        options.hook_success = caller_options.success;
+      }
+
+      // this.resource_result = drupal_services_resource_call(options);
+      drupal_services.resource_call(options);
+    }
+    catch (error) {
+      console.log("errorThrown: drupal_services_system_set_variable.resource_call");
+      console.error(error);
+    }
+  },
+
+  "error": function (jqXHR, textStatus, errorThrown) {
+    if (errorThrown) {
+      console.error(errorThrown);
+    }
+    else {
+      console.log(textStatus);
+    }
+  },
+
+  "success": function (data) {
+    // Reset get variable.
+    drupal_services_system_get_variable.local_storage_remove();
+  },
+};

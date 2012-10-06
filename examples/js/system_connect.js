@@ -1,9 +1,14 @@
 /**
+ * Page is ready.
+ */
+$(document).ready(function () {
+  $('#input_system_get_variable').val('site_mail');
+});
+/**
  * Make services.system.connect call
  */
-$('#system_connect_submit').live('click', function () {
+$('#submit_system_connect').live('click', function () {
   try {
-    // Perform system connect to see if DrupalGap is setup properly on Drupal site.
     options = {
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
@@ -22,21 +27,51 @@ $('#system_connect_submit').live('click', function () {
     drupal_services_system_connect.resource_call(options);
   }
   catch (error) {
-    console.log("errorThrown: system_connect_submit");
+    console.log("errorThrown: submit_system_connect");
     console.error(error);
   }
   return false;
 });
 
 /**
- * Make services.system.getvar call
+ * Make services.system.get_variable call
  */
-$('#system_connect_get_variable_submit').live('click', function () {
+$('#submit_system_connect_get_variable').live('click', function () {
   try {
-    // Perform system connect to see if DrupalGap is setup properly on Drupal site.
+    options = {
+      "name": $('#input_system_get_variable').val(),
+      "error": function (jqXHR, textStatus, errorThrown) {
+        if (errorThrown) {
+          console.error(errorThrown);
+        }
+        else {
+          console.error("");
+        }
+      },
+      "success": function (inner_data) {
+        // Set the value of #input_system_set_variable
+        set = $('#input_system_set_variable').val(inner_data);
+      },
+    };
+    // Make service call.
+    drupal_services_system_get_variable.resource_call(options);
+  }
+  catch (error) {
+    console.log("errorThrown: submit_system_connect_get_variable");
+    console.error(error);
+  }
+  return false;
+});
+
+/**
+ * Make services.system.set_variable call
+ */
+$('#submit_system_connect_set_variable').live('click', function () {
+  try {
     options = {
       // Change 'site_mail' to the variable name you want.
-      "name": 'site_mail',
+      "name": $('#input_system_get_variable').val(),
+      "value": $('#input_system_set_variable').val(),
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
           console.error(errorThrown);
@@ -50,10 +85,40 @@ $('#system_connect_get_variable_submit').live('click', function () {
       },
     };
     // Make service call.
-    drupal_services_system_get_variables.resource_call(options);
+    drupal_services_system_set_variable.resource_call(options);
   }
   catch (error) {
-    console.log("errorThrown: system_connect_get_variable_submit");
+    console.log("errorThrown: submit_system_connect_set_variable");
+    console.error(error);
+  }
+  return false;
+});
+
+/**
+ * Make services.system.set_variable call
+ */
+$('#submit_system_connect_del_variable').live('click', function () {
+  try {
+    options = {
+      // Change 'site_mail' to the variable name you want.
+      "name": $('#input_system_get_variable').val(),
+      "error": function (jqXHR, textStatus, errorThrown) {
+        if (errorThrown) {
+          console.error(errorThrown);
+        }
+        else {
+          console.error("");
+        }
+      },
+      "success": function (inner_data) {
+        // Returned variable...
+      },
+    };
+    // Make service call.
+    drupal_services_system_del_variable.resource_call(options);
+  }
+  catch (error) {
+    console.log("errorThrown: submit_system_connect_del_variable");
     console.error(error);
   }
   return false;
@@ -62,7 +127,7 @@ $('#system_connect_get_variable_submit').live('click', function () {
 /**
  * Clear localStorage so we can load new settings.
  */
-$('#system_clear_submit').live('click', function () {
+$('#submit_system_clear').live('click', function () {
   localStorage.clear();
   console.log("localStorage cleared");
 })
