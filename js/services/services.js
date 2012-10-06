@@ -8,7 +8,7 @@ drupal_settings = {
   site_path: 'http://localhost:8082',
   endpoint: 'rest',
   base_path: '?q=',
-  debug: 0
+  debug: 1
 }
 
 
@@ -20,7 +20,7 @@ drupal_settings = {
 
 // Dynamically load debug files
 $(document).ready( function() {
-  if (drupal_settings.debug = 1) {
+  if (drupal_settings.debug === 1) {
     $("head").append("<link>");
     css = $("head").children(":last");
     css.attr({
@@ -172,7 +172,6 @@ var drupal_services = {
         }
       }
       else {
-
         // Print service resource call debug info to console.
         console.log(JSON.stringify({
           "path": service_resource_call_url,
@@ -193,14 +192,14 @@ var drupal_services = {
             beforeSend: function(jqXHR){
               jqXHR.withCredentials = true;
             },
-            error: function (jqXHR, textStatus, errorThrown) {
+            fail: function (jqXHR, textStatus, errorThrown) {
               result = {
                 "jqXHR": jqXHR,
                 "textStatus": textStatus,
                 "errorThrown": errorThrown,
               };
             },
-            success: function (data) {
+            done: function (data) {
               result = data;
             }
           });
@@ -243,11 +242,11 @@ var drupal_services = {
             data: options.data,
             dataType: options.dataType,
             async: options.async,
-            error: options.error,
+            fail: options.error,
             contentType: 'application/x-www-form-urlencoded',
             xhrFields: { withCredentials: true },
             beforeSend: function(jqXHR){jqXHR.withCredentials = true;},
-            success: options.success
+            done: options.success
           };
 
           // If error/success call back hooks were provided, chain them

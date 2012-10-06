@@ -69,30 +69,60 @@ var drupal_services_system_connect = {
   },
 };
 
-/**
- * Makes an synchronous call to Drupal's System Get Variable Resource.
- *
- * @param
- *   name The name of the Drupal Variable to retrieve.
- *
- * @return
- *   The value of the drupal variable, FALSE otherwise.
- */
-function drupal_services_system_get_variable(name) {
-  try {
-    if (!name) {
-      return false;
+var drupal_services_system_get_variable = {
+  "resource_path": "system/get_variable.json",
+  "resource_type": "post",
+
+  /**
+   * Makes a Service call to Drupal's System Get Variable resource.
+   *
+   * @return
+   *   The value of the drupal variable, and NULL if the service call failed.
+   */
+  "resource_call": function (caller_options) {
+    try {
+      // Set default options.
+      options = {
+        "resource_path": this.resource_path,
+        "async": true,
+        "success": this.success,
+        "error": this.error,
+        "data": 'name=' + encodeURIComponent(caller_options.name)
+      };
+
+      // Attach error/success hooks if provided.
+      if (caller_options.error) {
+        options.hook_error = caller_options.error;
+      }
+      if (caller_options.success) {
+        options.hook_success = caller_options.success;
+      }
+
+      // this.resource_result = drupal_services_resource_call(options);
+      drupal_services.resource_call(options);
     }
-    options = {
-      "resource_path": "system/get_variable.json",
-      "data": 'name=' + encodeURIComponent(name)
-    };
-    drupal_services_system_get_variable_result = drupal_services.resource_call(options);
-    return drupal_services_system_get_variable_result;
-  }
-  catch (error) {
-    console.log("drupal_services_system_get_variable");
-    console.log(error);
-  }
-  return FALSE;
-}
+    catch (error) {
+      console.log("errorThrown: drupal_services_system_get_variable.resource_call");
+      console.error(error);
+    }
+  },
+
+  "error": function (jqXHR, textStatus, errorThrown) {
+    if (errorThrown) {
+      console.error(errorThrown);
+    }
+    else {
+      console.log(textStatus);
+    }
+  },
+
+  "success": function (data) {},
+
+  "local_storage_remove": function () {
+    type = this.resource_type;
+    resource_path = this.resource_path;
+    key = drupal_services_default_local_storage_key(type, resource_path);
+    window.localStorage.removeItem(key);
+    console.log("Removed from local storage (" + key + ")");
+  },
+};
