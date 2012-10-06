@@ -1,7 +1,5 @@
-// Global variables used to hold the latest system resource call results.
-var drupalgap_services_system_get_variable_result;
 
-var drupalgap_services_system_connect = {
+var drupal_services_system_connect = {
   "resource_path": "system/connect.json",
   "resource_type": "post",
 
@@ -14,7 +12,7 @@ var drupalgap_services_system_connect = {
   "resource_call": function (caller_options) {
     try {
       // Clear the last result.
-      //this.resource_result = null;
+      // this.resource_result = null;
 
       // Set default options.
       options = {
@@ -32,11 +30,11 @@ var drupalgap_services_system_connect = {
         options.hook_success = caller_options.success;
       }
 
-      //this.resource_result = drupalgap_services_resource_call(options);
-      drupalgap_services.resource_call(options);
+      // this.resource_result = drupal_services_resource_call(options);
+      drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupalgap_services_system_connect.resource_call");
+      console.log("drupal_services_system_connect.resource_call");
       console.log(error);
     }
   },
@@ -52,20 +50,20 @@ var drupalgap_services_system_connect = {
 
   "success": function (data) {
     // Save a copy of the current user.
-    drupalgap_user = data.user;
+    drupal_user = data.user;
 
     // Make sure authenticated user's account is active.
-    if (drupalgap_user.uid != 0 && drupalgap_user.status != 1) {
+    if (drupal_user.uid != 0 && drupal_user.status != 1) {
       // TODO - this alert doesn't work... the forced logout seems to work though...
-      alert("The username " + drupalgap_user.name + " has not been activated or is blocked.");
-      drupalgap_services_user_logout();
+      alert("The username " + drupal_user.name + " has not been activated or is blocked.");
+      drupal_services_user_logout();
     }
   },
 
   "local_storage_remove": function () {
     type = this.resource_type;
     resource_path = this.resource_path;
-    key = drupalgap_services_default_local_storage_key(type, resource_path);
+    key = drupal_services_default_local_storage_key(type, resource_path);
     window.localStorage.removeItem(key);
     console.log("Removed from local storage (" + key + ")");
   },
@@ -80,7 +78,7 @@ var drupalgap_services_system_connect = {
  * @return
  *   The value of the drupal variable, FALSE otherwise.
  */
-function drupalgap_services_system_get_variable(name) {
+function drupal_services_system_get_variable(name) {
   try {
     if (!name) {
       return false;
@@ -89,11 +87,11 @@ function drupalgap_services_system_get_variable(name) {
       "resource_path": "system/get_variable.json",
       "data": 'name=' + encodeURIComponent(name)
     };
-    drupalgap_services_system_get_variable_result = drupalgap_services.resource_call(options);
-    return drupalgap_services_system_get_variable_result;
+    drupal_services_system_get_variable_result = drupal_services.resource_call(options);
+    return drupal_services_system_get_variable_result;
   }
   catch (error) {
-    console.log("drupalgap_services_system_get_variable");
+    console.log("drupal_services_system_get_variable");
     console.log(error);
   }
   return FALSE;

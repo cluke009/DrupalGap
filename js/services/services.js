@@ -1,7 +1,7 @@
-var drupalgap_services_resource_call_result;
+var drupal_services_resource_call_result;
 
-//function drupalgap_services_resource_call
-var drupalgap_services = {
+//function drupal_services_resource_call
+var drupal_services = {
 
   /*"options":[],*/
 
@@ -11,11 +11,11 @@ var drupalgap_services = {
    * options.resource_path
    *    The path to the resource (required)
    * options.site_path
-   *    The full site path (default: drupalgap_settings.site_path)
+   *    The full site path (default: drupal_settings.site_path)
    * options.base_path
-   *    The drupal base path (default: drupalgap_settings.base_path)
+   *    The drupal base path (default: drupal_settings.base_path)
    * options.endpoint
-   *    The endpoint name (default : drupalgap_settings.services_endpoint_default)
+   *    The endpoint name (default : drupal_settings.services_endpoint_default)
    * options.type
    *    The method to use: get, post (default), put, delete
    * options.dataType
@@ -50,7 +50,7 @@ var drupalgap_services = {
    */
   "resource_call": function (options) {
     // Clear previous service call result stored in global variable.
-    drupalgap_services_resource_call_result = null;
+    drupal_services_resource_call_result = null;
     result = null;
 
     try {
@@ -62,7 +62,7 @@ var drupalgap_services = {
       }
 
       // Get the default options (this does not override any options passed in).
-      options = drupalgap_services_resource_get_default_options(options);
+      options = drupal_services_resource_get_default_options(options);
 
       // If this call is going to be asynchronous, we need to make sure a
       // success and failure call back function where included.
@@ -78,16 +78,16 @@ var drupalgap_services = {
       }
 
       // Build URL to service resource.
-      service_resource_call_url = drupalgap_services_resource_url(options);
+      service_resource_call_url = drupal_services_resource_url(options);
 
       // Set default local storage key if one wasn't provided.
       if (!options.local_storage_key) {
-        options.local_storage_key = drupalgap_services_default_local_storage_key(options.type, options.resource_path);
+        options.local_storage_key = drupal_services_default_local_storage_key(options.type, options.resource_path);
       }
 
       // If no load_from_local_storage option was set, set the default.
       if (!options.load_from_local_storage) {
-        options = drupalgap_services_get_load_from_local_storage_default(options);
+        options = drupal_services_get_load_from_local_storage_default(options);
       }
       else {
         console.log("we were instructed on load_from_local_storage (" + options.load_from_local_storage + ")");
@@ -95,7 +95,7 @@ var drupalgap_services = {
 
       // If no save to local storage option has been set, set the default.
       if (!options.save_to_local_storage) {
-        options = drupalgap_services_get_save_to_local_storage_default(options);
+        options = drupal_services_get_save_to_local_storage_default(options);
       }
       else {
         console.log("we were instructed on save_to_local_storage (" + options.save_to_local_storage + ")");
@@ -107,7 +107,7 @@ var drupalgap_services = {
         result = window.localStorage.getItem(options.local_storage_key);
       }
 
-      // Save the current options in drupalgap_services.options for backup.
+      // Save the current options in drupal_services.options for backup.
       // (this is needed by the error/success async call backs)
       /*if (!this.options) {
         this.options = [];
@@ -183,14 +183,14 @@ var drupalgap_services = {
             }
 
             // Clean up service resource result local storage dependencies.
-            drupalgap_services_resource_clean_local_storage_dependencies(options);
+            drupal_services_resource_clean_local_storage_dependencies(options);
           }
 
           // Save a copy of the service resource call result in the
           // global variable in case anybody needs it.
-          drupalgap_services_resource_call_result = result;
+          drupal_services_resource_call_result = result;
 
-          return drupalgap_services_resource_call_result;
+          return drupal_services_resource_call_result;
 
         }
         else {
@@ -271,10 +271,10 @@ var drupalgap_services = {
 
     // Alert the user.
     if (errorThrown) {
-      alert(errorThrown);
+      console.log(errorThrown);
     }
     else {
-      alert(textStatus);
+      console.log(textStatus);
     }
   },
 
@@ -300,7 +300,7 @@ var drupalgap_services = {
     }
 
     // Clean up service resource result local storage dependencies.
-    drupalgap_services_resource_clean_local_storage_dependencies(options);
+    drupal_services_resource_clean_local_storage_dependencies(options);
   }
 };
 
@@ -310,22 +310,22 @@ var drupalgap_services = {
  * options.resource_path
  *    The path to the resource (required)
  * options.site_path
- *    The full site path (default: drupalgap_settings.site_path)
+ *    The full site path (default: drupal_settings.site_path)
  * options.base_path
- *    The drupal base path (default: drupalgap_settings.base_path)
+ *    The drupal base path (default: drupal_settings.base_path)
  * options.endpoint
- *    The endpoint name (default : drupalgap_settings.services_endpoint_default)
+ *    The endpoint name (default : drupal_settings.services_endpoint_default)
  */
-function drupalgap_services_resource_url(options) {
+function drupal_services_resource_url(options) {
   // Set default values for options if none were provided.
   if (!options.site_path) {
-    options.site_path = drupalgap_settings.site_path;
+    options.site_path = drupal_settings.site_path;
   }
   if (!options.base_path) {
-    options.base_path = drupalgap_settings.base_path;
+    options.base_path = drupal_settings.base_path;
   }
   if (!options.endpoint) {
-    options.endpoint = drupalgap_settings.services_endpoint_default;
+    options.endpoint = drupal_settings.endpoint;
   }
   return options.site_path + options.base_path + options.endpoint + "/" + options.resource_path;
 }
@@ -338,20 +338,20 @@ function drupalgap_services_resource_url(options) {
  * url
  *    The full URL to the service resource. (e.g. system/connect.json)
  */
-function drupalgap_services_default_local_storage_key(type, resource_path) {
+function drupal_services_default_local_storage_key(type, resource_path) {
   return type + "." + resource_path;
 }
 
-function drupalgap_services_resource_get_default_options(options) {
+function drupal_services_resource_get_default_options(options) {
   // Set default values for options if none were provided.
   if (!options.site_path) {
-    options.site_path = drupalgap_settings.site_path;
+    options.site_path = drupal_settings.site_path;
   }
   if (!options.base_path) {
-    options.base_path = drupalgap_settings.base_path;
+    options.base_path = drupal_settings.base_path;
   }
   if (!options.endpoint) {
-    options.endpoint = drupalgap_settings.services_endpoint_default;
+    options.endpoint = drupal_settings.endpoint;
   }
   if (!options.type) {
     options.type = "post";
@@ -368,7 +368,7 @@ function drupalgap_services_resource_get_default_options(options) {
   return options;
 }
 
-function drupalgap_services_get_load_from_local_storage_default(options) {
+function drupal_services_get_load_from_local_storage_default(options) {
   // If no load_from_local_storage option was set, set the default.
   // for best performance based on the service resource call.
 
@@ -384,12 +384,12 @@ function drupalgap_services_get_load_from_local_storage_default(options) {
   case "get":
     // Node retrieve resource.
     if (options.resource_path.indexOf("node/") != -1) {
-      if ($('div').attr('id') == "drupalgap_page_node_edit") {
+      if ($('div').attr('id') == "drupal_page_node_edit") {
         options.load_from_local_storage = "0";
       }
     }
     else if (options.resource_path.indexOf("comment/") != -1) {
-      if ($('div').attr('id') == "drupalgap_page_comment_edit") {
+      if ($('div').attr('id') == "drupal_page_comment_edit") {
         options.load_from_local_storage = "0";
       }
     }
@@ -439,7 +439,7 @@ function drupalgap_services_get_load_from_local_storage_default(options) {
 // unless in offline mode. Right now the C.U.D. implementations
 // decide this setting which is ok, but we could bring that decision into
 // here so the C.U.D. implementations are cleaner.
-function drupalgap_services_get_save_to_local_storage_default(options) {
+function drupal_services_get_save_to_local_storage_default(options) {
   switch (options.type.toLowerCase()) {
   case "get":
     break;
@@ -478,7 +478,7 @@ function drupalgap_services_get_save_to_local_storage_default(options) {
   return options;
 }
 
-function drupalgap_services_resource_clean_local_storage_dependencies(options) {
+function drupal_services_resource_clean_local_storage_dependencies(options) {
   // If this service resource call has local storage items dependent on
   // result, then remove those items from local storage.
   /* Stuff with dependents:
@@ -491,7 +491,7 @@ function drupalgap_services_resource_clean_local_storage_dependencies(options) {
   // should include an array variable that allows us to stack
   // a list of local storage keys, that way this dependency
   // removal mechanism can be more dynamic/automated.
-  console.log("drupalgap_services_resource_clean_local_storage_dependencies");
+  console.log("drupal_services_resource_clean_local_storage_dependencies");
   console.log(JSON.stringify(options));
   switch (options.type.toLowerCase()) {
   case "get":
@@ -501,32 +501,32 @@ function drupalgap_services_resource_clean_local_storage_dependencies(options) {
     if (
     options.resource_path.indexOf("user/login") != -1 || options.resource_path.indexOf("user/logout") != -1 || options.resource_path.indexOf("user/register") != -1) {
       // system/connect.json
-      drupalgap_services_system_connect.local_storage_remove();
-      // drupalgap_system/connect.json
-      drupalgap_services_resource_system_connect.local_storage_remove();
+      drupal_services_system_connect.local_storage_remove();
+      // drupal_system/connect.json
+      drupal_services_resource_system_connect.local_storage_remove();
     }
     // Node create resource.
     else if (options.resource_path.indexOf("node.json") != -1) {
       // Remove views datasource content json.
       views_options = {
-        "path": "views_datasource/drupalgap_content"
+        "path": "views_datasource/drupal_content"
       };
-      drupalgap_views_datasource_retrieve.local_storage_remove(views_options);
+      drupal_views_datasource_retrieve.local_storage_remove(views_options);
     }
     // Comment create resource.
     else if (options.resource_path.indexOf("comment.json") != -1) {
       // Remove views datasource comment json.
       views_options = {
-        "path": "views_datasource/drupalgap_comments"
+        "path": "views_datasource/drupal_comments"
       };
-      drupalgap_views_datasource_retrieve.local_storage_remove(views_options);
+      drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove the comment's node comment views json.
       views_options = {
-        "path": "views_datasource/drupalgap_comments/" + options.nid
+        "path": "views_datasource/drupal_comments/" + options.nid
       };
-      drupalgap_views_datasource_retrieve.local_storage_remove(views_options);
+      drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove the comment's node.
-      drupalgap_services_node_retrieve.local_storage_remove({
+      drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
       });
     }
@@ -535,45 +535,45 @@ function drupalgap_services_resource_clean_local_storage_dependencies(options) {
     // User update resource.
     if (options.resource_path.indexOf("user/") != -1) {
       // Remove system/connect.json.
-      drupalgap_services_system_connect.local_storage_remove();
-      // Remove drupalgap_system/connect.json.
-      drupalgap_services_resource_system_connect.local_storage_remove();
+      drupal_services_system_connect.local_storage_remove();
+      // Remove drupal_system/connect.json.
+      drupal_services_resource_system_connect.local_storage_remove();
     }
     // Node update resource.
     else if (options.resource_path.indexOf("node/") != -1) {
       // Remove the node from local storage.
       // TODO - Node id validation here.
-      drupalgap_services_node_retrieve.local_storage_remove({
+      drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
       });
       // Remove views datasource content json.
       views_options = {
-        "path": "views_datasource/drupalgap_content"
+        "path": "views_datasource/drupal_content"
       };
-      drupalgap_views_datasource_retrieve.local_storage_remove(views_options);
+      drupal_views_datasource_retrieve.local_storage_remove(views_options);
     }
     // Comment update resource.
     else if (options.resource_path.indexOf("comment/") != -1) {
       // Remove the comment from local storage.
       // TODO - Comment id validation here.
-      drupalgap_services_comment_retrieve.local_storage_remove({
+      drupal_services_comment_retrieve.local_storage_remove({
         "cid": options.cid
       });
       // Remove views datasource comment json.
       views_options = {
-        "path": "views_datasource/drupalgap_comments"
+        "path": "views_datasource/drupal_comments"
       };
-      drupalgap_views_datasource_retrieve.local_storage_remove(views_options);
+      drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove the comment's node from local storage.
       // TODO - Node id validation here.
-      drupalgap_services_node_retrieve.local_storage_remove({
+      drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
       });
       // Remove views datasource comments json.
       views_options = {
-        "path": "views_datasource/drupalgap_comments/" + options.nid
+        "path": "views_datasource/drupal_comments/" + options.nid
       };
-      drupalgap_views_datasource_retrieve.local_storage_remove(views_options);
+      drupal_views_datasource_retrieve.local_storage_remove(views_options);
     }
     break;
   case "delete":
@@ -581,43 +581,43 @@ function drupalgap_services_resource_clean_local_storage_dependencies(options) {
     if (options.resource_path.indexOf("node/") != -1) {
       // Remove the node from local storage.
       // TODO - Node id validation here.
-      drupalgap_services_node_retrieve.local_storage_remove({
+      drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
       });
       // Remove views datasource content json.
       views_options = {
-        "path": "views_datasource/drupalgap_content"
+        "path": "views_datasource/drupal_content"
       };
-      drupalgap_views_datasource_retrieve.local_storage_remove(views_options);
+      drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove views datasource comment json.
       views_options = {
-        "path": "views_datasource/drupalgap_comments"
+        "path": "views_datasource/drupal_comments"
       };
-      drupalgap_views_datasource_retrieve.local_storage_remove(views_options);
+      drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // TODO - remove any comments from this node from local storage.
     }
     // Comment delete resource.
     else if (options.resource_path.indexOf("comment/") != -1) {
       // Remove the comment from local storage.
       // TODO - Comment id validation here.
-      drupalgap_services_comment_retrieve.local_storage_remove({
+      drupal_services_comment_retrieve.local_storage_remove({
         "cid": options.cid
       });
       // Remove views datasource comment json.
       views_options = {
-        "path": "views_datasource/drupalgap_comments"
+        "path": "views_datasource/drupal_comments"
       };
-      drupalgap_views_datasource_retrieve.local_storage_remove(views_options);
+      drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove the comment's node from local storage.
       // TODO - Node id validation here.
-      drupalgap_services_node_retrieve.local_storage_remove({
+      drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
       });
       // Remove views datasource comments json.
       views_options = {
-        "path": "views_datasource/drupalgap_comments/" + options.nid
+        "path": "views_datasource/drupal_comments/" + options.nid
       };
-      drupalgap_views_datasource_retrieve.local_storage_remove(views_options);
+      drupal_views_datasource_retrieve.local_storage_remove(views_options);
     }
     break;
   }

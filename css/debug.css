@@ -1,6 +1,0 @@
-pre { background: #333; color: #FFF; margin: 5px; outline: 1px solid #222; padding: 5px; white-space: pre-wrap; }
-pre .boolean { color: #66D9EF; text-transform: uppercase; }
-pre .number { color: #FD971F }
-pre .string { color: #A6E22E }
-pre .null { color: #AE81FF }
-pre .key { color: #F92672 }
