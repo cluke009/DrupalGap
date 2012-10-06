@@ -543,8 +543,6 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
     options.resource_path.indexOf("user/login") != -1 || options.resource_path.indexOf("user/logout") != -1 || options.resource_path.indexOf("user/register") != -1) {
       // system/connect.json
       drupal_services_system_connect.local_storage_remove();
-      // drupal_system/connect.json
-      drupal_services_resource_system_connect.local_storage_remove();
     }
     // Node create resource.
     else if (options.resource_path.indexOf("node.json") != -1) {

@@ -1,4 +1,4 @@
-pre { background: #333; color: #FFF; margin: 5px; outline: 1px solid #222; padding: 5px; white-space: pre-wrap; }
+pre { background: #333; color: #FFF; margin: 5px; padding: 5px; white-space: pre-wrap; border: 1px solid rgba(0, 0, 0, 0.15); }
 pre .timestamp { color: #FD971F; }
 pre .boolean { color: #66D9EF; text-transform: uppercase; }
 pre .number { color: #FD971F }

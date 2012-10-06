@@ -27,8 +27,7 @@ $('#submit_system_connect').live('click', function () {
     drupal_services_system_connect.resource_call(options);
   }
   catch (error) {
-    console.log("errorThrown: submit_system_connect");
-    console.error(error);
+    console.log("errorThrown: #submit_system_connect - " + error);
   }
   return false;
 });
@@ -57,8 +56,7 @@ $('#submit_system_connect_get_variable').live('click', function () {
     drupal_services_system_get_variable.resource_call(options);
   }
   catch (error) {
-    console.log("errorThrown: submit_system_connect_get_variable");
-    console.error(error);
+    console.log("errorThrown: #submit_system_connect_get_variable - " + error);
   }
   return false;
 });
@@ -88,8 +86,7 @@ $('#submit_system_connect_set_variable').live('click', function () {
     drupal_services_system_set_variable.resource_call(options);
   }
   catch (error) {
-    console.log("errorThrown: submit_system_connect_set_variable");
-    console.error(error);
+    console.log("errorThrown: #submit_system_connect_set_variable - " + error);
   }
   return false;
 });
@@ -118,8 +115,7 @@ $('#submit_system_connect_del_variable').live('click', function () {
     drupal_services_system_del_variable.resource_call(options);
   }
   catch (error) {
-    console.log("errorThrown: submit_system_connect_del_variable");
-    console.error(error);
+    console.log("errorThrown: #submit_system_connect_del_variable - " + error);
   }
   return false;
 });

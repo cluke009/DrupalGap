@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Drupal Services</title>
+  <!-- Jquery lib -->
+  <script src="../js/jquery-1.8.2.js"></script>
+
+  <!-- Required for all requests -->
+  <script src="../js/services/services.js"></script>
+  <script src="../js/services/system.js"></script>
+
+  <!-- Required for this request -->
+  <script src="../js/services/user.js"></script>
+  <script src="js/user.js"></script>
+
+  <!-- Simple CSS -->
+  <link type="text/css" rel="stylesheet" media="all" href="../css/simple.css" />
+</head>
+<body>
+
+  <div id="page_user">
+    <h1>User</h1>
+    <a id="link_user_login" href="#">Login</a>
+    <a id="link_user_register" href="#">Register</a>
+    <a id="link_user_edit" href="#">Edit</a>
+    <a id="link_user_logout" href="#">Logout</a>
+
+    <div id="section_user_login">
+      <h2>User Login</h2>
+      <label for="input_user_login_username">Username</label>
+      <input type="text" id="input_user_login_username" />
+
+      <label for="input_user_login_password">Password</label>
+      <input type="password" id="input_user_login_password" />
+
+      <button type="button" id="submit_user_login">Login</button>
+    </div><!-- /section_user_login -->
+
+    <div id="section_user_edit">
+      <h2>User Edit</h2>
+      <p>This example provides no validation and simply passes the new password field along.</p>
+
+      <label for="input_user_edit_name">Username</label>
+      <input type="text" id="input_user_edit_name" />
+
+      <label for="input_user_edit_mail">E-mail address</label>
+      <input type="text" id="input_user_edit_mail" />
+
+      <label for="input_user_edit_current_pass">Current password</label>
+      <input type="password" id="input_user_edit_current_pass" />
+
+      <label for="input_user_edit_password">New password</label>
+      <input type="password" id="input_user_edit_password" />
+
+      <button type="button" data-theme="b" id="submit_user_edit">Submit</button>
+    </div><!-- /section_user_login -->
+
+    <div id="section_user_register">
+      <h2>User Register</h2>
+      <p>This example provides no validation and simply passes all fields along.</p>
+
+      <label for="input_user_register_name">Username</label>
+      <input type="text" id="input_user_register_name" />
+
+      <label for="input_user_register_mail">E-mail address *</label>
+      <input type="text" id="input_user_register_mail" />
+
+      <label for="input_user_register_pass">Password</label>
+      <input type="password" id="input_user_register_pass" />
+
+      <button type="button" id="submit_user_register">Create new account</button>
+    </div><!-- /section_user_login -->
+  </div><!-- /page -->
+
+</body>
+</html>

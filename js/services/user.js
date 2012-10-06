@@ -1,9 +1,9 @@
 // Define global variables to hold the latest resource call result json.
-var drupalgap_services_user_access_result;
-var drupalgap_services_user_roles_and_permissions_result;
+var drupal_services_user_access_result;
+var drupal_services_user_roles_and_permissions_result;
 
-// TODO - We need a user retrieve service resource implementation here.
-var drupalgap_services_user_login = {
+// @todo - We need a user retrieve service resource implementation here.
+var drupal_services_user_login = {
   "resource_path": "user/login.json",
   "resource_type": "post",
 
@@ -15,12 +15,8 @@ var drupalgap_services_user_login = {
    * @param options.pass
    *   A string containing the drupal user password.
    */
-    "resource_call": function (caller_options) {
+  "resource_call": function (caller_options) {
     try {
-      if (!caller_options.name || !caller_options.pass) {
-        return false;
-      }
-
       // Build service call data string.
       data = 'username=' + encodeURIComponent(caller_options.name);
       data += '&password=' + encodeURIComponent(caller_options.pass);
@@ -35,6 +31,7 @@ var drupalgap_services_user_login = {
       };
 
       // Attach error/success hooks if provided.
+      // @todo Seems like redundant error reporting.
       if (caller_options.error) {
         options.hook_error = caller_options.error;
       }
@@ -43,27 +40,51 @@ var drupalgap_services_user_login = {
       }
 
       // Make the service call.
-      drupalgap_services.resource_call(options);
+      drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupalgap_services_user_login");
+      console.log("drupal_services_user_login");
       console.log(error);
     }
   },
 
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
-      alert(errorThrown);
+      console.log(errorThrown);
     }
     else {
-      alert(textStatus);
+      console.log(textStatus);
     }
   },
 
-  "success": function (data) {},
+  "success": function (data) {
+    // Run 'drupal_services_system_connect' to save session to localStorage.
+    try {
+      options = {
+        "error": function (jqXHR, textStatus, errorThrown) {
+          if (errorThrown) {
+            console.error(errorThrown);
+          }
+          else {
+            console.error("Error connecting. Please check that the URL is typed correctly, with no trailing slashes.");
+          }
+        },
+        "success": function (inner_data) {
+          // Session id came back, everything is ok...
+          console.log("Setup Complete!");
+        },
+      };
+      // Make service call.
+      drupal_services_system_connect.resource_call(options);
+    }
+    catch (error) {
+      console.log("drupal_services_user_login.system_connect");
+      console.log(error);
+    }
+  },
 };
 
-var drupalgap_services_user_logout = {
+var drupal_services_user_logout = {
   "resource_path": "user/logout.json",
   "resource_type": "post",
 
@@ -76,7 +97,6 @@ var drupalgap_services_user_logout = {
   "resource_call": function (caller_options) {
     try {
       // Build the service call options.
-      //, "save_to_local_storage":"0"
       options = {
         "resource_path": this.resource_path,
         "async": true,
@@ -93,28 +113,27 @@ var drupalgap_services_user_logout = {
       }
 
       // Make the service call.
-      drupalgap_services.resource_call(options);
+      drupal_services.resource_call(options);
 
     }
     catch (error) {
-      console.log("drupalgap_services_user_logout - " + error);
-      alert("drupalgap_services_user_logout - " + error);
+      console.log("drupal_services_user_logout - " + error);
     }
   },
 
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
-      alert(errorThrown);
+      console.log(errorThrown);
     }
     else {
-      alert(textStatus);
+      console.log(textStatus);
     }
   },
 
   "success": function (data) {},
 };
 
-var drupalgap_services_user_update = {
+var drupal_services_user_update = {
 
   "resource_path": function (options) {
     // TODO - Need uid validation here.
@@ -131,32 +150,20 @@ var drupalgap_services_user_update = {
   "resource_call": function (caller_options) {
     try {
 
-      drupalgap_services_user_update_result = null; // clear previous call
+      drupal_services_user_update_result = null; // clear previous call
 
       if (!caller_options.user) {
         // TODO - do a better job validating incoming user...
-        console.log("drupalgap_services_user_update - user empty");
+        console.log("drupal_services_user_update - user empty");
         return false;
       }
 
-      // TODO - implement user name change (if they have permission) and password changing
-
       // make the service call depending on what they're doing to their account...
-
-      // drupal user form input names
-      // user.current_pass
-      // user.pass1
-      // user.pass2
-
-      // working example to change name & e-mail, by providing current password
-      // name=foobar&mail=new.email.for%40foobar.com&current_pass=12345678
-
-      // add name and e-mail to resource call data
       data = "";
       data += "name=" + encodeURIComponent(caller_options.name);
       data += "&mail=" + encodeURIComponent(caller_options.mail);
       data += "&current_pass=" + encodeURIComponent(caller_options.current_pass);
-      data += "&pass=" + encodeURIComponent(caller_options.pass1);
+      data += "&pass=" + encodeURIComponent(caller_options.pass);
 
       // Build the service resource call options.
       //, "save_to_local_storage":"0"
@@ -178,32 +185,32 @@ var drupalgap_services_user_update = {
       }
 
       // Make the service call.
-      drupalgap_services.resource_call(options);
+      drupal_services.resource_call(options);
 
       // make another call to system connect to refresh global variables if there wasn't any problems
-      /*if (!drupalgap_services_user_update_result.errorThrown) {
+      /*if (!drupal_services_user_update_result.errorThrown) {
         // Make another call to system connect to refresh global variables.
         // TODO - this is a nested service resource call, ideally we should
         // create a custom drupalgap user update resource that bundles up
         // the drupalgap system connect in the results as well.
-        //drupalgap_services_resource_system_connect.resource_call({});
+        //drupal_services_resource_system_connect.resource_call({});
       }
 
-      //return drupalgap_services_user_update_result;
+      //return drupal_services_user_update_result;
       */
     }
     catch (error) {
-      console.log("drupalgap_services_user_update");
+      console.log("drupal_services_user_update");
       console.log(error);
     }
   },
 
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
-      alert(errorThrown);
+      console.log(errorThrown);
     }
     else {
-      alert(textStatus);
+      console.log(textStatus);
     }
   },
 
@@ -211,12 +218,12 @@ var drupalgap_services_user_update = {
 };
 
 
-/*function drupalgap_services_user_update (user) {
+/*function drupal_services_user_update (user) {
 
   return false; // if it made it this fair, the user update call failed
 }*/
 
-var drupalgap_services_user_register = {
+var drupal_services_user_register = {
   "resource_path": "user/register.json",
   "resource_type": "post",
 
@@ -224,15 +231,15 @@ var drupalgap_services_user_register = {
     try {
       // validate input
       if (!caller_options.name) {
-        alert("drupalgap_services_user_register - name empty");
+        console.log("drupal_services_user_register - name empty");
         return false;
       }
       if (!caller_options.mail) {
-        alert("drupalgap_services_user_register - mail empty");
+        console.log("drupal_services_user_register - mail empty");
         return false;
       }
       if (!caller_options.pass) {
-        alert("drupalgap_services_user_register - pass empty");
+        console.log("drupal_services_user_register - pass empty");
         return false;
       }
 
@@ -258,44 +265,44 @@ var drupalgap_services_user_register = {
       }
 
       // Make the service call.
-      drupalgap_services.resource_call(options);
+      drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupalgap_services_user_register");
+      console.log("drupal_services_user_register");
       console.log(error);
     }
   },
 
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
-      alert(errorThrown);
+      console.error(errorThrown);
     }
     else {
-      alert(textStatus);
+      console.log(textStatus);
     }
   },
 
   "success": function (data) {},
 };
 
-function drupalgap_services_user_access(options) {
+function drupal_services_user_access(options) {
   try {
     // Clear the previous call.
-    drupalgap_services_user_access_result = false;
+    drupal_services_user_access_result = false;
 
     // Validate the input.
     if (!options.permission) {
-      alert("drupalgap_services_user_access - no permission provided");
+      console.log("drupal_services_user_access - no permission provided");
       return false;
     }
 
     // If we have the user's roles and permissions already stored from
     // a call to drupalgap system connect, iterate over the collection
     // to see if the user has access to the permission.
-    if (drupalgap_user_roles_and_permissions) {
-      $.each(drupalgap_user_roles_and_permissions, function (index, object) {
+    if (drupal_user_roles_and_permissions) {
+      $.each(drupal_user_roles_and_permissions, function (index, object) {
         if (object.permission == options.permission) {
-          drupalgap_services_user_access_result = true;
+          drupal_services_user_access_result = true;
           return;
         }
       });
@@ -305,9 +312,9 @@ function drupalgap_services_user_access(options) {
       // a call to the drupalgap user access resource to see if the user
       // has the requested permission.
       if (valid) {
-        resource_path = "drupalgap_user/access.json";
+        resource_path = "drupal_user/access.json";
         data = 'permission=' + encodeURIComponent(options.permission);
-        drupalgap_services_user_access_result = drupalgap_services.resource_call({
+        drupal_services_user_access_result = drupal_services.resource_call({
           "resource_path": resource_path,
           "data": data
         });
@@ -315,40 +322,40 @@ function drupalgap_services_user_access(options) {
     }
   }
   catch (error) {
-    console.log("drupalgap_services_user_access");
+    console.log("drupal_services_user_access");
     console.log(error);
   }
 
-  return drupalgap_services_user_access_result;
+  return drupal_services_user_access_result;
 }
 
-function drupalgap_services_user_roles_and_permissions(uid) {
+function drupal_services_user_roles_and_permissions(uid) {
   try {
     // Clear the previous call.
-    drupalgap_services_user_roles_and_permissions_result = null;
+    drupal_services_user_roles_and_permissions_result = null;
 
     // Validate the user id.
     valid = true;
     if (!uid) {
       valid = false;
-      alert("drupalgap_services_user_roles_and_permissions - no user id provided");
+      console.log("drupal_services_user_roles_and_permissions - no user id provided");
     }
 
     if (valid) {
       // Make the service call.
-      resource_path = "drupalgap_user/roles_and_permissions.json";
+      resource_path = "drupal_user/roles_and_permissions.json";
       data = 'uid=' + encodeURIComponent(uid);
       options = {
         "resource_path": resource_path,
         "data": data
       };
-      drupalgap_services_user_roles_and_permissions_result = drupalgap_services.resource_call(options);
+      drupal_services_user_roles_and_permissions_result = drupal_services.resource_call(options);
     }
   }
   catch (error) {
-    console.log("drupalgap_services_user_roles_and_permissions");
+    console.log("drupal_services_user_roles_and_permissions");
     console.log(error);
   }
 
-  return drupalgap_services_user_roles_and_permissions_result;
+  return drupal_services_user_roles_and_permissions_result;
 }
