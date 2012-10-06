@@ -3,5 +3,5 @@ pre .timestamp { color: #FD971F; }
 pre .boolean { color: #66D9EF; text-transform: uppercase; }
 pre .number { color: #FD971F }
 pre .string { color: #A6E22E }
-pre .null { color: #AE81FF }
+pre .null { color: #AE81FF; text-transform: uppercase; }
 pre .key { color: #F92672 }
