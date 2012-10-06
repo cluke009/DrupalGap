@@ -134,10 +134,9 @@ var drupal_services_user_logout = {
 };
 
 var drupal_services_user_update = {
-
   "resource_path": function (options) {
     // TODO - Need uid validation here.
-    return "user/" + options.uid + ".json";
+    return "user/" + encodeURIComponent(options.uid) + ".json";
   },
   "resource_type": "put",
 
@@ -149,8 +148,8 @@ var drupal_services_user_update = {
    */
   "resource_call": function (caller_options) {
     try {
-
-      drupal_services_user_update_result = null; // clear previous call
+      // clear previous call
+      drupal_services_user_update_result = null;
 
       if (!caller_options.user) {
         // TODO - do a better job validating incoming user...
@@ -186,18 +185,6 @@ var drupal_services_user_update = {
 
       // Make the service call.
       drupal_services.resource_call(options);
-
-      // make another call to system connect to refresh global variables if there wasn't any problems
-      /*if (!drupal_services_user_update_result.errorThrown) {
-        // Make another call to system connect to refresh global variables.
-        // TODO - this is a nested service resource call, ideally we should
-        // create a custom drupalgap user update resource that bundles up
-        // the drupalgap system connect in the results as well.
-        //drupal_services_resource_system_connect.resource_call({});
-      }
-
-      //return drupal_services_user_update_result;
-      */
     }
     catch (error) {
       console.log("drupal_services_user_update");
@@ -214,14 +201,32 @@ var drupal_services_user_update = {
     }
   },
 
-  "success": function (data) {},
+  "success": function (data) {
+    // Run 'drupal_services_system_connect' to save session to localStorage.
+    try {
+      options = {
+        "error": function (jqXHR, textStatus, errorThrown) {
+          if (errorThrown) {
+            console.error(errorThrown);
+          }
+          else {
+            console.error("Error connecting. Please check that the URL is typed correctly, with no trailing slashes.");
+          }
+        },
+        "success": function (inner_data) {
+          // Session id came back, everything is ok...
+          console.log("Setup Complete!");
+        },
+      };
+      // Make service call.
+      drupal_services_system_connect.resource_call(options);
+    }
+    catch (error) {
+      console.log("drupal_services_user_login.system_connect");
+      console.log(error);
+    }
+  },
 };
-
-
-/*function drupal_services_user_update (user) {
-
-  return false; // if it made it this fair, the user update call failed
-}*/
 
 var drupal_services_user_register = {
   "resource_path": "user/register.json",
@@ -284,6 +289,181 @@ var drupal_services_user_register = {
 
   "success": function (data) {},
 };
+
+var drupal_services_user_retrieve = {
+  "resource_path": function (options) {
+    // TODO - Need uid validation here.
+    return "user/" + encodeURIComponent(options) + ".json";
+  },
+  "resource_type": "get",
+
+  /**
+   * Makes a synchronous call to Drupal's User Retrieve Service Resource.
+   *
+   * @return
+   *   TRUE if the logout was successful, false otherwise.
+   */
+  "resource_call": function (caller_options) {
+    try {
+      // Build the service resource call options.
+      options = {
+        "resource_path": this.resource_path(caller_options.uid),
+        "type": this.resource_type,
+        "async": true,
+        "error": this.error,
+        "success": this.success,
+      };
+
+      // Attach error/success hooks if provided.
+      if (caller_options.error) {
+        options.hook_error = caller_options.error;
+      }
+      if (caller_options.success) {
+        options.hook_success = caller_options.success;
+      }
+      // Make the service call.
+      drupal_services.resource_call(options);
+    }
+    catch (error) {
+      console.log("drupal_services_user_update");
+      console.log(error);
+    }
+  },
+
+  "error": function (jqXHR, textStatus, errorThrown) {
+    if (errorThrown) {
+      console.log(errorThrown);
+    }
+    else {
+      console.log(textStatus);
+    }
+  },
+
+  "success": function (data) {},
+};
+
+
+var drupal_services_user_index = {
+  "resource_path": "user.json",
+  "resource_type": "get",
+
+  /**
+   * Makes a synchronous call to Drupal's User Index Service Resource.
+   *
+   * @return
+   *   TRUE if the logout was successful, false otherwise.
+   */
+  "resource_call": function (caller_options) {
+    try {
+      // Build the service resource call options.
+      options = {
+        "resource_path": this.resource_path,
+        "type": this.resource_type,
+        "async": true,
+        "error": this.error,
+        "success": this.success,
+      };
+
+      // Attach error/success hooks if provided.
+      if (caller_options.error) {
+        options.hook_error = caller_options.error;
+      }
+      if (caller_options.success) {
+        options.hook_success = caller_options.success;
+      }
+      // Make the service call.
+      drupal_services.resource_call(options);
+    }
+    catch (error) {
+      console.log("drupal_services_user_update");
+      console.log(error);
+    }
+  },
+
+  "error": function (jqXHR, textStatus, errorThrown) {
+    if (errorThrown) {
+      console.log(errorThrown);
+    }
+    else {
+      console.log(textStatus);
+    }
+  },
+
+  "success": function (data) {},
+};
+
+var drupal_services_user_create = {
+  "resource_path": "user.json",
+  "resource_type": "post",
+
+  "resource_call": function (caller_options) {
+    try {
+      // validate input
+      if (!caller_options.name) {
+        console.log("drupal_services_user_create - name empty");
+        return false;
+      }
+      if (!caller_options.mail) {
+        console.log("drupal_services_user_create - mail empty");
+        return false;
+      }
+      if (!caller_options.pass) {
+        console.log("drupal_services_user_create - pass empty");
+        return false;
+      }
+
+      // Build the options for the service call.
+      data = 'name=' + encodeURIComponent(caller_options.name);
+      data += '&mail=' + encodeURIComponent(caller_options.mail);
+      data += '&pass=' + encodeURIComponent(caller_options.pass);
+      //, "save_to_local_storage":"0"
+      options = {
+        "resource_path": this.resource_path,
+        "data": data,
+        "async": true,
+        "success": this.success,
+        "error": this.error
+      };
+
+      // Attach error/success hooks if provided.
+      if (caller_options.error) {
+        options.hook_error = caller_options.error;
+      }
+      if (caller_options.success) {
+        options.hook_success = caller_options.success;
+      }
+
+      // Make the service call.
+      drupal_services.resource_call(options);
+    }
+    catch (error) {
+      console.log("drupal_services_user_create");
+      console.log(error);
+    }
+  },
+
+  "error": function (jqXHR, textStatus, errorThrown) {
+    if (errorThrown) {
+      console.error(errorThrown);
+    }
+    else {
+      console.log(textStatus);
+    }
+  },
+
+  "success": function (data) {},
+};
+
+
+
+
+
+
+
+
+
+
+
 
 function drupal_services_user_access(options) {
   try {

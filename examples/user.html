@@ -20,12 +20,15 @@
 
   <div id="page_user">
     <h1>User</h1>
-    <a id="link_user_login" href="#">Login</a>
-    <a id="link_user_register" href="#">Register</a>
-    <a id="link_user_edit" href="#">Edit</a>
+    <a id="link_user_login" rel="#section_user_login" href="#">Login</a>
+    <a id="link_user_register" rel="#section_user_register" href="#">Register</a>
+    <a id="link_user_edit" rel="#section_user_edit" href="#">Edit</a>
+    <a id="link_user_retrieve" rel="#section_user_retrieve" href="#">Retrieve</a>
+    <a id="link_user_create" rel="#section_user_create" href="#">Create</a>
+    <a id="link_user_index" rel="#section_user_index" href="#">Index</a>
     <a id="link_user_logout" href="#">Logout</a>
 
-    <div id="section_user_login">
+    <div id="section_user_login" class="content content_active">
       <h2>User Login</h2>
       <label for="input_user_login_username">Username</label>
       <input type="text" id="input_user_login_username" />
@@ -36,7 +39,23 @@
       <button type="button" id="submit_user_login">Login</button>
     </div><!-- /section_user_login -->
 
-    <div id="section_user_edit">
+    <div id="section_user_register" class="content">
+      <h2>User Register</h2>
+      <p>This example provides no validation and simply passes all fields along.</p>
+
+      <label for="input_user_register_name">Username</label>
+      <input type="text" id="input_user_register_name" />
+
+      <label for="input_user_register_mail">E-mail address</label>
+      <input type="text" id="input_user_register_mail" />
+
+      <label for="input_user_register_pass">Password</label>
+      <input type="password" id="input_user_register_pass" />
+
+      <button type="button" id="submit_user_register">Create new account</button>
+    </div><!-- /section_user_register -->
+
+    <div id="section_user_edit" class="content">
       <h2>User Edit</h2>
       <p>This example provides no validation and simply passes the new password field along.</p>
 
@@ -53,23 +72,34 @@
       <input type="password" id="input_user_edit_password" />
 
       <button type="button" data-theme="b" id="submit_user_edit">Submit</button>
-    </div><!-- /section_user_login -->
+    </div><!-- /section_user_edit -->
 
-    <div id="section_user_register">
-      <h2>User Register</h2>
-      <p>This example provides no validation and simply passes all fields along.</p>
+    <div id="section_user_retrieve" class="content">
+      <h2>User Retrieve</h2>
+      <label for="input_user_retrieve_uid">User ID</label>
+      <input type="text" id="input_user_retrieve_uid" />
 
-      <label for="input_user_register_name">Username</label>
-      <input type="text" id="input_user_register_name" />
+      <button type="button" id="submit_user_retrieve">Retrieve</button>
+    </div><!-- /section_user_retrieve -->
 
-      <label for="input_user_register_mail">E-mail address *</label>
-      <input type="text" id="input_user_register_mail" />
+    <div id="section_user_create" class="content">
+      <h2>User Create</h2>
+      <label for="input_user_create_name">Username</label>
+      <input type="text" id="input_user_create_name" />
 
-      <label for="input_user_register_pass">Password</label>
-      <input type="password" id="input_user_register_pass" />
+      <label for="input_user_create_mail">E-mail address *</label>
+      <input type="text" id="input_user_create_mail" />
 
-      <button type="button" id="submit_user_register">Create new account</button>
-    </div><!-- /section_user_login -->
+      <label for="input_user_create_pass">Password</label>
+      <input type="password" id="input_user_create_pass" />
+
+      <button type="button" id="submit_user_create">Create</button>
+    </div><!-- /section_user_create -->
+
+    <div id="section_user_index" class="content">
+      <h2>User Index</h2>
+      <button type="button" id="submit_user_index">Get users</button>
+    </div><!-- /section_user_index -->
   </div><!-- /page -->
 
 </body>
