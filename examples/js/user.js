@@ -200,7 +200,6 @@ $('#submit_user_index').live('click', function () {
   try {
     // Make call to the bundled user login service resource.
     options = {
-      "uid": $('#input_user_retrieve_uid').val(),
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
           console.error(errorThrown);
