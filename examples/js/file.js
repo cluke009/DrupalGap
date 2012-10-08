@@ -19,7 +19,7 @@ $('#submit_file_retrieve').live('click', function () {
   try {
     // Make call to the bundled user login service resource.
     options = {
-      "cid": $('#input_file_retrieve_cid').val(),
+      "fid": $('#input_file_retrieve_fid').val(),
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
           console.error(errorThrown);
@@ -48,9 +48,8 @@ $('#submit_file_create').live('click', function () {
   try {
     // Build service call options.
     options = {
-      "filemime": '',
-      "filepath": '',
-      "filename": $('#input_file_create_file').val(),
+      "file": $('#input_file_create_file').val(),
+      "filename": $('#input_file_create_filename').val(),
 
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
@@ -70,39 +69,6 @@ $('#submit_file_create').live('click', function () {
   }
   catch (error) {
     console.log("errorThrown: #submit_file_create - " + error);
-  }
-  return false;
-});
-
-/**
- * Handles the submission of the file update form.
- */
-$('#submit_file_update').live('click', function () {
-  try {
-    // Build service call options.
-    options = {
-      "subject": $('#input_file_update_subject').val(),
-      "body": $('#input_file_update_file_body').val(),
-      "cid": $('#input_file_update_cid').val(),
-      "nid": $('#input_file_update_nid').val(),
-      "error": function (jqXHR, textStatus, errorThrown) {
-        if (errorThrown) {
-          console.log(errorThrown);
-        }
-        else {
-          console.log(textStatus);
-        }
-      },
-
-      "success": function (data) {
-        // Success...
-      },
-    };
-    // Make the service call.
-    drupal_services_file_update.resource_call(options);
-  }
-  catch (error) {
-    console.log("errorThrown: #submit_file_update - " + error);
   }
   return false;
 });
@@ -165,43 +131,15 @@ $('#submit_file_index').live('click', function () {
 });
 
 /**
- * Handles the submission of the file count all form.
+ * Handles the submission of the file create form.
  */
-$('#submit_file_count_all').live('click', function () {
+$('#submit_file_create_raw').live('click', function () {
   try {
     // Build service call options.
     options = {
-      "nid": $('#input_file_count_all_nid').val(),
-      "error": function (jqXHR, textStatus, errorThrown) {
-        if (errorThrown) {
-          console.log(errorThrown);
-        }
-        else {
-          console.log(textStatus);
-        }
-      },
-      "success": function (file) {
-        // Success...
-      },
-    };
-    // Load file via services call.
-    drupal_services_file_count_all.resource_call(options);
-  }
-  catch (error) {
-    console.log("errorThrown: #submit_file_count_all - " + error);
-  }
-  return false;
-});
+      "file": $('#input_file_create_raw_file').val(),
+      "filename": $('#input_file_create_raw_filename').val(),
 
-/**
- * Handles the submission of the file count new form.
- */
-$('#submit_file_count_new').live('click', function () {
-  try {
-    // Build service call options.
-    options = {
-      "nid": $('#input_file_count_new_nid').val(),
-      "since": $('#input_file_count_new_since').val(),
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
           console.log(errorThrown);
@@ -210,15 +148,16 @@ $('#submit_file_count_new').live('click', function () {
           console.log(textStatus);
         }
       },
-      "success": function (file) {
+
+      "success": function (data) {
         // Success...
       },
     };
-    // Load file via services call.
-    drupal_services_file_count_new.resource_call(options);
+    // Make the service call.
+    drupal_services_file_create_raw.resource_call(options);
   }
   catch (error) {
-    console.log("errorThrown: #submit_file_count_new - " + error);
+    console.log("errorThrown: #submit_file_create_raw - " + error);
   }
   return false;
 });

@@ -12,6 +12,7 @@ var drupal_services_file_node_files_result;
 
 /**
  * Adds a new file and returns the fid.
+ *
  * @type {Object}
  */
 var drupal_services_file_create = {
@@ -21,8 +22,7 @@ var drupal_services_file_create = {
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
-      data = "filemime=" + encodeURIComponent(caller_options.filemime);
-      data += "&filepath=" + encodeURIComponent(caller_options.filepath);
+      data = "file=" + encodeURIComponent(caller_options.file);
       data += "&filename=" + encodeURIComponent(caller_options.filename);
 
       // Make the call.
@@ -53,7 +53,8 @@ var drupal_services_file_create = {
 };
 
 /**
- * Returns a specified file
+ * Get a given file
+ *
  * @type {Object}
  */
 var drupal_services_file_retrieve = {
@@ -71,7 +72,7 @@ var drupal_services_file_retrieve = {
     try {
       // Build the options for the service call.
       options = {
-        "resource_path": this.resource_path(caller_options.cid),
+        "resource_path": this.resource_path(caller_options.fid),
         "type": this.resource_type,
         "async": true,
         "error": function (jqXHR, textStatus, errorThrown) {},
@@ -95,13 +96,8 @@ var drupal_services_file_retrieve = {
     }
   },
 
-  /**
-   * Removes a file from local storage.
-   *
-   * options.cid
-   *    The file id of the file to remove.
-   */
   "local_storage_remove": function (options) {
+    // Removes a file from local storage.
     type = this.resource_type;
     resource_path = this.resource_path(options);
     key = drupal_services_default_local_storage_key(type, resource_path);
@@ -112,6 +108,7 @@ var drupal_services_file_retrieve = {
 
 /**
  * Delete a file. Returns true/nid if delete was successful.
+ *
  * @type {Object}
  */
 var drupal_services_file_delete = {
@@ -221,26 +218,26 @@ var drupal_services_file_index = {
 };
 
 /**
- * Returns the number of files on a given node id.
+ * Adds new files and returns the files array.
+ *
  * @type {Object}
  */
-var drupal_services_file_count_all = {
-  "resource_path": function (options) {
-    return "file/countAll.json";
-  },
+var drupal_services_file_create_raw = {
+  "resource_path": "file.json",
   "resource_type": "post",
 
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
-      data = "nid=" + caller_options.nid;
+      data = "file=" + encodeURIComponent(caller_options.file);
+      data += "&filename=" + encodeURIComponent(caller_options.filename);
 
-      // Build the options for the service call.
+      // Make the call.
       options = {
-        "resource_path": this.resource_path(caller_options.cid),
+        "resource_path": this.resource_path,
         "type": this.resource_type,
-        "data": data,
         "async": true,
+        "data": data,
         "error": function (jqXHR, textStatus, errorThrown) {},
         "success": function (data) {},
       };
@@ -253,58 +250,11 @@ var drupal_services_file_count_all = {
         options.hook_success = caller_options.success;
       }
 
-      // Make the service call.
       drupal_services.resource_call(options);
     }
     catch (error) {
       console.log("Error: services/file.js");
-      console.log("Object: drupal_services_file_count_all - " + error);
-    }
-  }
-};
-
-/**
- * Returns the number of new files on a given node id since timestamp.
- * @type {Object}
- */
-var drupal_services_file_count_new = {
-  "resource_path": function (options) {
-    return "file/countNew.json";
-  },
-  "resource_type": "post",
-
-  "resource_call": function (caller_options) {
-    try {
-      // Build service call data string.
-      data = "nid=" + caller_options.nid;
-      // Timestamp to indicate what nodes are new.
-      // Defaults to time of last user acces to node.
-      data += "&since=" + caller_options.since;
-
-      // Build the options for the service call.
-      options = {
-        "resource_path": this.resource_path(caller_options.cid),
-        "type": this.resource_type,
-        "data": data,
-        "async": true,
-        "error": function (jqXHR, textStatus, errorThrown) {},
-        "success": function (data) {},
-      };
-
-      // Attach error/success hooks if provided.
-      if (caller_options.error) {
-        options.hook_error = caller_options.error;
-      }
-      if (caller_options.success) {
-        options.hook_success = caller_options.success;
-      }
-
-      // Make the service call.
-      drupal_services.resource_call(options);
-    }
-    catch (error) {
-      console.log("Error: services/file.js");
-      console.log("Object: drupal_services_file_count_new - " + error);
+      console.log("Object: drupal_services_file_create_raw - " + error);
     }
   }
 };

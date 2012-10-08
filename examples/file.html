@@ -29,22 +29,26 @@
 
     <div id="section_file_retrieve" class="content content_active">
       <h2>File Retrieve</h2>
-      <label for="input_file_retrieve_cid">File ID</label>
-      <input type="text" id="input_file_retrieve_cid" value="1" />
+      <label for="input_file_retrieve_fid">File ID</label>
+      <input type="text" id="input_file_retrieve_fid" value="1" />
 
       <button type="button" id="submit_file_retrieve">Retrieve</button>
     </div><!-- /section_file_login -->
 
     <div id="section_file_create" class="content">
       <h2>File Create</h2>
-      <label for="input_file_create_file">File upload</label>
-      <input type="file" id="input_file_create_file" value="1" />
+      <label for="input_file_create_filename">File Name</label>
+      <input type="text" id="input_file_create_filename" />
+
+      <label for="input_file_create_file">Base64 encoded text</label>
+      <textarea id="input_file_create_file" rows="4"></textarea>
+
       <button type="button" id="submit_file_create">Upload</button>
     </div><!-- /section_file_create -->
 
     <div id="section_file_delete" class="content">
       <h2>File Delete</h2>
-      <label for="input_file_delete_cid">File ID</label>
+      <label for="input_file_delete_fid">File ID</label>
       <input type="text" id="input_file_delete_fid" value="1" />
 
       <button type="button" id="submit_file_delete">Delete</button>
@@ -57,16 +61,13 @@
 
     <div id="section_file_create_raw" class="content">
       <h2>File Create Raw</h2>
-      <label for="input_file_create_nid">Node ID</label>
-      <input type="text" id="input_file_create_nid" value="1" />
+      <label for="input_file_create_raw_filename">File Name</label>
+      <input type="text" id="input_file_create_raw_filename" />
 
-      <label for="input_file_create_subject">Subject</label>
-      <input type="text" id="input_file_create_subject" />
+      <label for="input_file_create_raw_file">Base64 encoded text</label>
+      <textarea id="input_file_create_raw_file" rows="4"></textarea>
 
-      <label for="input_file_create_file_body">Body</label>
-      <textarea id="input_file_create_file_body" rows="4"></textarea>
-
-      <button type="button" id="submit_file_create_raw">Create</button>
+      <button type="button" id="submit_file_create_raw">Create raw</button>
     </div><!-- /section_file_create_raw -->
   </div><!-- /page -->
 
