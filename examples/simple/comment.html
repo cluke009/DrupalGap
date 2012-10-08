@@ -14,11 +14,29 @@
   <script src="js/comment.js"></script>
 
   <!-- Simple CSS -->
-  <link type="text/css" rel="stylesheet" media="all" href="../css/simple.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/simple.css" />
 </head>
 <body>
 
-  <div id="page_comment">
+  <ul class="nav">
+    <li><a href="comment.html">Comment</a></li>
+    <li><a href="file.html">File</a></li>
+    <li><a href="node.html">Node</a></li>
+    <li><a href="system.html">System</a></li>
+    <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
+    <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
+    <li><a href="user.html">User</a></li>
+  </ul>
+
+  <div id="page_comment">  <ul class="nav">
+    <li><a href="comment.html">Comment</a></li>
+    <li><a href="file.html">File</a></li>
+    <li><a href="node.html">Node</a></li>
+    <li><a href="system.html">System</a></li>
+    <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
+    <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
+    <li><a href="user.html">User</a></li>
+  </ul>
     <h1>Comment</h1>
     <a id="link_comment_retrieve" rel="#section_comment_retrieve" href="#">Retrieve</a>
     <a id="link_comment_create" rel="#section_comment_create" href="#">Create</a>
@@ -101,6 +119,7 @@
       <button type="button" id="submit_comment_count_new">Get new comment count</button>
     </div><!-- /section_comment_count_new -->
   </div><!-- /page -->
+  <div class="debugDiv"></div>
 
 </body>
 </html>
