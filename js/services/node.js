@@ -12,6 +12,7 @@ var drupalgap_services_node_delete_result;
 
 /**
  * Returns a specified node by ID.
+ *
  * @type {Object}
  */
 var drupal_services_node_retrieve = {
@@ -64,13 +65,8 @@ var drupal_services_node_retrieve = {
 
   "success": function (data) {},
 
-  /**
-   * Removes a node from local storage.
-   *
-   * options.nid
-   *    The node id of the node to remove.
-   */
   "local_storage_remove": function (options) {
+    // Removes a node from local storage.
     type = this.resource_type;
     resource_path = this.resource_path(options);
     key = drupal_services_default_local_storage_key(type, resource_path);
@@ -81,6 +77,7 @@ var drupal_services_node_retrieve = {
 
 /**
  * Creates a new node based on submitted values.
+ *
  * @type {Object}
  */
 var drupal_services_node_create = {
@@ -93,6 +90,7 @@ var drupal_services_node_create = {
       data = "type=" + encodeURIComponent(caller_options.type);
       data += "&title=" + encodeURIComponent(caller_options.title);
       data += "&body=" + encodeURIComponent(caller_options.body);
+      data += "&language=" + encodeURIComponent(caller_options.language);
 
       // Build options for service call.
       options = {
@@ -134,6 +132,7 @@ var drupal_services_node_create = {
 
 /**
  * Updates a specified node based on submitted values.
+ *
  * @type {Object}
  */
 var drupal_services_node_update = {
@@ -149,12 +148,17 @@ var drupal_services_node_update = {
 
   "resource_call": function (caller_options) {
     try {
+      // Set language if not defined.
+      if (!caller_options.language) {
+        caller_options.language = 'und';
+      }
       // Build the data string and options for the service call.
-      data = "language=" + caller_options.language;
-      data += "&body[und][0][value]=" + encodeURIComponent(caller_options.body);
+      data = "body[" + caller_options.language + "][][value]=" + encodeURIComponent(caller_options.body);
       data += "&type=" + caller_options.type;
       data += "&title=" + encodeURIComponent(caller_options.title);
+      data += "&language=" + encodeURIComponent(caller_options.language);
 
+      // Build options for service call.
       options = {
         "resource_path": this.resource_path(caller_options.nid),
         "type": this.resource_type,
@@ -194,7 +198,8 @@ var drupal_services_node_update = {
 };
 
 /**
- * Deletes the specified node. Returns true if delete was successful.
+ * Delete a node given its nid. Returns true if delete was successful.
+ *
  * @type {Object}
  */
 var drupal_services_node_delete = {
@@ -250,6 +255,7 @@ var drupal_services_node_delete = {
 
 /**
  * Return an array of optionally paged nids based on a set of criteria.
+ *
  * @type {Object}
  */
 var drupal_services_node_index = {
@@ -297,7 +303,8 @@ var drupal_services_node_index = {
 };
 
 /**
- * Returns the files of a specified node.
+ * Generates an array of base64 encoded files attached to a node.
+ *
  * @type {Object}
  */
 var drupal_services_node_files = {
@@ -353,6 +360,7 @@ var drupal_services_node_files = {
 
 /**
  * Returns the comments of a specified node.
+ *
  * @type {Object}
  */
 var drupal_services_node_comments = {

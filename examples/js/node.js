@@ -48,6 +48,7 @@ $('#submit_node_create').live('click', function () {
   try {
     // Build service call options.
     options = {
+      "language": $('#input_node_create_language').val(),
       "title": $('#input_node_create_title').val(),
       "body": $('#input_node_create_body').val(),
       "type": $('#input_node_create_type').val(),
@@ -81,6 +82,7 @@ $('#submit_node_update').live('click', function () {
   try {
     // Build service call options.
     options = {
+      "language": $('#input_node_update_language').val(),
       "title": $('#input_node_update_title').val(),
       "body": $('#input_node_update_body').val(),
       "type": $('#input_node_update_type').val(),
@@ -98,7 +100,6 @@ $('#submit_node_update').live('click', function () {
         // Success...
       },
     };
-    alert($('#input_node_update_nid').val())
     // Make the service call.
     drupal_services_node_update.resource_call(options);
   }
