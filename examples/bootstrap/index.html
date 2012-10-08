@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Drupal Services</title>
+  <!-- Jquery lib -->
+  <script src="../../js/jquery-1.8.2.js"></script>
+
+  <!-- Required for all requests -->
+  <script src="../../js/services/services.js"></script>
+  <script src="../../js/services/system.js"></script>
+
+  <!-- Required for this request -->
+  <script src="js/system.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link type="text/css" rel="stylesheet" media="all" href="css/bootstrap.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/bootstrap-responsive.css" />
+  <style type="text/css">
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="index.html">Drupal Services</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="comment.html">Comment</a></li>
+            <li><a href="file.html">File</a></li>
+            <li><a href="node.html">Node</a></li>
+            <li><a href="system.html">System</a></li>
+            <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
+            <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
+            <li><a href="user.html">User</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+
+  <div id="page_system" class="container-fluid">
+    <div class="row-fluid">
+      <div class="offset1 span10">
+        <h1>System</h1>
+        <div class="hero-unit">
+          <p><a href="http://drupal.org/node/129812">What does system.connect do?</a></p>
+          <button id="submit_system_connect" class="btn btn-primary">System Connect</button>
+          <button id="submit_system_clear" class="btn">Clear localStorage</button>
+          <button id="submit_system_connect_del_variable" class="btn">Delete Variable</button>
+        </div><!-- /hero-unit -->
+        <p class="lead">Be careful setting and deleting variables as it's possible to break your site by altering the wrong one.</p>
+        <p class="lead">I used 'site_mail' as the default option because it accepts a single string.</p>
+        <form class="form-inline">
+          <label for="input_system_get_variable">Get variable</label>
+          <input type="text" id="input_system_get_variable" value="site_mail" />
+          <button id="submit_system_connect_get_variable" class="btn">Submit</button>
+        </form>
+        <form class="form-inline">
+          <label for="input_system_set_variable">Set variable</label>
+          <input type="text" id="input_system_set_variable" />
+          <button id="submit_system_connect_set_variable" class="btn">Submit</button>
+        </form>
+        <div class="debugDiv"></div>
+      </div><!-- /offset1 span10 -->
+    </div><!-- /row-fluid -->
+  </div><!-- /page -->
+</body>
+</html>

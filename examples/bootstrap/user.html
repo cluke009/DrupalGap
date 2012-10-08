@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Drupal Services</title>
+  <!-- Jquery lib -->
+  <script src="../../js/jquery-1.8.2.js"></script>
+
+  <!-- Required for all requests -->
+  <script src="../../js/services/services.js"></script>
+  <script src="../../js/services/system.js"></script>
+
+  <!-- Required for this request -->
+  <script src="../../js/services/user.js"></script>
+  <script src="js/user.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link type="text/css" rel="stylesheet" media="all" href="css/bootstrap.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/bootstrap-responsive.css" />
+  <style type="text/css">
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+    .content{ display:none; }
+    .content_active{ display:block; }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="index.html">Drupal Services</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="comment.html">Comment</a></li>
+            <li><a href="file.html">File</a></li>
+            <li><a href="node.html">Node</a></li>
+            <li><a href="system.html">System</a></li>
+            <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
+            <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
+            <li><a href="user.html">User</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+
+  <div id="page_user" class="container-fluid">
+    <div class="row-fluid">
+      <div class="offset1 span10">
+        <h1>User</h1>
+        <ul class="nav nav-pills">
+          <li class="active"><a id="link_user_login" rel="#section_user_login" href="#">Login</a></li>
+          <li><a id="link_user_register" rel="#section_user_register" href="#">Register</a></li>
+          <li><a id="link_user_edit" rel="#section_user_edit" href="#">Edit</a></li>
+          <li><a id="link_user_retrieve" rel="#section_user_retrieve" href="#">Retrieve</a></li>
+          <li><a id="link_user_create" rel="#section_user_create" href="#">Create</a></li>
+          <li><a id="link_user_index" rel="#section_user_index" href="#">Index</a></li>
+          <li><a id="link_user_logout" href="#">Logout</a></li>
+        </ul>
+
+        <div id="section_user_login" class="content content_active">
+          <h2>User Login</h2>
+          <form>
+            <label for="input_user_login_username">Username</label>
+            <input type="text" id="input_user_login_username" />
+
+            <label for="input_user_login_password">Password</label>
+            <input type="password" id="input_user_login_password" />
+
+            <div>
+              <button type="submit" class="btn" id="submit_user_login">Login</button>
+            </div>
+          </form>
+        </div><!-- /section_user_login -->
+
+        <div id="section_user_register" class="content">
+          <h2>User Register</h2>
+          <form>
+            <p>This example provides no validation and simply passes all fields along.</p>
+
+            <label for="input_user_register_name">Username</label>
+            <input type="text" id="input_user_register_name" />
+
+            <label for="input_user_register_mail">E-mail address</label>
+            <input type="text" id="input_user_register_mail" />
+
+            <label for="input_user_register_pass">Password</label>
+            <input type="password" id="input_user_register_pass" />
+
+            <div>
+              <button type="submit" class="btn" id="submit_user_register">Create new account</button>
+            </div>
+          </form>
+        </div><!-- /section_user_register -->
+
+        <div id="section_user_edit" class="content">
+          <h2>User Edit</h2>
+          <form>
+            <p>This example provides no validation and simply passes the new password field along.</p>
+
+            <label for="input_user_edit_uid">User ID</label>
+            <input type="text" id="input_user_edit_uid" />
+
+            <label for="input_user_edit_name">Username</label>
+            <input type="text" id="input_user_edit_name" />
+
+            <label for="input_user_edit_mail">E-mail address</label>
+            <input type="text" id="input_user_edit_mail" />
+
+            <label for="input_user_edit_current_pass">Current password</label>
+            <input type="password" id="input_user_edit_current_pass" />
+
+            <label for="input_user_edit_password">New password</label>
+            <input type="password" id="input_user_edit_password" />
+
+            <div>
+              <button type="submit" class="btn" data-theme="b" id="submit_user_edit">Submit</button>
+            </div>
+          </form>
+        </div><!-- /section_user_edit -->
+
+        <div id="section_user_retrieve" class="content">
+          <h2>User Retrieve</h2>
+          <form>
+            <label for="input_user_retrieve_uid">User ID</label>
+            <input type="text" id="input_user_retrieve_uid" value="1" />
+
+            <div>
+              <button type="submit" class="btn" id="submit_user_retrieve">Retrieve</button>
+            </div>
+          </form>
+        </div><!-- /section_user_retrieve -->
+
+        <div id="section_user_create" class="content">
+          <h2>User Create</h2>
+          <form>
+            <label for="input_user_create_name">Username</label>
+            <input type="text" id="input_user_create_name" />
+
+            <label for="input_user_create_mail">E-mail address</label>
+            <input type="text" id="input_user_create_mail" />
+
+            <label for="input_user_create_pass">Password</label>
+            <input type="password" id="input_user_create_pass" />
+
+            <label for="input_user_create_status">Status</label>
+            <input type="text" id="input_user_create_status" value="0" />
+
+            <label for="input_user_create_notify">Notify</label>
+            <input type="text" id="input_user_create_notify" value="0" />
+
+            <div>
+              <button type="submit" class="btn" id="submit_user_create">Create</button>
+            </div>
+          </form>
+        </div><!-- /section_user_create -->
+
+        <div id="section_user_index" class="content">
+          <h2>User Index</h2>
+          <form>
+            <div>
+              <button type="submit" class="btn" id="submit_user_index">Get users</button>
+            </div>
+          </form>
+        </div><!-- /section_user_index -->
+        <div class="debugDiv"></div>
+      </div><!-- /offset1 span10 -->
+    </div><!-- /row-fluid -->
+  </div><!-- /page -->
+</body>
+</html>
+
