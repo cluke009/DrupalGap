@@ -59,6 +59,9 @@
       <h2>User Edit</h2>
       <p>This example provides no validation and simply passes the new password field along.</p>
 
+      <label for="input_user_edit_uid">User ID</label>
+      <input type="text" id="input_user_edit_uid" />
+
       <label for="input_user_edit_name">Username</label>
       <input type="text" id="input_user_edit_name" />
 
@@ -87,11 +90,17 @@
       <label for="input_user_create_name">Username</label>
       <input type="text" id="input_user_create_name" />
 
-      <label for="input_user_create_mail">E-mail address *</label>
+      <label for="input_user_create_mail">E-mail address</label>
       <input type="text" id="input_user_create_mail" />
 
       <label for="input_user_create_pass">Password</label>
       <input type="password" id="input_user_create_pass" />
+
+      <label for="input_user_create_status">Status</label>
+      <input type="text" id="input_user_create_status" value="0" />
+
+      <label for="input_user_create_notify">Notify</label>
+      <input type="text" id="input_user_create_notify" value="0" />
 
       <button type="button" id="submit_user_create">Create</button>
     </div><!-- /section_user_create -->

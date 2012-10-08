@@ -67,6 +67,7 @@ var drupal_services_user_login = {
 
   "success": function (data) {},
 };
+
 /**
  * Logout the current user.
  *
@@ -117,9 +118,6 @@ var drupal_services_user_logout = {
 
 /**
  * Update an existing user.
- *
- * This function uses drupal_form_submit() and as such expects all input to match
- * the submitting form in question.
  *
  * @type {Object}
  */
@@ -181,26 +179,17 @@ var drupal_services_user_update = {
   "success": function (data) {},
 };
 
+/**
+ * Register a user.
+ *
+ * @type {Object}
+ */
 var drupal_services_user_register = {
   "resource_path": "user/register.json",
   "resource_type": "post",
 
   "resource_call": function (caller_options) {
     try {
-      // validate input
-      if (!caller_options.name) {
-        console.log("drupal_services_user_register - name empty");
-        return false;
-      }
-      if (!caller_options.mail) {
-        console.log("drupal_services_user_register - mail empty");
-        return false;
-      }
-      if (!caller_options.pass) {
-        console.log("drupal_services_user_register - pass empty");
-        return false;
-      }
-
       // Build service call data string.
       data = 'name=' + encodeURIComponent(caller_options.name);
       data += '&mail=' + encodeURIComponent(caller_options.mail);
@@ -251,8 +240,12 @@ var drupal_services_user_register = {
  */
 var drupal_services_user_retrieve = {
   "resource_path": function (options) {
-    // TODO - Need uid validation here.
-    return "user/" + encodeURIComponent(options) + ".json";
+    if ($.isNumeric(options)) {
+      return "user/" + encodeURIComponent(options) + ".json";
+    }
+    else {
+      console.log("Error: services/node.js 'options.nid' is not a number.");
+    }
   },
   "resource_type": "get",
 
@@ -279,8 +272,8 @@ var drupal_services_user_retrieve = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupal_services_user_update");
-      console.log(error);
+      console.log("Error: services/node.js");
+      console.log("Object: drupal_services_user_retrieve - " + error);
     }
   },
 
@@ -379,20 +372,6 @@ var drupal_services_user_create = {
 
   "resource_call": function (caller_options) {
     try {
-      // validate input
-      if (!caller_options.name) {
-        console.log("drupal_services_user_create - name empty");
-        return false;
-      }
-      if (!caller_options.mail) {
-        console.log("drupal_services_user_create - mail empty");
-        return false;
-      }
-      if (!caller_options.pass) {
-        console.log("drupal_services_user_create - pass empty");
-        return false;
-      }
-
       // Build the options for the service call.
       data = 'name=' + encodeURIComponent(caller_options.name);
       data += '&mail=' + encodeURIComponent(caller_options.mail);

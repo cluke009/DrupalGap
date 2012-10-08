@@ -1,34 +1,15 @@
 /**
- * Prepare elements for this page.
+ * Tab swapping.
  */
-$(function () {
-  // Tab swapping.
-  $('a').click(function () {
-    var target = $(this.rel);
-    $('.content').not(target).hide();
-    target.toggle();
+$('a').live('click', function () {
+  var target = $(this.rel);
+  $('.content').not(target).hide();
+  target.toggle();
 
-    $('a.active').removeClass('active');
-    $(this).addClass('active');
-    $('body > div.content_active').removeClass('content_active');
-    $(this.rel).addClass('content_active');
-  });
-
-  // Prepopulate user edit fields.
-  $('#link_user_edit').live('click', function () {
-    if(window.localStorage.getItem('post.system/connect.json')){
-      drupal_user = $.parseJSON(window.localStorage.getItem('post.system/connect.json'));
-      var name    = drupal_user.user.name;
-      var mail    = drupal_user.user.mail
-    }
-    else {
-      var name = '';
-      var mail = '';
-    }
-
-    $('#input_user_edit_name').val(name);
-    $('#input_user_edit_mail').val(mail);
-  });
+  $('a.active').removeClass('active');
+  $(this).addClass('active');
+  $('body > div.content_active').removeClass('content_active');
+  $(this.rel).addClass('content_active');
 });
 
 /**
@@ -68,10 +49,11 @@ $('#submit_user_edit').live('click', function () {
   try {
     // Build the service resource call options.
     options = {
+      "uid"          : $('#input_user_edit_uid').val(),
       "name"         : $('#input_user_edit_name').val(),
       "mail"         : $('#input_user_edit_mail').val(),
       "current_pass" : $('#input_user_edit_current_pass').val(),
-      "pass"         : $('#input_user_edit_pass').val(),
+      "pass"         : $('#input_user_edit_password').val(),
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
           console.log(errorThrown);
@@ -108,7 +90,6 @@ $('#submit_user_register').live('click', function () {
       "name": $('#input_user_register_name').val(),
       "mail": $('#input_user_register_mail').val(),
       "pass": $('#input_user_register_pass').val(),
-
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
           console.log(errorThrown);
@@ -117,7 +98,6 @@ $('#submit_user_register').live('click', function () {
           console.log(textStatus);
         }
       },
-
       "success": function (data) {
         if (data._user_resource_create.uid) {
           // User registration was successful...
@@ -231,7 +211,8 @@ $('#submit_user_create').live('click', function () {
       "name": $('#input_user_create_name').val(),
       "mail": $('#input_user_create_mail').val(),
       "pass": $('#input_user_create_pass').val(),
-
+      "status": $('#input_user_create_status').val(),
+      "notify": $('#input_user_create_notify').val(),
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
           console.log(errorThrown);
@@ -240,7 +221,6 @@ $('#submit_user_create').live('click', function () {
           console.log(textStatus);
         }
       },
-
       "success": function (data) {
         if (data._user_resource_create.uid) {
           // User registration was successful...
