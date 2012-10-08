@@ -12,6 +12,7 @@ var drupalgap_services_taxonomy_term_delete_result;
 
 /**
  * Return the results for a specified term id or FALSE if term id does not exist.
+ *
  * @type {Object}
  */
 var drupal_services_taxonomy_term_retrieve = {
@@ -44,12 +45,12 @@ var drupal_services_taxonomy_term_retrieve = {
         options.hook_success = caller_options.success;
       }
 
-      // Retrieve the taxonomy_term.
+      // Make the service call.
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupal_services_taxonomy_term_retrieve");
-      console.log(error);
+      console.log("Error: services/node.js");
+      console.log("Object: drupal_services_taxonomy_term_retrieve - " + error);
     }
   },
 
@@ -64,13 +65,8 @@ var drupal_services_taxonomy_term_retrieve = {
 
   "success": function (data) {},
 
-  /**
-   * Removes a taxonomy_term from local storage.
-   *
-   * options.nid
-   *    The taxonomy_term id of the taxonomy_term to remove.
-   */
   "local_storage_remove": function (options) {
+    // Removes a taxonomy_term from local storage.
     type = this.resource_type;
     resource_path = this.resource_path(options);
     key = drupal_services_default_local_storage_key(type, resource_path);
@@ -80,8 +76,8 @@ var drupal_services_taxonomy_term_retrieve = {
 };
 
 /**
- * Creates a new taxonomy_term based on submitted values.
- * Returns 1 if successful.
+ * Creates a new taxonomy_term based on submitted values. Returns 1 if successful.
+ *
  * @type {Object}
  */
 var drupal_services_taxonomy_term_create = {
@@ -115,7 +111,7 @@ var drupal_services_taxonomy_term_create = {
         options.hook_success = caller_options.success;
       }
 
-      // Make the service call to the taxonomy_term create resource.
+      // Make the service call.
       drupal_services.resource_call(options);
     }
     catch (error) {
@@ -137,6 +133,7 @@ var drupal_services_taxonomy_term_create = {
 
 /**
  * Updates a specified taxonomy_term based on submitted values.
+ *
  * @type {Object}
  */
 var drupal_services_taxonomy_term_update = {
@@ -200,6 +197,7 @@ var drupal_services_taxonomy_term_update = {
 
 /**
  * Deletes the specified taxonomy_term. Returns true if delete was successful.
+ *
  * @type {Object}
  */
 var drupal_services_taxonomy_term_delete = {
@@ -311,6 +309,7 @@ var drupal_services_taxonomy_term_index = {
 
 /**
  * Returns all nodes with provided taxonomy id.
+ *
  * @type {Object}
  */
 var drupal_services_taxonomy_term_select_nodes = {
@@ -339,7 +338,7 @@ var drupal_services_taxonomy_term_select_nodes = {
       if (caller_options.success) {
         options.hook_success = caller_options.success;
       }
-      console.log('test')
+
       // Make the service call.
       drupal_services.resource_call(options);
     }

@@ -8,6 +8,7 @@
 
 /**
  * Return the results for a specified vocabulary id or FALSE if term id does not exist.
+ *
  * @type {Object}
  */
 var drupal_services_taxonomy_vocabulary_retrieve = {
@@ -44,8 +45,8 @@ var drupal_services_taxonomy_vocabulary_retrieve = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupal_services_taxonomy_vocabulary_retrieve");
-      console.log(error);
+      console.log("Error: services/node.js");
+      console.log("Object: drupal_services_taxonomy_vocabulary_retrieve - " + error);
     }
   },
 
@@ -60,13 +61,8 @@ var drupal_services_taxonomy_vocabulary_retrieve = {
 
   "success": function (data) {},
 
-  /**
-   * Removes a taxonomy_vocabulary from local storage.
-   *
-   * options.nid
-   *    The taxonomy_vocabulary id of the taxonomy_vocabulary to remove.
-   */
   "local_storage_remove": function (options) {
+    // Removes a taxonomy_vocabulary from local storage.
     type = this.resource_type;
     resource_path = this.resource_path(options);
     key = drupal_services_default_local_storage_key(type, resource_path);
@@ -138,7 +134,7 @@ var drupal_services_taxonomy_vocabulary_create = {
         options.hook_success = caller_options.success;
       }
 
-      // Make the service call to the taxonomy_vocabulary create resource.
+      // Make the service call.
       drupal_services.resource_call(options);
     }
     catch (error) {
@@ -160,6 +156,7 @@ var drupal_services_taxonomy_vocabulary_create = {
 
 /**
  * Updates a specified taxonomy_vocabulary based on submitted values.
+ *
  * @type {Object}
  */
 var drupal_services_taxonomy_vocabulary_update = {
@@ -230,6 +227,7 @@ var drupal_services_taxonomy_vocabulary_update = {
 
 /**
  * Deletes the specified taxonomy_vocabulary. Returns true if delete was successful.
+ *
  * @type {Object}
  */
 var drupal_services_taxonomy_vocabulary_delete = {
@@ -284,7 +282,7 @@ var drupal_services_taxonomy_vocabulary_delete = {
 };
 
 /**
- * Return an array of optionally paged tids baed on a set of criteria.
+ * Return an array of optionally paged tids based on a set of criteria.
  *
  * An example request might look like
  *
@@ -341,6 +339,7 @@ var drupal_services_taxonomy_vocabulary_index = {
 
 /**
  * Services interface to taxonomy_get_tree().
+ *
  * @type {Object}
  */
 var drupal_services_taxonomy_vocabulary_get_tree = {
@@ -369,7 +368,7 @@ var drupal_services_taxonomy_vocabulary_get_tree = {
       if (caller_options.success) {
         options.hook_success = caller_options.success;
       }
-      console.log('test')
+
       // Make the service call.
       drupal_services.resource_call(options);
     }
