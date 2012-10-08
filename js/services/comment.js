@@ -244,7 +244,7 @@ var drupal_services_comment_index = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("Error: services/node.js");
+      console.log("Error: services/comment.js");
       console.log("Object: drupal_services_comment_index - " + error);
     }
   },
