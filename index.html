@@ -3,47 +3,46 @@
 <head>
   <title>DrupalGap</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="../css/debug.css">
+  <link rel="stylesheet" type="text/css" href="examples/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="examples/bootstrap/css/bootstrap-responsive.css">
 </head>
-<body>
+<body  class="container-fluid">
+  <div class="row-fluid">
+    <div class="offset1 span10">
+      <h1>DrupalGap Setup</h1>
+      <h3>1. Enable Module</h3>
+      <p><a href="http://drupal.org/project/drupalgap">Enable the DrupalGap module.</a></p>
 
-  <div id="drupalgap_page_setup">
-    <h1>DrupalGap Setup</h1>
-    <h3>1. Enable Module</h3>
-    <p><a href="http://drupal.org/project/drupalgap">Enable the DrupalGap module.</a></p>
+      <h3>2. Enable <a href="http://www.w3.org/TR/cors/">CORS</a></h3>
+      <p>Add this code to the end of settings.php.</p>
+      <p>This will allow your app to connect to Drupal from any domain.</p>
+      <pre>
 
-    <h3>2. Enable <a href="http://www.w3.org/TR/cors/">CORS</a></h3>
-    <p>Add this code to the end of settings.php.</p>
-    <p>This will allow your app to connect to Drupal from any domain.</p>
-    <pre>
-      if (isset($_SERVER['HTTP_ORIGIN'])){
-        $origin = $_SERVER['HTTP_ORIGIN'];
-        drupal_add_http_header('Access-Control-Allow-Origin', $origin);
-        drupal_add_http_header('Access-Control-Allow-Credentials', 'true');
-        drupal_add_http_header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-      }
-    </pre>
+if (isset($_SERVER['HTTP_ORIGIN'])){
+  $origin = $_SERVER['HTTP_ORIGIN'];
+  drupal_add_http_header('Access-Control-Allow-Origin', $origin);
+  drupal_add_http_header('Access-Control-Allow-Credentials', 'true');
+  drupal_add_http_header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+}
+      </pre>
 
-    <h3>3. Add your drupal site</h3>
-    <p>Enter the URL to your Drupal site and press 'Connect'.</p>
-    <input type="text" id="drupalgap_page_setup_site_url" value="http://localhost:8082"/>
-    <button type="button" data-theme="b" id="drupalgap_page_setup_connect">Connect</button>
-    <p>This will stored in localStorage and is referenced in code to make all requests.</p>
+      <h3>3. Check out some examples</h3>
+      <p>There are currently 2 examples to choose from.</p>
+      <ul>
+        <li>The <a href="examples/simple">simple example</a> which has a bare minimum of markup and is meant to showcse the quickest way to get started.</li>
+        <li>The <a href="examples/bootstrap">twitter bootstrap example</a> which has more markup but looks much nicer.</li>
+      </ul>
 
-    <h3>4. Check out the dashboard.</h3>
-    <p><a href="pages/dashboard.html">You can do that here.</a></p>
-    <p><a href="pages/">Or check out some other pages.</a></p>
-
-    <h3>Goals</h3>
-    <p>Eventually this project should accomplish a few things:</p>
-    <ul>
-      <li>Provide simple javascript api for working with Drupal services module</li>
-      <li>Provide bare bones examples of how to connect to each service without anything extra, similar to the <a href="http://drupal.org/project/examples">examples module</a></li>
-      <li>Provide a sample "app" with all those extras that aren't packaged into core</li>
-      <li>Remove dependency on DrupalGap, but keeping it as an optional subcomponent</li>
-    </ul>
-
-  </div><!-- /page -->
+      <h3>Goals</h3>
+      <p>Eventually this project should accomplish a few things:</p>
+      <ul>
+        <li>Provide simple javascript api for working with Drupal services module</li>
+        <li>Provide bare bones examples of how to connect to each service without anything extra, similar to the <a href="http://drupal.org/project/examples">examples module</a></li>
+        <li>Provide a sample "app" with all those extras that aren't packaged into core</li>
+        <li>Remove dependency on DrupalGap, but keeping it as an optional subcomponent</li>
+      </ul>
+    </div><!-- /offset1 span10 -->
+  </div><!-- /row-fluid -->
 
   <!-- Zepto lib -->
   <script src="js/jquery-1.8.2.js"></script>
