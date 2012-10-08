@@ -1,17 +1,18 @@
 /**
  * Tab swapping.
  */
-$('a').click(function () {
-  var target = $(this.rel);
-  $('.content').not(target).hide();
-  target.toggle();
+$(function () {
+  $('a').live('click', function () {
+    var target = $(this.rel);
+    $('.content').not(target).hide();
+    target.toggle();
 
-  $('a.active').removeClass('active');
-  $(this).addClass('active');
-  $('body > div.content_active').removeClass('content_active');
-  $(this.rel).addClass('content_active');
+    $('a.active').removeClass('active');
+    $(this).addClass('active');
+    $('body > div.content_active').removeClass('content_active');
+    $(this.rel).addClass('content_active');
+  });
 });
-
 
 /**
  * Handles the submission of the node retrieve form.
