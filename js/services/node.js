@@ -49,8 +49,8 @@ var drupal_services_node_retrieve = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupal_services_node_retrieve");
-      console.log(error);
+      console.log("Error: services/node.js");
+      console.log("Object: drupal_services_node_retrieve - " + error);
     }
   },
 
