@@ -3,7 +3,7 @@
  */
 $(document).ready(function () {
   // Insert debugDiv.
-  $('body').append('<div class="debugDiv">');
+  // $('body').append('<div class="debugDiv">');
 
   // Override default console command
   if (typeof console != "undefined") {
