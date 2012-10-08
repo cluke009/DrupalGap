@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Drupal Services</title>
+  <!-- Jquery lib -->
+  <script src="../js/jquery-1.8.2.js"></script>
+
+  <!-- Required for all requests -->
+  <script src="../js/services/services.js"></script>
+  <script src="../js/services/system.js"></script>
+
+  <!-- Required for this request -->
+  <script src="../js/services/file.js"></script>
+  <script src="js/file.js"></script>
+
+  <!-- Simple CSS -->
+  <link type="text/css" rel="stylesheet" media="all" href="../css/simple.css" />
+</head>
+<body>
+
+  <div id="page_file">
+    <h1>File</h1>
+    <a id="link_file_retrieve" rel="#section_file_retrieve" href="#">Retrieve</a>
+    <a id="link_file_create" rel="#section_file_create" href="#">Create</a>
+    <a id="link_file_login" rel="#section_file_delete" href="#">Delete</a>
+    <a id="link_file_index" rel="#section_file_index" href="#">Index</a>
+    <a id="link_file_create" rel="#section_file_create_raw" href="#">Create Raw</a>
+
+
+    <div id="section_file_retrieve" class="content content_active">
+      <h2>File Retrieve</h2>
+      <label for="input_file_retrieve_cid">File ID</label>
+      <input type="text" id="input_file_retrieve_cid" value="1" />
+
+      <button type="button" id="submit_file_retrieve">Retrieve</button>
+    </div><!-- /section_file_login -->
+
+    <div id="section_file_create" class="content">
+      <h2>File Create</h2>
+      <label for="input_file_create_file">File upload</label>
+      <input type="file" id="input_file_create_file" value="1" />
+      <button type="button" id="submit_file_create">Upload</button>
+    </div><!-- /section_file_create -->
+
+    <div id="section_file_delete" class="content">
+      <h2>File Delete</h2>
+      <label for="input_file_delete_cid">File ID</label>
+      <input type="text" id="input_file_delete_fid" value="1" />
+
+      <button type="button" id="submit_file_delete">Delete</button>
+    </div><!-- /section_file_retrieve -->
+
+    <div id="section_file_index" class="content">
+      <h2>File Index</h2>
+      <button type="button" id="submit_file_index">Get files</button>
+    </div><!-- /section_file_index -->
+
+    <div id="section_file_create_raw" class="content">
+      <h2>File Create Raw</h2>
+      <label for="input_file_create_nid">Node ID</label>
+      <input type="text" id="input_file_create_nid" value="1" />
+
+      <label for="input_file_create_subject">Subject</label>
+      <input type="text" id="input_file_create_subject" />
+
+      <label for="input_file_create_file_body">Body</label>
+      <textarea id="input_file_create_file_body" rows="4"></textarea>
+
+      <button type="button" id="submit_file_create_raw">Create</button>
+    </div><!-- /section_file_create_raw -->
+  </div><!-- /page -->
+
+</body>
+</html>
