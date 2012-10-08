@@ -555,15 +555,15 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
     // Comment create resource.
     else if (options.resource_path.indexOf("comment.json") != -1) {
       // Remove views datasource comment json.
-      views_options = {
-        "path": "views_datasource/drupal_comments"
-      };
-      drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // views_options = {
+      //   "path": "views_datasource/drupal_comments"
+      // };
+      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove the comment's node comment views json.
-      views_options = {
-        "path": "views_datasource/drupal_comments/" + options.nid
-      };
-      drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // views_options = {
+      //   "path": "views_datasource/drupal_comments/" + options.nid
+      // };
+      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove the comment's node.
       drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
@@ -586,10 +586,10 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
         "nid": options.nid
       });
       // Remove views datasource content json.
-      views_options = {
-        "path": "views_datasource/drupal_content"
-      };
-      drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // views_options = {
+      //   "path": "views_datasource/drupal_content"
+      // };
+      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
     }
     // Comment update resource.
     else if (options.resource_path.indexOf("comment/") != -1) {
@@ -599,20 +599,20 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
         "cid": options.cid
       });
       // Remove views datasource comment json.
-      views_options = {
-        "path": "views_datasource/drupal_comments"
-      };
-      drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // views_options = {
+      //   "path": "views_datasource/drupal_comments"
+      // };
+      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove the comment's node from local storage.
       // TODO - Node id validation here.
       drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
       });
       // Remove views datasource comments json.
-      views_options = {
-        "path": "views_datasource/drupal_comments/" + options.nid
-      };
-      drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // views_options = {
+      //   "path": "views_datasource/drupal_comments/" + options.nid
+      // };
+      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
     }
     break;
   case "delete":
@@ -643,20 +643,20 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
         "cid": options.cid
       });
       // Remove views datasource comment json.
-      views_options = {
-        "path": "views_datasource/drupal_comments"
-      };
-      drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // views_options = {
+      //   "path": "views_datasource/drupal_comments"
+      // };
+      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove the comment's node from local storage.
       // TODO - Node id validation here.
       drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
       });
       // Remove views datasource comments json.
-      views_options = {
-        "path": "views_datasource/drupal_comments/" + options.nid
-      };
-      drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // views_options = {
+      //   "path": "views_datasource/drupal_comments/" + options.nid
+      // };
+      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
     }
     break;
   }
