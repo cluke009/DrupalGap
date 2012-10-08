@@ -83,7 +83,6 @@ $('#submit_comment_update').live('click', function () {
       "subject": $('#input_comment_update_subject').val(),
       "body": $('#input_comment_update_comment_body').val(),
       "cid": $('#input_comment_update_cid').val(),
-      "nid": $('#input_comment_update_nid').val(),
       "language": $('#input_comment_update_language').val(),
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {

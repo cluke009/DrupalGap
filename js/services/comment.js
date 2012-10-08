@@ -137,7 +137,6 @@ var drupal_services_comment_update = {
       // Build service call data string.
       data = "comment_body[" + caller_options.language + "][0][value]=" + encodeURIComponent(caller_options.body);
       data += "&subject=" + encodeURIComponent(caller_options.subject);
-      data += "&nid=" + caller_options.nid;
 
       // Build the options for the service call.
       options = {

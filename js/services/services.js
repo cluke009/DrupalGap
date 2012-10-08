@@ -26,11 +26,11 @@ $(document).ready( function() {
     css.attr({
       rel:  "stylesheet",
       type: "text/css",
-      href: "../css/debug.css"
+      href: "/css/debug.css"
     });
     var js = document.createElement("script");
     js.type = "text/javascript";
-    js.src = "../js/debug.js";
+    js.src = "/js/debug.js";
     $("head").append(js);
   }
 });
