@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Drupal Services</title>
+  <!-- Jquery lib -->
+  <script src="../js/jquery-1.8.2.js"></script>
+
+  <!-- Required for all requests -->
+  <script src="../js/services/services.js"></script>
+  <script src="../js/services/system.js"></script>
+
+  <!-- Required for this request -->
+  <script src="../js/services/taxonomy_vocabulary.js"></script>
+  <script src="js/taxonomy_vocabulary.js"></script>
+
+  <!-- Simple CSS -->
+  <link type="text/css" rel="stylesheet" media="all" href="../css/simple.css" />
+</head>
+<body>
+
+  <div id="page_taxonomy_vocabulary">
+    <h1>Taxonomy Vocabulary</h1>
+    <a id="link_taxonomy_vocabulary_retrieve" rel="#section_taxonomy_vocabulary_retrieve" href="#">Retrieve</a>
+    <a id="link_taxonomy_vocabulary_create" rel="#section_taxonomy_vocabulary_create" href="#">Create</a>
+    <a id="link_taxonomy_vocabulary_update" rel="#section_taxonomy_vocabulary_update" href="#">Update</a>
+    <a id="link_taxonomy_vocabulary_login" rel="#section_taxonomy_vocabulary_delete" href="#">Delete</a>
+    <a id="link_taxonomy_vocabulary_index" rel="#section_taxonomy_vocabulary_index" href="#">Index</a>
+    <a id="link_taxonomy_vocabulary_select_nodes" rel="#section_taxonomy_vocabulary_get_tree" href="#">getTree</a>
+
+    <div id="section_taxonomy_vocabulary_retrieve" class="content content_active">
+      <h2>Taxonomy Vocabulary Retrieve</h2>
+      <label for="input_taxonomy_vocabulary_retrieve_vid">Taxonomy Vocabulary ID</label>
+      <input type="text" id="input_taxonomy_vocabulary_retrieve_vid" value="1" />
+
+      <button type="button" id="submit_taxonomy_vocabulary_retrieve">Retrieve</button>
+    </div><!-- /section_taxonomy_vocabulary_login -->
+
+    <div id="section_taxonomy_vocabulary_create" class="content">
+      <h2>Taxonomy Vocabulary Create</h2>
+      <label for="input_taxonomy_vocabulary_create_name">Name</label>
+      <p>Human readable name of the vocabulary.</p>
+      <input type="text" id="input_taxonomy_vocabulary_create_name" />
+
+      <label for="input_taxonomy_vocabulary_create_machine_name">Machine name</label>
+      <p>Machine readable name of the vocabulary.</p>
+      <input type="text" id="input_taxonomy_vocabulary_create_machine_name" />
+
+      <label for="input_taxonomy_vocabulary_create_description">Description</label>
+      <p>Extended description of the vocabulary.</p>
+      <textarea id="input_taxonomy_vocabulary_create_description" rows="4"></textarea>
+
+      <label for="input_taxonomy_vocabulary_create_help">Help</label>
+      <p>help text.</p>
+      <textarea type="text" id="input_taxonomy_vocabulary_create_help" rows="4"></textarea>
+
+      <label for="input_taxonomy_vocabulary_create_tags">Tags</label>
+      <p>1 to make this vocabulary free tagging</p>
+      <input type="text" id="input_taxonomy_vocabulary_create_tags" value="0" />
+
+      <label for="input_taxonomy_vocabulary_create_multiple">Create Multiple</label>
+      <p>1 to allow multiple selection.</p>
+      <input type="text" id="input_taxonomy_vocabulary_create_multiple" value="0" />
+
+      <label for="input_taxonomy_vocabulary_create_required">Required</label>
+      <p>1 to make the terms mandatory to be selected.</p>
+      <input type="text" id="input_taxonomy_vocabulary_create_required" value="0" />
+
+      <label for="input_taxonomy_vocabulary_create_hierarchy">Hierarchy</label>
+      <p>1 to allow and create hierarchy of the terms within the vocabulary.</p>
+      <input type="text" id="input_taxonomy_vocabulary_create_hierarchy" value="0" />
+
+      <label for="input_taxonomy_vocabulary_create_relations">Relations</label>
+      <p>1 to set and allow relation amongst multiple terms.</p>
+      <input type="text" id="input_taxonomy_vocabulary_create_relations" value="0" />
+
+      <label for="input_taxonomy_vocabulary_create_module">Module</label>
+      <p>Provide the module name in which the vocabulary is defined and which is calling this function.</p>
+      <input type="text" id="input_taxonomy_vocabulary_create_module" />
+
+      <label for="input_taxonomy_vocabulary_create_node">Node</label>
+      <p>Content types to which this vocabulary will be attached to.</p>
+      <input type="text" id="input_taxonomy_vocabulary_create_node" />
+
+      <label for="input_taxonomy_vocabulary_create_weight">Weight</label>
+      <p>Human readable name of the vocabulary</p>
+      <input type="text" id="input_taxonomy_vocabulary_create_weight" value="0" />
+
+      <button type="button" id="submit_taxonomy_vocabulary_create">Create</button>
+    </div><!-- /section_taxonomy_vocabulary_create -->
+
+    <div id="section_taxonomy_vocabulary_update" class="content">
+      <h2>Taxonomy Vocabulary Update</h2>
+      <label for="input_taxonomy_vocabulary_update_vid">Vocabulary ID</label>
+      <input type="text" id="input_taxonomy_vocabulary_update_vid" value="1" />
+
+      <label for="input_taxonomy_vocabulary_update_name">Name</label>
+      <p>Human readable name of the vocabulary.</p>
+      <input type="text" id="input_taxonomy_vocabulary_update_name" />
+
+      <label for="input_taxonomy_vocabulary_update_machine_name">Machine name</label>
+      <p>Machine readable name of the vocabulary.</p>
+      <input type="text" id="input_taxonomy_vocabulary_update_machine_name" />
+
+      <label for="input_taxonomy_vocabulary_update_description">Description</label>
+      <p>Extended description of the vocabulary.</p>
+      <textarea id="input_taxonomy_vocabulary_update_description" rows="4"></textarea>
+
+      <label for="input_taxonomy_vocabulary_update_help">Help</label>
+      <p>help text.</p>
+      <textarea type="text" id="input_taxonomy_vocabulary_update_help" rows="4"></textarea>
+
+      <label for="input_taxonomy_vocabulary_update_tags">Tags</label>
+      <p>1 to make this vocabulary free tagging</p>
+      <input type="text" id="input_taxonomy_vocabulary_update_tags" value="0" />
+
+      <label for="input_taxonomy_vocabulary_update_multiple">Create Multiple</label>
+      <p>1 to allow multiple selection.</p>
+      <input type="text" id="input_taxonomy_vocabulary_update_multiple" value="0" />
+
+      <label for="input_taxonomy_vocabulary_update_required">Required</label>
+      <p>1 to make the terms mandatory to be selected.</p>
+      <input type="text" id="input_taxonomy_vocabulary_update_required" value="0" />
+
+      <label for="input_taxonomy_vocabulary_update_hierarchy">Hierarchy</label>
+      <p>1 to allow and update hierarchy of the terms within the vocabulary.</p>
+      <input type="text" id="input_taxonomy_vocabulary_update_hierarchy" value="0" />
+
+      <label for="input_taxonomy_vocabulary_update_relations">Relations</label>
+      <p>1 to set and allow relation amongst multiple terms.</p>
+      <input type="text" id="input_taxonomy_vocabulary_update_relations" value="0" />
+
+      <label for="input_taxonomy_vocabulary_update_module">Module</label>
+      <p>Provide the module name in which the vocabulary is defined and which is calling this function.</p>
+      <input type="text" id="input_taxonomy_vocabulary_update_module" />
+
+      <label for="input_taxonomy_vocabulary_update_node">Node</label>
+      <p>Content types to which this vocabulary will be attached to.</p>
+      <input type="text" id="input_taxonomy_vocabulary_update_node" />
+
+      <label for="input_taxonomy_vocabulary_update_weight">Weight</label>
+      <p>Human readable name of the vocabulary</p>
+      <input type="text" id="input_taxonomy_vocabulary_update_weight" value="0" />
+
+      <button type="button" id="submit_taxonomy_vocabulary_update">Update</button>
+    </div><!-- /section_taxonomy_vocabulary_update -->
+
+    <div id="section_taxonomy_vocabulary_delete" class="content">
+      <h2>Taxonomy Vocabulary Delete</h2>
+      <label for="input_taxonomy_vocabulary_delete_vid">Taxonomy Vocabulary ID</label>
+      <input type="text" id="input_taxonomy_vocabulary_delete_vid" value="1" />
+
+      <button type="button" id="submit_taxonomy_vocabulary_delete">Delete</button>
+    </div><!-- /section_taxonomy_vocabulary_retrieve -->
+
+    <div id="section_taxonomy_vocabulary_index" class="content">
+      <h2>Taxonomy Vocabulary Index</h2>
+      <button type="button" id="submit_taxonomy_vocabulary_index">Get taxonomy_vocabularys</button>
+    </div><!-- /section_taxonomy_vocabulary_index -->
+
+    <div id="section_taxonomy_vocabulary_get_tree" class="content">
+      <h2>Taxonomy Vocabulary Get Tree</h2>
+      <label for="input_taxonomy_vocabulary_get_tree_vid">Vocabulary ID</label>
+      <input type="text" id="input_taxonomy_vocabulary_get_tree_vid" value="1" />
+      <button type="button" id="submit_taxonomy_vocabulary_get_tree">Get tree</button>
+    </div><!-- /section_taxonomy_vocabulary_get_tree -->
+  </div><!-- /page -->
+
+</body>
+</html>
