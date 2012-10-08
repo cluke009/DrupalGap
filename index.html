@@ -11,9 +11,13 @@
     <div class="offset1 span10">
       <h1>DrupalGap Setup</h1>
       <h3>1. Enable Module</h3>
-      <p><a href="http://drupal.org/project/drupalgap">Enable the DrupalGap module.</a></p>
+      <p><a href="http://drupal.org/project/services">Enable the Services module.</a></p>
+      <p>Add a new endpoint and enable all resources</p>
 
-      <h3>2. Enable <a href="http://www.w3.org/TR/cors/">CORS</a></h3>
+      <h3>2. Edit services.js</h3>
+      <p>Open js/services/services.js and configure your site_path and endpoint.</p>
+
+      <h3>3. Enable <a href="http://www.w3.org/TR/cors/">CORS</a></h3>
       <p>Add this code to the end of settings.php.</p>
       <p>This will allow your app to connect to Drupal from any domain.</p>
       <pre>
@@ -26,7 +30,7 @@ if (isset($_SERVER['HTTP_ORIGIN'])){
 }
       </pre>
 
-      <h3>3. Check out some examples</h3>
+      <h3>4. Check out some examples</h3>
       <p>There are currently 2 examples to choose from.</p>
       <ul>
         <li>The <a href="examples/simple">simple example</a> which has a bare minimum of markup and is meant to showcse the quickest way to get started.</li>
@@ -39,8 +43,9 @@ if (isset($_SERVER['HTTP_ORIGIN'])){
         <li>Provide simple javascript api for working with Drupal services module</li>
         <li>Provide bare bones examples of how to connect to each service without anything extra, similar to the <a href="http://drupal.org/project/examples">examples module</a></li>
         <li>Provide a sample "app" with all those extras that aren't packaged into core</li>
-        <li>Remove dependency on DrupalGap, but keeping it as an optional subcomponent</li>
+        <!-- <li>Remove dependency on DrupalGap, but keeping it as an optional subcomponent</li> -->
       </ul>
+
     </div><!-- /offset1 span10 -->
   </div><!-- /row-fluid -->
 
