@@ -2,7 +2,8 @@
  * @file
  * Controls interactions with the services node group.
  *
- * @todo Create validation for all passed in values.
+ * @todo Create validation for all passed in values?
+ * @todo Add Drupal version checking.
  */
 
 // Global variables used to hold the latest system resource call results.
