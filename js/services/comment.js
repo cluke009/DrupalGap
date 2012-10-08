@@ -11,6 +11,7 @@ var drupal_services_comment_node_comments_result;
 
 /**
  * Adds a new comment to a node and returns the cid.
+ *
  * @type {Object}
  */
 var drupal_services_comment_create = {
@@ -19,9 +20,14 @@ var drupal_services_comment_create = {
 
   "resource_call": function (caller_options) {
     try {
+      // Set language if not defined.
+      if (!caller_options.language) {
+        caller_options.language = 'und';
+      }
+
       // Build service call data string.
       data = "nid=" + encodeURIComponent(caller_options.nid);
-      data += "&comment_body[und][0][value]=" + encodeURIComponent(caller_options.body);
+      data += "&comment_body[" + caller_options.language + "][0][value]=" + encodeURIComponent(caller_options.body);
       data += "&subject=" + encodeURIComponent(caller_options.subject);
 
       // Make the call.
@@ -52,7 +58,8 @@ var drupal_services_comment_create = {
 };
 
 /**
- * Returns a specified comment
+ * Returns a specified comment.
+ *
  * @type {Object}
  */
 var drupal_services_comment_retrieve = {
@@ -94,13 +101,8 @@ var drupal_services_comment_retrieve = {
     }
   },
 
-  /**
-   * Removes a comment from local storage.
-   *
-   * options.cid
-   *    The comment id of the comment to remove.
-   */
   "local_storage_remove": function (options) {
+    // Removes a comment from local storage.
     type = this.resource_type;
     resource_path = this.resource_path(options);
     key = drupal_services_default_local_storage_key(type, resource_path);
@@ -111,6 +113,7 @@ var drupal_services_comment_retrieve = {
 
 /**
  * Updates a comment and returns the cid.
+ *
  * @type {Object}
  */
 var drupal_services_comment_update = {
@@ -126,8 +129,13 @@ var drupal_services_comment_update = {
 
   "resource_call": function (caller_options) {
     try {
+      // Set language if not defined.
+      if (!caller_options.language) {
+        caller_options.language = 'und';
+      }
+
       // Build service call data string.
-      data = "comment_body[und][0][value]=" + encodeURIComponent(caller_options.body);
+      data = "comment_body[" + caller_options.language + "][0][value]=" + encodeURIComponent(caller_options.body);
       data += "&subject=" + encodeURIComponent(caller_options.subject);
       data += "&nid=" + caller_options.nid;
 
@@ -161,6 +169,7 @@ var drupal_services_comment_update = {
 
 /**
  * Delete a comment. Returns true if delete was successful.
+ *
  * @type {Object}
  */
 var drupal_services_comment_delete = {
@@ -214,8 +223,18 @@ var drupal_services_comment_delete = {
 };
 
 /**
- * Return an array of all comments.
+ * Return an array of optionally paged cids based on a set of criteria.
+ *
+ * An example request might look like
+ *
+ * http://domain/endpoint/comment?fields=cid,nid&parameters[nid]=7&parameters[uid]=2
+ *
+ * This would return an array of objects with only cid and nid defined, where
+ * nid = 7 and uid = 1.
+ *
  * @type {Object}
+ * @todo Get parameters working.
+ * @todo Figure out if parameters can be used without clean urls.
  */
 var drupal_services_comment_index = {
   "resource_path": "comment.json",
@@ -263,6 +282,7 @@ var drupal_services_comment_index = {
 
 /**
  * Returns the number of comments on a given node id.
+ *
  * @type {Object}
  */
 var drupal_services_comment_count_all = {
@@ -306,6 +326,7 @@ var drupal_services_comment_count_all = {
 
 /**
  * Returns the number of new comments on a given node id since timestamp.
+ *
  * @type {Object}
  */
 var drupal_services_comment_count_new = {
@@ -318,8 +339,6 @@ var drupal_services_comment_count_new = {
     try {
       // Build service call data string.
       data = "nid=" + caller_options.nid;
-      // Timestamp to indicate what nodes are new.
-      // Defaults to time of last user acces to node.
       data += "&since=" + caller_options.since;
 
       // Build the options for the service call.
@@ -349,9 +368,6 @@ var drupal_services_comment_count_new = {
     }
   }
 };
-
-
-
 
 /**
  * Helper functions.

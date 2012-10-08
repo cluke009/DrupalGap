@@ -51,7 +51,7 @@ $('#submit_comment_create').live('click', function () {
       "subject": $('#input_comment_create_subject').val(),
       "body": $('#input_comment_create_comment_body').val(),
       "nid": $('#input_comment_create_nid').val(),
-
+      "language": $('#input_comment_create_language').val(),
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
           console.log(errorThrown);
@@ -60,7 +60,6 @@ $('#submit_comment_create').live('click', function () {
           console.log(textStatus);
         }
       },
-
       "success": function (data) {
         // Success...
       },
@@ -85,6 +84,7 @@ $('#submit_comment_update').live('click', function () {
       "body": $('#input_comment_update_comment_body').val(),
       "cid": $('#input_comment_update_cid').val(),
       "nid": $('#input_comment_update_nid').val(),
+      "language": $('#input_comment_update_language').val(),
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
           console.log(errorThrown);
@@ -93,7 +93,6 @@ $('#submit_comment_update').live('click', function () {
           console.log(textStatus);
         }
       },
-
       "success": function (data) {
         // Success...
       },
@@ -155,7 +154,7 @@ $('#submit_comment_index').live('click', function () {
         // Success...
       },
     };
-    // Load comment via services call.
+    // Make the service call.
     drupal_services_comment_index.resource_call(options);
   }
   catch (error) {
@@ -184,7 +183,7 @@ $('#submit_comment_count_all').live('click', function () {
         // Success...
       },
     };
-    // Load comment via services call.
+    // Make the service call.
     drupal_services_comment_count_all.resource_call(options);
   }
   catch (error) {
@@ -214,7 +213,7 @@ $('#submit_comment_count_new').live('click', function () {
         // Success...
       },
     };
-    // Load comment via services call.
+    // Make the service call.
     drupal_services_comment_count_new.resource_call(options);
   }
   catch (error) {
