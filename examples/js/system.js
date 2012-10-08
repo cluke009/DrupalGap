@@ -1,10 +1,4 @@
 /**
- * Page is ready.
- */
-$(document).ready(function () {
-  $('#input_system_get_variable').val('site_mail');
-});
-/**
  * Make services.system.connect call
  */
 $('#submit_system_connect').live('click', function () {
