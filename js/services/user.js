@@ -65,31 +65,7 @@ var drupal_services_user_login = {
     }
   },
 
-  "success": function (data) {
-    // Run 'drupal_services_system_connect' to save session to localStorage.
-    try {
-      options = {
-        "error": function (jqXHR, textStatus, errorThrown) {
-          if (errorThrown) {
-            console.error(errorThrown);
-          }
-          else {
-            console.error("Error connecting. Please check that the URL is typed correctly, with no trailing slashes.");
-          }
-        },
-        "success": function (inner_data) {
-          // Session id came back, everything is ok...
-          console.log("Setup Complete!");
-        },
-      };
-      // Make service call.
-      drupal_services_system_connect.resource_call(options);
-    }
-    catch (error) {
-      console.log("Error: services/node.js");
-      console.log("Object: drupal_services_system_connect - " + error);
-    }
-  },
+  "success": function (data) {},
 };
 /**
  * Logout the current user.
@@ -202,31 +178,7 @@ var drupal_services_user_update = {
     }
   },
 
-  "success": function (data) {
-    // Run 'drupal_services_system_connect' to save session to localStorage.
-    try {
-      options = {
-        "error": function (jqXHR, textStatus, errorThrown) {
-          if (errorThrown) {
-            console.error(errorThrown);
-          }
-          else {
-            console.error("Error connecting. Please check that the URL is typed correctly, with no trailing slashes.");
-          }
-        },
-        "success": function (inner_data) {
-          // Session id came back, everything is ok...
-          console.log("Setup Complete!");
-        },
-      };
-      // Make service call.
-      drupal_services_system_connect.resource_call(options);
-    }
-    catch (error) {
-      console.log("Error: services/user.js");
-      console.log("Object: drupal_services_system_connect - " + error);
-    }
-  },
+  "success": function (data) {},
 };
 
 var drupal_services_user_register = {
