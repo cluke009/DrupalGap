@@ -45,7 +45,7 @@ var drupal_services_taxonomy_vocabulary_retrieve = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("Error: services/node.js");
+      console.log("Error: services/taxonomy_vocabulary.js");
       console.log("Object: drupal_services_taxonomy_vocabulary_retrieve - " + error);
     }
   },

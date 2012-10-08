@@ -34,7 +34,7 @@ var drupal_services_system_connect = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("Error: services/node.js");
+      console.log("Error: services/system.js");
       console.log("Object: drupal_services_system_connect - " + error);
     }
   },
@@ -94,7 +94,7 @@ var drupal_services_system_get_variable = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("Error: services/node.js");
+      console.log("Error: services/system.js");
       console.log("Object: drupal_services_system_get_variable - " + error);
     }
   },
@@ -210,8 +210,8 @@ var drupal_services_system_del_variable = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("errorThrown: drupal_services_system_set_variable.resource_call");
-      console.error(error);
+      console.log("Error: services/system.js");
+      console.log("Object: drupal_services_system_del_variable - " + error);
     }
   },
 

@@ -1,20 +1,28 @@
+/**
+ * @file
+ * Controls interactions with the services user group.
+ *
+ * @todo Create validation for all passed in values?
+ * @todo Add Drupal version checking.
+ * @todo Merge create/register like in user_resource.inc
+ */
+
+
 // Define global variables to hold the latest resource call result json.
 var drupal_services_user_access_result;
 var drupal_services_user_roles_and_permissions_result;
 
-// @todo - We need a user retrieve service resource implementation here.
+/**
+ * Login a user using the specified credentials.
+ *
+ * Note this will transfer a plaintext password.
+ *
+ * @type {Object}
+ */
 var drupal_services_user_login = {
   "resource_path": "user/login.json",
   "resource_type": "post",
 
-  /**
-   * Makes a call to Drupal's User Login Service Resource.
-   *
-   * @param options.name
-   *   A string containing the drupal user name.
-   * @param options.pass
-   *   A string containing the drupal user password.
-   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
@@ -43,8 +51,8 @@ var drupal_services_user_login = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupal_services_user_login");
-      console.log(error);
+      console.log("Error: services/user.js");
+      console.log("Object: drupal_services_user_login - " + error);
     }
   },
 
@@ -78,22 +86,20 @@ var drupal_services_user_login = {
       drupal_services_system_connect.resource_call(options);
     }
     catch (error) {
-      console.log("drupal_services_user_login.system_connect");
-      console.log(error);
+      console.log("Error: services/node.js");
+      console.log("Object: drupal_services_system_connect - " + error);
     }
   },
 };
-
+/**
+ * Logout the current user.
+ *
+ * @type {Object}
+ */
 var drupal_services_user_logout = {
   "resource_path": "user/logout.json",
   "resource_type": "post",
 
-  /**
-   * Makes a synchronous call to Drupal's User Logout Service Resource.
-   *
-   * @return
-   *   TRUE if the logout was successful, false otherwise.
-   */
   "resource_call": function (caller_options) {
     try {
       // Build the service call options.
@@ -114,10 +120,10 @@ var drupal_services_user_logout = {
 
       // Make the service call.
       drupal_services.resource_call(options);
-
     }
     catch (error) {
-      console.log("drupal_services_user_logout - " + error);
+      console.log("Error: services/user.js");
+      console.log("Object: drupal_services_user_logout - " + error);
     }
   },
 
@@ -133,41 +139,36 @@ var drupal_services_user_logout = {
   "success": function (data) {},
 };
 
+/**
+ * Update an existing user.
+ *
+ * This function uses drupal_form_submit() and as such expects all input to match
+ * the submitting form in question.
+ *
+ * @type {Object}
+ */
 var drupal_services_user_update = {
   "resource_path": function (options) {
-    // TODO - Need uid validation here.
-    return "user/" + encodeURIComponent(options.uid) + ".json";
+    if ($.isNumeric(options)) {
+      return "user/" + encodeURIComponent(options) + ".json";
+    }
+    else {
+      console.log("Error: services/user.js 'options.uid' is not a number.");
+    }
   },
   "resource_type": "put",
 
-  /**
-   * Makes a synchronous call to Drupal's User Logout Service Resource.
-   *
-   * @return
-   *   TRUE if the logout was successful, false otherwise.
-   */
   "resource_call": function (caller_options) {
     try {
-      // clear previous call
-      drupal_services_user_update_result = null;
-
-      if (!caller_options.user) {
-        // TODO - do a better job validating incoming user...
-        console.log("drupal_services_user_update - user empty");
-        return false;
-      }
-
-      // make the service call depending on what they're doing to their account...
-      data = "";
-      data += "name=" + encodeURIComponent(caller_options.name);
+      // Build service call data string.
+      data = "name=" + encodeURIComponent(caller_options.name);
       data += "&mail=" + encodeURIComponent(caller_options.mail);
       data += "&current_pass=" + encodeURIComponent(caller_options.current_pass);
       data += "&pass=" + encodeURIComponent(caller_options.pass);
 
       // Build the service resource call options.
-      //, "save_to_local_storage":"0"
       options = {
-        "resource_path": this.resource_path(caller_options.user),
+        "resource_path": this.resource_path(caller_options.uid),
         "data": data,
         "type": this.resource_type,
         "async": true,
@@ -187,8 +188,8 @@ var drupal_services_user_update = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupal_services_user_update");
-      console.log(error);
+      console.log("Error: services/user.js");
+      console.log("Object: drupal_services_user_update - " + error);
     }
   },
 
@@ -222,8 +223,8 @@ var drupal_services_user_update = {
       drupal_services_system_connect.resource_call(options);
     }
     catch (error) {
-      console.log("drupal_services_user_login.system_connect");
-      console.log(error);
+      console.log("Error: services/user.js");
+      console.log("Object: drupal_services_system_connect - " + error);
     }
   },
 };
@@ -248,11 +249,12 @@ var drupal_services_user_register = {
         return false;
       }
 
-      // Build the options for the service call.
+      // Build service call data string.
       data = 'name=' + encodeURIComponent(caller_options.name);
       data += '&mail=' + encodeURIComponent(caller_options.mail);
       data += '&pass=' + encodeURIComponent(caller_options.pass);
-      //, "save_to_local_storage":"0"
+
+      // Build the options for the service call.
       options = {
         "resource_path": this.resource_path,
         "data": data,
@@ -273,8 +275,8 @@ var drupal_services_user_register = {
       drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupal_services_user_register");
-      console.log(error);
+      console.log("Error: services/user.js");
+      console.log("Object: drupal_services_user_register - " + error);
     }
   },
 
@@ -290,6 +292,11 @@ var drupal_services_user_register = {
   "success": function (data) {},
 };
 
+/**
+ * Get user details.
+ *
+ * @type {Object}
+ */
 var drupal_services_user_retrieve = {
   "resource_path": function (options) {
     // TODO - Need uid validation here.
@@ -297,12 +304,6 @@ var drupal_services_user_retrieve = {
   },
   "resource_type": "get",
 
-  /**
-   * Makes a synchronous call to Drupal's User Retrieve Service Resource.
-   *
-   * @return
-   *   TRUE if the logout was successful, false otherwise.
-   */
   "resource_call": function (caller_options) {
     try {
       // Build the service resource call options.
@@ -321,6 +322,7 @@ var drupal_services_user_retrieve = {
       if (caller_options.success) {
         options.hook_success = caller_options.success;
       }
+
       // Make the service call.
       drupal_services.resource_call(options);
     }
@@ -342,17 +344,23 @@ var drupal_services_user_retrieve = {
   "success": function (data) {},
 };
 
-
+/**
+ * Return an array of optionally paged uids based on a set of criteria.
+ *
+ * An example request might look like
+ *
+ * http://domain/endpoint/user?fields=uid,name,mail&parameters[uid]=1
+ *
+ * This would return an array of objects with only uid, name and mail defined,
+ * where uid = 1.
+ *.
+ * @return
+ *   An array of user objects.
+ */
 var drupal_services_user_index = {
   "resource_path": "user.json",
   "resource_type": "get",
 
-  /**
-   * Makes a synchronous call to Drupal's User Index Service Resource.
-   *
-   * @return
-   *   TRUE if the logout was successful, false otherwise.
-   */
   "resource_call": function (caller_options) {
     try {
       // Build the service resource call options.
@@ -371,6 +379,7 @@ var drupal_services_user_index = {
       if (caller_options.success) {
         options.hook_success = caller_options.success;
       }
+
       // Make the service call.
       drupal_services.resource_call(options);
     }
@@ -392,6 +401,26 @@ var drupal_services_user_index = {
   "success": function (data) {},
 };
 
+/**
+ * Create a new user.
+ *
+ *   A object containing account information. The $account object should
+ *   contain, at minimum, the following properties:
+ *     - name (user name)
+ *     - mail (email address)
+ *     - pass (plain text unencrypted password)
+ *
+ *   These properties can be passed but are optional
+ *     - status (0 for blocked, otherwise will be active by default)
+ *     - notify (1 to notify user of new account, will not notify by default)
+ *
+ *  Roles can be passed in a roles property which is an associative
+ *  array formatted with '<role id>' => '<role id>', not including
+ *  the authenticated user role, which is given by default.
+ *
+ * @return
+ *   The user object of the newly created user.
+ */
 var drupal_services_user_create = {
   "resource_path": "user.json",
   "resource_type": "post",
@@ -416,7 +445,10 @@ var drupal_services_user_create = {
       data = 'name=' + encodeURIComponent(caller_options.name);
       data += '&mail=' + encodeURIComponent(caller_options.mail);
       data += '&pass=' + encodeURIComponent(caller_options.pass);
-      //, "save_to_local_storage":"0"
+      data += '&status=' + encodeURIComponent(caller_options.status);
+      data += '&notify=' + encodeURIComponent(caller_options.notify);
+
+      // Build the options to the service call.
       options = {
         "resource_path": this.resource_path,
         "data": data,
@@ -454,16 +486,10 @@ var drupal_services_user_create = {
   "success": function (data) {},
 };
 
-
-
-
-
-
-
-
-
-
-
+/**
+ * Helper functions.
+ * @todo Move/delete these.
+ */
 
 function drupal_services_user_access(options) {
   try {
