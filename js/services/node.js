@@ -1,28 +1,97 @@
+/**
+ * @file
+ * Controls interactions with the services node group.
+ *
+ * @todo Create validation for all passed in values.
+ */
+
 // Global variables used to hold the latest system resource call results.
 var drupalgap_services_node_update_result;
 var drupalgap_services_node_delete_result;
 
-var drupalgap_services_node_create = {
+/**
+ * Returns a specified node by ID.
+ * @type {Object}
+ */
+var drupal_services_node_retrieve = {
+  "resource_path": function (options) {
+    if ($.isNumeric(options)) {
+      return "node/" + encodeURIComponent(options) + "/files.json";
+    }
+    else {
+      console.log("Error: services/node.js 'options.nid' is not a number.");
+    }
+  },
+  "resource_type": "get",
+
+  "resource_call": function (caller_options) {
+    try {
+      // Build the options for the service call.
+      options = {
+        "resource_path": this.resource_path(caller_options),
+        "type": this.resource_type,
+        "async": true,
+        "success": this.success,
+        "error": this.error
+      };
+
+      // Attach error/success hooks if provided.
+      if (caller_options.error) {
+        options.hook_error = caller_options.error;
+      }
+      if (caller_options.success) {
+        options.hook_success = caller_options.success;
+      }
+
+      // Retrieve the node.
+      drupal_services.resource_call(options);
+    }
+    catch (error) {
+      console.log("drupal_services_node_retrieve");
+      console.log(error);
+    }
+  },
+
+  "error": function (jqXHR, textStatus, errorThrown) {
+    if (errorThrown) {
+      console.log(errorThrown);
+    }
+    else {
+      console.log(textStatus);
+    }
+  },
+
+  "success": function (data) {},
+
+  /**
+   * Removes a node from local storage.
+   *
+   * options.nid
+   *    The node id of the node to remove.
+   */
+  "local_storage_remove": function (options) {
+    type = this.resource_type;
+    resource_path = this.resource_path(options);
+    key = drupal_services_default_local_storage_key(type, resource_path);
+    window.localStorage.removeItem(key);
+    console.log("Removed from local storage (" + key + ")");
+  },
+};
+
+/**
+ * Creates a new node based on submitted values.
+ * @type {Object}
+ */
+var drupal_services_node_create = {
   "resource_path": "node.json",
   "resource_type": "post",
 
   "resource_call": function (caller_options) {
     try {
-      // Pull the node out of the caller options.
-      node = caller_options.node;
-
-      // Build the body parameter.
-      var body;
-      if (drupalgap_site_settings.variable.drupal_core == "6") {
-        body = "node[body]=" + encodeURIComponent(node.body);
-      }
-      else if (drupalgap_site_settings.variable.drupal_core == "7") {
-        body = "node[language]=und&node[body][und][0][value]=" + encodeURIComponent(node.body);
-      }
-
       // Build service call data string.
-      data = "node[type]=" + encodeURIComponent(node.type);
-      data += "&node[title]=" + encodeURIComponent(node.title) + "&" + body;
+      data = "type=" + encodeURIComponent(caller_options.type);
+      data += "&title=" + encodeURIComponent(caller_options.title);
+      data += "&body=" + encodeURIComponent(caller_options.body);
 
       // Build options for service call.
       options = {
@@ -43,140 +112,51 @@ var drupalgap_services_node_create = {
       }
 
       // Make the service call to the node create resource.
-      drupalgap_services.resource_call(options);
+      drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupalgap_services_node_create");
+      console.log("drupal_services_node_create");
       console.log(error);
     }
   },
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
-      alert(errorThrown);
+      console.log(errorThrown);
     }
     else {
-      alert(textStatus);
+      console.log(textStatus);
     }
   },
 
   "success": function (data) {},
 };
 
-var drupalgap_services_node_retrieve = {
+/**
+ * Updates a specified node based on submitted values.
+ * @type {Object}
+ */
+var drupal_services_node_update = {
   "resource_path": function (options) {
-    // TODO - Need nid validation here.
-    return "node/" + encodeURIComponent(options.nid) + ".json";
-  },
-  "resource_type": "get",
-  "resource_result": "",
-
-  /**
-   * Retrieves a Drupal node.
-   *
-   * caller_options
-   *    the node id you want to load
-   */
-  "resource_call": function (caller_options) {
-    try {
-      this.resource_result = null;
-      node = null;
-
-      // Validate incoming parameters.
-      // TODO - Do a better job validating.
-      valid = true;
-      if (!caller_options.nid) {
-        alert("drupalgap_services_node_retrieve - no node id provided");
-        valid = false;
-      }
-
-      if (valid) {
-        // Build the options for the service call.
-        options = {
-          "resource_path": this.resource_path(caller_options),
-          "type": this.resource_type,
-          "async": true,
-          "success": this.success,
-          "error": this.error
-        };
-
-        // Attach error/success hooks if provided.
-        if (caller_options.error) {
-          options.hook_error = caller_options.error;
-        }
-        if (caller_options.success) {
-          options.hook_success = caller_options.success;
-        }
-
-        // Retrieve the node.
-        drupalgap_services.resource_call(options);
-      }
-    }
-    catch (error) {
-      console.log("drupalgap_services_node_retrieve");
-      console.log(error);
-    }
-  },
-
-  "error": function (jqXHR, textStatus, errorThrown) {
-    if (errorThrown) {
-      alert(errorThrown);
+    if ($.isNumeric(options)) {
+      return "node/" + encodeURIComponent(options) + "/files.json";
     }
     else {
-      alert(textStatus);
+      console.log("Error: services/node.js 'options.nid' is not a number.");
     }
-  },
-
-  "success": function (data) {},
-
-  /**
-   * Removes a node from local storage.
-   *
-   * options.nid
-   *    The node id of the node to remove.
-   */
-  "local_storage_remove": function (options) {
-    type = this.resource_type;
-    resource_path = this.resource_path(options);
-    key = drupalgap_services_default_local_storage_key(type, resource_path);
-    window.localStorage.removeItem(key);
-    console.log("Removed from local storage (" + key + ")");
-  },
-};
-
-var drupalgap_services_node_update = {
-  "resource_path": function (options) {
-    // TODO - Need nid validation here.
-    return "node/" + encodeURIComponent(options.nid) + ".json";
   },
   "resource_type": "put",
 
   "resource_call": function (caller_options) {
     try {
-      // Extract node from caller options.
-      node = caller_options.node;
-
-      // Build body argument according to Drupal version.
-      var body;
-      if (drupalgap_site_settings.variable.drupal_core == "6") {
-        data = "body=" + encodeURIComponent(node.body);
-      }
-      else if (drupalgap_site_settings.variable.drupal_core == "7") {
-        // body = "node[language]=und&node[body][und][0][value]=" + encodeURIComponent(node.body);
-        body = "language=" + node.language;
-        body += "&body[und][0][value]=" + encodeURIComponent(node.body);
-      }
-      console.log(node)
       // Build the data string and options for the service call.
-      data = "type=" + node.type;
-      data += "&title=" + encodeURIComponent(node.title);
-      data += "&" + body;
+      data = "language=" + caller_options.language;
+      data += "&body[und][0][value]=" + encodeURIComponent(caller_options.body);
+      data += "&type=" + caller_options.type;
+      data += "&title=" + encodeURIComponent(caller_options.title);
       options = {
-        "resource_path": this.resource_path({
-          "nid": node.nid
-        }),
+        "resource_path": this.resource_path(caller_options.nid),
         "type": this.resource_type,
         "data": data,
-        "nid": node.nid,
         "async": true,
         "success": this.success,
         "error": this.error
@@ -191,36 +171,38 @@ var drupalgap_services_node_update = {
       }
 
       // Make the service call.
-      drupalgap_services.resource_call(options);
+      drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupalgap_services_node_update");
-      console.log(error);
+      console.log("Error: services/node.js");
+      console.log("Object: drupal_services_node_update - " + error);
     }
   },
 
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
-      alert(errorThrown);
+      console.log(errorThrown);
     }
     else {
-      alert(textStatus);
+      console.log(textStatus);
     }
   },
 
-  "success": function (data) {
-    // Clear node edit values.
-    drupalgap_page_node_edit_nid = null;
-    drupalgap_page_node_edit_type = null;
-  },
+  "success": function (data) {},
 };
 
-// Returns true if delete was successful, otherwise returns standard services
-// failed object.
-var drupalgap_services_node_delete = {
+/**
+ * Deletes the specified node. Returns true if delete was successful.
+ * @type {Object}
+ */
+var drupal_services_node_delete = {
   "resource_path": function (options) {
-    // TODO - Need nid validation here.
-    return "node/" + encodeURIComponent(options.nid) + ".json";
+    if ($.isNumeric(options)) {
+      return "node/" + encodeURIComponent(options) + "/files.json";
+    }
+    else {
+      console.log("Error: services/node.js 'options.nid' is not a number.");
+    }
   },
   "resource_type": "delete",
 
@@ -228,11 +210,8 @@ var drupalgap_services_node_delete = {
     try {
       // Build the options to the service call.
       options = {
-        "resource_path": this.resource_path({
-          "nid": caller_options.nid
-        }),
+        "resource_path": this.resource_path(caller_options.nid),
         "type": this.resource_type,
-        "nid": caller_options.nid,
         "async": true,
         "success": this.success,
         "error": this.error
@@ -247,47 +226,206 @@ var drupalgap_services_node_delete = {
       }
 
       // Make the service call.
-      drupalgap_services.resource_call(options);
+      drupal_services.resource_call(options);
     }
     catch (error) {
-      console.log("drupalgap_services_node_delete");
-      console.log(error);
+      console.log("Error: services/node.js");
+      console.log("Object: drupal_services_node_delete - " + error);
     }
   },
 
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
-      alert(errorThrown);
+      console.log(errorThrown);
     }
     else {
-      alert(textStatus);
+      console.log(textStatus);
     }
   },
 
-  "success": function (data) {
-    // Clear node edit values.
-    drupalgap_page_node_edit_nid = null;
-    drupalgap_page_node_edit_type = null;
-  },
+  "success": function (data) {},
 };
 
-function drupalgap_node_load() {
-  drupalgap_node = window.localStorage.getItem("drupalgap_node");
-  if (!drupalgap_node) {
+/**
+ * Return an array of optionally paged nids based on a set of criteria.
+ * @type {Object}
+ */
+var drupal_services_node_index = {
+  "resource_path": "node.json",
+  "resource_type": "get",
+
+  "resource_call": function (caller_options) {
+    try {
+      // Build the service resource call options.
+      options = {
+        "resource_path": this.resource_path,
+        "type": this.resource_type,
+        "async": true,
+        "error": this.error,
+        "success": this.success,
+      };
+
+      // Attach error/success hooks if provided.
+      if (caller_options.error) {
+        options.hook_error = caller_options.error;
+      }
+      if (caller_options.success) {
+        options.hook_success = caller_options.success;
+      }
+
+      // Make the service call.
+      drupal_services.resource_call(options);
+    }
+    catch (error) {
+      console.log("Error: services/node.js");
+      console.log("Object: drupal_services_node_index - " + error);
+    }
+  },
+
+  "error": function (jqXHR, textStatus, errorThrown) {
+    if (errorThrown) {
+      console.log(errorThrown);
+    }
+    else {
+      console.log(textStatus);
+    }
+  },
+
+  "success": function (data) {},
+};
+
+/**
+ * Returns the files of a specified node.
+ * @type {Object}
+ */
+var drupal_services_node_files = {
+  "resource_path": function (options) {
+    if ($.isNumeric(options)) {
+      return "node/" + encodeURIComponent(options) + "/files.json";
+    }
+    else {
+      console.log("Error: services/node.js 'options.nid' is not a number.");
+    }
+  },
+  "resource_type": "get",
+
+  "resource_call": function (caller_options) {
+    try {
+      // Build the options to the service call.
+      options = {
+        "resource_path": this.resource_path(caller_options.nid),
+        "type": this.resource_type,
+        "async": true,
+        "success": this.success,
+        "error": this.error
+      };
+
+      // Attach error/success hooks if provided.
+      if (caller_options.error) {
+        options.hook_error = caller_options.error;
+      }
+      if (caller_options.success) {
+        options.hook_success = caller_options.success;
+      }
+
+      // Make the service call.
+      drupal_services.resource_call(options);
+    }
+    catch (error) {
+      console.log("Error: services/node.js");
+      console.log("Object: drupal_services_node_files - " + error);
+    }
+  },
+
+  "error": function (jqXHR, textStatus, errorThrown) {
+    if (errorThrown) {
+      console.log(errorThrown);
+    }
+    else {
+      console.log(textStatus);
+    }
+  },
+
+  "success": function (data) {},
+};
+
+/**
+ * Returns the comments of a specified node.
+ * @type {Object}
+ */
+var drupal_services_node_comments = {
+  "resource_path": function (options) {
+    if ($.isNumeric(options)) {
+      return "node/" + encodeURIComponent(options) + "/files.json";
+    }
+    else {
+      console.log("Error: services/node.js 'options.nid' is not a number.");
+    }
+  },
+  "resource_type": "get",
+
+  "resource_call": function (caller_options) {
+    try {
+      // Build the options to the service call.
+      options = {
+        "resource_path": this.resource_path(caller_options.nid),
+        "type": this.resource_type,
+        "async": true,
+        "success": this.success,
+        "error": this.error
+      };
+
+      // Attach error/success hooks if provided.
+      if (caller_options.error) {
+        options.hook_error = caller_options.error;
+      }
+      if (caller_options.success) {
+        options.hook_success = caller_options.success;
+      }
+
+      // Make the service call.
+      drupal_services.resource_call(options);
+    }
+    catch (error) {
+      console.log("Error: services/node.js");
+      console.log("Object: drupal_services_node_comments - " + error);
+    }
+  },
+
+  "error": function (jqXHR, textStatus, errorThrown) {
+    if (errorThrown) {
+      console.log(errorThrown);
+    }
+    else {
+      console.log(textStatus);
+    }
+  },
+
+  "success": function (data) {},
+};
+
+/**
+ * Helper functions.
+ * @todo Move/delete these.
+ */
+
+function drupal_node_load() {
+  drupal_node = window.localStorage.getItem("drupal_node");
+  if (!drupal_node) {
     // no settings found in local storage, setup defaults...
-    drupalgap_node = {};
-    drupalgap_node.nid = "";
-    drupalgap_node.type = "";
-    drupalgap_node_save(drupalgap_node);
+    drupal_node = {};
+    drupal_node.nid = "";
+    drupal_node.type = "";
+    drupal_node_save(drupal_node);
   }
   else {
-    drupalgap_node = JSON.parse(drupalgap_node);
+    drupal_node = JSON.parse(drupal_node);
   }
-  return drupalgap_node;
+  return drupal_node;
 }
 
-function drupalgap_node_save(settings) {
-  window.localStorage.setItem("drupalgap_node", JSON.stringify(settings));
-  drupalgap_node = settings;
-  return drupalgap_node;
+function drupal_node_save(settings) {
+  window.localStorage.setItem("drupal_node", JSON.stringify(settings));
+  drupal_node = settings;
+  return drupal_node;
 }

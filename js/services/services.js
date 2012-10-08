@@ -547,10 +547,10 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
     // Node create resource.
     else if (options.resource_path.indexOf("node.json") != -1) {
       // Remove views datasource content json.
-      views_options = {
-        "path": "views_datasource/drupal_content"
-      };
-      drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // views_options = {
+      //   "path": "views_datasource/drupal_content"
+      // };
+      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
     }
     // Comment create resource.
     else if (options.resource_path.indexOf("comment.json") != -1) {
@@ -624,15 +624,15 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
         "nid": options.nid
       });
       // Remove views datasource content json.
-      views_options = {
-        "path": "views_datasource/drupal_content"
-      };
-      drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // views_options = {
+      //   "path": "views_datasource/drupal_content"
+      // };
+      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove views datasource comment json.
-      views_options = {
-        "path": "views_datasource/drupal_comments"
-      };
-      drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // views_options = {
+      //   "path": "views_datasource/drupal_comments"
+      // };
+      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // TODO - remove any comments from this node from local storage.
     }
     // Comment delete resource.
