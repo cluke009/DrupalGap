@@ -50,7 +50,7 @@ $('#submit_node_create').live('click', function () {
     options = {
       "title": $('#input_node_create_title').val(),
       "body": $('#input_node_create_body').val(),
-      "type": 'page',
+      "type": $('#input_node_create_type').val(),
 
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
@@ -83,8 +83,8 @@ $('#submit_node_update').live('click', function () {
     options = {
       "title": $('#input_node_update_title').val(),
       "body": $('#input_node_update_body').val(),
-      "type": 'page',
-      "nid": '1',
+      "type": $('#input_node_update_type').val(),
+      "nid": $('#input_node_update_nid').val(),
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
           console.log(errorThrown);
@@ -98,6 +98,7 @@ $('#submit_node_update').live('click', function () {
         // Success...
       },
     };
+    alert($('#input_node_update_nid').val())
     // Make the service call.
     drupal_services_node_update.resource_call(options);
   }

@@ -17,7 +17,7 @@ var drupalgap_services_node_delete_result;
 var drupal_services_node_retrieve = {
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
-      return "node/" + encodeURIComponent(options) + "/files.json";
+      return "node/" + encodeURIComponent(options) + ".json";
     }
     else {
       console.log("Error: services/node.js 'options.nid' is not a number.");
@@ -29,7 +29,7 @@ var drupal_services_node_retrieve = {
     try {
       // Build the options for the service call.
       options = {
-        "resource_path": this.resource_path(caller_options),
+        "resource_path": this.resource_path(caller_options.nid),
         "type": this.resource_type,
         "async": true,
         "success": this.success,
@@ -139,7 +139,7 @@ var drupal_services_node_create = {
 var drupal_services_node_update = {
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
-      return "node/" + encodeURIComponent(options) + "/files.json";
+      return "node/" + encodeURIComponent(options) + ".json";
     }
     else {
       console.log("Error: services/node.js 'options.nid' is not a number.");
@@ -154,6 +154,7 @@ var drupal_services_node_update = {
       data += "&body[und][0][value]=" + encodeURIComponent(caller_options.body);
       data += "&type=" + caller_options.type;
       data += "&title=" + encodeURIComponent(caller_options.title);
+
       options = {
         "resource_path": this.resource_path(caller_options.nid),
         "type": this.resource_type,
@@ -199,7 +200,7 @@ var drupal_services_node_update = {
 var drupal_services_node_delete = {
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
-      return "node/" + encodeURIComponent(options) + "/files.json";
+      return "node/" + encodeURIComponent(options) + ".json";
     }
     else {
       console.log("Error: services/node.js 'options.nid' is not a number.");
@@ -357,7 +358,7 @@ var drupal_services_node_files = {
 var drupal_services_node_comments = {
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
-      return "node/" + encodeURIComponent(options) + "/files.json";
+      return "node/" + encodeURIComponent(options) + "/comments.json";
     }
     else {
       console.log("Error: services/node.js 'options.nid' is not a number.");
