@@ -11,11 +11,15 @@ var drupalgap_services_taxonomy_term_update_result;
 var drupalgap_services_taxonomy_term_delete_result;
 
 /**
- * Return the results for a specified term id or FALSE if term id does not exist.
- *
- * @type {Object}
+ * @constructor
+ * @description Return the results for a specified term id or FALSE if term id does not exist.
  */
 var drupal_services_taxonomy_term_retrieve = {
+  /**
+   * Resource URL. "taxonomy_term/tid.json"
+   * @param {string} options
+   *        Accepts term ID
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "taxonomy_term/" + encodeURIComponent(options) + ".json";
@@ -24,8 +28,24 @@ var drupal_services_taxonomy_term_retrieve = {
       console.log("Error: services/taxonomy_term.js 'options.nid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service Taxonomy Term Retrieve Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.tid
+   *        Required. Term ID.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the options for the service call.
@@ -54,6 +74,9 @@ var drupal_services_taxonomy_term_retrieve = {
     }
   },
 
+  /**
+   * Error handler.
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -63,10 +86,15 @@ var drupal_services_taxonomy_term_retrieve = {
     }
   },
 
+  /**
+   * Success handler.
+   */
   "success": function (data) {},
 
+  /**
+   * Removes a taxonomy_term from local storage.
+   */
   "local_storage_remove": function (options) {
-    // Removes a taxonomy_term from local storage.
     type = this.resource_type;
     resource_path = this.resource_path(options);
     key = drupal_services_default_local_storage_key(type, resource_path);
@@ -76,14 +104,40 @@ var drupal_services_taxonomy_term_retrieve = {
 };
 
 /**
- * Creates a new taxonomy_term based on submitted values. Returns 1 if successful.
- *
- * @type {Object}
+ * @constructor
+ * @description Creates a new taxonomy_term based on submitted values. Returns 1 if successful.
  */
 var drupal_services_taxonomy_term_create = {
+  /**
+   * Resource URL. "taxonomy_term.json"
+   */
   "resource_path": "taxonomy_term.json",
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service Taxonomy Term Create Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.vid
+   *        Required. The Vocabulary to insert the term in.
+   * @param {string} caller_options.name
+   *        Required. Name of the term.
+   * @param {string} caller_options.description
+   *        Optional. Description of the term.
+   * @param {string} caller_options.weight
+   *        Optional. Weight of the term.
+   * @param {string} caller_options.parent
+   *        Optional. Parent term ID.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
@@ -119,6 +173,10 @@ var drupal_services_taxonomy_term_create = {
       console.log("Object: drupal_services_taxonomy_term_create - " + error);
     }
   },
+
+  /**
+   * Error handler.
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -128,15 +186,22 @@ var drupal_services_taxonomy_term_create = {
     }
   },
 
+  /**
+   * Success handler.
+   */
   "success": function (data) {},
 };
 
 /**
- * Updates a specified taxonomy_term based on submitted values.
- *
- * @type {Object}
+ * @constructor
+ * @description Updates a specified taxonomy_term based on submitted values.
  */
 var drupal_services_taxonomy_term_update = {
+  /**
+   * Resource URL. "taxonomy_term/tid.json"
+   * @param {string} options
+   *        Accepts term ID
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "taxonomy_term/" + encodeURIComponent(options) + ".json";
@@ -145,8 +210,34 @@ var drupal_services_taxonomy_term_update = {
       console.log("Error: services/taxonomy_term.js 'options.nid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: PUT
+   */
   "resource_type": "put",
 
+  /**
+   * Make a call to a Drupal Service Taxonomy Term Update Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.vid
+   *        Optional. The Vocabulary to insert the term in.
+   * @param {string} caller_options.tid
+   *        Required. The term ID.
+   * @param {string} caller_options.name
+   *        Optional. Name of the term.
+   * @param {string} caller_options.description
+   *        Optional. Description of the term.
+   * @param {string} caller_options.weight
+   *        Optional. Weight of the term.
+   * @param {string} caller_options.parent
+   *        Optional. Parent term ID.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
@@ -183,6 +274,9 @@ var drupal_services_taxonomy_term_update = {
     }
   },
 
+  /**
+   * Error handler.
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -192,15 +286,22 @@ var drupal_services_taxonomy_term_update = {
     }
   },
 
+  /**
+   * Success handler.
+   */
   "success": function (data) {},
 };
 
 /**
- * Deletes the specified taxonomy_term. Returns true if delete was successful.
- *
- * @type {Object}
+ * @constructor
+ * @description Deletes the specified taxonomy_term. Returns true if delete was successful.
  */
 var drupal_services_taxonomy_term_delete = {
+  /**
+   * Resource URL. "taxonomy_term/tid.json"
+   * @param {string} options
+   *        Accepts term ID
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "taxonomy_term/" + encodeURIComponent(options) + ".json";
@@ -209,8 +310,24 @@ var drupal_services_taxonomy_term_delete = {
       console.log("Error: services/taxonomy_term.js 'options.nid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "delete",
 
+  /**
+   * Make a call to a Drupal Service Taxonomy Term Create Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.tid
+   *        Required. The Term ID.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the options to the service call.
@@ -239,6 +356,9 @@ var drupal_services_taxonomy_term_delete = {
     }
   },
 
+  /**
+   * Error handler.
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -248,12 +368,17 @@ var drupal_services_taxonomy_term_delete = {
     }
   },
 
+  /**
+   * Success handler.
+   */
   "success": function (data) {},
 };
 
 /**
- * Return an array of optionally paged tids baed on a set of criteria.
+ * @constructor
+ * @description Return an array of optionally paged tids baed on a set of criteria.
  *
+ * @example
  * An example request might look like
  *
  * http://domain/endpoint/taxonomy_term?fields=tid,name&parameters[tid]=7&parameters[vid]=1
@@ -261,12 +386,26 @@ var drupal_services_taxonomy_term_delete = {
  * This would return an array of objects with only tid and name defined, where
  * tid = 7 and vid = 1.
  *
- * @type {Object}
  */
 var drupal_services_taxonomy_term_index = {
+  /**
+   * Resource URL. "taxonomy_term.json"
+   */
   "resource_path": "taxonomy_term.json",
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service Taxonomy Term Index Resource.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the service resource call options.
@@ -295,6 +434,9 @@ var drupal_services_taxonomy_term_index = {
     }
   },
 
+  /**
+   * Error handler.
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -304,18 +446,39 @@ var drupal_services_taxonomy_term_index = {
     }
   },
 
+  /**
+   * Success handler.
+   */
   "success": function (data) {},
 };
 
 /**
- * Returns all nodes with provided taxonomy id.
- *
- * @type {Object}
+ * @constructor
+ * @description Returns all nodes with provided taxonomy id.
  */
 var drupal_services_taxonomy_term_select_nodes = {
+  /**
+   * Resource URL. "taxonomy_term/selectNodes.json"
+   */
   "resource_path": "taxonomy_term/selectNodes.json",
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service Taxonomy Term Update Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.tid
+   *        Required. The term ID.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
@@ -348,6 +511,9 @@ var drupal_services_taxonomy_term_select_nodes = {
     }
   },
 
+  /**
+   * Error handler.
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -357,5 +523,8 @@ var drupal_services_taxonomy_term_select_nodes = {
     }
   },
 
+  /**
+   * Success handler.
+   */
   "success": function (data) {},
 };

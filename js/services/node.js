@@ -11,11 +11,15 @@ var drupalgap_services_node_update_result;
 var drupalgap_services_node_delete_result;
 
 /**
- * Returns a specified node by ID.
- *
- * @type {Object}
+ * @constructor
+ * @description Returns a specified node by ID.
  */
 var drupal_services_node_retrieve = {
+  /**
+   * Resource URL. "node/nid.json"
+   * @param {string} options
+   *        Accepts node ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "node/" + encodeURIComponent(options) + ".json";
@@ -24,8 +28,24 @@ var drupal_services_node_retrieve = {
       console.log("Error: services/node.js 'options.nid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service Node Retrieve Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.nid
+   *        Required. The node ID the comment belongs to.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the options for the service call.
@@ -54,6 +74,9 @@ var drupal_services_node_retrieve = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -63,10 +86,15 @@ var drupal_services_node_retrieve = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 
+  /**
+   * Removes a node from local storage.
+   */
   "local_storage_remove": function (options) {
-    // Removes a node from local storage.
     type = this.resource_type;
     resource_path = this.resource_path(options);
     key = drupal_services_default_local_storage_key(type, resource_path);
@@ -76,14 +104,38 @@ var drupal_services_node_retrieve = {
 };
 
 /**
- * Creates a new node based on submitted values.
- *
- * @type {Object}
+ * @constructor
+ * @description Creates a new node based on submitted values.
  */
 var drupal_services_node_create = {
+  /**
+   * Resource URL. "node.json"
+   */
   "resource_path": "node.json",
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service Node Create Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.type
+   *        Required. The content type of the node.
+   * @param {string} caller_options.title
+   *        Required. The title of the node.
+   * @param {string} caller_options.body
+   *        Optional. The body of the node.
+   * @param {string} caller_options.language
+   *        Optional. The language of the node.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
@@ -118,6 +170,10 @@ var drupal_services_node_create = {
       console.log("Object: drupal_services_node_create - " + error);
     }
   },
+
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -127,15 +183,22 @@ var drupal_services_node_create = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
 /**
- * Updates a specified node based on submitted values.
- *
- * @type {Object}
+ * @constructor
+ * @description Updates a specified node based on submitted values.
  */
 var drupal_services_node_update = {
+  /**
+   * Resource URL. "node/nid.json"
+   * @param {string} options
+   *        Accepts node ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "node/" + encodeURIComponent(options) + ".json";
@@ -144,8 +207,30 @@ var drupal_services_node_update = {
       console.log("Error: services/node.js 'options.nid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: PUT
+   */
   "resource_type": "put",
 
+  /**
+   * Make a call to a Drupal Service Node Create Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.type
+   *        Required. The content type of the node.
+   * @param {string} caller_options.title
+   *        Required. The title of the node.
+   * @param {string} caller_options.body
+   *        Optional. The body of the node.
+   * @param {string} caller_options.language
+   *        Optional. The language of the node.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Set language if not defined.
@@ -185,6 +270,9 @@ var drupal_services_node_update = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -194,15 +282,22 @@ var drupal_services_node_update = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
 /**
- * Delete a node given its nid. Returns true if delete was successful.
- *
- * @type {Object}
+ * @constructor
+ * @description Delete a node given its nid. Returns true if delete was successful.
  */
 var drupal_services_node_delete = {
+  /**
+   * Resource URL. "node/nid.json"
+   * @param {string} options
+   *        Accepts node ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "node/" + encodeURIComponent(options) + ".json";
@@ -211,8 +306,24 @@ var drupal_services_node_delete = {
       console.log("Error: services/node.js 'options.nid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: DELETE
+   */
   "resource_type": "delete",
 
+  /**
+   * Make a call to a Drupal Service Node Delete Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.nid
+   *        Required. The node ID.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the options to the service call.
@@ -241,6 +352,9 @@ var drupal_services_node_delete = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -250,18 +364,43 @@ var drupal_services_node_delete = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
 /**
- * Return an array of optionally paged nids based on a set of criteria.
+ * @constructor
+ * @description Return an array of optionally paged nids based on a set of criteria.
  *
- * @type {Object}
+ * @example
+ * An example request might look like
+ *
+ * http://domain/endpoint/node?fields=nid,vid&amp;parameters[nid]=7&amp;parameters[uid]=1
+ *
+ * This would return an array of objects with only nid and vid defined, where
+ * nid = 7 and uid = 1.
  */
 var drupal_services_node_index = {
+  /**
+   * Resource URL. "node.json"
+   */
   "resource_path": "node.json",
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service Node Index Resource.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the service resource call options.
@@ -290,6 +429,9 @@ var drupal_services_node_index = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -299,15 +441,22 @@ var drupal_services_node_index = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
 /**
- * Generates an array of base64 encoded files attached to a node.
- *
- * @type {Object}
+ * @constructor
+ * @description Generates an array of base64 encoded files attached to a node.
  */
 var drupal_services_node_files = {
+  /**
+   * Resource URL. "node/nid.json"
+   * @param {string} options
+   *        Accepts node ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "node/" + encodeURIComponent(options) + "/files.json";
@@ -316,8 +465,24 @@ var drupal_services_node_files = {
       console.log("Error: services/node.js 'options.nid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service Node Files Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.nid
+   *        Required. The node ID.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the options to the service call.
@@ -346,6 +511,9 @@ var drupal_services_node_files = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -355,6 +523,9 @@ var drupal_services_node_files = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
@@ -364,6 +535,11 @@ var drupal_services_node_files = {
  * @type {Object}
  */
 var drupal_services_node_comments = {
+  /**
+   * Resource URL. "node/nid/comments.json"
+   * @param {string} options
+   *        Accepts node ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "node/" + encodeURIComponent(options) + "/comments.json";
@@ -372,8 +548,24 @@ var drupal_services_node_comments = {
       console.log("Error: services/node.js 'options.nid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service Node Comments Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.nid
+   *        Required. The node ID.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the options to the service call.
@@ -402,6 +594,9 @@ var drupal_services_node_comments = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -411,6 +606,9 @@ var drupal_services_node_comments = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 

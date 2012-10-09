@@ -10,14 +10,38 @@
 var drupal_services_comment_node_comments_result;
 
 /**
- * Adds a new comment to a node and returns the cid.
- *
- * @type {Object}
+ * @constructor
+ * @description Adds a new comment to a node and returns the cid.
  */
 var drupal_services_comment_create = {
+  /**
+   * Resource URL. "comment.json"
+   */
   "resource_path": "comment.json",
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service Comment Create Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.nid
+   *        Required. The node ID the comment belongs to.
+   * @param {string} caller_options.body
+   *        Required. The comment body you want to post.
+   * @param {string} caller_options.subject
+   *        Optional. The title of the comment.
+   * @param {string} caller_options.language
+   *        Optional. The language of the comment.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Set language if not defined.
@@ -58,11 +82,15 @@ var drupal_services_comment_create = {
 };
 
 /**
- * Returns a specified comment.
- *
- * @type {Object}
+ * @constructor
+ * @description Returns a specified comment.
  */
 var drupal_services_comment_retrieve = {
+  /**
+   * Resource URL. "comment/cid.json"
+   * @param {string} options
+   *        Accepts Comment ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "comment/" + encodeURIComponent(options) + ".json";
@@ -71,8 +99,24 @@ var drupal_services_comment_retrieve = {
       console.log("Error: services/comment.js 'options.cid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service Comment Retrieve Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.cid
+   *        Required. The Comment ID the comment you want.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the options for the service call.
@@ -101,8 +145,10 @@ var drupal_services_comment_retrieve = {
     }
   },
 
+  /**
+   * Removes a comment from local storage.
+   */
   "local_storage_remove": function (options) {
-    // Removes a comment from local storage.
     type = this.resource_type;
     resource_path = this.resource_path(options);
     key = drupal_services_default_local_storage_key(type, resource_path);
@@ -112,11 +158,15 @@ var drupal_services_comment_retrieve = {
 };
 
 /**
- * Updates a comment and returns the cid.
- *
- * @type {Object}
+ * @constructor
+ * @description Updates a comment and returns the cid.
  */
 var drupal_services_comment_update = {
+  /**
+   * Resource URL. "comment/cid.json"
+   * @param {string} options
+   *        Accepts Comment ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "comment/" + encodeURIComponent(options) + ".json";
@@ -125,8 +175,28 @@ var drupal_services_comment_update = {
       console.log("Error: services/comment.js 'options.cid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: PUT
+   */
   "resource_type": "put",
 
+  /**
+   * Make a call to a Drupal Service Comment Update Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.body
+   *        Required. The comment body you want to post.
+   * @param {string} caller_options.subject
+   *        Optional. The title of the comment.
+   * @param {string} caller_options.language
+   *        Optional. The language of the comment.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Set language if not defined.
@@ -167,11 +237,15 @@ var drupal_services_comment_update = {
 };
 
 /**
- * Delete a comment. Returns true if delete was successful.
- *
- * @type {Object}
+ * @constructor
+ * @description Returns true if delete was successful.
  */
 var drupal_services_comment_delete = {
+  /**
+   * Resource URL. "comment/cid.json"
+   * @param {string} options
+   *        Accepts Comment ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "comment/" + encodeURIComponent(options) + ".json";
@@ -180,8 +254,24 @@ var drupal_services_comment_delete = {
       console.log("Error: services/comment.js 'options.cid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: DELETE
+   */
   "resource_type": "delete",
 
+  /**
+   * Make a call to a Drupal Service Comment Delete Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.cid
+   *        Required. The comment ID to delete.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the options for the service call.
@@ -209,6 +299,10 @@ var drupal_services_comment_delete = {
       console.log("Object: drupal_services_comment_delete - " + error);
     }
   },
+
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -218,27 +312,48 @@ var drupal_services_comment_delete = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
 /**
+ * @constructor
+ * @description
  * Return an array of optionally paged cids based on a set of criteria.
  *
+ * @example
  * An example request might look like
  *
- * http://domain/endpoint/comment?fields=cid,nid&parameters[nid]=7&parameters[uid]=2
+ * http://domain/endpoint/comment?fields=cid,nid&amp;parameters[nid]=7&amp;parameters[uid]=2
  *
- * This would return an array of objects with only cid and nid defined, where
- * nid = 7 and uid = 1.
+ * This would return an array of objects with only cid and nid defined
+ * where nid = 7 and uid = 1.
  *
- * @type {Object}
  * @todo Get parameters working.
  * @todo Figure out if parameters can be used without clean urls.
  */
 var drupal_services_comment_index = {
+  /**
+   * Resource URL. "comment.json"
+   */
   "resource_path": "comment.json",
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service Comment Index Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the service resource call options.
@@ -267,6 +382,9 @@ var drupal_services_comment_index = {
     }
   },
 
+  /**
+   * Error handler.
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -276,20 +394,41 @@ var drupal_services_comment_index = {
     }
   },
 
+  /**
+   * Success handler.
+   */
   "success": function (data) {},
 };
 
 /**
- * Returns the number of comments on a given node id.
- *
- * @type {Object}
+ * @constructor
+ * @description Returns the number of comments for a given node id.
  */
 var drupal_services_comment_count_all = {
+  /**
+   * Resource URL. "comment/countAll.json"
+   */
   "resource_path": function (options) {
     return "comment/countAll.json";
   },
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service Comment Count All Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.nid
+   *        Required. The node ID the comment belongs to.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
@@ -324,16 +463,34 @@ var drupal_services_comment_count_all = {
 };
 
 /**
- * Returns the number of new comments on a given node id since timestamp.
- *
- * @type {Object}
+ * @constructor
+ * @description Returns the number of new comments on a given node id since timestamp.
  */
 var drupal_services_comment_count_new = {
+  /**
+   * Resource URL. "comment/countNew.json"
+   */
   "resource_path": function (options) {
     return "comment/countNew.json";
   },
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service Comment Count New Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.nid
+   *        Required. The node ID the comment belongs to.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
@@ -374,6 +531,9 @@ var drupal_services_comment_count_new = {
  */
 
 var drupal_services_comment_node_comments = {
+  /**
+   * Resource URL.
+   */
   "resource_path": function (options) {
     return "views_datasource/drupal_comments/" + options.nid;
   },

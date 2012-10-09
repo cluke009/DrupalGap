@@ -13,16 +13,36 @@ var drupal_services_user_access_result;
 var drupal_services_user_roles_and_permissions_result;
 
 /**
- * Login a user using the specified credentials.
- *
- * Note this will transfer a plaintext password.
- *
- * @type {Object}
+ * @constructor
+ * @description
+ *   Login a user using the specified credentials.
+ *   Note this will transfer a plaintext password.
  */
 var drupal_services_user_login = {
+  /**
+   * Resource URL. "user/login.json"
+   */
   "resource_path": "user/login.json",
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service User Login Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.name
+   *        Required. The username value.
+   * @param {string} caller_options.pass
+   *        Required. The password value.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
@@ -56,6 +76,9 @@ var drupal_services_user_login = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -65,18 +88,35 @@ var drupal_services_user_login = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
 /**
- * Logout the current user.
- *
- * @type {Object}
+ * @constructor
+ * @description Logout the current user.
  */
 var drupal_services_user_logout = {
+  /**
+   * Resource URL. "user/logout.json"
+   */
   "resource_path": "user/logout.json",
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service User Logout Resource.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the service call options.
@@ -104,6 +144,9 @@ var drupal_services_user_logout = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -113,15 +156,22 @@ var drupal_services_user_logout = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
 /**
- * Update an existing user.
- *
- * @type {Object}
+ * @constructor
+ * @description Update an existing user.
  */
 var drupal_services_user_update = {
+  /**
+   * Resource URL. "user/uid.json"
+   * @param {string} options
+   *        Accepts user ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "user/" + encodeURIComponent(options) + ".json";
@@ -130,8 +180,30 @@ var drupal_services_user_update = {
       console.log("Error: services/user.js 'options.uid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: PUT
+   */
   "resource_type": "put",
 
+  /**
+   * Make a call to a Drupal Service User Update Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.name
+   *        Required. The users name.
+   * @param {string} caller_options.mail
+   *        Required. The users email address.
+   * @param {string} caller_options.current_pass
+   *        Required. The users current password.
+   * @param {string} caller_options.pass
+   *        Required. The users new password.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
@@ -167,6 +239,9 @@ var drupal_services_user_update = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -176,18 +251,43 @@ var drupal_services_user_update = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
 /**
- * Register a user.
- *
- * @type {Object}
+ * @constructor
+ * @description Register a user.
  */
 var drupal_services_user_register = {
+  /**
+   * Resource URL. "user/register.json"
+   */
   "resource_path": "user/register.json",
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service User Register Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.name
+   *        Required. The users name.
+   * @param {string} caller_options.mail
+   *        Required. The users email address.
+   * @param {string} caller_options.pass
+   *        Required. The users new password.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
@@ -200,7 +300,10 @@ var drupal_services_user_register = {
         "resource_path": this.resource_path,
         "data": data,
         "async": true,
-        "success": this.success,
+        /**
+   * Success handler
+   */
+  "success": this.success,
         "error": this.error
       };
 
@@ -221,6 +324,9 @@ var drupal_services_user_register = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.error(errorThrown);
@@ -230,15 +336,22 @@ var drupal_services_user_register = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
 /**
- * Get user details.
- *
- * @type {Object}
+ * @constructor
+ * @description Get user details.
  */
 var drupal_services_user_retrieve = {
+  /**
+   * Resource URL. "user/uid.json"
+   * @param {string} options
+   *        Accepts user ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "user/" + encodeURIComponent(options) + ".json";
@@ -247,8 +360,24 @@ var drupal_services_user_retrieve = {
       console.log("Error: services/node.js 'options.nid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service User Login Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.uid
+   *        Required. The user ID.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the service resource call options.
@@ -277,6 +406,9 @@ var drupal_services_user_retrieve = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -286,26 +418,43 @@ var drupal_services_user_retrieve = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
 /**
- * Return an array of optionally paged uids based on a set of criteria.
+ * @constructor
+ * @description Return an array of optionally paged uids based on a set of criteria.
  *
+ * @example
  * An example request might look like
  *
- * http://domain/endpoint/user?fields=uid,name,mail&parameters[uid]=1
+ * http://domain/endpoint/user?fields=uid,name,mail&amp;parameters[uid]=1
  *
  * This would return an array of objects with only uid, name and mail defined,
  * where uid = 1.
- *.
- * @return
- *   An array of user objects.
  */
 var drupal_services_user_index = {
+  /**
+   * Resource URL. "user.json"
+   */
   "resource_path": "user.json",
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service User Index Resource.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the service resource call options.
@@ -334,6 +483,9 @@ var drupal_services_user_index = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -343,33 +495,53 @@ var drupal_services_user_index = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 
 /**
- * Create a new user.
- *
- *   A object containing account information. The $account object should
- *   contain, at minimum, the following properties:
- *     - name (user name)
- *     - mail (email address)
- *     - pass (plain text unencrypted password)
- *
- *   These properties can be passed but are optional
- *     - status (0 for blocked, otherwise will be active by default)
- *     - notify (1 to notify user of new account, will not notify by default)
- *
- *  Roles can be passed in a roles property which is an associative
- *  array formatted with '<role id>' => '<role id>', not including
- *  the authenticated user role, which is given by default.
- *
- * @return
- *   The user object of the newly created user.
+ * @constructor
+ * @description Create a new user.
  */
 var drupal_services_user_create = {
+  /**
+   * Resource URL. "user.json"
+   */
   "resource_path": "user.json",
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service User Login Resource.
+   *
+   * @param {Object} caller_options
+   *        A object containing account information.
+   * @param {string} caller_options.name
+   *        Required. The users name.
+   * @param {string} caller_options.mail
+   *        Required. The users email address.
+   * @param {string} caller_options.pass
+   *        Required. Plain text unencrypted password.
+   * @param {string} caller_options.status
+   *        Optional. 0 for blocked, otherwise will be active by default.
+   * @param {string} caller_options.notify
+   *        Optional. 1 to notify user of new account, will not notify by default.
+   * @param {string} caller_options.roles
+   *        Optional.
+   *        Roles can be passed in a roles property which is an associative
+   *        array formatted with '<role id>' => '<role id>', not including
+   *        the authenticated user role, which is given by default.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the options for the service call.
@@ -378,6 +550,7 @@ var drupal_services_user_create = {
       data += '&pass=' + encodeURIComponent(caller_options.pass);
       data += '&status=' + encodeURIComponent(caller_options.status);
       data += '&notify=' + encodeURIComponent(caller_options.notify);
+      data += '&roles=' + encodeURIComponent(caller_options.roles);
 
       // Build the options to the service call.
       options = {
@@ -405,6 +578,9 @@ var drupal_services_user_create = {
     }
   },
 
+  /**
+   * Error Handler
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.error(errorThrown);
@@ -414,6 +590,9 @@ var drupal_services_user_create = {
     }
   },
 
+  /**
+   * Success handler
+   */
   "success": function (data) {},
 };
 

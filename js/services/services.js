@@ -4,6 +4,11 @@
  *
  ******************************************************************************/
 
+
+/**
+ * Hold all static settings for the application.
+ * @type {Object}
+ */
 drupal_settings = {
   site_path: 'http://localhost:8082',
   endpoint: 'rest',
@@ -37,52 +42,54 @@ $(document).ready( function() {
 
 var drupal_services_resource_call_result;
 
-//function drupal_services_resource_call
+/**
+ * @constructor
+ * @description Handle all ajax calls to and from drupal services.
+ */
 var drupal_services = {
-
-  /*"options":[],*/
 
   /**
    * Make a call to a Drupal Service Resource.
    *
-   * options.resource_path
+   * @param  {Object} options
+   * @param  {string} options.resource_path
    *    The path to the resource (required)
-   * options.site_path
+   * @param  {string} options.site_path
    *    The full site path (default: drupal_settings.site_path)
-   * options.base_path
+   * @param  {string} options.base_path
    *    The drupal base path (default: drupal_settings.base_path)
-   * options.endpoint
+   * @param  {string} options.endpoint
    *    The endpoint name (default : drupal_settings.services_endpoint_default)
-   * options.type
+   * @param  {string} options.type
    *    The method to use: get, post (default), put, delete
-   * options.dataType
+   * @param  {string} options.dataType
    *    The data type to use in the ajax call (default: json)
-   * options.data
+   * @param  {string} options.data
    *    The data string to send with the ajax call (optional)
-   * options.load_from_local_storage
+   * @param  {string} options.load_from_local_storage
    *    Load service resource call from local storage.
    *    "0" = force reload from service resource
    *    "1" = grab from local storage if possible
-   * options.save_to_local_storage
+   * @param  {string} options.save_to_local_storage
    *    Load service resource call from local storage.
    *    "0" = force reload from service resource
    *    "1" = grab from local storage if possible
-   * options.local_storage_key
+   * @param  {string} options.local_storage_key
    *    The key to use when storing the service resource call result
    *    in local storage. Default key formula: [options.type].[service_resource_call_url]
    *    For example, a POST on the system connect resource would have a default key of
    *    post.http://www.drupalgap.org/?q=drupalgap/system/connect.json
-   * options.async
+   * @param  {boolean} options.async
    *    Whether or not to make the service call asynchronously.
-   *    false - make the call synchronously (default) - TODO default should be true
+   *    false - make the call synchronously (default) - @todo default should be true
    *    true - make the call asynchronously
-   * options.error
+   * @param  {function} options.error
    *    The error call back function.
-   * options.success
+   * @param  {function} options.success
    *    The success call back function.
-   * options.hook_error
+   * @param  {function} options.hook_error
    *    The user's error call back function.
-   * options.hook_success
+   * @param  {function} options.hook_success
    *    The user's success call back function.
    */
   "resource_call": function (options) {
@@ -92,7 +99,7 @@ var drupal_services = {
 
     try {
       // Validate options.
-      // TODO - need to validate all other options and turn this into a function.
+      // @todo - need to validate all other options and turn this into a function.
       if (!options.resource_path) {
         console.log("resource_call - no resource_path provided");
         return false;
@@ -298,7 +305,14 @@ var drupal_services = {
     }
   },
 
-  /* Asynchronous ajax error call back function. */
+  /**
+   * Asynchronous ajax error call back function.
+   *
+   * @param  {Object} jqXHR
+   * @param  {Object} textStatus
+   * @param  {Object} errorThrown
+   * @return Returns errors to the console.
+   */
   "resource_call_error": function (jqXHR, textStatus, errorThrown) {
     // Log the error to the console.
     result = {
@@ -317,7 +331,10 @@ var drupal_services = {
     }
   },
 
-  /* Asynchronous ajax success call back function. */
+  /**
+   * Asynchronous ajax success call back function.
+   * @param  {Object} data
+   */
   "resource_call_success": function (data) {
     // Hide the page loading message.
     // $.mobile.hidePageLoadingMsg();
@@ -325,7 +342,7 @@ var drupal_services = {
     // Print data to console.
     console.log("RESPONSE:\n" + JSON.stringify(data, undefined, 2));
 
-    // TODO - Understand why the options variable is available here,
+    // @todo - Understand why the options variable is available here,
     // and why the this.options approach didn't work as expected earlier.
 
     // Save the result to local storage, if necessary.
@@ -343,16 +360,17 @@ var drupal_services = {
   }
 };
 
-/*
+/**
  * Returns a URL to the service resource based on the incoming options.
  *
- * options.resource_path
+ * @param {Object} options
+ * @param {string} options.resource_path
  *    The path to the resource (required)
- * options.site_path
+ * @param {string} options.site_path
  *    The full site path (default: drupal_settings.site_path)
- * options.base_path
+ * @param {string} options.base_path
  *    The drupal base path (default: drupal_settings.base_path)
- * options.endpoint
+ * @param {string} options.endpoint
  *    The endpoint name (default : drupal_settings.services_endpoint_default)
  */
 function drupal_services_resource_url(options) {
@@ -369,20 +387,22 @@ function drupal_services_resource_url(options) {
   return options.site_path + options.base_path + options.endpoint + "/" + options.resource_path;
 }
 
-/*
+/**
  * Returns a string key for local storage of a service call result.
  *
- * type
- *    The method to use: get, post, put, delete
- * url
- *    The full URL to the service resource. (e.g. system/connect.json)
+ * @param  {string} type
+ *   The method to use: get, post, put, delete
+ * @param  {string} resource_path
+ *   The full URL to the service resource. (e.g. system/connect.json)
  */
 function drupal_services_default_local_storage_key(type, resource_path) {
   return type + "." + resource_path;
 }
 
+/**
+ * Set default values for options if none were provided.
+ */
 function drupal_services_resource_get_default_options(options) {
-  // Set default values for options if none were provided.
   if (!options.site_path) {
     options.site_path = drupal_settings.site_path;
   }
@@ -407,16 +427,17 @@ function drupal_services_resource_get_default_options(options) {
   return options;
 }
 
+/**
+ * If no load_from_local_storage option was set, set the default
+ * for best performance based on the service resource call.
+ *
+ * @todo  Use regex here instead of indexOf to avoid collisions.
+ * @todo  This needs to be smarter, for example this is getting set when the node
+ *        is saved or deleted, which isn't necessarily the best for performance.
+ *        I think we need to add some kind of 'op' parameter similar to what
+ *        Drupal uses to handle special cases like this.
+ */
 function drupal_services_get_load_from_local_storage_default(options) {
-  // If no load_from_local_storage option was set, set the default.
-  // for best performance based on the service resource call.
-
-  // TODO - Use regex here instead of indexOf to avoid collisions.
-  // TODO - This needs to be smarter, for example this is getting set when the node
-  // is saved or deleted, which isn't necessarily the best for performance. I think we
-  // need to add some kind of 'op' parameter similar to what Drupal uses to handle
-  // special cases like this.
-
   // Determine cases where we do not want to load from local
   // storage here.
   switch (options.type.toLowerCase()) {
@@ -472,15 +493,17 @@ function drupal_services_get_load_from_local_storage_default(options) {
   return options;
 }
 
-// Set the default save to local storage option.
-// TODO - Regex needs to be used instead of indexOf here.
-// TODO - The decision to save something into local storage
-// here needs to be more intelligent. i.e. In offline mode
-// we would want to store in local storage. Basically, we know
-// 'put', 'delete' and some 'post' calls don't need local storage
-// unless in offline mode. Right now the C.U.D. implementations
-// decide this setting which is ok, but we could bring that decision into
-// here so the C.U.D. implementations are cleaner.
+/**
+ * Set the default save to local storage option.
+ *
+ * @todo  Regex needs to be used instead of indexOf here.
+ * @todo  The decision to save something into local storage here needs to be
+ *        more intelligent. i.e. In offline mode we would want to store in local
+ *        storage. Basically, we know 'put', 'delete' and some 'post' calls
+ *        don't need local storage unless in offline mode. Right now the C.U.D.
+ *        implementations decide this setting which is ok, but we could bring
+ *        that decision into here so the C.U.D. implementations are cleaner.
+ */
 function drupal_services_get_save_to_local_storage_default(options) {
   switch (options.type.toLowerCase()) {
   case "get":
@@ -520,19 +543,21 @@ function drupal_services_get_save_to_local_storage_default(options) {
   return options;
 }
 
+/**
+ * If this service resource call has local storage items dependent on result,
+ * then remove those items from local storage.
+ *
+ * Stuff with dependents:
+ *    user: create/update/delete/login/logout/registration
+ *    node: create/update/delete
+ *    comment: create/update/delete
+ *
+ * @todo  Need to use regex here instead of indexOf...
+ * @todo  Our JS implementation of these service resources should include an
+ *        array variable that allows us to stack a list of local storage keys,
+ *        that way this dependency removal mechanism can be more dynamic/automated.
+ */
 function drupal_services_resource_clean_local_storage_dependencies(options) {
-  // If this service resource call has local storage items dependent on
-  // result, then remove those items from local storage.
-  /* Stuff with dependents:
-   *    user: create/update/delete/login/logout/registration
-   *    node: create/update/delete
-   *    comment: create/update/delete
-   */
-  // TODO - Need to use regex here instead of indexOf...
-  // TODO - Our JS implementation of these service resources
-  // should include an array variable that allows us to stack
-  // a list of local storage keys, that way this dependency
-  // removal mechanism can be more dynamic/automated.
   console.log("drupal_services_resource_clean_local_storage_dependencies");
   // console.log(JSON.stringify(options, undefined, 2));
   switch (options.type.toLowerCase()) {
@@ -582,7 +607,7 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
     // Node update resource.
     else if (options.resource_path.indexOf("node/") != -1) {
       // Remove the node from local storage.
-      // TODO - Node id validation here.
+      // @todo - Node id validation here.
       drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
       });
@@ -595,7 +620,7 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
     // Comment update resource.
     else if (options.resource_path.indexOf("comment/") != -1) {
       // Remove the comment from local storage.
-      // TODO - Comment id validation here.
+      // @todo - Comment id validation here.
       drupal_services_comment_retrieve.local_storage_remove({
         "cid": options.cid
       });
@@ -605,7 +630,7 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
       // };
       // drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove the comment's node from local storage.
-      // TODO - Node id validation here.
+      // @todo - Node id validation here.
       drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
       });
@@ -620,7 +645,7 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
     // Node delete resource.
     if (options.resource_path.indexOf("node/") != -1) {
       // Remove the node from local storage.
-      // TODO - Node id validation here.
+      // @todo - Node id validation here.
       drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
       });
@@ -634,12 +659,12 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
       //   "path": "views_datasource/drupal_comments"
       // };
       // drupal_views_datasource_retrieve.local_storage_remove(views_options);
-      // TODO - remove any comments from this node from local storage.
+      // @todo - remove any comments from this node from local storage.
     }
     // Comment delete resource.
     else if (options.resource_path.indexOf("comment/") != -1) {
       // Remove the comment from local storage.
-      // TODO - Comment id validation here.
+      // @todo - Comment id validation here.
       drupal_services_comment_retrieve.local_storage_remove({
         "cid": options.cid
       });
@@ -649,7 +674,7 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
       // };
       // drupal_views_datasource_retrieve.local_storage_remove(views_options);
       // Remove the comment's node from local storage.
-      // TODO - Node id validation here.
+      // @todo - Node id validation here.
       drupal_services_node_retrieve.local_storage_remove({
         "nid": options.nid
       });

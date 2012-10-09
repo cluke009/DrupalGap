@@ -11,14 +11,34 @@
 var drupal_services_file_node_files_result;
 
 /**
- * Adds a new file and returns the fid.
- *
- * @type {Object}
+ * @constructor
+ * @description Adds a new file and returns the fid.
  */
 var drupal_services_file_create = {
+ /**
+   * Resource URL. "file.json"
+   */
   "resource_path": "file.json",
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service File Create Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.file
+   *        Required. A Base64 encoded file.
+   * @param {string} caller_options.filename
+   *        Required. The filename with extension.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
@@ -53,11 +73,15 @@ var drupal_services_file_create = {
 };
 
 /**
- * Get a given file
- *
- * @type {Object}
+ * @constructor
+ * @description Get a given file
  */
 var drupal_services_file_retrieve = {
+  /**
+   * Resource URL. "file/fid.json"
+   * @param {string} options
+   *        Accepts File ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "file/" + encodeURIComponent(options) + ".json";
@@ -66,8 +90,24 @@ var drupal_services_file_retrieve = {
       console.log("Error: services/file.js 'options.cid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service File Retrieve Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.fid
+   *        Required. The file ID to retrieve.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the options for the service call.
@@ -96,8 +136,10 @@ var drupal_services_file_retrieve = {
     }
   },
 
+  /**
+   * Removes a file from local storage.
+   */
   "local_storage_remove": function (options) {
-    // Removes a file from local storage.
     type = this.resource_type;
     resource_path = this.resource_path(options);
     key = drupal_services_default_local_storage_key(type, resource_path);
@@ -107,11 +149,15 @@ var drupal_services_file_retrieve = {
 };
 
 /**
- * Delete a file. Returns true/nid if delete was successful.
- *
- * @type {Object}
+ * @constructor
+ * @description Delete a file. Returns true/nid if delete was successful.
  */
 var drupal_services_file_delete = {
+  /**
+   * Resource URL. "file/fid.json"
+   * @param {string} options
+   *        Accepts File ID.
+   */
   "resource_path": function (options) {
     if ($.isNumeric(options)) {
       return "file/" + encodeURIComponent(options) + ".json";
@@ -120,8 +166,24 @@ var drupal_services_file_delete = {
       console.log("Error: services/file.js 'options.fid' is not a number.");
     }
   },
+
+  /**
+   * Default Method: DELETE
+   */
   "resource_type": "delete",
 
+  /**
+   * Make a call to a Drupal Service File Delete Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.fid
+   *        Required. The file ID to retrieve.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the options for the service call.
@@ -162,21 +224,41 @@ var drupal_services_file_delete = {
 };
 
 /**
+ * @constructor
+ * @description
  * Return an array of optionally paged fids based on a set of criteria.
  *
+ * @example
  * An example request might look like
  *
- * http://domain/endpoint/file?fields=fid,filename&parameters[fid]=7&parameters[uid]=1
+ * http://domain/endpoint/file?fields=fid,filename&amp;parameters[fid]=7&amp;parameters[uid]=1
  *
  * This would return an array of objects with only fid and filename defined, where
  * fid = 7 and uid = 1.
  *
- * @type {Object}
+ * @todo Get parameters working.
+ * @todo Figure out if parameters can be used without clean urls.
  */
 var drupal_services_file_index = {
+  /**
+   * Resource URL.
+   */
   "resource_path": "file.json",
+
+  /**
+   * Default Method: GET
+   */
   "resource_type": "get",
 
+  /**
+   * Make a call to a Drupal Service File Index Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build the service resource call options.
@@ -205,6 +287,9 @@ var drupal_services_file_index = {
     }
   },
 
+  /**
+   * Error handler.
+   */
   "error": function (jqXHR, textStatus, errorThrown) {
     if (errorThrown) {
       console.log(errorThrown);
@@ -214,18 +299,41 @@ var drupal_services_file_index = {
     }
   },
 
+  /**
+   * Success handler.
+   */
   "success": function (data) {},
 };
 
 /**
- * Adds new files and returns the files array.
- *
- * @type {Object}
+ * @constructor
+ * @description Adds new files and returns the files array.
  */
 var drupal_services_file_create_raw = {
+  /**
+   * Resource URL. "file.json"
+   */
   "resource_path": "file.json",
+
+  /**
+   * Default Method: POST
+   */
   "resource_type": "post",
 
+  /**
+   * Make a call to a Drupal Service File Create Resource.
+   *
+   * @param {Object} caller_options
+   * @param {string} caller_options.file
+   *        Required. A Base64 encoded file.
+   * @param {string} caller_options.filename
+   *        Required. The filename with extension.
+   *
+   * @param {string} caller_options.error
+   *        Error handler hook.
+   * @param {string} caller_options.success
+   *        Success handler hook.
+   */
   "resource_call": function (caller_options) {
     try {
       // Build service call data string.
