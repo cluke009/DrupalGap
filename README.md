@@ -41,5 +41,5 @@ Goals
 Eventually this project should accomplish a few things:
 
  * Provide simple javascript api for working with Drupal services module
- * Provide bare bones examples of how to connect to each service without anything extra, similar to the examples module
+ * Provide bare bones examples of how to connect to each service without anything extra, similar to the [Examples](http://drupal.org/project/examples "Examples") module
  * Provide a sample "app" with all those extras that aren't packaged into core
