@@ -1,0 +1,111 @@
+<div id="page_node" data-role="page">
+  <div data-role="header">
+    <h1>User</h1>
+    <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+    <a href="file.html">File</a>
+    <div data-role="navbar" data-grid="d">
+      <ul class="navbar">
+        <li><a href="comment.html">Comment</a></li>
+        <li><a href="node.html">Node</a></li>
+        <li><a href="taxonomy_term.html">Term</a></li>
+        <li><a href="taxonomy_vocabulary.html">Vocabulary</a></li>
+        <li><a href="user.html">User</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /header -->
+  <div data-role="content">
+    <div class="ui-grid-d">
+      <div class="ui-block-a"><h1>User</h1></div>
+      <div class="ui-block-b"></div>
+      <div class="ui-block-c"></div>
+      <div class="ui-block-d"></div>
+      <div class="ui-block-e"><br /><button id="submit_system_clear">Clear localStorage</button></div>
+    </div>
+    <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+      <div data-role="collapsible">
+        <h3>User Login</h3>
+        <label for="input_user_login_username">Username</label>
+        <input type="text" id="input_user_login_username"/>
+        <label for="input_user_login_password">Password</label>
+        <input type="password" id="input_user_login_password"/>
+        <button type="button" id="submit_user_login">Login</button>
+      </div>
+      <!-- /User Login -->
+      <div data-role="collapsible">
+        <h3>User Register</h3>
+        <p>
+          This example provides no validation and simply passes all fields along.
+        </p>
+        <label for="input_user_register_name">Username</label>
+        <input type="text" id="input_user_register_name"/>
+        <label for="input_user_register_mail">E-mail address</label>
+        <input type="text" id="input_user_register_mail"/>
+        <label for="input_user_register_pass">Password</label>
+        <input type="password" id="input_user_register_pass"/>
+        <button type="button" id="submit_user_register">Create new account</button>
+      </div>
+      <!-- /User Register -->
+      <div data-role="collapsible">
+        <h3>User Edit</h3>
+        <p>
+          This example provides no validation and simply passes the new password field along.
+        </p>
+        <label for="input_user_edit_uid">User ID</label>
+        <input type="text" id="input_user_edit_uid"/>
+        <label for="input_user_edit_name">Username</label>
+        <input type="text" id="input_user_edit_name"/>
+        <label for="input_user_edit_mail">E-mail address</label>
+        <input type="text" id="input_user_edit_mail"/>
+        <label for="input_user_edit_current_pass">Current password</label>
+        <input type="password" id="input_user_edit_current_pass"/>
+        <label for="input_user_edit_password">New password</label>
+        <input type="password" id="input_user_edit_password"/>
+        <button type="button" data-theme="b" id="submit_user_edit">Submit</button>
+      </div>
+      <!-- /User Edit -->
+      <div data-role="collapsible">
+        <h3>User Retrieve</h3>
+        <label for="input_user_retrieve_uid">User ID</label>
+        <input type="text" id="input_user_retrieve_uid" value="1"/>
+        <button type="button" id="submit_user_retrieve">Retrieve</button>
+      </div>
+      <!-- /User Retrieve -->
+      <div data-role="collapsible">
+        <h3>User Create</h3>
+        <label for="input_user_create_name">Username</label>
+        <input type="text" id="input_user_create_name"/>
+        <label for="input_user_create_mail">E-mail address</label>
+        <input type="text" id="input_user_create_mail"/>
+        <label for="input_user_create_pass">Password</label>
+        <input type="password" id="input_user_create_pass"/>
+        <label for="input_user_create_status">Status</label>
+        <input type="text" id="input_user_create_status" value="0"/>
+        <label for="input_user_create_notify">Notify</label>
+        <input type="text" id="input_user_create_notify" value="0"/>
+        <button type="button" id="submit_user_create">Create</button>
+      </div>
+      <!-- /User Create -->
+      <div data-role="collapsible">
+        <h3>User Index</h3>
+        <button type="button" id="submit_user_index">Get users</button>
+      </div>
+      <!-- /User Index -->
+      <div data-role="collapsible">
+        <h3>Logout</h3>
+        <a type="button" id="link_user_logout" href="#"></a>
+      </div>
+      <!-- /User Logout -->
+    </div>
+    <!-- /collapsible-set -->
+    <div data-role="collapsible-set" data-content-theme="c">
+      <div data-role="collapsible" data-theme="e" data-collapsed="false">
+        <h3>Debug </h3>
+        <a href="index.html" data-role="button" data-theme="b" data-inline="true" data-mini="true">Clear</a>
+        <div class="debugDiv">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /content -->
+</div>

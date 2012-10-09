@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>Drupal Services</title>
+
+  <!-- jQuery lib -->
+  <script src="../../js/jquery-1.8.2.js"></script>
+
+  <!-- jQuery Mobile -->
+  <script src="lib/jquery.mobile-1.2.0.js"></script>
+  <link type="text/css" rel="stylesheet" media="all" href="lib/jquery.mobile-1.2.0.css"/>
+
+  <!-- Load services JS-->
+  <script src="../../js/services/services.js"></script>
+  <script src="../../js/services/system.js"></script>
+  <script src="../../js/services/comment.js"></script>
+  <script src="../../js/services/file.js"></script>
+  <script src="../../js/services/node.js"></script>
+  <script src="../../js/services/taxonomy_term.js"></script>
+  <script src="../../js/services/taxonomy_vocabulary.js"></script>
+  <script src="../../js/services/user.js"></script>
+
+  <!-- Load page JS -->
+  <script src="js/comment.js"></script>
+  <script src="js/file.js"></script>
+  <script src="js/node.js"></script>
+  <script src="js/system.js"></script>
+  <script src="js/taxonomy_term.js"></script>
+  <script src="js/taxonomy_vocabulary.js"></script>
+  <script src="js/user.js"></script>
+
+  <!-- Custom -->
+  <style type="text/css">
+    pre { text-shadow: 0 0 0 white; font-size: 1.5em; }
+    .debugDiv pre:last-child { -webkit-border-radius: 0px 0px .5em .5em; border-radius: 0px 0px .5em .5em; }
+  </style>
+  <script type="text/javascript">
+    $('.clear-debug').live('click', function () {
+      $('.debugDiv').children('pre').remove();
+    });
+  </script>
+</head>
+<body>
+<div id="page_system" data-role="page">
+  <div data-role="header">
+    <h1>System</h1>
+    <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+    <a href="file.html">File</a>
+    <div data-role="navbar" data-grid="d">
+      <ul class="navbar">
+        <li><a href="comment.html">Comment</a></li>
+        <li><a href="node.html">Node</a></li>
+        <li><a href="taxonomy_term.html">Term</a></li>
+        <li><a href="taxonomy_vocabulary.html">Vocabulary</a></li>
+        <li><a href="user.html">User</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /header -->
+  <div data-role="content">
+    <div class="ui-grid-d">
+      <div class="ui-block-a"><h1>System </h1></div>
+      <div class="ui-block-b"></div>
+      <div class="ui-block-c"></div>
+      <div class="ui-block-d"></div>
+      <div class="ui-block-e"><br /><button id="submit_system_clear">Clear localStorage</button></div>
+    </div>
+    <p>
+      <a href="http://drupal.org/node/129812">What does system.connect do?</a>
+    </p>
+    <button id="submit_system_connect" data-theme="b">System Connect</button>
+    <p>
+      Be careful setting and deleting variables as it's possible to break your site by altering the wrong one.
+    </p>
+    <p>
+      I used 'site_mail' as the default option because it accepts a single string.
+    </p>
+    <label for="input_system_get_variable">Variable Name</label>
+    <input type="text" id="input_system_get_variable" value="site_mail"/>
+    <label for="input_system_set_variable">Variable Value</label>
+    <input type="text" id="input_system_set_variable"/>
+    <div data-role="controlgroup">
+      <button id="submit_system_connect_get_variable">Get variable</button>
+      <button id="submit_system_connect_set_variable">Set variable</button>
+      <button id="submit_system_connect_del_variable">Delete Variable</button>
+    </div>
+    <div data-role="collapsible-set" data-content-theme="c">
+      <div data-role="collapsible" data-theme="e" data-collapsed="false">
+        <h3>Debug </h3>
+        <a href="index.html" class="clear-debug" data-role="button" data-theme="b" data-inline="true" data-mini="true">Clear</a>
+        <div class="debugDiv">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

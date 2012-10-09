@@ -1,0 +1,99 @@
+<div id="page_file" data-role="page">
+  <div data-role="header">
+    <h1>Taxonomy Term</h1>
+    <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+    <a href="file.html">File</a>
+    <div data-role="navbar" data-grid="d">
+      <ul class="navbar">
+        <li><a href="comment.html">Comment</a></li>
+        <li><a href="node.html">Node</a></li>
+        <li><a href="taxonomy_term.html">Term</a></li>
+        <li><a href="taxonomy_vocabulary.html">Vocabulary</a></li>
+        <li><a href="user.html">User</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /header -->
+  <div data-role="content">
+    <div class="ui-grid-d">
+      <div class="ui-block-a"><h1>Taxonomy Term</h1></div>
+      <div class="ui-block-b"></div>
+      <div class="ui-block-c"></div>
+      <div class="ui-block-d"></div>
+      <div class="ui-block-e"><br /><button id="submit_system_clear">Clear localStorage</button></div>
+    </div>
+    <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+      <div data-role="collapsible">
+        <h3>Taxonomy Term Retrieve</h3>
+        <label for="input_taxonomy_term_retrieve_tid">Taxonomy Term ID</label>
+        <input type="text" id="input_taxonomy_term_retrieve_tid" value="1"/>
+        <button type="button" id="submit_taxonomy_term_retrieve">Retrieve</button>
+      </div>
+      <!-- /Taxonomy Term Retrieve -->
+      <div data-role="collapsible">
+        <h3>Taxonomy Term Create</h3>
+        <p>
+          This will submit a new term to the top level of the 'Tags' vocabulary.
+        </p>
+        <label for="input_taxonomy_term_create_vid">Vocabulary ID</label>
+        <input type="text" id="input_taxonomy_term_create_vid" value="1"/>
+        <label for="input_taxonomy_term_create_name">Name</label>
+        <input type="text" id="input_taxonomy_term_create_name"/>
+        <label for="input_taxonomy_term_create_description">Description</label>
+        <textarea id="input_taxonomy_term_create_description" rows="4"></textarea>
+        <label for="input_taxonomy_term_create_weight">Weight</label>
+        <input type="text" id="input_taxonomy_term_create_weight" value="0"/>
+        <label for="input_taxonomy_term_create_parent">Parent</label>
+        <input type="text" id="input_taxonomy_term_create_parent" value="0"/>
+        <button type="button" id="submit_taxonomy_term_create">Create</button>
+      </div>
+      <!-- /Taxonomy Term Create -->
+      <div data-role="collapsible">
+        <h3>Taxonomy Term Update</h3>
+        <label for="input_taxonomy_term_update_vid">Vocabulary ID</label>
+        <input type="text" id="input_taxonomy_term_update_vid" value="1"/>
+        <label for="input_taxonomy_term_update_tid">Term ID</label>
+        <input type="text" id="input_taxonomy_term_update_tid" value="1"/>
+        <label for="input_taxonomy_term_update_name">Name</label>
+        <input type="text" id="input_taxonomy_term_update_name"/>
+        <label for="input_taxonomy_term_update_description">Description</label>
+        <textarea id="input_taxonomy_term_update_description" rows="4"></textarea>
+        <label for="input_taxonomy_term_update_weight">Weight</label>
+        <input type="text" id="input_taxonomy_term_update_weight" value="0"/>
+        <label for="input_taxonomy_term_update_parent">Parent</label>
+        <input type="text" id="input_taxonomy_term_update_parent" value="0"/>
+        <button type="button" id="submit_taxonomy_term_update">Update</button>
+      </div>
+      <!-- /Taxonomy Term Update -->
+      <div data-role="collapsible">
+        <h3>Taxonomy Term Delete</h3>
+        <label for="input_taxonomy_term_delete_tid">Taxonomy Term ID</label>
+        <input type="text" id="input_taxonomy_term_delete_tid" value="1"/>
+        <button type="button" id="submit_taxonomy_term_delete">Delete</button>
+      </div>
+      <!-- /Taxonomy Term Delete -->
+      <div data-role="collapsible">
+        <h3>Taxonomy Term Index</h3>
+        <button type="button" id="submit_taxonomy_term_index">Get taxonomy_terms</button>
+      </div>
+      <!-- /Taxonomy Term Index -->
+      <div data-role="collapsible">
+        <h3>Taxonomy Term Select Nodes</h3>
+        <label for="input_taxonomy_term_select_nodes_tid">Term ID</label>
+        <input type="text" id="input_taxonomy_term_select_nodes_tid" value="1"/>
+        <button type="button" id="submit_taxonomy_term_select_nodes">Get nodes</button>
+      </div>
+      <!-- /Taxonomy Term Select Nodes -->
+    </div>
+    <!-- /collapsible-set -->
+    <div data-role="collapsible-set" data-content-theme="c">
+      <div data-role="collapsible" data-theme="e" data-collapsed="false">
+        <h3>Debug </h3>
+        <a href="index.html" data-role="button" data-theme="b" data-inline="true" data-mini="true">Clear</a>
+        <div class="debugDiv">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /content -->
+</div>

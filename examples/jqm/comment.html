@@ -1,0 +1,102 @@
+<div id="page_comment" data-role="page">
+  <div data-role="header">
+    <h1>Comment</h1>
+    <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+    <a href="file.html">File</a>
+    <div data-role="navbar" data-grid="d">
+      <ul class="navbar">
+        <li><a href="comment.html">Comment</a></li>
+        <li><a href="node.html">Node</a></li>
+        <li><a href="taxonomy_term.html">Term</a></li>
+        <li><a href="taxonomy_vocabulary.html">Vocabulary</a></li>
+        <li><a href="user.html">User</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /header -->
+  <div data-role="content">
+    <div class="ui-grid-d">
+      <div class="ui-block-a"><h1>Comment</h1></div>
+      <div class="ui-block-b"></div>
+      <div class="ui-block-c"></div>
+      <div class="ui-block-d"></div>
+      <div class="ui-block-e"><br /><button id="submit_system_clear">Clear localStorage</button></div>
+    </div>
+    <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+      <div data-role="collapsible">
+        <h3>Comment Retrieve</h3>
+        <label for="input_comment_retrieve_cid">Comment ID</label>
+        <input type="text" id="input_comment_retrieve_cid" value="1"/>
+        <button type="button" id="submit_comment_retrieve" data-theme="b">Retrieve</button>
+      </div>
+      <!-- /Comment Retrieve -->
+      <div data-role="collapsible">
+        <h3>Comment Create</h3>
+        <label for="input_comment_create_nid">Node ID</label>
+        <input type="text" id="input_comment_create_nid" value="1"/>
+        <label for="input_comment_create_language">Language</label>
+        <input type="text" id="input_comment_create_language"/>
+        <label for="input_comment_create_subject">Subject</label>
+        <input type="text" id="input_comment_create_subject"/>
+        <label for="input_comment_create_comment_body">Body</label>
+        <textarea id="input_comment_create_comment_body" rows="4"></textarea>
+        <button type="button" id="submit_comment_create" data-theme="b">Create</button>
+      </div>
+      <!-- /Comment Create -->
+      <div data-role="collapsible">
+        <h3>Comment Update</h3>
+        <label for="input_comment_update_language">Language</label>
+        <input type="text" id="input_comment_update_language"/>
+        <label for="input_comment_update_cid">Comment ID</label>
+        <input type="text" id="input_comment_update_cid" value="1"/>
+        <label for="input_comment_update_subject">Subject</label>
+        <input type="text" id="input_comment_update_subject"/>
+        <label for="input_comment_update_comment_body">Body</label>
+        <textarea id="input_comment_update_comment_body" rows="4"></textarea>
+        <button type="button" id="submit_comment_update" data-theme="b">Update</button>
+      </div>
+      <!-- /Comment Update -->
+      <div data-role="collapsible">
+        <h3>Comment Delete</h3>
+        <label for="input_comment_delete_cid">Comment ID</label>
+        <input type="text" id="input_comment_delete_cid" value="1"/>
+        <button type="button" id="submit_comment_delete" data-theme="b">Delete</button>
+      </div>
+      <!-- /Comment Delete -->
+      <div data-role="collapsible">
+        <h3>Comment Index</h3>
+        <button type="button" id="submit_comment_index" data-theme="b">Get comments</button>
+      </div>
+      <!-- /Comment Index -->
+      <div data-role="collapsible">
+        <h3>Comment Count All</h3>
+        <label for="input_comment_count_all_nid">Node ID</label>
+        <input type="text" id="input_comment_count_all_nid" value="1"/>
+        <button type="button" id="submit_comment_count_all" data-theme="b">Get comment count</button>
+      </div>
+      <!-- /Comment Count All -->
+      <div data-role="collapsible">
+        <h3>Comment Count New</h3>
+        <label for="input_comment_count_new_nid">Node ID</label>
+        <input type="text" id="input_comment_count_new_nid" value="1"/>
+        <label for="input_comment_count_new_since">Since</label>
+        <p>
+          Timestamp to indicate what nodes are new. Defaults to time of last user acces to node.
+        </p>
+        <input type="text" id="input_comment_count_new_since" value="Unix timestamp"/>
+        <button type="submit" id="submit_comment_count_new" data-theme="b">Get new comment count</button>
+      </div>
+      <!-- /Comment Count New -->
+    </div>
+    <!-- /collapsible-set -->
+    <div data-role="collapsible-set" data-content-theme="c">
+      <div data-role="collapsible" data-theme="e" data-collapsed="false">
+        <h3>Debug </h3>
+        <a href="index.html" data-role="button" data-theme="b" data-inline="true" data-mini="true">Clear</a>
+        <div class="debugDiv">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /content -->
+</div>

@@ -1,0 +1,124 @@
+<div id="page_file" data-role="page">
+  <div data-role="header">
+    <h1>Taxonomy Vocabulary</h1>
+    <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+    <a href="file.html">File</a>
+    <div data-role="navbar" data-grid="d">
+      <ul class="navbar">
+        <li><a href="comment.html">Comment</a></li>
+        <li><a href="node.html">Node</a></li>
+        <li><a href="taxonomy_term.html">Term</a></li>
+        <li><a href="taxonomy_vocabulary.html">Vocabulary</a></li>
+        <li><a href="user.html">User</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /header -->
+  <div data-role="content">
+    <div class="ui-grid-d">
+      <div class="ui-block-a"><h1>Taxonomy Vocabulary</h1></div>
+      <div class="ui-block-b"></div>
+      <div class="ui-block-c"></div>
+      <div class="ui-block-d"></div>
+      <div class="ui-block-e"><br /><button id="submit_system_clear">Clear localStorage</button></div>
+    </div>
+    <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+      <div data-role="collapsible">
+        <h3>Taxonomy Vocabulary Retrieve</h3>
+        <label for="input_taxonomy_vocabulary_retrieve_vid">Taxonomy Vocabulary ID</label>
+        <input type="text" id="input_taxonomy_vocabulary_retrieve_vid" value="1"/>
+        <button type="button" id="submit_taxonomy_vocabulary_retrieve">Retrieve</button>
+      </div>
+      <!-- /Taxonomy Vocabulary Retrieve -->
+      <div data-role="collapsible">
+        <h3>Taxonomy Vocabulary Create</h3>
+        <label for="input_taxonomy_vocabulary_create_name">Name</label>
+        <input type="text" id="input_taxonomy_vocabulary_create_name"/>
+        <label for="input_taxonomy_vocabulary_create_machine_name">Machine name</label>
+        <input type="text" id="input_taxonomy_vocabulary_create_machine_name"/>
+        <label for="input_taxonomy_vocabulary_create_description">Description</label>
+        <textarea id="input_taxonomy_vocabulary_create_description" rows="4"></textarea>
+        <label for="input_taxonomy_vocabulary_create_help">Help</label>
+        <textarea type="text" id="input_taxonomy_vocabulary_create_help" rows="4"></textarea>
+        <label for="input_taxonomy_vocabulary_create_tags">Tags</label>
+        <input type="text" id="input_taxonomy_vocabulary_create_tags" value="0"/>
+        <label for="input_taxonomy_vocabulary_create_multiple">Create Multiple</label>
+        <input type="text" id="input_taxonomy_vocabulary_create_multiple" value="0"/>
+        <label for="input_taxonomy_vocabulary_create_required">Required</label>
+        <input type="text" id="input_taxonomy_vocabulary_create_required" value="0"/>
+        <label for="input_taxonomy_vocabulary_create_hierarchy">Hierarchy</label>
+        <input type="text" id="input_taxonomy_vocabulary_create_hierarchy" value="0"/>
+        <label for="input_taxonomy_vocabulary_create_relations">Relations</label>
+        <input type="text" id="input_taxonomy_vocabulary_create_relations" value="0"/>
+        <label for="input_taxonomy_vocabulary_create_module">Module</label>
+        <input type="text" id="input_taxonomy_vocabulary_create_module"/>
+        <label for="input_taxonomy_vocabulary_create_node">Node</label>
+        <input type="text" id="input_taxonomy_vocabulary_create_node"/>
+        <label for="input_taxonomy_vocabulary_create_weight">Weight</label>
+        <input type="text" id="input_taxonomy_vocabulary_create_weight" value="0"/>
+        <button type="button" id="submit_taxonomy_vocabulary_create">Create</button>
+      </div>
+      <!-- /Taxonomy Vocabulary Create -->
+      <div data-role="collapsible">
+        <h3>Taxonomy Vocabulary Update</h3>
+        <label for="input_taxonomy_vocabulary_update_vid">Vocabulary ID</label>
+        <input type="text" id="input_taxonomy_vocabulary_update_vid" value="1"/>
+        <label for="input_taxonomy_vocabulary_update_name">Name</label>
+        <input type="text" id="input_taxonomy_vocabulary_update_name"/>
+        <label for="input_taxonomy_vocabulary_update_machine_name">Machine name</label>
+        <input type="text" id="input_taxonomy_vocabulary_update_machine_name"/>
+        <label for="input_taxonomy_vocabulary_update_description">Description</label>
+        <textarea id="input_taxonomy_vocabulary_update_description" rows="4"></textarea>
+        <label for="input_taxonomy_vocabulary_update_help">Help</label>
+        <textarea type="text" id="input_taxonomy_vocabulary_update_help" rows="4"></textarea>
+        <label for="input_taxonomy_vocabulary_update_tags">Tags</label>
+        <input type="text" id="input_taxonomy_vocabulary_update_tags" value="0"/>
+        <label for="input_taxonomy_vocabulary_update_multiple">Create Multiple</label>
+        <input type="text" id="input_taxonomy_vocabulary_update_multiple" value="0"/>
+        <label for="input_taxonomy_vocabulary_update_required">Required</label>
+        <input type="text" id="input_taxonomy_vocabulary_update_required" value="0"/>
+        <label for="input_taxonomy_vocabulary_update_hierarchy">Hierarchy</label>
+        <input type="text" id="input_taxonomy_vocabulary_update_hierarchy" value="0"/>
+        <label for="input_taxonomy_vocabulary_update_relations">Relations</label>
+        <input type="text" id="input_taxonomy_vocabulary_update_relations" value="0"/>
+        <label for="input_taxonomy_vocabulary_update_module">Module</label>
+        <input type="text" id="input_taxonomy_vocabulary_update_module"/>
+        <label for="input_taxonomy_vocabulary_update_node">Node</label>
+        <input type="text" id="input_taxonomy_vocabulary_update_node"/>
+        <label for="input_taxonomy_vocabulary_update_weight">Weight</label>
+        <input type="text" id="input_taxonomy_vocabulary_update_weight" value="0"/>
+        <button type="button" id="submit_taxonomy_vocabulary_update">Update</button>
+      </div>
+      <!-- /Taxonomy Vocabulary Update -->
+      <div data-role="collapsible">
+        <h3>Taxonomy Vocabulary Delete</h3>
+        <label for="input_taxonomy_vocabulary_delete_vid">Taxonomy Vocabulary ID</label>
+        <input type="text" id="input_taxonomy_vocabulary_delete_vid" value="1"/>
+        <button type="button" id="submit_taxonomy_vocabulary_delete">Delete</button>
+      </div>
+      <!-- /Taxonomy Vocabulary Delete -->
+      <div data-role="collapsible">
+        <h3>Taxonomy Vocabulary Index</h3>
+        <button type="button" id="submit_taxonomy_vocabulary_index">Get taxonomy_vocabularys</button>
+      </div>
+      <!-- /Taxonomy Vocabulary Index -->
+      <div data-role="collapsible">
+        <h3>Taxonomy Vocabulary getTree</h3>
+        <label for="input_taxonomy_vocabulary_get_tree_vid">Vocabulary ID</label>
+        <input type="text" id="input_taxonomy_vocabulary_get_tree_vid" value="1"/>
+        <button type="button" id="submit_taxonomy_vocabulary_get_tree">Get tree</button>
+      </div>
+      <!-- /Taxonomy Vocabulary getTree -->
+    </div>
+    <!-- /collapsible-set -->
+    <div data-role="collapsible-set" data-content-theme="c">
+      <div data-role="collapsible" data-theme="e" data-collapsed="false">
+        <h3>Debug </h3>
+        <a href="index.html" data-role="button" data-theme="b" data-inline="true" data-mini="true">Clear</a>
+        <div class="debugDiv">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /content -->
+</div>
