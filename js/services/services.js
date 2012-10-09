@@ -173,7 +173,7 @@ var drupal_services = {
       }
       else {
         // Print service resource call debug info to console.
-        console.log(JSON.stringify({
+        console.log("REQUEST:\n" + JSON.stringify({
           "path": service_resource_call_url,
           "options": options
         }, undefined, 2));
@@ -205,6 +205,7 @@ var drupal_services = {
           });
 
           // Print service resource call debug info to console.
+
           console.log(JSON.stringify(result, undefined, 2));
 
           // If there wasn't an error from the service call...
@@ -322,7 +323,7 @@ var drupal_services = {
     // $.mobile.hidePageLoadingMsg();
 
     // Print data to console.
-    console.log(JSON.stringify(data, undefined, 2));
+    console.log("RESPONSE:\n" + JSON.stringify(data, undefined, 2));
 
     // TODO - Understand why the options variable is available here,
     // and why the this.options approach didn't work as expected earlier.
@@ -533,7 +534,7 @@ function drupal_services_resource_clean_local_storage_dependencies(options) {
   // a list of local storage keys, that way this dependency
   // removal mechanism can be more dynamic/automated.
   console.log("drupal_services_resource_clean_local_storage_dependencies");
-  console.log(JSON.stringify(options, undefined, 2));
+  // console.log(JSON.stringify(options, undefined, 2));
   switch (options.type.toLowerCase()) {
   case "get":
     break;
