@@ -306,7 +306,7 @@ var drupal_services = {
       "textStatus": textStatus,
       "errorThrown": errorThrown,
     };
-    console.log(JSON.stringify(result, undefined, 2));
+    console.log("RESPONSE:\n" + JSON.stringify(result, undefined, 2));
 
     // Alert the user.
     if (errorThrown) {
