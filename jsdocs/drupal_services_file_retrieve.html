@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: drupal_services_file_retrieve</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: drupal_services_file_retrieve</h1>
+    
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+    drupal_services_file_retrieve
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="drupal_services_file_retrieve"><span class="type-signature"></span>new drupal_services_file_retrieve</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get a given file
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>file.js, line 79</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="resource_type"><span class="type-signature">&lt;static> </span>resource_type<span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Default Method: GET
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>file.js, line 97</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="local_storage_remove"><span class="type-signature">&lt;static> </span>local_storage_remove</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Removes a file from local storage.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>file.js, line 142</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resource_call"><span class="type-signature">&lt;static> </span>resource_call</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Make a call to a Drupal Service File Retrieve Resource.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>caller_options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>fid</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Required. The file ID to retrieve.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Error handler hook.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>success</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Success handler hook.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>file.js, line 111</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resource_path"><span class="type-signature">&lt;static> </span>resource_path</h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Resource URL. "file/fid.json"
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Accepts File ID.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>file.js, line 85</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="drupal_services.html">drupal_services</a></li><li><a href="drupal_services_comment_count_all.html">drupal_services_comment_count_all</a></li><li><a href="drupal_services_comment_count_new.html">drupal_services_comment_count_new</a></li><li><a href="drupal_services_comment_create.html">drupal_services_comment_create</a></li><li><a href="drupal_services_comment_delete.html">drupal_services_comment_delete</a></li><li><a href="drupal_services_comment_index.html">drupal_services_comment_index</a></li><li><a href="drupal_services_comment_retrieve.html">drupal_services_comment_retrieve</a></li><li><a href="drupal_services_comment_update.html">drupal_services_comment_update</a></li><li><a href="drupal_services_file_create.html">drupal_services_file_create</a></li><li><a href="drupal_services_file_create_raw.html">drupal_services_file_create_raw</a></li><li><a href="drupal_services_file_delete.html">drupal_services_file_delete</a></li><li><a href="drupal_services_file_index.html">drupal_services_file_index</a></li><li><a href="drupal_services_file_retrieve.html">drupal_services_file_retrieve</a></li><li><a href="drupal_services_node_create.html">drupal_services_node_create</a></li><li><a href="drupal_services_node_delete.html">drupal_services_node_delete</a></li><li><a href="drupal_services_node_files.html">drupal_services_node_files</a></li><li><a href="drupal_services_node_index.html">drupal_services_node_index</a></li><li><a href="drupal_services_node_retrieve.html">drupal_services_node_retrieve</a></li><li><a href="drupal_services_node_update.html">drupal_services_node_update</a></li><li><a href="drupal_services_system_connect.html">drupal_services_system_connect</a></li><li><a href="drupal_services_system_del_variable.html">drupal_services_system_del_variable</a></li><li><a href="drupal_services_system_get_variable.html">drupal_services_system_get_variable</a></li><li><a href="drupal_services_system_set_variable.html">drupal_services_system_set_variable</a></li><li><a href="drupal_services_taxonomy_term_create.html">drupal_services_taxonomy_term_create</a></li><li><a href="drupal_services_taxonomy_term_delete.html">drupal_services_taxonomy_term_delete</a></li><li><a href="drupal_services_taxonomy_term_index.html">drupal_services_taxonomy_term_index</a></li><li><a href="drupal_services_taxonomy_term_retrieve.html">drupal_services_taxonomy_term_retrieve</a></li><li><a href="drupal_services_taxonomy_term_select_nodes.html">drupal_services_taxonomy_term_select_nodes</a></li><li><a href="drupal_services_taxonomy_term_update.html">drupal_services_taxonomy_term_update</a></li><li><a href="drupal_services_taxonomy_vocabulary_create.html">drupal_services_taxonomy_vocabulary_create</a></li><li><a href="drupal_services_taxonomy_vocabulary_delete.html">drupal_services_taxonomy_vocabulary_delete</a></li><li><a href="drupal_services_taxonomy_vocabulary_get_tree.html">drupal_services_taxonomy_vocabulary_get_tree</a></li><li><a href="drupal_services_taxonomy_vocabulary_index.html">drupal_services_taxonomy_vocabulary_index</a></li><li><a href="drupal_services_taxonomy_vocabulary_retrieve.html">drupal_services_taxonomy_vocabulary_retrieve</a></li><li><a href="drupal_services_taxonomy_vocabulary_update.html">drupal_services_taxonomy_vocabulary_update</a></li><li><a href="drupal_services_user_create.html">drupal_services_user_create</a></li><li><a href="drupal_services_user_index.html">drupal_services_user_index</a></li><li><a href="drupal_services_user_login.html">drupal_services_user_login</a></li><li><a href="drupal_services_user_logout.html">drupal_services_user_logout</a></li><li><a href="drupal_services_user_register.html">drupal_services_user_register</a></li><li><a href="drupal_services_user_retrieve.html">drupal_services_user_retrieve</a></li><li><a href="drupal_services_user_update.html">drupal_services_user_update</a></li></ul><h3>Global</h3><ul><li><a href="global.html#drupal_node_load">drupal_node_load</a></li><li><a href="global.html#drupal_services_comment_node_comments">drupal_services_comment_node_comments</a></li><li><a href="global.html#drupal_services_default_local_storage_key">drupal_services_default_local_storage_key</a></li><li><a href="global.html#drupal_services_get_load_from_local_storage_default">drupal_services_get_load_from_local_storage_default</a></li><li><a href="global.html#drupal_services_get_save_to_local_storage_default">drupal_services_get_save_to_local_storage_default</a></li><li><a href="global.html#drupal_services_node_comments">drupal_services_node_comments</a></li><li><a href="global.html#drupal_services_resource_clean_local_storage_dependencies">drupal_services_resource_clean_local_storage_dependencies</a></li><li><a href="global.html#drupal_services_resource_get_default_options">drupal_services_resource_get_default_options</a></li><li><a href="global.html#drupal_services_resource_url">drupal_services_resource_url</a></li><li><a href="global.html#drupal_services_user_access">drupal_services_user_access</a></li><li><a href="global.html#drupal_settings">drupal_settings</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Tue Oct 09 2012 13:00:48 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+</body>
+</html>
