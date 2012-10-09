@@ -30,10 +30,11 @@ if (isset($_SERVER['HTTP_ORIGIN'])){
 4. Check out some examples
 --------
 
-There are currently 2 examples to choose from.
+There are currently 3 examples to choose from.
 
- * The simple example which has a bare minimum of markup and is meant to showcse the quickest way to get started.
- * The twitter bootstrap example which has more markup but looks much nicer.
+ * The Simple example which has a bare minimum of markup and is meant to showcase the quickest way to get started.
+ * The Twitter Bootstrap example which has more markup but looks much nicer.
+ * The jQuery Mobile example which is ready to drop into PhoneGap.
 
 Goals
 --------
