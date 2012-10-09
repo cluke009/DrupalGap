@@ -43,3 +43,13 @@ Eventually this project should accomplish a few things:
  * Provide simple javascript api for working with Drupal services module
  * Provide bare bones examples of how to connect to each service without anything extra, similar to the [Examples](http://drupal.org/project/examples "Examples") module
  * Provide a sample "app" with all those extras that aren't packaged into core
+
+TODO
+--------
+Every project has a todo list and this is mine.
+
+ * Reintegrate the DrupalGap module support
+ * Figure out the best way to deal with localStorage
+ * Determine how/at what point validation should be handled
+ * Add support to check Drupal version (Currently only works with 7)
+ * [Get url parameters working without clean urls](http://drupal.org/node/1806140 "Get url parameters working without clean urls")
