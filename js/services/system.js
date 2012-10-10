@@ -1,28 +1,26 @@
+/*global services*/
+
 /**
  * @file
  * Link general system functionalities to services module.
  */
 
 /**
- * @constructor
- * @description Handle ajax calls to services system group.
- */
-var system = services.system = {};
-
-/**
  * An object with an active session name and id.
+ *
+ * @constructor
  *
  * @param {string} options.hookError
  *        Error handler hook.
  * @param {string} options.hookSuccess
  *        Success handler hook.
  */
-system.connect = function (options) {
+services.system.connect = function (options) {
   try {
     // Build the options for the service call.
     options = {
-      resourceType: 'post',
-      resourcePath: 'system/connect.json',
+      type: 'post',
+      url: 'system/connect.json',
       async: true,
       success: this.hookSuccess,
       error: this.hookError
@@ -40,6 +38,8 @@ system.connect = function (options) {
 /**
  * Returns the value of a system variable using variable_get().
  *
+ * @constructor
+ *
  * @param {Object} options
  * @param {string} options.name
  *        Required. The name of the variable you want.
@@ -49,28 +49,20 @@ system.connect = function (options) {
  * @param {string} options.hookSuccess
  *        Success handler hook.
  */
-system.getVariable = function (options) {
+services.system.getVariable = function (options) {
   try {
     // Build service call data string.
     var data = 'name=' + encodeURIComponent(options.name);
 
     // Build the options for the service call.
     options = {
-      resourcePath: 'system/get_variable.json',
-      resourceType: 'post',
+      type: 'post',
+      url: 'system/get_variable.json',
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
       data: data
     };
-
-    // Attach error/success hooks if provided.
-    if (options.error) {
-      options.hookError = options.error;
-    }
-    if (options.success) {
-      options.hookSuccess = options.success;
-    }
 
     // Make the service call.
     services.resource(options);
@@ -84,6 +76,8 @@ system.getVariable = function (options) {
 /**
  * Sets the value of a system variable using variable_set().
  *
+ * @constructor
+ *
  * @param {Object} options
  * @param {string} options.name
  *        Required. The name of the variable you want to edit.
@@ -95,7 +89,7 @@ system.getVariable = function (options) {
  * @param {string} options.hookSuccess
  *        Success handler hook.
  */
-system.setVariable = function (options) {
+services.system.setVariable = function (options) {
   try {
     // Build service call data string.
     var data  = 'name=' + encodeURIComponent(options.name);
@@ -103,8 +97,8 @@ system.setVariable = function (options) {
 
     // Build the options for the service call.
     options = {
-      resourcePath: 'system/set_variable.json',
-      resourceType: 'post',
+      type: 'post',
+      url: 'system/set_variable.json',
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
@@ -121,7 +115,9 @@ system.setVariable = function (options) {
 };
 
 /**
- * Deletes a system variable using variable_del()
+ * Deletes a system variable using variable_del().
+ *
+ * @constructor
  *
  * @param {Object} options
  * @param {string} options.name
@@ -132,15 +128,15 @@ system.setVariable = function (options) {
  * @param {string} options.hookSuccess
  *        Success handler hook.
  */
-system.delVariable = function (options) {
+services.system.delVariable = function (options) {
   try {
     // Build service call data string.
     var data = 'name=' + encodeURIComponent(options.name);
 
     // Build the options for the service call.
     options = {
-      resourcePath: 'system/set_variable.json',
-      resourceType: 'post',
+      type: 'post',
+      url: 'system/set_variable.json',
       async: true,
       success: this.hookSuccess,
       error: this.hookError,

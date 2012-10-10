@@ -35,16 +35,83 @@ var servicesResourceCallResult;
 var result;
 
 /**
- * @constructor
- * @description Handle all ajax calls to and from drupal services.
+ * Handle all ajax calls to and from drupal services.
+ *
+ * @global
  */
-var services = services || {};
+var services = services || {
+  /**
+   * @namespace
+   * @name services.comment
+   */
+  comment: {},
+  /**
+   * @namespace
+   * @name services.system
+   */
+  file: {},
+  /**
+   * @namespace
+   * @name services.node
+   */
+  node: {},
+  /**
+   * @namespace
+   * @name services.system
+   */
+  system: {},
+  /**
+   * @namespace
+   * @name services.taxonomyTerm
+   */
+  taxonomyTerm: {},
+  /**
+   * @namespace
+   * @name services.taxonomyVocabulary
+   */
+  taxonomyVocabulary: {},
+  /**
+   * @namespace
+   * @name services.user
+   */
+  user: {}
+};
+
+/**
+ * Drupal services configuration settings.
+ *
+ * @param {object} options
+ * @param {string} options.sitePath
+ *        Defaults to 'http://localhost:8082'. For use with acquia stack.
+ * @param {string} options.endPoint
+ *        Defaults to 'rest'. Services endpoint.
+ * @param {string} options.basePath
+ *        Defaults to '?q='. For use without clean urls. Can be set to empty for clean urls.
+ * @param {bool} options.debug
+ *        Defaults to 0 or off. 1 to enable for easier debugging on hardware devices.
+ */
+services.config = function(options) {
+  var defaultOptions = {
+    sitePath: 'http://localhost:8082',
+    endPoint: 'rest',
+    basePath: '?q=',
+    debug: 0
+  };
+
+  if (typeof options == 'object') {
+    options = $.extend(defaultOptions, options);
+  } else {
+    options = defaultOptions;
+  }
+
+  return options;
+};
 
 /**
  * Make a call to a Drupal Service Resource.
  *
  * @param  {Object} options
- * @param  {string} options.resourcePath
+ * @param  {string} options.url
  *    The path to the resource (required)
  * @param  {string} options.sitePath
  *    The full site path (default: config.sitePath)
@@ -92,8 +159,8 @@ services.resource = function(options) {
   try {
     // Validate options.
     // @todo - need to validate all other options and turn this into a function.
-    if (!options.resourcePath) {
-      console.log('resource_call - no resourcePath provided');
+    if (!options.url) {
+      console.log('resource_call - no url provided');
       return false;
     }
 
@@ -102,7 +169,7 @@ services.resource = function(options) {
 
 
     // Build URL to service resource.
-    var serviceResourceCallUrl = services.resourceUrl(options);
+    var serviceResourceCallUrl = options.sitePath + options.basePath + options.endPoint + '/' + options.url;
 
 
     // If we loaded the service resource result from local storage,
@@ -247,7 +314,7 @@ services.resourceSuccess = function(data) {
  * Returns a URL to the service resource based on the incoming options.
  *
  * @param {Object} options
- * @param {string} options.resourcePath
+ * @param {string} options.url
  *    The path to the resource (required)
  * @param {string} options.sitePath
  *    The full site path (default: config.sitePath)
@@ -257,17 +324,7 @@ services.resourceSuccess = function(data) {
  *    The endPoint name (default : config.services_endPoint_default)
  */
 services.resourceUrl = function(options) {
-  // Set default values for options if none were provided.
-  if (!options.sitePath) {
-    options.sitePath = config.sitePath;
-  }
-  if (!options.basePath) {
-    options.basePath = config.basePath;
-  }
-  if (!options.endPoint) {
-    options.endPoint = config.endPoint;
-  }
-  return options.sitePath + options.basePath + options.endPoint + '/' + options.resourcePath;
+  return options.sitePath + options.basePath + options.endPoint + '/' + options.url;
 };
 
 /**
@@ -275,12 +332,12 @@ services.resourceUrl = function(options) {
  *
  * @param  {string} type
  *   The method to use: get, post, put, delete
- * @param  {string} resourcePath
+ * @param  {string} url
  *   The full URL to the service resource. (e.g. system/connect.json)
  */
 
-function servicesDefaultLocalStorageKey(type, resourcePath) {
-  return type + '.' + resourcePath;
+function servicesDefaultLocalStorageKey(type, url) {
+  return type + '.' + url;
 }
 
 /**
@@ -329,12 +386,12 @@ function servicesGetLoadFromLocalStorageDefault(options) {
   switch (options.type.toLowerCase()) {
   case 'get':
     // Node retrieve resource.
-    if (options.resourcePath.indexOf('node/') != -1) {
+    if (options.url.indexOf('node/') != -1) {
       if ($('div').attr('id') == 'drupal_page_node_edit') {
         options.loadFromLocalStorage = '0';
       }
     }
-    else if (options.resourcePath.indexOf('comment/') != -1) {
+    else if (options.url.indexOf('comment/') != -1) {
       if ($('div').attr('id') == 'drupal_page_comment_edit') {
         options.loadFromLocalStorage = '0';
       }
@@ -342,27 +399,27 @@ function servicesGetLoadFromLocalStorageDefault(options) {
     break;
   case 'post':
     // User login/logout/register resources.
-    var login = options.resourcePath.indexOf('user/login');
-    var register = options.resourcePath.indexOf('user/register');
-    var logout = options.resourcePath.indexOf('user/logout');
+    var login = options.url.indexOf('user/login');
+    var register = options.url.indexOf('user/register');
+    var logout = options.url.indexOf('user/logout');
 
     if (login != -1 || logout != -1 || register != -1) {}
     // Node create resource.
-    else if (options.resourcePath.indexOf('node.json') != -1) {}
+    else if (options.url.indexOf('node.json') != -1) {}
     // Comment create resource.
-    else if (options.resourcePath.indexOf('comment.json') != -1) {}
+    else if (options.url.indexOf('comment.json') != -1) {}
     break;
   case 'put':
     // User update resource.
-    if (options.resourcePath.indexOf('user/') != -1) {}
+    if (options.url.indexOf('user/') != -1) {}
     // Node update resource.
-    else if (options.resourcePath.indexOf('node/') != -1) {}
+    else if (options.url.indexOf('node/') != -1) {}
     // Comment update resource.
-    else if (options.resourcePath.indexOf('comment/') != -1) {}
+    else if (options.url.indexOf('comment/') != -1) {}
     break;
   case 'delete':
     // Node delete resource.
-    if (options.resourcePath.indexOf('node/') != -1) {}
+    if (options.url.indexOf('node/') != -1) {}
     break;
   }
 
@@ -398,15 +455,15 @@ function servicesGetSaveToLocalStorageDefault(options) {
   case 'post':
     // User login/logout/register resources.
     if (
-    options.resourcePath.indexOf('user/login') != -1 || options.resourcePath.indexOf('user/logout') != -1 || options.resourcePath.indexOf('user/register') != -1) {
+    options.url.indexOf('user/login') != -1 || options.url.indexOf('user/logout') != -1 || options.url.indexOf('user/register') != -1) {
       options.saveToLocalStorage = '0';
     }
     // Node create resource.
-    else if (options.resourcePath.indexOf('node.json') != -1) {
+    else if (options.url.indexOf('node.json') != -1) {
       options.saveToLocalStorage = '0';
     }
     // Comment create resource.
-    else if (options.resourcePath.indexOf('comment.json') != -1) {
+    else if (options.url.indexOf('comment.json') != -1) {
       options.saveToLocalStorage = '0';
     }
     break;
@@ -454,12 +511,12 @@ function servicesResourceCleanLocalStorageDependencies(options) {
   case 'post':
     // User login/logout/register resources.
     if (
-    options.resourcePath.indexOf('user/login') != -1 || options.resourcePath.indexOf('user/logout') != -1 || options.resourcePath.indexOf('user/register') != -1) {
+    options.url.indexOf('user/login') != -1 || options.url.indexOf('user/logout') != -1 || options.url.indexOf('user/register') != -1) {
       // system/connect.json
       servicesSystemConnect.localStorageRemove();
     }
     // Node create resource.
-    else if (options.resourcePath.indexOf('node.json') != -1) {
+    else if (options.url.indexOf('node.json') != -1) {
       // Remove views datasource content json.
       // views_options = {
       //   'path': 'views_datasource/drupal_content'
@@ -467,7 +524,7 @@ function servicesResourceCleanLocalStorageDependencies(options) {
       // drupal_views_datasource_retrieve.localStorageRemove(views_options);
     }
     // Comment create resource.
-    else if (options.resourcePath.indexOf('comment.json') != -1) {
+    else if (options.url.indexOf('comment.json') != -1) {
       // Remove views datasource comment json.
       // views_options = {
       //   'path': 'views_datasource/drupal_comments'
@@ -486,14 +543,14 @@ function servicesResourceCleanLocalStorageDependencies(options) {
     break;
   case 'put':
     // User update resource.
-    if (options.resourcePath.indexOf('user/') != -1) {
+    if (options.url.indexOf('user/') != -1) {
       // Remove system/connect.json.
       servicesSystemConnect.localStorageRemove();
       // Remove drupal_system/connect.json.
       servicesResourceSystemConnect.localStorageRemove();
     }
     // Node update resource.
-    else if (options.resourcePath.indexOf('node/') != -1) {
+    else if (options.url.indexOf('node/') != -1) {
       // Remove the node from local storage.
       // @todo - Node id validation here.
       servicesNodeRetrieve.localStorageRemove({
@@ -506,7 +563,7 @@ function servicesResourceCleanLocalStorageDependencies(options) {
       // drupal_views_datasource_retrieve.localStorageRemove(views_options);
     }
     // Comment update resource.
-    else if (options.resourcePath.indexOf('comment/') != -1) {
+    else if (options.url.indexOf('comment/') != -1) {
       // Remove the comment from local storage.
       // @todo - Comment id validation here.
       servicesCommentRetrieve.localStorageRemove({
@@ -531,7 +588,7 @@ function servicesResourceCleanLocalStorageDependencies(options) {
     break;
   case 'delete':
     // Node delete resource.
-    if (options.resourcePath.indexOf('node/') != -1) {
+    if (options.url.indexOf('node/') != -1) {
       // Remove the node from local storage.
       // @todo - Node id validation here.
       servicesNodeRetrieve.localStorageRemove({
@@ -550,7 +607,7 @@ function servicesResourceCleanLocalStorageDependencies(options) {
       // @todo - remove any comments from this node from local storage.
     }
     // Comment delete resource.
-    else if (options.resourcePath.indexOf('comment/') != -1) {
+    else if (options.url.indexOf('comment/') != -1) {
       // Remove the comment from local storage.
       // @todo - Comment id validation here.
       servicesCommentRetrieve.localStorageRemove({
