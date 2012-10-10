@@ -3,12 +3,12 @@
  */
 $('#submit_system_connect').live('click', function () {
   // Build service call options.
-  options = {
-    "success": function () {},
-    "error": function () {}
+  var options = {
+hookSuccess: function () { console.log('te');},
+    success: function () { alert('test');}
   };
   // Make service call.
-  drupal_services_system_connect.resource_call(options);
+  services.system.connect();
 });
 
 /**

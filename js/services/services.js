@@ -1,425 +1,310 @@
-/*******************************************************************************
- *
- * Configure your site here
- *
- ******************************************************************************/
+/**
+ * @file
+ */
 
 
 /**
  * Hold all static settings for the application.
  * @type {Object}
  */
-drupal_settings = {
-  site_path: 'http://localhost:8082',
-  endpoint: 'rest',
-  base_path: '?q=',
-  debug: 1
-}
-
-
-/*******************************************************************************
- *
- * DO NOT EDIT BELOW THIS LINE
- *
- ******************************************************************************/
+var config = {
+  sitePath: 'http://localhost:8082',
+  endPoint: 'rest',
+  basePath: '?q=',
+  debug: 0
+};
 
 // Dynamically load debug files
-$(document).ready( function() {
-  if (drupal_settings.debug === 1) {
-    $("head").append("<link>");
-    css = $("head").children(":last");
+$(document).ready(function() {
+  if (config.debug === 1) {
+    $('head').append('<link>');
+    var css = $('head').children(':last');
     css.attr({
-      rel:  "stylesheet",
-      type: "text/css",
-      href: "/css/debug.css"
+      rel: 'stylesheet',
+      type: 'text/css',
+      href: '/css/debug.css'
     });
-    var js = document.createElement("script");
-    js.type = "text/javascript";
-    js.src = "/js/debug.js";
-    $("head").append(js);
+    var js = document.createElement('script');
+    js.type = 'text/javascript';
+    js.src = '/js/debug.js';
+    $('head').append(js);
   }
 });
 
-var drupal_services_resource_call_result;
+var servicesResourceCallResult;
+var result;
 
 /**
  * @constructor
  * @description Handle all ajax calls to and from drupal services.
  */
-var drupal_services = {
+var services = services || {};
 
-  /**
-   * Make a call to a Drupal Service Resource.
-   *
-   * @param  {Object} options
-   * @param  {string} options.resource_path
-   *    The path to the resource (required)
-   * @param  {string} options.site_path
-   *    The full site path (default: drupal_settings.site_path)
-   * @param  {string} options.base_path
-   *    The drupal base path (default: drupal_settings.base_path)
-   * @param  {string} options.endpoint
-   *    The endpoint name (default : drupal_settings.services_endpoint_default)
-   * @param  {string} options.type
-   *    The method to use: get, post (default), put, delete
-   * @param  {string} options.dataType
-   *    The data type to use in the ajax call (default: json)
-   * @param  {string} options.data
-   *    The data string to send with the ajax call (optional)
-   * @param  {string} options.load_from_local_storage
-   *    Load service resource call from local storage.
-   *    "0" = force reload from service resource
-   *    "1" = grab from local storage if possible
-   * @param  {string} options.save_to_local_storage
-   *    Load service resource call from local storage.
-   *    "0" = force reload from service resource
-   *    "1" = grab from local storage if possible
-   * @param  {string} options.local_storage_key
-   *    The key to use when storing the service resource call result
-   *    in local storage. Default key formula: [options.type].[service_resource_call_url]
-   *    For example, a POST on the system connect resource would have a default key of
-   *    post.http://www.drupalgap.org/?q=drupalgap/system/connect.json
-   * @param  {boolean} options.async
-   *    Whether or not to make the service call asynchronously.
-   *    false - make the call synchronously (default) - @todo default should be true
-   *    true - make the call asynchronously
-   * @param  {function} options.error
-   *    The error call back function.
-   * @param  {function} options.success
-   *    The success call back function.
-   * @param  {function} options.hook_error
-   *    The user's error call back function.
-   * @param  {function} options.hook_success
-   *    The user's success call back function.
-   */
-  "resource_call": function (options) {
-    // Clear previous service call result stored in global variable.
-    drupal_services_resource_call_result = null;
-    result = null;
+/**
+ * Make a call to a Drupal Service Resource.
+ *
+ * @param  {Object} options
+ * @param  {string} options.resourcePath
+ *    The path to the resource (required)
+ * @param  {string} options.sitePath
+ *    The full site path (default: config.sitePath)
+ * @param  {string} options.basePath
+ *    The drupal base path (default: config.basePath)
+ * @param  {string} options.endPoint
+ *    The endPoint name (default : config.services_endPoint_default)
+ * @param  {string} options.type
+ *    The method to use: get, post (default), put, delete
+ * @param  {string} options.dataType
+ *    The data type to use in the ajax call (default: json)
+ * @param  {string} options.data
+ *    The data string to send with the ajax call (optional)
+ * @param  {string} options.loadFromLocalStorage
+ *    Load service resource call from local storage.
+ *    '0' = force reload from service resource
+ *    '1' = grab from local storage if possible
+ * @param  {string} options.saveToLocalStorage
+ *    Load service resource call from local storage.
+ *    '0' = force reload from service resource
+ *    '1' = grab from local storage if possible
+ * @param  {string} options.localStorageKey
+ *    The key to use when storing the service resource call result
+ *    in local storage. Default key formula: [options.type].[serviceResourceCallUrl]
+ *    For example, a POST on the system connect resource would have a default key of
+ *    post.http://www.drupalgap.org/?q=drupalgap/system/connect.json
+ * @param  {boolean} options.async
+ *    Whether or not to make the service call asynchronously.
+ *    false - make the call synchronously (default) - @todo default should be true
+ *    true - make the call asynchronously
+ * @param  {function} options.error
+ *    The error call back function.j
+ * @param  {function} options.success
+ *    The success call back function.
+ * @param  {function} options.hookError
+ *    The user's error call back function.
+ * @param  {function} options.hookSuccess
+ *    The user's success call back function.
+ */
+services.resource = function(options) {
+  // Clear previous service call result stored in global variable.
+  servicesResourceCallResult = null;
+  result = null;
 
-    try {
-      // Validate options.
-      // @todo - need to validate all other options and turn this into a function.
-      if (!options.resource_path) {
-        console.log("resource_call - no resource_path provided");
-        return false;
-      }
+  try {
+    // Validate options.
+    // @todo - need to validate all other options and turn this into a function.
+    if (!options.resourcePath) {
+      console.log('resource_call - no resourcePath provided');
+      return false;
+    }
 
-      // Get the default options (this does not override any options passed in).
-      options = drupal_services_resource_get_default_options(options);
+    // Get the default options (this does not override any options passed in).
+    options = servicesResourceGetDefaultOptions(options);
 
-      // If this call is going to be asynchronous, we need to make sure a
-      // success and failure call back function where included.
+
+    // Build URL to service resource.
+    var serviceResourceCallUrl = services.resourceUrl(options);
+
+
+    // If we loaded the service resource result from local storage,
+    // parse it out, otherwise make the service resource call.
+    if (result) {
+      console.log('loaded service resource from local storage (' + options.localStorageKey + ')');
+      result = JSON.parse(result);
+
+      // If the call is async, then we need to send this result back
+      // to the success call back function(s). If it wasn't async,
+      // then return the result to the caller.
       if (options.async) {
-        if (!options.success) {
-          console.log("resource_call - no success callback provided");
-          return false;
-        }
-        if (!options.error) {
-          console.log("resource_call - no error callback provided");
-          return false;
+        options.success(result);
+        if (options.hookSuccess) {
+          options.hookSuccess(result);
         }
       }
-
-      // Build URL to service resource.
-      service_resource_call_url = drupal_services_resource_url(options);
-
-      // Set default local storage key if one wasn't provided.
-      if (!options.local_storage_key) {
-        options.local_storage_key = drupal_services_default_local_storage_key(options.type, options.resource_path);
-      }
-
-      // If no load_from_local_storage option was set, set the default.
-      if (!options.load_from_local_storage) {
-        options = drupal_services_get_load_from_local_storage_default(options);
-      }
+      // Return the result if the call was not async.
       else {
-        console.log("we were instructed on load_from_local_storage (" + options.load_from_local_storage + ")");
+        return result;
       }
-
-      // If no save to local storage option has been set, set the default.
-      if (!options.save_to_local_storage) {
-        options = drupal_services_get_save_to_local_storage_default(options);
-      }
-      else {
-        console.log("we were instructed on save_to_local_storage (" + options.save_to_local_storage + ")");
-      }
-
-      // If we are attempting to load the service resource result call from
-      // local storage, do it now.
-      if (options.load_from_local_storage == "1") {
-        result = window.localStorage.getItem(options.local_storage_key);
-      }
-
-      // Save the current options in drupal_services.options for backup.
-      // (this is needed by the error/success async call backs)
-      /*if (!this.options) {
-        this.options = [];
-      }
-      this.options.push(options);*/
-
-      // If we loaded the service resource result from local storage,
-      // parse it out, otherwise make the service resource call.
-      if (result) {
-        console.log("loaded service resource from local storage (" + options.local_storage_key + ")");
-        result = JSON.parse(result);
-
-        // If the call is async, then we need to send this result back
-        // to the success call back function(s). If it wasn't async,
-        // then return the result to the caller.
-        if (options.async) {
-          options.success(result);
-          if (options.hook_success) {
-            options.hook_success(result);
-          }
-        }
-        // Return the result if the call was not async.
-        else {
-          return result;
-        }
-      }
-      else {
-        // Print service resource call debug info to console.
-        console.log("REQUEST:\n" + JSON.stringify({
-          "path": service_resource_call_url,
-          "options": options
-        }, undefined, 2));
-
-        // Make the call, synchronously or asynchronously...
-        if (options.async == false) {
-          // Synchronously.
-          $.ajax({
-            url: service_resource_call_url,
-            type: options.type,
-            data: options.data,
-            dataType: options.dataType,
-            async: options.async,
-            contentType: 'application/x-www-form-urlencoded',
-            xhrFields: { withCredentials: true },
-            beforeSend: function(jqXHR){
-              jqXHR.withCredentials = true;
-            },
-            fail: function (jqXHR, textStatus, errorThrown) {
-              result = {
-                "jqXHR": jqXHR,
-                "textStatus": textStatus,
-                "errorThrown": errorThrown,
-              };
-            },
-            done: function (data) {
-              result = data;
-            }
-          });
-
-          // Print service resource call debug info to console.
-
-          console.log(JSON.stringify(result, undefined, 2));
-
-          // If there wasn't an error from the service call...
-          if (!result.errorThrown) {
-
-            // Save the result to local storage, if necessary.
-            if (options.save_to_local_storage == "1") {
-              window.localStorage.setItem(options.local_storage_key, JSON.stringify(result, undefined, 2));
-              console.log("saving service resource to local storage (" + options.local_storage_key + ")");
-            }
-            else {
-              console.log("NOT saving service resource to local storage (" + options.local_storage_key + ")");
-            }
-
-            // Clean up service resource result local storage dependencies.
-            drupal_services_resource_clean_local_storage_dependencies(options);
-          }
-
-          // Save a copy of the service resource call result in the
-          // global variable in case anybody needs it.
-          drupal_services_resource_call_result = result;
-
-          return drupal_services_resource_call_result;
-
-        }
-        else {
-          // Asynchronously...
-          // Show the page loading message.
-          // $.mobile.showPageLoadingMsg();
-
-          // Setup ajax options.
-          ajax_options = {
-            url: service_resource_call_url,
-            type: options.type,
-            data: options.data,
-            dataType: options.dataType,
-            async: options.async,
-            fail: options.error,
-            contentType: 'application/x-www-form-urlencoded',
-            xhrFields: { withCredentials: true },
-            beforeSend: function(jqXHR){jqXHR.withCredentials = true;},
-            done: options.success
-          };
-
-          // If error/success call back hooks were provided, chain them
-          // onto the error and success call back function options.
-          if (options.hook_error) {
-            ajax_options.error = [options.error, options.hook_error];
-          }
-          if (options.hook_success) {
-            ajax_options.success = [options.success, options.hook_success];
-          }
-
-          // Add core error and success call backs to front of queue so
-          // local storage can be taken care of properly. If the options
-          // are already arrays, that means chaining has been setup,
-          // otherwise setup an array of call back functions.
-          if (ajax_options.error) {
-            if (Object.prototype.toString.call(ajax_options.error) === '[object Array]') {
-              // console.log("error option was an array, adding default error call back to front");
-              ajax_options.error.unshift(this.resource_call_error);
-            }
-            else {
-              // console.log("error option was NOT array, creating array and adding default error call back to front");
-              ajax_options.error = [this.resource_call_error, options.error];
-            }
-          }
-          if (ajax_options.success) {
-            if (Object.prototype.toString.call(ajax_options.success) === '[object Array]') {
-              // console.log("success option was an array, adding default success call back to front");
-              ajax_options.success.unshift(this.resource_call_success);
-            }
-            else {
-              // console.log("success option was NOT array, creating array and adding default error call back to front");
-              ajax_options.success = [this.resource_call_success, options.success];
-            }
-          }
-          // console.log(JSON.stringify(ajax_options.error));
-          // console.log(JSON.stringify(ajax_options.success));
-
-          // Make the asynchronous service call.
-          $.ajax(ajax_options);
-        }
-
-      }
-    }
-    catch (error) {
-      console.log("resource_call - " + error);
-      console.log(JSON.stringify(options, undefined, 2));
-    }
-  },
-
-  /**
-   * Asynchronous ajax error call back function.
-   *
-   * @param  {Object} jqXHR
-   * @param  {Object} textStatus
-   * @param  {Object} errorThrown
-   * @return Returns errors to the console.
-   */
-  "resource_call_error": function (jqXHR, textStatus, errorThrown) {
-    // Log the error to the console.
-    result = {
-      "jqXHR": jqXHR,
-      "textStatus": textStatus,
-      "errorThrown": errorThrown,
-    };
-    console.log("RESPONSE:\n" + JSON.stringify(result, undefined, 2));
-
-    // Alert the user.
-    if (errorThrown) {
-      console.log(errorThrown);
     }
     else {
-      console.log(textStatus);
+      // Print service resource call debug info to console.
+      console.log('REQUEST:\n' + JSON.stringify({
+        'path': serviceResourceCallUrl,
+        'options': options
+      }, undefined, 2));
+
+      // Make the call, synchronously or asynchronously...
+      if (options.async === false) {
+        // Synchronously.
+        $.ajax({
+          url: serviceResourceCallUrl,
+          type: options.type,
+          data: options.data,
+          dataType: options.dataType,
+          async: options.async,
+          success: function(data, textStatus, errorThrown) {
+            // alert('success')
+            services.resourceSuccess(data, textStatus, errorThrown);
+          },
+          error: function(jqXHR, textStatus, errorThrown)  {
+            // alert('fail')
+            services.resourceError(jqXHR, textStatus, errorThrown);
+          },
+          contentType: 'application/x-www-form-urlencoded',
+          xhrFields: {
+            withCredentials: true
+          },
+          beforeSend: function(jqXHR) {
+            jqXHR.withCredentials = true;
+          }
+        });
+      }
+      else {
+        // Asynchronously...
+        $.ajax({
+          url: serviceResourceCallUrl,
+          type: options.type,
+          data: options.data,
+          dataType: options.dataType,
+          async: options.async,
+          contentType: 'application/x-www-form-urlencoded',
+          xhrFields: {
+            withCredentials: true
+          },
+          beforeSend: function(jqXHR) {
+            jqXHR.withCredentials = true;
+          }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+          services.resourceError(jqXHR, textStatus, errorThrown);
+        })
+        .done(function(data) {
+          services.resourceSuccess(data);
+        });
+      }
     }
-  },
-
-  /**
-   * Asynchronous ajax success call back function.
-   * @param  {Object} data
-   */
-  "resource_call_success": function (data) {
-    // Hide the page loading message.
-    // $.mobile.hidePageLoadingMsg();
-
-    // Print data to console.
-    console.log("RESPONSE:\n" + JSON.stringify(data, undefined, 2));
-
-    // @todo - Understand why the options variable is available here,
-    // and why the this.options approach didn't work as expected earlier.
-
-    // Save the result to local storage, if necessary.
-    if (options.save_to_local_storage == "1") {
-
-      window.localStorage.setItem(options.local_storage_key, JSON.stringify(data, undefined, 2));
-      console.log("saving service resource to local storage (" + options.local_storage_key + ")");
-    }
-    else {
-      console.log("NOT saving service resource to local storage (" + options.local_storage_key + ")");
-    }
-
-    // Clean up service resource result local storage dependencies.
-    drupal_services_resource_clean_local_storage_dependencies(options);
   }
+  catch (error) {
+    console.log('Error: services/services.js');
+    console.log('Object: services.resource - ' + error);
+    console.log(JSON.stringify(options, undefined, 2));
+  }
+
+};
+
+/**
+ * Asynchronous ajax error call back function.
+ *
+ * @param  {Object} jqXHR
+ * @param  {Object} textStatus
+ * @param  {Object} errorThrown
+ * @return Returns errors to the console.
+ */
+services.resourceError = function(jqXHR, textStatus, errorThrown) {
+  // Log the error to the console.
+  var result = {
+    'jqXHR': jqXHR,
+    'textStatus': textStatus,
+    'errorThrown': errorThrown
+  };
+  console.log('RESPONSE:\n' + JSON.stringify(result, undefined, 2));
+
+  // Alert the user.
+  if (errorThrown) {
+    console.log(errorThrown);
+  }
+  else {
+    console.log(textStatus);
+  }
+};
+
+/**
+ * Asynchronous ajax success call back function.
+ *
+ * @param  {Object} data
+ */
+services.resourceSuccess = function(data) {
+  // Hide the page loading message.
+  // $.mobile.hidePageLoadingMsg();
+  // Print data to console.
+  console.log('RESPONSE:\n' + JSON.stringify(data, undefined, 2));
+  // @todo - Understand why the options variable is available here,
+  // and why the this.options approach didn't work as expected earlier.
+  // Save the result to local storage, if necessary.
+  if (data.saveToLocalStorage == '1') {
+
+    window.localStorage.setItem(data.localStorageKey, JSON.stringify(data, undefined, 2));
+    console.log('saving service resource to local storage (' + data.localStorageKey + ')');
+  }
+  else {
+    console.log('NOT saving service resource to local storage (' + data.localStorageKey + ')');
+  }
+  result = data;
+  // Clean up service resource result local storage dependencies.
+  // servicesResourceCleanLocalStorageDependencies(data);
 };
 
 /**
  * Returns a URL to the service resource based on the incoming options.
  *
  * @param {Object} options
- * @param {string} options.resource_path
+ * @param {string} options.resourcePath
  *    The path to the resource (required)
- * @param {string} options.site_path
- *    The full site path (default: drupal_settings.site_path)
- * @param {string} options.base_path
- *    The drupal base path (default: drupal_settings.base_path)
- * @param {string} options.endpoint
- *    The endpoint name (default : drupal_settings.services_endpoint_default)
+ * @param {string} options.sitePath
+ *    The full site path (default: config.sitePath)
+ * @param {string} options.basePath
+ *    The drupal base path (default: config.basePath)
+ * @param {string} options.endPoint
+ *    The endPoint name (default : config.services_endPoint_default)
  */
-function drupal_services_resource_url(options) {
+services.resourceUrl = function(options) {
   // Set default values for options if none were provided.
-  if (!options.site_path) {
-    options.site_path = drupal_settings.site_path;
+  if (!options.sitePath) {
+    options.sitePath = config.sitePath;
   }
-  if (!options.base_path) {
-    options.base_path = drupal_settings.base_path;
+  if (!options.basePath) {
+    options.basePath = config.basePath;
   }
-  if (!options.endpoint) {
-    options.endpoint = drupal_settings.endpoint;
+  if (!options.endPoint) {
+    options.endPoint = config.endPoint;
   }
-  return options.site_path + options.base_path + options.endpoint + "/" + options.resource_path;
-}
+  return options.sitePath + options.basePath + options.endPoint + '/' + options.resourcePath;
+};
 
 /**
  * Returns a string key for local storage of a service call result.
  *
  * @param  {string} type
  *   The method to use: get, post, put, delete
- * @param  {string} resource_path
+ * @param  {string} resourcePath
  *   The full URL to the service resource. (e.g. system/connect.json)
  */
-function drupal_services_default_local_storage_key(type, resource_path) {
-  return type + "." + resource_path;
+
+function servicesDefaultLocalStorageKey(type, resourcePath) {
+  return type + '.' + resourcePath;
 }
 
 /**
  * Set default values for options if none were provided.
  */
-function drupal_services_resource_get_default_options(options) {
-  if (!options.site_path) {
-    options.site_path = drupal_settings.site_path;
+
+function servicesResourceGetDefaultOptions(options) {
+  if (!options.sitePath) {
+    options.sitePath = config.sitePath;
   }
-  if (!options.base_path) {
-    options.base_path = drupal_settings.base_path;
+  if (!options.basePath) {
+    options.basePath = config.basePath;
   }
-  if (!options.endpoint) {
-    options.endpoint = drupal_settings.endpoint;
+  if (!options.endPoint) {
+    options.endPoint = config.endPoint;
   }
   if (!options.type) {
-    options.type = "post";
+    options.type = 'post';
   }
   if (!options.data) {
-    options.data = "";
+    options.data = '';
   }
   if (!options.dataType) {
-    options.dataType = "json";
+    options.dataType = 'json';
   }
   if (!options.async) {
     options.async = false;
@@ -428,7 +313,7 @@ function drupal_services_resource_get_default_options(options) {
 }
 
 /**
- * If no load_from_local_storage option was set, set the default
+ * If no loadFromLocalStorage option was set, set the default
  * for best performance based on the service resource call.
  *
  * @todo  Use regex here instead of indexOf to avoid collisions.
@@ -437,57 +322,58 @@ function drupal_services_resource_get_default_options(options) {
  *        I think we need to add some kind of 'op' parameter similar to what
  *        Drupal uses to handle special cases like this.
  */
-function drupal_services_get_load_from_local_storage_default(options) {
+
+function servicesGetLoadFromLocalStorageDefault(options) {
   // Determine cases where we do not want to load from local
   // storage here.
   switch (options.type.toLowerCase()) {
-  case "get":
+  case 'get':
     // Node retrieve resource.
-    if (options.resource_path.indexOf("node/") != -1) {
-      if ($('div').attr('id') == "drupal_page_node_edit") {
-        options.load_from_local_storage = "0";
+    if (options.resourcePath.indexOf('node/') != -1) {
+      if ($('div').attr('id') == 'drupal_page_node_edit') {
+        options.loadFromLocalStorage = '0';
       }
     }
-    else if (options.resource_path.indexOf("comment/") != -1) {
-      if ($('div').attr('id') == "drupal_page_comment_edit") {
-        options.load_from_local_storage = "0";
+    else if (options.resourcePath.indexOf('comment/') != -1) {
+      if ($('div').attr('id') == 'drupal_page_comment_edit') {
+        options.loadFromLocalStorage = '0';
       }
     }
     break;
-  case "post":
+  case 'post':
     // User login/logout/register resources.
-    var login = options.resource_path.indexOf("user/login");
-    var register = options.resource_path.indexOf("user/register");
-    var logout = options.resource_path.indexOf("user/logout");
+    var login = options.resourcePath.indexOf('user/login');
+    var register = options.resourcePath.indexOf('user/register');
+    var logout = options.resourcePath.indexOf('user/logout');
 
-    if (login  != -1 || logout != -1 || register != -1) {}
+    if (login != -1 || logout != -1 || register != -1) {}
     // Node create resource.
-    else if (options.resource_path.indexOf("node.json") != -1) {}
+    else if (options.resourcePath.indexOf('node.json') != -1) {}
     // Comment create resource.
-    else if (options.resource_path.indexOf("comment.json") != -1) {}
+    else if (options.resourcePath.indexOf('comment.json') != -1) {}
     break;
-  case "put":
+  case 'put':
     // User update resource.
-    if (options.resource_path.indexOf("user/") != -1) {}
+    if (options.resourcePath.indexOf('user/') != -1) {}
     // Node update resource.
-    else if (options.resource_path.indexOf("node/") != -1) {}
+    else if (options.resourcePath.indexOf('node/') != -1) {}
     // Comment update resource.
-    else if (options.resource_path.indexOf("comment/") != -1) {}
+    else if (options.resourcePath.indexOf('comment/') != -1) {}
     break;
-  case "delete":
+  case 'delete':
     // Node delete resource.
-    if (options.resource_path.indexOf("node/") != -1) {}
+    if (options.resourcePath.indexOf('node/') != -1) {}
     break;
   }
 
   // If we still haven't made a decision on whether or not to
   // try and load from local storage, do it now.
-  if (!options.load_from_local_storage) {
+  if (!options.loadFromLocalStorage) {
     // We assume we will try to load from local storage.
-    options.load_from_local_storage = "1";
+    options.loadFromLocalStorage = '1';
   }
-  if (options.load_from_local_storage == "0") {
-    console.log("services.js - decided NOT to load from local storage");
+  if (options.loadFromLocalStorage == '0') {
+    console.log('services.js - decided NOT to load from local storage');
   }
 
   return options;
@@ -504,40 +390,41 @@ function drupal_services_get_load_from_local_storage_default(options) {
  *        implementations decide this setting which is ok, but we could bring
  *        that decision into here so the C.U.D. implementations are cleaner.
  */
-function drupal_services_get_save_to_local_storage_default(options) {
+
+function servicesGetSaveToLocalStorageDefault(options) {
   switch (options.type.toLowerCase()) {
-  case "get":
+  case 'get':
     break;
-  case "post":
+  case 'post':
     // User login/logout/register resources.
     if (
-    options.resource_path.indexOf("user/login") != -1 || options.resource_path.indexOf("user/logout") != -1 || options.resource_path.indexOf("user/register") != -1) {
-      options.save_to_local_storage = "0";
+    options.resourcePath.indexOf('user/login') != -1 || options.resourcePath.indexOf('user/logout') != -1 || options.resourcePath.indexOf('user/register') != -1) {
+      options.saveToLocalStorage = '0';
     }
     // Node create resource.
-    else if (options.resource_path.indexOf("node.json") != -1) {
-      options.save_to_local_storage = "0";
+    else if (options.resourcePath.indexOf('node.json') != -1) {
+      options.saveToLocalStorage = '0';
     }
     // Comment create resource.
-    else if (options.resource_path.indexOf("comment.json") != -1) {
-      options.save_to_local_storage = "0";
+    else if (options.resourcePath.indexOf('comment.json') != -1) {
+      options.saveToLocalStorage = '0';
     }
     break;
-  case "put":
-    options.save_to_local_storage = "0";
+  case 'put':
+    options.saveToLocalStorage = '0';
     break;
-  case "delete":
-    options.save_to_local_storage = "0";
+  case 'delete':
+    options.saveToLocalStorage = '0';
     break;
   }
 
   // If we didn't figure out whether or not to save the result to
   // local storage, we'll assume it is OK to save to local storage.
-  if (!options.save_to_local_storage) {
-    options.save_to_local_storage = "1";
+  if (!options.saveToLocalStorage) {
+    options.saveToLocalStorage = '1';
   }
-  if (options.save_to_local_storage == "0") {
-    console.log("services.js - decided NOT to save in local storage");
+  if (options.saveToLocalStorage == '0') {
+    console.log('services.js - decided NOT to save in local storage');
   }
 
   return options;
@@ -557,132 +444,133 @@ function drupal_services_get_save_to_local_storage_default(options) {
  *        array variable that allows us to stack a list of local storage keys,
  *        that way this dependency removal mechanism can be more dynamic/automated.
  */
-function drupal_services_resource_clean_local_storage_dependencies(options) {
-  console.log("drupal_services_resource_clean_local_storage_dependencies");
+
+function servicesResourceCleanLocalStorageDependencies(options) {
+  console.log('servicesResourceCleanLocalStorageDependencies');
   // console.log(JSON.stringify(options, undefined, 2));
   switch (options.type.toLowerCase()) {
-  case "get":
+  case 'get':
     break;
-  case "post":
+  case 'post':
     // User login/logout/register resources.
     if (
-    options.resource_path.indexOf("user/login") != -1 || options.resource_path.indexOf("user/logout") != -1 || options.resource_path.indexOf("user/register") != -1) {
+    options.resourcePath.indexOf('user/login') != -1 || options.resourcePath.indexOf('user/logout') != -1 || options.resourcePath.indexOf('user/register') != -1) {
       // system/connect.json
-      drupal_services_system_connect.local_storage_remove();
+      servicesSystemConnect.localStorageRemove();
     }
     // Node create resource.
-    else if (options.resource_path.indexOf("node.json") != -1) {
+    else if (options.resourcePath.indexOf('node.json') != -1) {
       // Remove views datasource content json.
       // views_options = {
-      //   "path": "views_datasource/drupal_content"
+      //   'path': 'views_datasource/drupal_content'
       // };
-      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // drupal_views_datasource_retrieve.localStorageRemove(views_options);
     }
     // Comment create resource.
-    else if (options.resource_path.indexOf("comment.json") != -1) {
+    else if (options.resourcePath.indexOf('comment.json') != -1) {
       // Remove views datasource comment json.
       // views_options = {
-      //   "path": "views_datasource/drupal_comments"
+      //   'path': 'views_datasource/drupal_comments'
       // };
-      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // drupal_views_datasource_retrieve.localStorageRemove(views_options);
       // Remove the comment's node comment views json.
       // views_options = {
-      //   "path": "views_datasource/drupal_comments/" + options.nid
+      //   'path': 'views_datasource/drupal_comments/' + options.nid
       // };
-      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // drupal_views_datasource_retrieve.localStorageRemove(views_options);
       // Remove the comment's node.
-      drupal_services_node_retrieve.local_storage_remove({
-        "nid": options.nid
+      servicesNodeRetrieve.localStorageRemove({
+        'nid': options.nid
       });
     }
     break;
-  case "put":
+  case 'put':
     // User update resource.
-    if (options.resource_path.indexOf("user/") != -1) {
+    if (options.resourcePath.indexOf('user/') != -1) {
       // Remove system/connect.json.
-      drupal_services_system_connect.local_storage_remove();
+      servicesSystemConnect.localStorageRemove();
       // Remove drupal_system/connect.json.
-      drupal_services_resource_system_connect.local_storage_remove();
+      servicesResourceSystemConnect.localStorageRemove();
     }
     // Node update resource.
-    else if (options.resource_path.indexOf("node/") != -1) {
+    else if (options.resourcePath.indexOf('node/') != -1) {
       // Remove the node from local storage.
       // @todo - Node id validation here.
-      drupal_services_node_retrieve.local_storage_remove({
-        "nid": options.nid
+      servicesNodeRetrieve.localStorageRemove({
+        'nid': options.nid
       });
       // Remove views datasource content json.
       // views_options = {
-      //   "path": "views_datasource/drupal_content"
+      //   'path': 'views_datasource/drupal_content'
       // };
-      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // drupal_views_datasource_retrieve.localStorageRemove(views_options);
     }
     // Comment update resource.
-    else if (options.resource_path.indexOf("comment/") != -1) {
+    else if (options.resourcePath.indexOf('comment/') != -1) {
       // Remove the comment from local storage.
       // @todo - Comment id validation here.
-      drupal_services_comment_retrieve.local_storage_remove({
-        "cid": options.cid
+      servicesCommentRetrieve.localStorageRemove({
+        'cid': options.cid
       });
       // Remove views datasource comment json.
       // views_options = {
-      //   "path": "views_datasource/drupal_comments"
+      //   'path': 'views_datasource/drupal_comments'
       // };
-      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // drupal_views_datasource_retrieve.localStorageRemove(views_options);
       // Remove the comment's node from local storage.
       // @todo - Node id validation here.
-      drupal_services_node_retrieve.local_storage_remove({
-        "nid": options.nid
+      servicesNodeRetrieve.localStorageRemove({
+        'nid': options.nid
       });
       // Remove views datasource comments json.
       // views_options = {
-      //   "path": "views_datasource/drupal_comments/" + options.nid
+      //   'path': 'views_datasource/drupal_comments/' + options.nid
       // };
-      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // drupal_views_datasource_retrieve.localStorageRemove(views_options);
     }
     break;
-  case "delete":
+  case 'delete':
     // Node delete resource.
-    if (options.resource_path.indexOf("node/") != -1) {
+    if (options.resourcePath.indexOf('node/') != -1) {
       // Remove the node from local storage.
       // @todo - Node id validation here.
-      drupal_services_node_retrieve.local_storage_remove({
-        "nid": options.nid
+      servicesNodeRetrieve.localStorageRemove({
+        'nid': options.nid
       });
       // Remove views datasource content json.
       // views_options = {
-      //   "path": "views_datasource/drupal_content"
+      //   'path': 'views_datasource/drupal_content'
       // };
-      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // drupal_views_datasource_retrieve.localStorageRemove(views_options);
       // Remove views datasource comment json.
       // views_options = {
-      //   "path": "views_datasource/drupal_comments"
+      //   'path': 'views_datasource/drupal_comments'
       // };
-      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // drupal_views_datasource_retrieve.localStorageRemove(views_options);
       // @todo - remove any comments from this node from local storage.
     }
     // Comment delete resource.
-    else if (options.resource_path.indexOf("comment/") != -1) {
+    else if (options.resourcePath.indexOf('comment/') != -1) {
       // Remove the comment from local storage.
       // @todo - Comment id validation here.
-      drupal_services_comment_retrieve.local_storage_remove({
-        "cid": options.cid
+      servicesCommentRetrieve.localStorageRemove({
+        'cid': options.cid
       });
       // Remove views datasource comment json.
       // views_options = {
-      //   "path": "views_datasource/drupal_comments"
+      //   'path': 'views_datasource/drupal_comments'
       // };
-      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // drupal_views_datasource_retrieve.localStorageRemove(views_options);
       // Remove the comment's node from local storage.
       // @todo - Node id validation here.
-      drupal_services_node_retrieve.local_storage_remove({
-        "nid": options.nid
+      servicesNodeRetrieve.localStorageRemove({
+        'nid': options.nid
       });
       // Remove views datasource comments json.
       // views_options = {
-      //   "path": "views_datasource/drupal_comments/" + options.nid
+      //   'path': 'views_datasource/drupal_comments/' + options.nid
       // };
-      // drupal_views_datasource_retrieve.local_storage_remove(views_options);
+      // drupal_views_datasource_retrieve.localStorageRemove(views_options);
     }
     break;
   }
