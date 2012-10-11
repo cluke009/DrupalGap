@@ -11,7 +11,14 @@
 
   <!-- Required for this request -->
   <script src="js/system.js"></script>
-
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var options = {
+        debug: 0
+      };
+      services.config(options);
+    });
+  </script>
   <!-- Simple CSS -->
   <link type="text/css" rel="stylesheet" media="all" href="css/simple.css" />
 </head>
