@@ -3,6 +3,18 @@
 /**
  * @file
  * Link general system functionalities to services module.
+ *
+ * @example
+ * // Build service call options.
+ * options = {
+ *   "name": $('#input_system_get_variable').val(),
+ *   "value": $('#input_system_set_variable').val(),
+ *   "success": function () {},
+ *   "error": function () {}
+ * };
+ *
+ * // Make service call.
+ * services.system.setVariable(options);
  */
 
 /**
@@ -36,7 +48,7 @@ services.system.connect = function (options) {
 /**
  * Returns the value of a system variable using variable_get().
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.name
  *        Required. The name of the variable you want.
  *
@@ -72,7 +84,7 @@ services.system.getVariable = function (options) {
 /**
  * Sets the value of a system variable using variable_set().
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.name
  *        Required. The name of the variable you want to edit.
  * @param {string} options.value
@@ -111,7 +123,7 @@ services.system.setVariable = function (options) {
 /**
  * Deletes a system variable using variable_del().
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.name
  *        Required. The name of the variable you want to delete.
  *

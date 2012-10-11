@@ -11,7 +11,7 @@
 /**
  * Adds a new comment to a node and returns the cid.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.nid
  *        Required. The node ID the comment belongs to.
  * @param {string} options.body
@@ -45,7 +45,8 @@ services.comment.create = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -60,7 +61,7 @@ services.comment.create = function (options) {
 /**
  * Returns a specified comment.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.cid
  *        Required. The Comment ID the comment you want.
  *
@@ -92,7 +93,7 @@ services.comment.retrieve = function (options) {
 /**
  * Updates a comment and returns the cid.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.body
  *        Required. The comment body you want to post.
  * @param {string} options.subject
@@ -123,7 +124,8 @@ services.comment.update = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -138,7 +140,7 @@ services.comment.update = function (options) {
 /**
  * Delete a comment.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.cid
  *        Required. The comment ID to delete.
  *
@@ -181,7 +183,7 @@ services.comment.del = function (options) {
  * @todo Get parameters working.
  * @todo Figure out if parameters can be used without clean urls
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.hookError
  *        Error handler hook.
  * @param {string} options.hookSuccess
@@ -210,7 +212,7 @@ services.comment.index = function (options) {
 /**
  * Returns the number of comments for a given node id.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.nid
  *        Required. The node ID the comment belongs to.
  *
@@ -246,7 +248,7 @@ services.comment.countAll = function (options) {
 /**
  * Returns the number of new comments on a given node id since timestamp.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.nid
  *        Required. The node ID the comment belongs to.
  *

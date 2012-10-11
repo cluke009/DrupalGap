@@ -1,27 +1,40 @@
 /**
  * @file
+ * @example
+ *
+ * services.node.create = function (options) {
+ *   try {
+ *     // Set language if not defined.
+ *     if (!options.language) {
+ *       options.language = 'und';
+ *     }
+ *
+ *     // Build service call data string.
+ *     var data  = 'type=' + encodeURIComponent(options.type);
+ *         data += '&title=' + encodeURIComponent(options.title);
+ *         data += '&body[' + options.language + '][0][value]=' + encodeURIComponent(options.body);
+ *         data += '&language=' + encodeURIComponent(options.language);
+ *
+ *     // Build the options for the service call.
+ *     options = {
+ *       type: 'post',
+ *       url: 'node.json',
+ *       async: true,
+ *       success: this.hookSuccess,
+ *       error: this.hookError,
+ *       data: data,
+ *       fields: options.fields
+ *     };
+ *
+ *     // Make the service call.
+ *     services.resource(options);
+ *   }
+ *   catch (error) {
+ *     console.log('Error: services/node.js');
+ *     console.log('Object: services.node.create - ' + error);
+ *   }
+ * };
  */
-
-
-
-// Dynamically load debug files
-$(document).ready(function() {
-  var config = services.config();
-
-  if (config.debug === 1) {
-    $('head').append('<link>');
-    var css = $('head').children(':last');
-    css.attr({
-      rel: 'stylesheet',
-      type: 'text/css',
-      href: '/css/debug.css'
-    });
-    var js = document.createElement('script');
-    js.type = 'text/javascript';
-    js.src = '/js/debug.js';
-    $('head').append(js);
-  }
-});
 
 var servicesResourceCallResult;
 var result;
@@ -85,6 +98,17 @@ var services = services || {
 /**
  * Drupal services configuration settings.
  *
+ * @example
+ * // Place these settings in a javscript file somewhere.
+ *
+ * var options = {
+ *   sitePath: 'http://localhost:8082',
+ *   endPoint: 'rest',
+ *   basePath: '?q=',
+ *   debug: 0
+ * };
+ * services.config(options);
+ *
  * @param {object} options
  * @param {string} options.sitePath
  *        Defaults to 'http://localhost:8082'. For use with acquia stack.
@@ -92,10 +116,11 @@ var services = services || {
  *        Defaults to 'rest'. Services endpoint.
  * @param {string} options.basePath
  *        Defaults to '?q='. For use without clean urls. Can be set to empty for clean urls.
- * @param {bool} options.debug
+ * @param {int} options.debug
  *        Defaults to 0 or off. 1 to enable for easier debugging on hardware devices.
  */
 services.config = function(options) {
+  console.log(options);
   var defaultOptions = {
     sitePath: 'http://localhost:8082',
     endPoint: 'rest',
@@ -109,52 +134,68 @@ services.config = function(options) {
     options = defaultOptions;
   }
 
+  // Dynamically load debug files.
+  (function() {
+    if (options.debug === 1) {
+      $('head').append('<link>');
+      var css = $('head').children(':last');
+      css.attr({
+        rel: 'stylesheet',
+        type: 'text/css',
+        href: '/css/debug.css'
+      });
+      var js = document.createElement('script');
+      js.type = 'text/javascript';
+      js.src = '/js/debug.js';
+      $('head').append(js);
+    }
+  })();
+
   return options;
 };
 
 /**
  * Make a call to a Drupal Service Resource.
  *
- * @param  {Object} options
- * @param  {string} options.url
- *    The path to the resource (required)
- * @param  {string} options.sitePath
- *    The full site path (default: config.sitePath)
- * @param  {string} options.basePath
- *    The drupal base path (default: config.basePath)
- * @param  {string} options.endPoint
- *    The endPoint name (default : config.services_endPoint_default)
- * @param  {string} options.type
- *    The method to use: get, post (default), put, delete
- * @param  {string} options.dataType
- *    The data type to use in the ajax call (default: json)
- * @param  {string} options.data
- *    The data string to send with the ajax call (optional)
- * @param  {string} options.loadFromLocalStorage
- *    Load service resource call from local storage.
- *    '0' = force reload from service resource
- *    '1' = grab from local storage if possible
- * @param  {string} options.saveToLocalStorage
- *    Load service resource call from local storage.
- *    '0' = force reload from service resource
- *    '1' = grab from local storage if possible
- * @param  {string} options.localStorageKey
- *    The key to use when storing the service resource call result
- *    in local storage. Default key formula: [options.type].[serviceResourceCallUrl]
- *    For example, a POST on the system connect resource would have a default key of
- *    post.http://www.drupalgap.org/?q=drupalgap/system/connect.json
- * @param  {boolean} options.async
- *    Whether or not to make the service call asynchronously.
- *    false - make the call synchronously (default) - @todo default should be true
- *    true - make the call asynchronously
- * @param  {function} options.error
- *    The error call back function.j
- * @param  {function} options.success
- *    The success call back function.
- * @param  {function} options.hookError
- *    The user's error call back function.
- * @param  {function} options.hookSuccess
- *    The user's success call back function.
+ * @param {object} options
+ * @param {string} options.url
+ *        The path to the resource (required)
+ * @param {string} options.sitePath
+ *        The full site path (default: config.sitePath)
+ * @param {string} options.basePath
+ *        The drupal base path (default: config.basePath)
+ * @param {string} options.endPoint
+ *        The endPoint name (default : config.services_endPoint_default)
+ * @param {string} options.type
+ *        The method to use: get, post (default), put, delete
+ * @param {string} options.dataType
+ *        The data type to use in the ajax call (default: json)
+ * @param {string} options.data
+ *        The data string to send with the ajax call (optional)
+ * @param {object} options.fields
+ *        Additional parameters you want to send with the ajax call (optional).
+ * @param {int} options.loadFromLocalStorage
+ *        Load service resource call from local storage.
+ *        '0' = force reload from service resource
+ *        '1' = grab from local storage if possible
+ * @param {int} options.saveToLocalStorage
+ *        Load service resource call from local storage.
+ *        '0' = force reload from service resource
+ *        '1' = grab from local storage if possible
+ * @param {string} options.localStorageKey
+ *        The key to use when storing the service resource call result
+ *        in local storage. Default key formula: [options.type].[serviceResourceCallUrl]
+ *        For example, a POST on the system connect resource would have a default key of
+ *        post.http://www.drupalgap.org/?q=drupalgap/system/connect.json
+ * @param {bool} options.async
+ *        Whether or not to make the service call asynchronously.
+ *        false - make the call synchronously (default) - @todo default should be true
+ *        true - make the call asynchronously
+ *
+ * @param {function} options.hookError
+ *        The user's error call back function.
+ * @param {function} options.hookSuccess
+ *        The user's success call back function.
  */
 services.resource = function(options) {
   // Clear previous service call result stored in global variable.
@@ -162,19 +203,18 @@ services.resource = function(options) {
   result = null;
 
   try {
-    // Validate options.
-    // @todo - need to validate all other options and turn this into a function.
-    if (!options.url) {
-      console.log('resource_call - no url provided');
-      return false;
-    }
-
     // Get the default options (this does not override any options passed in).
     options = services.resourceGetOptions(options);
 
+    // Concat fields.
+    var fields = '';
+    $.each(options.fields, function(index, value) {
+      fields += '&' + index + '=' + value;
+    });
 
     // Build URL to service resource.
-    var serviceResourceCallUrl = options.sitePath + options.basePath + options.endPoint + '/' + options.url;
+    var serviceResourceCallUrl  = options.sitePath + options.basePath;
+        serviceResourceCallUrl += options.endPoint + '/' + options.url;
 
 
     // If we loaded the service resource result from local storage,
@@ -182,20 +222,6 @@ services.resource = function(options) {
     if (result) {
       console.log('loaded service resource from local storage (' + options.localStorageKey + ')');
       result = JSON.parse(result);
-
-      // If the call is async, then we need to send this result back
-      // to the success call back function(s). If it wasn't async,
-      // then return the result to the caller.
-      if (options.async) {
-        options.success(result);
-        if (options.hookSuccess) {
-          options.hookSuccess(result);
-        }
-      }
-      // Return the result if the call was not async.
-      else {
-        return result;
-      }
     }
     else {
       // Print service resource call debug info to console.
@@ -210,14 +236,14 @@ services.resource = function(options) {
         $.ajax({
           url: serviceResourceCallUrl,
           type: options.type,
-          data: options.data,
+          data: options.data + fields,
           dataType: options.dataType,
           async: options.async,
           success: function(data, textStatus, errorThrown) {
             // alert('success')
             services.resourceSuccess(data, textStatus, errorThrown);
           },
-          error: function(jqXHR, textStatus, errorThrown)  {
+          error: function(jqXHR, textStatus, errorThrown) {
             // alert('fail')
             services.resourceError(jqXHR, textStatus, errorThrown);
           },
@@ -235,7 +261,7 @@ services.resource = function(options) {
         $.ajax({
           url: serviceResourceCallUrl,
           type: options.type,
-          data: options.data,
+          data: options.data + fields,
           dataType: options.dataType,
           async: options.async,
           contentType: 'application/x-www-form-urlencoded',
@@ -266,9 +292,9 @@ services.resource = function(options) {
 /**
  * Asynchronous ajax error call back function.
  *
- * @param  {Object} jqXHR
- * @param  {Object} textStatus
- * @param  {Object} errorThrown
+ * @param {object} jqXHR
+ * @param {object} textStatus
+ * @param {object} errorThrown
  * @return Returns errors to the console.
  */
 services.resourceError = function(jqXHR, textStatus, errorThrown) {
@@ -292,7 +318,7 @@ services.resourceError = function(jqXHR, textStatus, errorThrown) {
 /**
  * Asynchronous ajax success call back function.
  *
- * @param  {Object} data
+ * @param {object} data
  */
 services.resourceSuccess = function(data) {
   // Hide the page loading message.
@@ -318,15 +344,15 @@ services.resourceSuccess = function(data) {
 /**
  * Returns a URL to the service resource based on the incoming options.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.url
- *    The path to the resource (required)
+ *        The path to the resource (required)
  * @param {string} options.sitePath
- *    The full site path (default: config.sitePath)
+ *        The full site path (default: config.sitePath)
  * @param {string} options.basePath
- *    The drupal base path (default: config.basePath)
+ *        The drupal base path (default: config.basePath)
  * @param {string} options.endPoint
- *    The endPoint name (default : config.services_endPoint_default)
+ *        The endPoint name (default : config.services_endPoint_default)
  */
 services.resourceUrl = function(options) {
   return options.sitePath + options.basePath + options.endPoint + '/' + options.url;
@@ -335,10 +361,10 @@ services.resourceUrl = function(options) {
 /**
  * Returns a string key for local storage of a service call result.
  *
- * @param  {string} type
- *   The method to use: get, post, put, delete
- * @param  {string} url
- *   The full URL to the service resource. (e.g. system/connect.json)
+ * @param {string} type
+ *        The method to use: get, post, put, delete
+ * @param {string} url
+ *        The full URL to the service resource. (e.g. system/connect.json)
  */
 services.defaultStorageKey = function(type, url) {
   return type + '.' + url;
@@ -494,6 +520,7 @@ services.servicesSetStorageDefault = function (options) {
  * If this service resource call has local storage items dependent on result,
  * then remove those items from local storage.
  *
+ * @example
  * Stuff with dependents:
  *    user: create/update/delete/login/logout/registration
  *    node: create/update/delete

@@ -12,7 +12,7 @@
 /**
  * Creates a file with base64 encoded data.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.file
  *        Required. A Base64 encoded file.
  * @param {string} options.filename
@@ -36,7 +36,8 @@ services.file.create = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -51,7 +52,7 @@ services.file.create = function (options) {
 /**
  * Get a given file.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.fid
  *        Required. The file ID to retrieve.
  *
@@ -83,7 +84,7 @@ services.file.retrieve = function (options) {
 /**
  * Deletes a file.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.fid
  *        Required. The file ID to retrieve.
  *
@@ -126,7 +127,7 @@ services.file.del = function (options) {
  * @todo Get parameters working.
  * @todo Figure out if parameters can be used without clean urls.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.hookError
  *        Error handler hook.
  * @param {string} options.hookSuccess
@@ -155,7 +156,7 @@ services.file.index = function (options) {
 /**
  * Adds new files and returns the files array.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.file
  *        Required. A Base64 encoded file.
  * @param {string} options.filename
@@ -179,7 +180,8 @@ services.file.createRaw = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.

@@ -7,6 +7,23 @@
  * @todo Create validation for all passed in values?
  * @todo Add Drupal version checking.
  * @todo Merge create/update objects?
+ *
+ *
+ * @example
+ * // Adding additional parameters to a request.
+ * // Even though node.create doesn't recognize path[alias] it will be sent with the request.
+ * var options = {
+ *   'language': $('#input_node_create_language').val(),
+ *   'title': $('#input_node_create_title').val(),
+ *   'body': $('#input_node_create_body').val(),
+ *   'type': $('#input_node_create_type').val(),
+ *   'fields': {
+ *     // We are sending the title as a path alias.
+ *     'path[alias]': $('#input_node_create_title').val()
+ *   }
+ * };
+ * // Make the service call.
+ * services.node.create(options);
  */
 
 /**
@@ -16,7 +33,7 @@
  * which may require very specific formatting. The full implications of this
  * are beyond the scope of this comment block. The Googles are your friend.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.type
  *        Required. The content type of the node.
  * @param {string} options.title
@@ -25,6 +42,8 @@
  *        Optional. The body of the node.
  * @param {string} options.language
  *        Optional. The language of the node.
+ * @param {object} options.fields
+ *        Optional. Additional parameters you want to send.
  *
  * @param {string} options.hookError
  *        Error handler hook.
@@ -41,7 +60,7 @@ services.node.create = function (options) {
     // Build service call data string.
     var data  = 'type=' + encodeURIComponent(options.type);
         data += '&title=' + encodeURIComponent(options.title);
-        data += '&body[' + options.language + '][][value]=' + encodeURIComponent(options.body);
+        data += '&body[' + options.language + '][0][value]=' + encodeURIComponent(options.body);
         data += '&language=' + encodeURIComponent(options.language);
 
     // Build the options for the service call.
@@ -51,7 +70,8 @@ services.node.create = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -66,7 +86,7 @@ services.node.create = function (options) {
 /**
  * Returns a specified node by ID.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.nid
  *        Required. The node ID the comment belongs to.
  *
@@ -98,7 +118,7 @@ services.node.retrieve = function (options) {
 /**
  * Updates a specified node based on submitted values.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.type
  *        Required. The content type of the node.
  * @param {string} options.title
@@ -135,7 +155,8 @@ services.node.update = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -150,7 +171,7 @@ services.node.update = function (options) {
 /**
  * Delete a node given its nid. Returns true if delete was successful.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.nid
  *        Required. The node ID.
  *
@@ -218,7 +239,7 @@ services.node.index = function (options) {
 /**
  * Generates an array of base64 encoded files attached to a node.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.nid
  *        Required. The node ID.
  *
@@ -250,7 +271,7 @@ services.node.getFiles = function (options) {
 /**
  * Returns the comments of a specified node.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.nid
  *        Required. The node ID.
  *

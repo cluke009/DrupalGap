@@ -12,7 +12,7 @@
 /**
  * Create a new user.
  *
- * @param {Object} options
+ * @param {object} options
  *        A object containing account information.
  * @param {string} options.name
  *        Required. The users name.
@@ -52,7 +52,8 @@ services.user.create = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -67,7 +68,7 @@ services.user.create = function (options) {
 /**
  * Get user details.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.uid
  *        Required. The user ID.
  *
@@ -99,7 +100,7 @@ services.user.retrieve = function (options) {
 /**
  * Update an existing user.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.uid
  *        Required. The user ID.
  * @param {string} options.name
@@ -140,7 +141,8 @@ services.user.update = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -219,7 +221,7 @@ services.user.index = function (options) {
  *
  * Note this will transfer a plaintext password.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.name
  *        Required. The username value.
  * @param {string} options.pass
@@ -243,7 +245,8 @@ services.user.login = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -271,8 +274,7 @@ services.user.logout = function (options) {
       url: 'user/logout.json',
       async: true,
       success: this.hookSuccess,
-      error: this.hookError,
-      data: data
+      error: this.hookError
     };
 
     // Make the service call.
@@ -287,7 +289,7 @@ services.user.logout = function (options) {
 /**
  * Register a user.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.name
  *        Required. The users name.
  * @param {string} options.mail
@@ -314,7 +316,8 @@ services.user.register = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.

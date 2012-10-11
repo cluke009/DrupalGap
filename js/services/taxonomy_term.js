@@ -12,7 +12,7 @@
 /**
  * Creates a new taxonomy_term based on submitted values. Returns 1 if successful.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.vid
  *        Required. The Vocabulary to insert the term in.
  * @param {string} options.name
@@ -45,7 +45,8 @@ services.taxonomyTerm.create = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -60,7 +61,7 @@ services.taxonomyTerm.create = function (options) {
 /**
  * Return the results for a specified term id or FALSE if term id does not exist.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.tid
  *        Required. Term ID.
  *
@@ -92,7 +93,7 @@ services.taxonomyTerm.retrieve = function (options) {
 /**
  * Updates a specified taxonomy_term based on submitted values.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.vid
  *        Optional. The Vocabulary to insert the term in.
  * @param {string} options.tid
@@ -127,7 +128,8 @@ services.taxonomyTerm.update = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -143,7 +145,7 @@ services.taxonomyTerm.update = function (options) {
 /**
  * Deletes the specified taxonomy_term. Returns true if delete was successful.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.tid
  *        Required. The Term ID.
  *
@@ -211,7 +213,7 @@ services.taxonomyTerm.index = function (options) {
 /**
  * Returns all nodes with provided taxonomy id.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.tid
  *        Required. The term ID.
  *

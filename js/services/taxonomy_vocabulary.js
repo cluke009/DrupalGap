@@ -14,7 +14,7 @@
  *
  * @see http://drupaldeveloper.in/article/programmatically-create-vocabulary
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.name
  *        Required. Human readable name of the vocabulary.
  * @param {string} options.machineName
@@ -68,7 +68,8 @@ services.taxonomyVocabulary.create = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -83,7 +84,7 @@ services.taxonomyVocabulary.create = function (options) {
 /**
  * Return the results for a specified vocabulary id or FALSE if term id does not exist.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.vid
  *        Optional. The Vocabulary ID.
  *
@@ -115,7 +116,7 @@ services.taxonomyVocabulary.retrieve = function (options) {
 /**
  * Updates a specified taxonomy_vocabulary based on submitted values.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.name
  *        Required. Human readable name of the vocabulary.
  * @param {string} options.machine_name
@@ -171,7 +172,8 @@ services.taxonomyVocabulary.update = function (options) {
       async: true,
       success: this.hookSuccess,
       error: this.hookError,
-      data: data
+      data: data,
+      fields: options.fields
     };
 
     // Make the service call.
@@ -186,7 +188,7 @@ services.taxonomyVocabulary.update = function (options) {
 /**
  * Deletes the specified taxonomy_vocabulary. Returns true if delete was successful.
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.vid
  *        Required. The vocabulary ID.
  *
@@ -254,7 +256,7 @@ services.taxonomyVocabulary.index = function (options) {
 /**
  * Services interface to taxonomy_get_tree().
  *
- * @param {Object} options
+ * @param {object} options
  * @param {string} options.vid
  *        Required. The vocabulary ID.
  *
