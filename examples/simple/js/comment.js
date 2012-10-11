@@ -22,7 +22,7 @@ $('#submit_comment_retrieve').live('click', function () {
     "success": function () {}
   };
   // Make service call.
-  drupal_services_comment_retrieve.resource_call(options);
+  services.comment.retrieve(options);
 });
 
 /**
@@ -39,7 +39,7 @@ $('#submit_comment_create').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_comment_create.resource_call(options);
+  services.comment.create(options);
 });
 
 /**
@@ -56,7 +56,7 @@ $('#submit_comment_update').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_comment_update.resource_call(options);
+  services.comment.update(options);
 });
 
 /**
@@ -70,7 +70,7 @@ $('#submit_comment_delete').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_comment_delete.resource_call(options);
+  services.comment.del(options);
 });
 
 /**
@@ -83,7 +83,7 @@ $('#submit_comment_index').live('click', function () {
       "error": function () {}
     };
     // Make the service call.
-    drupal_services_comment_index.resource_call(options);
+    services.comment.index(options);
 });
 
 /**
@@ -97,7 +97,7 @@ $('#submit_comment_count_all').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_comment_count_all.resource_call(options);
+  services.comment.countAll(options);
 });
 
 /**
@@ -112,5 +112,5 @@ $('#submit_comment_count_new').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_comment_count_new.resource_call(options);
+  services.comment.countNew(options);
 });

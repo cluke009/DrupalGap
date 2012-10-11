@@ -22,7 +22,7 @@ $('#submit_system_connect_get_variable').live('click', function () {
     "error": function () {}
   };
   // Make service call.
-  drupal_services_system_get_variable.resource_call(options);
+  services.system.getVariable(options);
 });
 
 /**
@@ -37,7 +37,7 @@ $('#submit_system_connect_set_variable').live('click', function () {
     "error": function () {}
   };
   // Make service call.
-  drupal_services_system_set_variable.resource_call(options);
+  services.system.setVariable(options);
 });
 
 /**
@@ -52,7 +52,7 @@ $('#submit_system_connect_del_variable').live('click', function () {
     "error": function () {}
   };
   // Make service call.
-  drupal_services_system_del_variable.resource_call(options);
+  services.system.delVariable(options);
 });
 
 /**

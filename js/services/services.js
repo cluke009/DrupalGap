@@ -3,19 +3,11 @@
  */
 
 
-/**
- * Hold all static settings for the application.
- * @type {Object}
- */
-var config = {
-  sitePath: 'http://localhost:8082',
-  endPoint: 'rest',
-  basePath: '?q=',
-  debug: 0
-};
 
 // Dynamically load debug files
 $(document).ready(function() {
+  var config = services.config();
+
   if (config.debug === 1) {
     $('head').append('<link>');
     var css = $('head').children(':last');
@@ -35,42 +27,55 @@ var servicesResourceCallResult;
 var result;
 
 /**
- * Handle all ajax calls to and from drupal services.
- *
- * @global
+ * @constructor
+ * @classdesc Handle all ajax calls to and from drupal services.
  */
 var services = services || {
   /**
+   * Namespace for interacting with the services comment group.
+   *
    * @namespace
    * @name services.comment
    */
   comment: {},
   /**
+   * Namespace for interacting with the services file group.
+   *
    * @namespace
-   * @name services.system
+   * @name services.file
    */
   file: {},
   /**
+   * Namespace for interacting with the services node group.
+   *
    * @namespace
    * @name services.node
    */
   node: {},
   /**
+   * Namespace for interacting with the system comment group.
+   *
    * @namespace
    * @name services.system
    */
   system: {},
   /**
+   * Namespace for interacting with the services taxonomyTerm group.
+   *
    * @namespace
    * @name services.taxonomyTerm
    */
   taxonomyTerm: {},
   /**
+   * Namespace for interacting with the services taxonomyVocabulary group.
+   *
    * @namespace
    * @name services.taxonomyVocabulary
    */
   taxonomyVocabulary: {},
   /**
+   * Namespace for interacting with the services user group.
+   *
    * @namespace
    * @name services.user
    */
@@ -165,7 +170,7 @@ services.resource = function(options) {
     }
 
     // Get the default options (this does not override any options passed in).
-    options = servicesResourceGetDefaultOptions(options);
+    options = services.resourceGetOptions(options);
 
 
     // Build URL to service resource.
@@ -335,16 +340,16 @@ services.resourceUrl = function(options) {
  * @param  {string} url
  *   The full URL to the service resource. (e.g. system/connect.json)
  */
-
-function servicesDefaultLocalStorageKey(type, url) {
+services.defaultStorageKey = function(type, url) {
   return type + '.' + url;
-}
+};
 
 /**
  * Set default values for options if none were provided.
  */
+services.resourceGetOptions = function(options) {
+  var config = services.config();
 
-function servicesResourceGetDefaultOptions(options) {
   if (!options.sitePath) {
     options.sitePath = config.sitePath;
   }
@@ -367,7 +372,7 @@ function servicesResourceGetDefaultOptions(options) {
     options.async = false;
   }
   return options;
-}
+};
 
 /**
  * If no loadFromLocalStorage option was set, set the default
@@ -379,8 +384,7 @@ function servicesResourceGetDefaultOptions(options) {
  *        I think we need to add some kind of 'op' parameter similar to what
  *        Drupal uses to handle special cases like this.
  */
-
-function servicesGetLoadFromLocalStorageDefault(options) {
+services.getFromStorageDefault = function (options) {
   // Determine cases where we do not want to load from local
   // storage here.
   switch (options.type.toLowerCase()) {
@@ -434,7 +438,7 @@ function servicesGetLoadFromLocalStorageDefault(options) {
   }
 
   return options;
-}
+};
 
 /**
  * Set the default save to local storage option.
@@ -447,8 +451,7 @@ function servicesGetLoadFromLocalStorageDefault(options) {
  *        implementations decide this setting which is ok, but we could bring
  *        that decision into here so the C.U.D. implementations are cleaner.
  */
-
-function servicesGetSaveToLocalStorageDefault(options) {
+services.servicesSetStorageDefault = function (options) {
   switch (options.type.toLowerCase()) {
   case 'get':
     break;
@@ -485,7 +488,7 @@ function servicesGetSaveToLocalStorageDefault(options) {
   }
 
   return options;
-}
+};
 
 /**
  * If this service resource call has local storage items dependent on result,
@@ -501,8 +504,7 @@ function servicesGetSaveToLocalStorageDefault(options) {
  *        array variable that allows us to stack a list of local storage keys,
  *        that way this dependency removal mechanism can be more dynamic/automated.
  */
-
-function servicesResourceCleanLocalStorageDependencies(options) {
+services.cleanStorageDependencies = function (options) {
   console.log('servicesResourceCleanLocalStorageDependencies');
   // console.log(JSON.stringify(options, undefined, 2));
   switch (options.type.toLowerCase()) {
@@ -513,7 +515,7 @@ function servicesResourceCleanLocalStorageDependencies(options) {
     if (
     options.url.indexOf('user/login') != -1 || options.url.indexOf('user/logout') != -1 || options.url.indexOf('user/register') != -1) {
       // system/connect.json
-      servicesSystemConnect.localStorageRemove();
+      // servicesSystemConnect.localStorageRemove();
     }
     // Node create resource.
     else if (options.url.indexOf('node.json') != -1) {
@@ -536,26 +538,26 @@ function servicesResourceCleanLocalStorageDependencies(options) {
       // };
       // drupal_views_datasource_retrieve.localStorageRemove(views_options);
       // Remove the comment's node.
-      servicesNodeRetrieve.localStorageRemove({
-        'nid': options.nid
-      });
+      // servicesNodeRetrieve.localStorageRemove({
+      //   'nid': options.nid
+      // });
     }
     break;
   case 'put':
     // User update resource.
     if (options.url.indexOf('user/') != -1) {
       // Remove system/connect.json.
-      servicesSystemConnect.localStorageRemove();
+      // servicesSystemConnect.localStorageRemove();
       // Remove drupal_system/connect.json.
-      servicesResourceSystemConnect.localStorageRemove();
+      // servicesResourceSystemConnect.localStorageRemove();
     }
     // Node update resource.
     else if (options.url.indexOf('node/') != -1) {
       // Remove the node from local storage.
       // @todo - Node id validation here.
-      servicesNodeRetrieve.localStorageRemove({
-        'nid': options.nid
-      });
+      // servicesNodeRetrieve.localStorageRemove({
+      //   'nid': options.nid
+      // });
       // Remove views datasource content json.
       // views_options = {
       //   'path': 'views_datasource/drupal_content'
@@ -566,9 +568,9 @@ function servicesResourceCleanLocalStorageDependencies(options) {
     else if (options.url.indexOf('comment/') != -1) {
       // Remove the comment from local storage.
       // @todo - Comment id validation here.
-      servicesCommentRetrieve.localStorageRemove({
-        'cid': options.cid
-      });
+      // servicesCommentRetrieve.localStorageRemove({
+      //   'cid': options.cid
+      // });
       // Remove views datasource comment json.
       // views_options = {
       //   'path': 'views_datasource/drupal_comments'
@@ -576,9 +578,9 @@ function servicesResourceCleanLocalStorageDependencies(options) {
       // drupal_views_datasource_retrieve.localStorageRemove(views_options);
       // Remove the comment's node from local storage.
       // @todo - Node id validation here.
-      servicesNodeRetrieve.localStorageRemove({
-        'nid': options.nid
-      });
+      // servicesNodeRetrieve.localStorageRemove({
+      //   'nid': options.nid
+      // });
       // Remove views datasource comments json.
       // views_options = {
       //   'path': 'views_datasource/drupal_comments/' + options.nid
@@ -591,9 +593,9 @@ function servicesResourceCleanLocalStorageDependencies(options) {
     if (options.url.indexOf('node/') != -1) {
       // Remove the node from local storage.
       // @todo - Node id validation here.
-      servicesNodeRetrieve.localStorageRemove({
-        'nid': options.nid
-      });
+      // servicesNodeRetrieve.localStorageRemove({
+      //   'nid': options.nid
+      // });
       // Remove views datasource content json.
       // views_options = {
       //   'path': 'views_datasource/drupal_content'
@@ -610,9 +612,9 @@ function servicesResourceCleanLocalStorageDependencies(options) {
     else if (options.url.indexOf('comment/') != -1) {
       // Remove the comment from local storage.
       // @todo - Comment id validation here.
-      servicesCommentRetrieve.localStorageRemove({
-        'cid': options.cid
-      });
+      // servicesCommentRetrieve.localStorageRemove({
+      //   'cid': options.cid
+      // });
       // Remove views datasource comment json.
       // views_options = {
       //   'path': 'views_datasource/drupal_comments'
@@ -620,9 +622,9 @@ function servicesResourceCleanLocalStorageDependencies(options) {
       // drupal_views_datasource_retrieve.localStorageRemove(views_options);
       // Remove the comment's node from local storage.
       // @todo - Node id validation here.
-      servicesNodeRetrieve.localStorageRemove({
-        'nid': options.nid
-      });
+      // servicesNodeRetrieve.localStorageRemove({
+      //   'nid': options.nid
+      // });
       // Remove views datasource comments json.
       // views_options = {
       //   'path': 'views_datasource/drupal_comments/' + options.nid
@@ -631,4 +633,4 @@ function servicesResourceCleanLocalStorageDependencies(options) {
     }
     break;
   }
-}
+};

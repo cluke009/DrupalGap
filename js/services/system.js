@@ -8,8 +8,6 @@
 /**
  * An object with an active session name and id.
  *
- * @constructor
- *
  * @param {string} options.hookError
  *        Error handler hook.
  * @param {string} options.hookSuccess
@@ -37,8 +35,6 @@ services.system.connect = function (options) {
 
 /**
  * Returns the value of a system variable using variable_get().
- *
- * @constructor
  *
  * @param {Object} options
  * @param {string} options.name
@@ -75,8 +71,6 @@ services.system.getVariable = function (options) {
 
 /**
  * Sets the value of a system variable using variable_set().
- *
- * @constructor
  *
  * @param {Object} options
  * @param {string} options.name
@@ -116,8 +110,6 @@ services.system.setVariable = function (options) {
 
 /**
  * Deletes a system variable using variable_del().
- *
- * @constructor
  *
  * @param {Object} options
  * @param {string} options.name
