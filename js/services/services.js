@@ -97,9 +97,9 @@ var services = services || {
    * Namespace for interacting with views_datasource.
    *
    * @namespace
-   * @name services.viewsDatasource
+   * @name services.viewsDataSource
    */
-  viewsDatasource: {}
+  viewsDataSource: {}
 };
 
 /**
@@ -364,6 +364,16 @@ services.resourceSuccess = function(data) {
  *        The endPoint name (default : config.services_endPoint_default)
  */
 services.resourceUrl = function(options) {
+  // Set default values for options if none were provided.
+  if (!options.sitePath) {
+    options.sitePath = services.config.sitePath;
+  }
+  if (!options.basePath) {
+    options.basePath = services.config.basePath;
+  }
+  if (!options.endpoint) {
+    options.endPoint = services.config.endPoint;
+  }
   return options.sitePath + options.basePath + options.endPoint + '/' + options.url;
 };
 
@@ -391,7 +401,7 @@ services.resourceGetOptions = function(options) {
   if (!options.basePath) {
     options.basePath = config.basePath;
   }
-  if (!options.endPoint) {
+  if (options.endPoint === null) {
     options.endPoint = config.endPoint;
   }
   if (!options.type) {
