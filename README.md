@@ -30,11 +30,14 @@ if (isset($_SERVER['HTTP_ORIGIN'])){
 4. Check out some examples
 --------
 
+You will want to test these on a web server or from a hardware device.
+
 There are currently 3 examples to choose from.
 
  * The Simple example which has a bare minimum of markup and is meant to showcase the quickest way to get started.
  * The Twitter Bootstrap example which has more markup but looks much nicer.
  * The jQuery Mobile example which is ready to drop into PhoneGap.
+ * You can also read some [documentation](https://github.com/cluke009/DrupalGap/tree/master/jsdocs "documentation")
 
 Goals
 --------
@@ -43,6 +46,18 @@ Eventually this project should accomplish a few things:
  * Provide simple javascript api for working with Drupal services module
  * Provide bare bones examples of how to connect to each service without anything extra, similar to the [Examples](http://drupal.org/project/examples "Examples") module
  * Provide a sample "app" with all those extras that aren't packaged into core
+
+
+Current state
+--------
+The master branch is fairly stable at the moment and probably will not change considerably in the future.
+
+Master should also be mostly compatible with any existing DrupalGap apps.
+
+I have moved my development to the [dev branch](https://github.com/cluke009/DrupalGap/tree/dev "dev branch") as I have some significant refactoring I would like to do.
+
+This branch will probably exist without working examples for some time. You will have to rely on jsdocs for help.
+
 
 TODO
 --------
