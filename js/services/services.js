@@ -225,7 +225,6 @@ services.resource = function(options) {
     var serviceResourceCallUrl  = options.sitePath + options.basePath;
         serviceResourceCallUrl += options.endPoint + '/' + options.url;
 
-
     // If we loaded the service resource result from local storage,
     // parse it out, otherwise make the service resource call.
     if (result) {
@@ -401,7 +400,7 @@ services.resourceGetOptions = function(options) {
   if (!options.basePath) {
     options.basePath = config.basePath;
   }
-  if (options.endPoint === null) {
+  if (typeof(options.endPoint) !== 'string') {
     options.endPoint = config.endPoint;
   }
   if (!options.type) {
@@ -416,6 +415,7 @@ services.resourceGetOptions = function(options) {
   if (!options.async) {
     options.async = false;
   }
+
   return options;
 };
 
