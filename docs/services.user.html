@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Namespace: user</title>
+
+    <script src="js/jquery-1.7.2.min.js"> </script>
+    <script src="js/bootstrap.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-responsive.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+</head>
+
+<body>
+
+
+<header class="jumbotron subhead" id="overview">
+  <div class="container-fluid">
+    <div class="span10 offset1">
+      <img src="img/druplicon.small_.png" />
+      <h1>Namespace: user</h1>
+    </div>
+  </div>
+</header>
+<div class="container-fluid">
+
+  <div class="row-fluid">
+    <div class="span8 offset1">
+      
+
+
+
+<section>
+
+<header>
+    <h2>
+        <span class="ancestors"><a href="services.html">services</a>.</span>
+    
+    user
+    </h2>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+
+    
+        
+            <div class="description well">Namespace for interacting with the services user group.</div>
+        
+
+        
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 76</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<dt>
+    <h4 class="name" id="create"><span class="type-signature">&lt;static> </span>create</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Create a new user.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A object containing account information.
+                <h6>Properties</h6>
+                
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The users name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The users email address.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. Plain text unencrypted password.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>status</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Optional. 0 for blocked, otherwise will be active by default.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>notify</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Optional. 1 to notify user of new account, will not notify by default.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>roles</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Optional.
+       Roles can be passed in a roles property which is an associative
+       array formatted with '<role id>' => '<role id>', not including
+       the authenticated user role, which is given by default.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Error handler hook.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Success handler hook.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>user.js</td> <td>line 38</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="del"><span class="type-signature">&lt;static> </span>del</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Delete a user.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options.uid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The user ID.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>user.js</td> <td>line 161</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="index"><span class="type-signature">&lt;static> </span>index</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Return an array of optionally paged uids based on a set of criteria.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options.hookError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Error handler hook.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options.hookSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Success handler hook.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>user.js</td> <td>line 197</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+        
+    <pre class="bs-docs-example prettyprint"><code>An example request might look like
+
+http://domain/endpoint/user?fields=uid,name,mail&amp;parameters[uid]=1
+
+This would return an array of objects with only uid, name and mail defined,
+where uid = 1.</code></pre>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="login"><span class="type-signature">&lt;static> </span>login</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Login a user using the specified credentials.
+
+Note this will transfer a plaintext password.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The username value.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The password value.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Error handler hook.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Success handler hook.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>user.js</td> <td>line 233</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="logout"><span class="type-signature">&lt;static> </span>logout</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Logout the current user.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options.hookError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Error handler hook.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options.hookSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Success handler hook.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>user.js</td> <td>line 266</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="register"><span class="type-signature">&lt;static> </span>register</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Register a user.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The users name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The users email address.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The users password.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Error handler hook.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Success handler hook.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>user.js</td> <td>line 303</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="retrieve"><span class="type-signature">&lt;static> </span>retrieve</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Get user details.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>uid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The user ID.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Error handler hook.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Success handler hook.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>user.js</td> <td>line 79</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="update"><span class="type-signature">&lt;static> </span>update</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Update an existing user.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>uid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The user ID.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The users name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The users email address.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>currentPass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The users current password.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Required. The users new password.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>status</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Optional. 0 for blocked, otherwise will be active by default.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>roles</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Optional.
+       Roles can be passed in a roles property which is an associative
+       array formatted with '<role id>' => '<role id>', not including
+       the authenticated user role, which is given by default.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Error handler hook.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Success handler hook.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>user.js</td> <td>line 126</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    </div><!--/span9-->
+    <div class="span2">
+        <h2><a href="index.html">Index</a></h2><h4>Classes</h4><ul class="nav nav-tabs nav-stacked"><li><a href="services.html">services</a></li></ul><h4>Namespaces</h4><ul class="nav nav-tabs nav-stacked"><li><a href="services.comment.html">comment</a></li><li><a href="services.file.html">file</a></li><li><a href="services.node.html">node</a></li><li><a href="services.system.html">system</a></li><li><a href="services.taxonomyTerm.html">taxonomyTerm</a></li><li><a href="services.taxonomyVocabulary.html">taxonomyVocabulary</a></li><li><a href="services.user.html">user</a></li></ul>
+    </div><!--/span3-->
+  </div><!--/row-fluid-->
+
+
+
+  <footer>
+    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Thu Oct 11 2012 04:24:13 GMT-0400 (EDT)</p>
+  </footer>
+</div><!--/container-fluid-->
+
+<script> prettyPrint(); </script>
+</body>
+</html>
