@@ -6,12 +6,16 @@
 
     <script src="js/jquery-1.7.2.min.js"> </script>
     <script src="js/bootstrap.min.js"> </script>
+    <script src="js/shCore.js"></script>
+    <script src="js/shBrushJScript.js"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap-responsive.css">
     <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/shCoreRDark.css">
 </head>
 
 <body>
@@ -87,7 +91,7 @@
 
   
   <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
-  <tbody><tr><td>services.js</td> <td>line 33</td></tr></table>
+  <tbody><tr><td>services.js</td> <td>line 46</td></tr></table>
   
 
     
@@ -163,11 +167,6 @@
     <div class="description well">
         If this service resource call has local storage items dependent on result,
 then remove those items from local storage.
-
-Stuff with dependents:
-   user: create/update/delete/login/logout/registration
-   node: create/update/delete
-   comment: create/update/delete
     </div>
     
 
@@ -199,7 +198,7 @@ Stuff with dependents:
 
   
   <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
-  <tbody><tr><td>services.js</td> <td>line 507</td></tr></table>
+  <tbody><tr><td>services.js</td> <td>line 534</td></tr></table>
   
 
     
@@ -225,6 +224,14 @@ Stuff with dependents:
     
 
     
+
+    
+        
+    <pre class="bs-docs-example prettyprint brush: js;">Stuff with dependents:
+   user: create/update/delete/login/logout/registration
+   node: create/update/delete
+   comment: create/update/delete</pre>
+
 
     
 </dd>
@@ -391,7 +398,7 @@ Stuff with dependents:
             <td class="type">
             
                 
-<span class="param-type">bool</span>
+<span class="param-type">int</span>
 
 
             
@@ -439,7 +446,7 @@ Stuff with dependents:
 
   
   <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
-  <tbody><tr><td>services.js</td> <td>line 98</td></tr></table>
+  <tbody><tr><td>services.js</td> <td>line 122</td></tr></table>
   
 
     
@@ -455,6 +462,19 @@ Stuff with dependents:
     
 
     
+
+    
+        
+    <pre class="bs-docs-example prettyprint brush: js;">// Place these settings in a javscript file somewhere.
+
+var options = {
+  sitePath: 'http://localhost:8082',
+  endPoint: 'rest',
+  basePath: '?q=',
+  debug: 0
+};
+services.config(options);</pre>
+
 
     
 </dd>
@@ -574,7 +594,7 @@ Stuff with dependents:
 
   
   <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
-  <tbody><tr><td>services.js</td> <td>line 343</td></tr></table>
+  <tbody><tr><td>services.js</td> <td>line 369</td></tr></table>
   
 
     
@@ -638,7 +658,7 @@ for best performance based on the service resource call.
 
   
   <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
-  <tbody><tr><td>services.js</td> <td>line 387</td></tr></table>
+  <tbody><tr><td>services.js</td> <td>line 413</td></tr></table>
   
 
     
@@ -720,7 +740,7 @@ for best performance based on the service resource call.
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -917,13 +937,36 @@ for best performance based on the service resource call.
 
         <tr>
             
+                <td class="name"><code>fields</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Additional parameters you want to send with the ajax call (optional).</td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>loadFromLocalStorage</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">int</span>
 
 
             
@@ -934,8 +977,8 @@ for best performance based on the service resource call.
             
 
             <td class="description last">Load service resource call from local storage.
-   '0' = force reload from service resource
-   '1' = grab from local storage if possible</td>
+       '0' = force reload from service resource
+       '1' = grab from local storage if possible</td>
         </tr>
 
     
@@ -948,7 +991,7 @@ for best performance based on the service resource call.
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">int</span>
 
 
             
@@ -959,8 +1002,8 @@ for best performance based on the service resource call.
             
 
             <td class="description last">Load service resource call from local storage.
-   '0' = force reload from service resource
-   '1' = grab from local storage if possible</td>
+       '0' = force reload from service resource
+       '1' = grab from local storage if possible</td>
         </tr>
 
     
@@ -984,9 +1027,9 @@ for best performance based on the service resource call.
             
 
             <td class="description last">The key to use when storing the service resource call result
-   in local storage. Default key formula: [options.type].[serviceResourceCallUrl]
-   For example, a POST on the system connect resource would have a default key of
-   post.http://www.drupalgap.org/?q=drupalgap/system/connect.json</td>
+       in local storage. Default key formula: [options.type].[serviceResourceCallUrl]
+       For example, a POST on the system connect resource would have a default key of
+       post.http://www.drupalgap.org/?q=drupalgap/system/connect.json</td>
         </tr>
 
     
@@ -999,7 +1042,7 @@ for best performance based on the service resource call.
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">bool</span>
 
 
             
@@ -1010,54 +1053,8 @@ for best performance based on the service resource call.
             
 
             <td class="description last">Whether or not to make the service call asynchronously.
-   false - make the call synchronously (default) - @todo default should be true
-   true - make the call asynchronously</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>error</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The error call back function.j</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>success</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The success call back function.</td>
+       false - make the call synchronously (default) - @todo default should be true
+       true - make the call asynchronously</td>
         </tr>
 
     
@@ -1141,7 +1138,7 @@ for best performance based on the service resource call.
 
   
   <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
-  <tbody><tr><td>services.js</td> <td>line 159</td></tr></table>
+  <tbody><tr><td>services.js</td> <td>line 200</td></tr></table>
   
 
     
@@ -1212,7 +1209,7 @@ for best performance based on the service resource call.
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -1235,7 +1232,7 @@ for best performance based on the service resource call.
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -1258,7 +1255,7 @@ for best performance based on the service resource call.
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -1299,7 +1296,7 @@ for best performance based on the service resource call.
 
   
   <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
-  <tbody><tr><td>services.js</td> <td>line 274</td></tr></table>
+  <tbody><tr><td>services.js</td> <td>line 300</td></tr></table>
   
 
     
@@ -1372,7 +1369,7 @@ for best performance based on the service resource call.
 
   
   <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
-  <tbody><tr><td>services.js</td> <td>line 350</td></tr></table>
+  <tbody><tr><td>services.js</td> <td>line 376</td></tr></table>
   
 
     
@@ -1443,7 +1440,7 @@ for best performance based on the service resource call.
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -1484,7 +1481,7 @@ for best performance based on the service resource call.
 
   
   <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
-  <tbody><tr><td>services.js</td> <td>line 297</td></tr></table>
+  <tbody><tr><td>services.js</td> <td>line 323</td></tr></table>
   
 
     
@@ -1555,7 +1552,7 @@ for best performance based on the service resource call.
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -1714,7 +1711,7 @@ for best performance based on the service resource call.
 
   
   <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
-  <tbody><tr><td>services.js</td> <td>line 331</td></tr></table>
+  <tbody><tr><td>services.js</td> <td>line 357</td></tr></table>
   
 
     
@@ -1777,7 +1774,7 @@ for best performance based on the service resource call.
 
   
   <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
-  <tbody><tr><td>services.js</td> <td>line 454</td></tr></table>
+  <tbody><tr><td>services.js</td> <td>line 480</td></tr></table>
   
 
     
@@ -1832,7 +1829,7 @@ for best performance based on the service resource call.
 
 
   <footer>
-    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Thu Oct 11 2012 04:24:12 GMT-0400 (EDT)</p>
+    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Thu Oct 11 2012 09:11:02 GMT-0400 (EDT)</p>
   </footer>
 </div><!--/container-fluid-->
 
