@@ -92,7 +92,14 @@ var services = services || {
    * @namespace
    * @name services.user
    */
-  user: {}
+  user: {},
+  /**
+   * Namespace for interacting with views_datasource.
+   *
+   * @namespace
+   * @name services.viewsDatasource
+   */
+  viewsDatasource: {}
 };
 
 /**
@@ -120,7 +127,6 @@ var services = services || {
  *        Defaults to 0 or off. 1 to enable for easier debugging on hardware devices.
  */
 services.config = function(options) {
-  console.log(options);
   var defaultOptions = {
     sitePath: 'http://localhost:8082',
     endPoint: 'rest',
@@ -207,10 +213,13 @@ services.resource = function(options) {
     options = services.resourceGetOptions(options);
 
     // Concat fields.
+    var target = options.fields;
     var fields = '';
-    $.each(options.fields, function(index, value) {
-      fields += '&' + index + '=' + value;
-    });
+    for (var k in target){
+      if (target.hasOwnProperty(k)) {
+        fields += '&' + k + '=' + target[k];
+      }
+    }
 
     // Build URL to service resource.
     var serviceResourceCallUrl  = options.sitePath + options.basePath;
