@@ -102,13 +102,16 @@ hr.soften {
      -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
           box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
 }
-.jumbotron h1 {
+h1 {
+    text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
   font-size: 80px;
+  color: #333;
+
   font-weight: bold;
-  letter-spacing: -1px;
+  letter-spacing: 2px;
   line-height: 1;
 }
-.jumbotron img {
+.logo {
  float:left;
  height: 96px;
  margin-right: 20px;
