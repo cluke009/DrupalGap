@@ -14,8 +14,18 @@
     <![endif]-->
     <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap-responsive.css">
-    <link type="text/css" rel="stylesheet" href="css/docs.css">
-    <link type="text/css" rel="stylesheet" href="css/shCoreRDark.css">
+    <link type="text/css" rel="stylesheet" href="css/shCoreDefault.css">
+    <style type="text/css">
+      .syntaxhighlighter {
+        padding: 14px 0;
+        overflow-y: hidden !important;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        -webkit-border-radius: 6px;
+           -moz-border-radius: 6px;
+                border-radius: 6px;
+      }
+    </style>
 </head>
 
 <body>
@@ -72,9 +82,10 @@
   <div class="container-fluid">
     <div class="row-fluid">
     <div class="span12">
+<div class="page-header">
+  <h1>Class: services</h1>
+</div>
 
-      <img class="logo" src="img/druplicon.small_.png" />
-      <h1>Class: services</h1>
       </div>
     </div>
   </div>
@@ -92,8 +103,7 @@
 <section>
 
 <header>
-    <h2>
-    services
+    <h2>services
     </h2>
     
         <div class="class-description">Handle all ajax calls to and from drupal services.</div>
@@ -142,7 +152,7 @@
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@source</th></tr></thead>
   <tbody><tr><td>services.js</td> <td>line 46</td></tr></table>
   
 
@@ -252,7 +262,7 @@ then remove those items from local storage.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@source</th></tr></thead>
   <tbody><tr><td>services.js</td> <td>line 553</td></tr></table>
   
 
@@ -261,7 +271,7 @@ then remove those items from local storage.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@todo</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@todo</th></tr></thead>
   <tbody>
           <tr><td>Need to use regex here instead of indexOf...</td></tr>
         
@@ -282,7 +292,7 @@ then remove those items from local storage.
 
     
         
-    <pre class="bs-docs-example prettyprint brush: js;">Stuff with dependents:
+    <pre class="bs-docs-example prettyprint brush: js; toolbar: false;">Stuff with dependents:
    user: create/update/delete/login/logout/registration
    node: create/update/delete
    comment: create/update/delete</pre>
@@ -314,7 +324,7 @@ then remove those items from local storage.
         <h5>Parameters:</h5>
         
 
-<table class="params table table-hover">
+<table class="params table">
     <thead>
     <tr>
         
@@ -356,7 +366,7 @@ then remove those items from local storage.
                 <h6>Properties</h6>
                 
 
-<table class="params table table-hover">
+<table class="params table">
     <thead>
     <tr>
         
@@ -500,7 +510,7 @@ then remove those items from local storage.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@source</th></tr></thead>
   <tbody><tr><td>services.js</td> <td>line 129</td></tr></table>
   
 
@@ -520,7 +530,7 @@ then remove those items from local storage.
 
     
         
-    <pre class="bs-docs-example prettyprint brush: js;">// Place these settings in a javscript file somewhere.
+    <pre class="bs-docs-example prettyprint brush: js; toolbar: false;">// Place these settings in a javscript file somewhere.
 
 var options = {
   sitePath: 'http://localhost:8082',
@@ -557,7 +567,7 @@ services.config(options);</pre>
         <h5>Parameters:</h5>
         
 
-<table class="params table table-hover">
+<table class="params table">
     <thead>
     <tr>
         
@@ -648,7 +658,7 @@ services.config(options);</pre>
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@source</th></tr></thead>
   <tbody><tr><td>services.js</td> <td>line 387</td></tr></table>
   
 
@@ -712,7 +722,7 @@ for best performance based on the service resource call.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@source</th></tr></thead>
   <tbody><tr><td>services.js</td> <td>line 432</td></tr></table>
   
 
@@ -721,7 +731,7 @@ for best performance based on the service resource call.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@todo</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@todo</th></tr></thead>
   <tbody>
           <tr><td>Use regex here instead of indexOf to avoid collisions.</td></tr>
         
@@ -767,7 +777,7 @@ for best performance based on the service resource call.
         <h5>Parameters:</h5>
         
 
-<table class="params table table-hover">
+<table class="params table">
     <thead>
     <tr>
         
@@ -809,7 +819,7 @@ for best performance based on the service resource call.
                 <h6>Properties</h6>
                 
 
-<table class="params table table-hover">
+<table class="params table">
     <thead>
     <tr>
         
@@ -1192,7 +1202,7 @@ for best performance based on the service resource call.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@source</th></tr></thead>
   <tbody><tr><td>services.js</td> <td>line 206</td></tr></table>
   
 
@@ -1236,7 +1246,7 @@ for best performance based on the service resource call.
         <h5>Parameters:</h5>
         
 
-<table class="params table table-hover">
+<table class="params table">
     <thead>
     <tr>
         
@@ -1350,7 +1360,7 @@ for best performance based on the service resource call.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@source</th></tr></thead>
   <tbody><tr><td>services.js</td> <td>line 308</td></tr></table>
   
 
@@ -1423,7 +1433,7 @@ for best performance based on the service resource call.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@source</th></tr></thead>
   <tbody><tr><td>services.js</td> <td>line 394</td></tr></table>
   
 
@@ -1467,7 +1477,7 @@ for best performance based on the service resource call.
         <h5>Parameters:</h5>
         
 
-<table class="params table table-hover">
+<table class="params table">
     <thead>
     <tr>
         
@@ -1535,7 +1545,7 @@ for best performance based on the service resource call.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@source</th></tr></thead>
   <tbody><tr><td>services.js</td> <td>line 331</td></tr></table>
   
 
@@ -1579,7 +1589,7 @@ for best performance based on the service resource call.
         <h5>Parameters:</h5>
         
 
-<table class="params table table-hover">
+<table class="params table">
     <thead>
     <tr>
         
@@ -1621,7 +1631,7 @@ for best performance based on the service resource call.
                 <h6>Properties</h6>
                 
 
-<table class="params table table-hover">
+<table class="params table">
     <thead>
     <tr>
         
@@ -1765,7 +1775,7 @@ for best performance based on the service resource call.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@source</th></tr></thead>
   <tbody><tr><td>services.js</td> <td>line 365</td></tr></table>
   
 
@@ -1828,7 +1838,7 @@ for best performance based on the service resource call.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@source</th></tr></thead>
   <tbody><tr><td>services.js</td> <td>line 499</td></tr></table>
   
 
@@ -1837,7 +1847,7 @@ for best performance based on the service resource call.
   
 
   
-  <table class="params table table-hover"><thead><tr><th class="docBlockr">@todo</th></tr></thead>
+  <table class="params table"><thead><tr><th class="docBlockr">@todo</th></tr></thead>
   <tbody>
           <tr><td>Regex needs to be used instead of indexOf here.</td></tr>
         
@@ -1885,10 +1895,8 @@ for best performance based on the service resource call.
 
 
   <footer>
-    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Fri Oct 12 2012 14:58:53 GMT-0400 (EDT)</p>
+    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Fri Oct 12 2012 17:11:20 GMT-0400 (EDT)</p>
   </footer>
 </div><!--/container-fluid-->
-
-<script> prettyPrint(); </script>
 </body>
 </html>
