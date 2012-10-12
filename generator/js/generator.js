@@ -107,7 +107,7 @@ generator.endpoint = function (options) {
   var data = {
     group: json.name,
     filename: json.name + '.js',
-    type: ,
+    type: '',
     data: '',
     method: json.resources,
     endPoint: json.path,
