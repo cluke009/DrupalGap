@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: services</title>
+
+    <script src="js/jquery-1.7.2.min.js"> </script>
+    <script src="js/bootstrap.min.js"> </script>
+    <script src="js/shCore.js"></script>
+    <script src="js/shBrushJScript.js"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-responsive.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/shCoreRDark.css">
+</head>
+
+<body>
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+</div>
+</div>
+<div class="row-fluid">
+<div class="span12">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="container">
+                  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </a>
+                  <a class="brand" href="#">DrplJS</a>
+                  <div class="nav-collapse">
+                    <ul class="nav">
+                      <li class="active"><a href="#">Home</a></li>
+                      <li><a href="#">Builder</a></li>
+                      <li><a href="#">jsDocs</a></li>
+                      <li><a href="#">Issues</a></li>
+                    </ul>
+<!--                     <form class="navbar-search pull-left" action="">
+                      <input type="text" class="search-query span2" placeholder="Search">
+                    </form>
+                    <ul class="nav pull-right">
+                      <li><a href="#">Link</a></li>
+                      <li class="divider-vertical"></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#">Separated link</a></li>
+                        </ul>
+                      </li>
+                    </ul>-->
+                  </div><!-- /.nav-collapse -->
+                </div>
+              </div><!-- /navbar-inner -->
+            </div><!-- /navbar -->
+
+</div>
+</div>
+</div>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+    <div class="span12">
+
+      <img class="logo" src="img/druplicon.small_.png" />
+      <h1>Class: services</h1>
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+
+  <div class="row-fluid">
+    <div class="span9">
+      
+
+
+
+<section>
+
+<header>
+    <h2>
+    services
+    </h2>
+    
+        <div class="class-description">Handle all ajax calls to and from drupal services.</div>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+
+    
+        
+<dt>
+    <h4 class="name" id="services"><span class="type-signature"></span>new services</h4>
+
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 46</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Namespaces</h3>
+
+        <dl>
+            <dt><a href="namespaces.html#services.comment"><a href="services.comment.html">comment</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#services.file"><a href="services.file.html">file</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#services.node"><a href="services.node.html">node</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#services.system"><a href="services.system.html">system</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#services.taxonomyTerm"><a href="services.taxonomyTerm.html">taxonomyTerm</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#services.taxonomyVocabulary"><a href="services.taxonomyVocabulary.html">taxonomyVocabulary</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#services.user"><a href="services.user.html">user</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#services.viewsDataSource"><a href="services.viewsDataSource.html">viewsDataSource</a></a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<dt>
+    <h4 class="name" id="cleanStorageDependencies"><span class="type-signature">&lt;static> </span>cleanStorageDependencies</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        If this service resource call has local storage items dependent on result,
+then remove those items from local storage.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 553</td></tr></table>
+  
+
+    
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@todo</th></tr></thead>
+  <tbody>
+          <tr><td>Need to use regex here instead of indexOf...</td></tr>
+        
+          <tr><td>Our JS implementation of these service resources should include an
+       array variable that allows us to stack a list of local storage keys,
+       that way this dependency removal mechanism can be more dynamic/automated.</td></tr>
+        </table>
+  </dd>
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+        
+    <pre class="bs-docs-example prettyprint brush: js;">Stuff with dependents:
+   user: create/update/delete/login/logout/registration
+   node: create/update/delete
+   comment: create/update/delete</pre>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="config"><span class="type-signature">&lt;static> </span>config</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Drupal services configuration settings.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sitePath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Defaults to 'http://localhost:8082'. For use with acquia stack.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>endPoint</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Defaults to 'rest'. Services endpoint.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>basePath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Defaults to '?q='. For use without clean urls. Can be set to empty for clean urls.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>debug</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Defaults to 0 or off. 1 to enable for easier debugging on hardware devices.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 129</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+        
+    <pre class="bs-docs-example prettyprint brush: js;">// Place these settings in a javscript file somewhere.
+
+var options = {
+  sitePath: 'http://localhost:8082',
+  endPoint: 'rest',
+  basePath: '?q=',
+  debug: 0
+};
+services.config(options);</pre>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="defaultStorageKey"><span class="type-signature">&lt;static> </span>defaultStorageKey</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Returns a string key for local storage of a service call result.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The method to use: get, post, put, delete</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The full URL to the service resource. (e.g. system/connect.json)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 387</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="getFromStorageDefault"><span class="type-signature">&lt;static> </span>getFromStorageDefault</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        If no loadFromLocalStorage option was set, set the default
+for best performance based on the service resource call.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 432</td></tr></table>
+  
+
+    
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@todo</th></tr></thead>
+  <tbody>
+          <tr><td>Use regex here instead of indexOf to avoid collisions.</td></tr>
+        
+          <tr><td>This needs to be smarter, for example this is getting set when the node
+       is saved or deleted, which isn't necessarily the best for performance.
+       I think we need to add some kind of 'op' parameter similar to what
+       Drupal uses to handle special cases like this.</td></tr>
+        </table>
+  </dd>
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resource"><span class="type-signature">&lt;static> </span>resource</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Make a call to a Drupal Service Resource.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The path to the resource (required)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sitePath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The full site path (default: config.sitePath)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>basePath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The drupal base path (default: config.basePath)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>endPoint</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The endPoint name (default : config.services_endPoint_default)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The method to use: get, post (default), put, delete</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dataType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data type to use in the ajax call (default: json)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data string to send with the ajax call (optional)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fields</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Additional parameters you want to send with the ajax call (optional).</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>loadFromLocalStorage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Load service resource call from local storage.
+       '0' = force reload from service resource
+       '1' = grab from local storage if possible</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>saveToLocalStorage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Load service resource call from local storage.
+       '0' = force reload from service resource
+       '1' = grab from local storage if possible</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>localStorageKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The key to use when storing the service resource call result
+       in local storage. Default key formula: [options.type].[serviceResourceCallUrl]
+       For example, a POST on the system connect resource would have a default key of
+       post.http://www.drupalgap.org/?q=drupalgap/system/connect.json</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>async</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">bool</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Whether or not to make the service call asynchronously.
+       false - make the call synchronously (default) - @todo default should be true
+       true - make the call asynchronously</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The user's error call back function.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hookSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The user's success call back function.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 206</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resourceError"><span class="type-signature">&lt;static> </span>resourceError</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Asynchronous ajax error call back function.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>jqXHR</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>textStatus</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>errorThrown</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 308</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns errors to the console.
+</div>
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resourceGetOptions"><span class="type-signature">&lt;static> </span>resourceGetOptions</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Set default values for options if none were provided.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 394</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resourceSuccess"><span class="type-signature">&lt;static> </span>resourceSuccess</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Asynchronous ajax success call back function.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 331</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="resourceUrl"><span class="type-signature">&lt;static> </span>resourceUrl</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Returns a URL to the service resource based on the incoming options.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The path to the resource (required)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sitePath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The full site path (default: config.sitePath)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>basePath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The drupal base path (default: config.basePath)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>endPoint</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The endPoint name (default : config.services_endPoint_default)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 365</td></tr></table>
+  
+
+    
+
+  
+
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="servicesSetStorageDefault"><span class="type-signature">&lt;static> </span>servicesSetStorageDefault</h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description well">
+        Set the default save to local storage option.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+<dl class="details">
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@source</th></tr></thead>
+  <tbody><tr><td>services.js</td> <td>line 499</td></tr></table>
+  
+
+    
+
+  
+
+  
+  <table class="params table table-hover"><thead><tr><th class="docBlockr">@todo</th></tr></thead>
+  <tbody>
+          <tr><td>Regex needs to be used instead of indexOf here.</td></tr>
+        
+          <tr><td>The decision to save something into local storage here needs to be
+       more intelligent. i.e. In offline mode we would want to store in local
+       storage. Basically, we know 'put', 'delete' and some 'post' calls
+       don't need local storage unless in offline mode. Right now the C.U.D.
+       implementations decide this setting which is ok, but we could bring
+       that decision into here so the C.U.D. implementations are cleaner.</td></tr>
+        </table>
+  </dd>
+  
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    </div><!--/span9-->
+    <div class="span3">
+        <h2><a href="index.html">Index</a></h2><h4>Classes</h4><ul class="nav nav-tabs nav-stacked"><li><a href="services.html">services</a></li></ul><h4>Namespaces</h4><ul class="nav nav-tabs nav-stacked"><li><a href="services.comment.html">comment</a></li><li><a href="services.file.html">file</a></li><li><a href="services.node.html">node</a></li><li><a href="services.system.html">system</a></li><li><a href="services.taxonomyTerm.html">taxonomyTerm</a></li><li><a href="services.taxonomyVocabulary.html">taxonomyVocabulary</a></li><li><a href="services.user.html">user</a></li><li><a href="services.viewsDataSource.html">viewsDataSource</a></li></ul>
+    </div><!--/span3-->
+  </div><!--/row-fluid-->
+</div>
+</div>
+
+
+  <footer>
+    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Fri Oct 12 2012 14:58:53 GMT-0400 (EDT)</p>
+  </footer>
+</div><!--/container-fluid-->
+
+<script> prettyPrint(); </script>
+</body>
+</html>

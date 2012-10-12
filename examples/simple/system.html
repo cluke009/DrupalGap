@@ -7,10 +7,20 @@
 
   <!-- Required for all requests -->
   <script src="../../js/services/services.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var options = {
+        debug: 1
+      };
+      services.config(options);
+    });
+  </script>
   <script src="../../js/services/system.js"></script>
 
   <!-- Required for this request -->
   <script src="js/system.js"></script>
+  <script src="js/system.js"></script>
+
 
   <!-- Simple CSS -->
   <link type="text/css" rel="stylesheet" media="all" href="css/simple.css" />

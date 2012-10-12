@@ -1,425 +1,224 @@
+/*global services*/
+
 /**
  * @file
  * Controls interactions with the services taxonomy_vocabulary group.
  *
  * @todo Create validation for all passed in values?
  * @todo Add Drupal version checking.
+ * @todo Merge create/update objects?
  */
 
 /**
- * @constructor
- * @description
- *   Return the results for a specified vocabulary id or FALSE if term id does not exist.
- */
-var drupal_services_taxonomy_vocabulary_retrieve = {
-  /**
-   * Resource URL. "taxonomy_vocabulary/vid.json"
-   * @param {string} options
-   *        Accepts Vocabulary ID.
-   */
-  "resource_path": function (options) {
-    if ($.isNumeric(options)) {
-      return "taxonomy_vocabulary/" + encodeURIComponent(options) + ".json";
-    }
-    else {
-      console.log("Error: services/taxonomy_vocabulary.js 'options.nid' is not a number.");
-    }
-  },
-
-  /**
-   * Default Method: GET
-   */
-  "resource_type": "get",
-
-  /**
-   * Make a call to a Drupal Service Taxonomy Vocabulary Retrieve Resource.
-   *
-   * @param {Object} caller_options
-   * @param {string} caller_options.vid
-   *        Optional. The Vocabulary ID.
-   *
-   * @param {string} caller_options.error
-   *        Error handler hook.
-   * @param {string} caller_options.success
-   *        Success handler hook.
-   */
-  "resource_call": function (caller_options) {
-    try {
-      // Build the options for the service call.
-      options = {
-        "resource_path": this.resource_path(caller_options.vid),
-        "type": this.resource_type,
-        "async": true,
-        "success": this.success,
-        "error": this.error
-      };
-
-      // Attach error/success hooks if provided.
-      if (caller_options.error) {
-        options.hook_error = caller_options.error;
-      }
-      if (caller_options.success) {
-        options.hook_success = caller_options.success;
-      }
-
-      // Retrieve the taxonomy_vocabulary.
-      drupal_services.resource_call(options);
-    }
-    catch (error) {
-      console.log("Error: services/taxonomy_vocabulary.js");
-      console.log("Object: drupal_services_taxonomy_vocabulary_retrieve - " + error);
-    }
-  },
-
-  /**
-   * Error Handler
-   */
-  "error": function (jqXHR, textStatus, errorThrown) {
-    if (errorThrown) {
-      console.log(errorThrown);
-    }
-    else {
-      console.log(textStatus);
-    }
-  },
-
-  /**
-   * Success handler
-   */
-  "success": function (data) {},
-
-  /**
-   * Removes a taxonomy_vocabulary from local storage.
-   */
-  "local_storage_remove": function (options) {
-    type = this.resource_type;
-    resource_path = this.resource_path(options);
-    key = drupal_services_default_local_storage_key(type, resource_path);
-    window.localStorage.removeItem(key);
-    console.log("Removed from local storage (" + key + ")");
-  },
-};
-
-/**
- * @constructor
- * @description Create a new taxonomy vocabulary based on submitted values.
+ * Create a new taxonomy vocabulary based on submitted values.
  *
- * @see
- * http://drupaldeveloper.in/article/programmatically-create-vocabulary
+ * @see http://drupaldeveloper.in/article/programmatically-create-vocabulary
+ *
+ * @param {object} options
+ * @param {string} options.name
+ *        Required. Human readable name of the vocabulary.
+ * @param {string} options.machineName
+ *        Required. Machine readable name of the vocabulary.
+ * @param {string} options.description
+ *        Optional. Extended description of the vocabulary.
+ * @param {string} options.help
+ *        Optional. Help text.
+ * @param {string} options.tags
+ *        Required. 1 to make this vocabulary free tagging.
+ * @param {string} options.multiple
+ *        Required. 1 to allow multiple selection.
+ * @param {string} options.required
+ *        Optional. 1 to make the terms mandatory to be selected.
+ * @param {string} options.hierarchy
+ *        Optional. 1 to allow and create hierarchy of the terms within the vocabulary.
+ * @param {string} options.relations
+ *        Optional. 1 to set and allow relation amongst multiple terms.
+ * @param {string} options.module
+ *        Optional. Provide the module name in which the vocabulary is defined and which is calling this function.
+ * @param {string} options.node
+ *        Optional. {'story' : 1}, Content types to which this vocabulary will be attached to.
+ * @param {string} options.weight
+ *        Optional. Set the weight to display the vocabulary in the list.
+ *
+ * @param {string} options.hookError
+ *        Error handler hook.
+ * @param {string} options.hookSuccess
+ *        Success handler hook.
  */
-var drupal_services_taxonomy_vocabulary_create = {
-  /**
-   * Resource URL. "taxonomy_vocabulary.json"
-   */
-  "resource_path": "taxonomy_vocabulary.json",
+services.taxonomyVocabulary.create = function (options) {
+  try {
+    // Build service call data string.
+    var data  = 'name=' + encodeURIComponent(options.name);
+        data += '&machine_name=' + encodeURIComponent(options.machineName);
+        data += '&description=' + encodeURIComponent(options.description);
+        data += '&help=' + encodeURIComponent(options.help);
+        data += '&tags=' + encodeURIComponent(options.tags);
+        data += '&multiple=' + encodeURIComponent(options.multiple);
+        data += '&required=' + encodeURIComponent(options.required);
+        data += '&hierarchy=' + encodeURIComponent(options.hierarchy);
+        data += '&relations=' + encodeURIComponent(options.relations);
+        data += '&module=' + encodeURIComponent(options.module);
+        data += '&node=' + encodeURIComponent(options.node);
+        data += '&weight=' + encodeURIComponent(options.weight);
 
-  /**
-   * Default Method: POST
-   */
-  "resource_type": "post",
+    // Build the options for the service call.
+    options = {
+      type: 'post',
+      url: 'taxonomy_vocabulary.json',
+      async: true,
+      success: this.hookSuccess,
+      error: this.hookError,
+      data: data,
+      fields: options.fields
+    };
 
-  /**
-   * Make a call to a Drupal Service Taxonomy Vocabulary Create Resource.
-   *
-   * @param {Object} caller_options
-   * @param {string} caller_options.name
-   *        Required. Human readable name of the vocabulary.
-   * @param {string} caller_options.machine_name
-   *        Required. Machine readable name of the vocabulary.
-   * @param {string} caller_options.description
-   *        Optional. Extended description of the vocabulary.
-   * @param {string} caller_options.help
-   *        Optional. Help text.
-   * @param {string} caller_options.tags
-   *        Required. 1 to make this vocabulary free tagging.
-   * @param {string} caller_options.multiple
-   *        Required. 1 to allow multiple selection.
-   * @param {string} caller_options.required
-   *        Optional. 1 to make the terms mandatory to be selected.
-   * @param {string} caller_options.hierarchy
-   *        Optional. 1 to allow and create hierarchy of the terms within the vocabulary.
-   * @param {string} caller_options.relations
-   *        Optional. 1 to set and allow relation amongst multiple terms.
-   * @param {string} caller_options.module
-   *        Optional. Provide the module name in which the vocabulary is defined and which is calling this function.
-   * @param {string} caller_options.node
-   *        Optional. {'story' : 1}, Content types to which this vocabulary will be attached to.
-   * @param {string} caller_options.weight
-   *        Optional. Set the weight to display the vocabulary in the list.
-   *
-   * @param {string} caller_options.error
-   *        Error handler hook.
-   * @param {string} caller_options.success
-   *        Success handler hook.
-   */
-  "resource_call": function (caller_options) {
-    try {
-      // Build service call data string.
-      data = "name=" + encodeURIComponent(caller_options.name);
-      data += "&machine_name=" + encodeURIComponent(caller_options.machine_name);
-      data += "&description=" + encodeURIComponent(caller_options.description);
-      data += "&help=" + encodeURIComponent(caller_options.help);
-      data += "&tags=" + encodeURIComponent(caller_options.tags);
-      data += "&multiple=" + encodeURIComponent(caller_options.multiple);
-      data += "&required=" + encodeURIComponent(caller_options.required);
-      data += "&hierarchy=" + encodeURIComponent(caller_options.hierarchy);
-      data += "&relations=" + encodeURIComponent(caller_options.relations);
-      data += "&module=" + encodeURIComponent(caller_options.module);
-      data += "&node=" + encodeURIComponent(caller_options.node);
-      data += "&weight=" + encodeURIComponent(caller_options.weight);
-
-      // Build options for service call.
-      options = {
-        "resource_path": this.resource_path,
-        "type": this.resource_type,
-        "data": data,
-        "async": true,
-        "success": this.success,
-        "error": this.error
-      };
-
-      // Attach error/success hooks if provided.
-      if (caller_options.error) {
-        options.hook_error = caller_options.error;
-      }
-      if (caller_options.success) {
-        options.hook_success = caller_options.success;
-      }
-
-      // Make the service call.
-      drupal_services.resource_call(options);
-    }
-    catch (error) {
-      console.log("Error: services/taxonomy_vocabulary.js");
-      console.log("Object: drupal_services_taxonomy_vocabulary_create - " + error);
-    }
-  },
-
-  /**
-   * Error Handler
-   */
-  "error": function (jqXHR, textStatus, errorThrown) {
-    if (errorThrown) {
-      console.log(errorThrown);
-    }
-    else {
-      console.log(textStatus);
-    }
-  },
-
-  /**
-   * Success handler
-   */
-  "success": function (data) {},
+    // Make the service call.
+    services.resource(options);
+  }
+  catch (error) {
+    console.log('Error: services/taxonomy_vocabulary.js');
+    console.log('Object: services.taxonomyVocabulary.create - ' + error);
+  }
 };
 
 /**
- * @constructor
- * @description Updates a specified taxonomy_vocabulary based on submitted values.
+ * Return the results for a specified vocabulary id or FALSE if term id does not exist.
+ *
+ * @param {object} options
+ * @param {string} options.vid
+ *        Optional. The Vocabulary ID.
+ *
+ * @param {string} options.hookError
+ *        Error handler hook.
+ * @param {string} options.hookSuccess
+ *        Success handler hook.
  */
-var drupal_services_taxonomy_vocabulary_update = {
-  /**
-   * Resource URL. "taxonomy_vocabulary/vid.json"
-   * @param {string} options
-   *        Accepts Vocabulary ID.
-   */
-  "resource_path": function (options) {
-    if ($.isNumeric(options)) {
-      return "taxonomy_vocabulary/" + encodeURIComponent(options) + ".json";
-    }
-    else {
-      console.log("Error: services/taxonomy_vocabulary.js 'options.vid' is not a number.");
-    }
-  },
+services.taxonomyVocabulary.retrieve = function (options) {
+  try {
+    // Build the options for the service call.
+    options = {
+      type: 'get',
+      url: 'taxonomy_vocabulary/' + options.vid + '.json',
+      async: true,
+      success: this.hookSuccess,
+      error: this.hookError
+    };
 
-  /**
-   * Default Method: PUT
-   */
-  "resource_type": "put",
-
-  /**
-   * Make a call to a Drupal Service Taxonomy Vocabulary Update Resource.
-   *
-   * @param {Object} caller_options
-   * @param {string} caller_options.name
-   *        Required. Human readable name of the vocabulary.
-   * @param {string} caller_options.machine_name
-   *        Required. Machine readable name of the vocabulary.
-   * @param {string} caller_options.description
-   *        Optional. Extended description of the vocabulary.
-   * @param {string} caller_options.help
-   *        Optional. Help text.
-   * @param {string} caller_options.tags
-   *        Required. 1 to make this vocabulary free tagging.
-   * @param {string} caller_options.multiple
-   *        Required. 1 to allow multiple selection.
-   * @param {string} caller_options.required
-   *        Optional. 1 to make the terms mandatory to be selected.
-   * @param {string} caller_options.hierarchy
-   *        Optional. 1 to allow and create hierarchy of the terms within the vocabulary.
-   * @param {string} caller_options.relations
-   *        Optional. 1 to set and allow relation amongst multiple terms.
-   * @param {string} caller_options.module
-   *        Optional. Provide the module name in which the vocabulary is defined and which is calling this function.
-   * @param {string} caller_options.node
-   *        Optional. {'story' : 1}, Content types to which this vocabulary will be attached to.
-   * @param {string} caller_options.weight
-   *        Optional. Set the weight to display the vocabulary in the list.
-   * @param {string} caller_options.vid
-   *        Optional. The vocabulary ID to update.
-   *
-   * @param {string} caller_options.error
-   *        Error handler hook.
-   * @param {string} caller_options.success
-   *        Success handler hook.
-   */
-  "resource_call": function (caller_options) {
-    try {
-      // Build service call data string.
-      data = "name=" + encodeURIComponent(caller_options.name);
-      data += "&machine_name=" + encodeURIComponent(caller_options.machine_name);
-      data += "&description=" + encodeURIComponent(caller_options.description);
-      data += "&help=" + encodeURIComponent(caller_options.help);
-      data += "&tags=" + encodeURIComponent(caller_options.tags);
-      data += "&multiple=" + encodeURIComponent(caller_options.multiple);
-      data += "&required=" + encodeURIComponent(caller_options.required);
-      data += "&hierarchy=" + encodeURIComponent(caller_options.hierarchy);
-      data += "&relations=" + encodeURIComponent(caller_options.relations);
-      data += "&module=" + encodeURIComponent(caller_options.module);
-      data += "&node=" + encodeURIComponent(caller_options.node);
-      data += "&weight=" + encodeURIComponent(caller_options.weight);
-
-      // Build options for service call.
-      options = {
-        "resource_path": this.resource_path(caller_options.vid),
-        "type": this.resource_type,
-        "data": data,
-        "async": true,
-        "success": this.success,
-        "error": this.error
-      };
-
-      // Attach error/success hooks if provided.
-      if (caller_options.error) {
-        options.hook_error = caller_options.error;
-      }
-      if (caller_options.success) {
-        options.hook_success = caller_options.success;
-      }
-
-      // Make the service call.
-      drupal_services.resource_call(options);
-    }
-    catch (error) {
-      console.log("Error: services/taxonomy_vocabulary.js");
-      console.log("Object: drupal_services_taxonomy_vocabulary_update - " + error);
-    }
-  },
-
-  /**
-   * Error Handler
-   */
-  "error": function (jqXHR, textStatus, errorThrown) {
-    if (errorThrown) {
-      console.log(errorThrown);
-    }
-    else {
-      console.log(textStatus);
-    }
-  },
-
-  /**
-   * Success handler
-   */
-  "success": function (data) {},
+    // Make the service call.
+    services.resource(options);
+  }
+  catch (error) {
+    console.log('Error: services/taxonomy_vocabulary.js');
+    console.log('Object: services.taxonomyVocabulary.retrieve - ' + error);
+  }
 };
 
 /**
- * @constructor
- * @description
- *   Deletes the specified taxonomy_vocabulary. Returns true if delete was successful.
+ * Updates a specified taxonomy_vocabulary based on submitted values.
+ *
+ * @param {object} options
+ * @param {string} options.name
+ *        Required. Human readable name of the vocabulary.
+ * @param {string} options.machine_name
+ *        Required. Machine readable name of the vocabulary.
+ * @param {string} options.description
+ *        Optional. Extended description of the vocabulary.
+ * @param {string} options.help
+ *        Optional. Help text.
+ * @param {string} options.tags
+ *        Required. 1 to make this vocabulary free tagging.
+ * @param {string} options.multiple
+ *        Required. 1 to allow multiple selection.
+ * @param {string} options.required
+ *        Optional. 1 to make the terms mandatory to be selected.
+ * @param {string} options.hierarchy
+ *        Optional. 1 to allow and create hierarchy of the terms within the vocabulary.
+ * @param {string} options.relations
+ *        Optional. 1 to set and allow relation amongst multiple terms.
+ * @param {string} options.module
+ *        Optional. Provide the module name in which the vocabulary is defined and which is calling this function.
+ * @param {string} options.node
+ *        Optional. {'story' : 1}, Content types to which this vocabulary will be attached to.
+ * @param {string} options.weight
+ *        Optional. Set the weight to display the vocabulary in the list.
+ * @param {string} options.vid
+ *        Optional. The vocabulary ID to update.
+ *
+ * @param {string} options.hookError
+ *        Error handler hook.
+ * @param {string} options.hookSuccess
+ *        Success handler hook.
  */
-var drupal_services_taxonomy_vocabulary_delete = {
-  /**
-   * Resource URL. "taxonomy_vocabulary/vid.json"
-   * @param {string} options
-   *        Accepts Vocabulary ID.
-   */
-  "resource_path": function (options) {
-    if ($.isNumeric(options)) {
-      return "taxonomy_vocabulary/" + encodeURIComponent(options) + ".json";
-    }
-    else {
-      console.log("Error: services/taxonomy_vocabulary.js 'options.nid' is not a number.");
-    }
-  },
+services.taxonomyVocabulary.update = function (options) {
+  try {
+    // Build service call data string.
+    var data  = 'name=' + encodeURIComponent(options.name);
+        data += '&machine_name=' + encodeURIComponent(options.machineName);
+        data += '&description=' + encodeURIComponent(options.description);
+        data += '&help=' + encodeURIComponent(options.help);
+        data += '&tags=' + encodeURIComponent(options.tags);
+        data += '&multiple=' + encodeURIComponent(options.multiple);
+        data += '&required=' + encodeURIComponent(options.required);
+        data += '&hierarchy=' + encodeURIComponent(options.hierarchy);
+        data += '&relations=' + encodeURIComponent(options.relations);
+        data += '&module=' + encodeURIComponent(options.module);
+        data += '&node=' + encodeURIComponent(options.node);
+        data += '&weight=' + encodeURIComponent(options.weight);
 
-  /**
-   * Default Method: DELETE
-   */
-  "resource_type": "delete",
+    // Build the options for the service call.
+    options = {
+      type: 'put',
+      url: 'taxonomy_vocabulary/' + options.vid + '.json',
+      async: true,
+      success: this.hookSuccess,
+      error: this.hookError,
+      data: data,
+      fields: options.fields
+    };
 
-  /**
-   * Make a call to a Drupal Service Taxonomy Vocabulary Delete Resource.
-   *
-   * @param {Object} caller_options
-   * @param {string} caller_options.vid
-   *        Required. The vocabulary ID.
-   *
-   * @param {string} caller_options.error
-   *        Error handler hook.
-   * @param {string} caller_options.success
-   *        Success handler hook.
-   */
-  "resource_call": function (caller_options) {
-    try {
-      // Build the options to the service call.
-      options = {
-        "resource_path": this.resource_path(caller_options.vid),
-        "type": this.resource_type,
-        "async": true,
-        "success": this.success,
-        "error": this.error
-      };
-
-      // Attach error/success hooks if provided.
-      if (caller_options.error) {
-        options.hook_error = caller_options.error;
-      }
-      if (caller_options.success) {
-        options.hook_success = caller_options.success;
-      }
-
-      // Make the service call.
-      drupal_services.resource_call(options);
-    }
-    catch (error) {
-      console.log("Error: services/taxonomy_vocabulary.js");
-      console.log("Object: drupal_services_taxonomy_vocabulary_delete - " + error);
-    }
-  },
-
-  /**
-   * Error Handler
-   */
-  "error": function (jqXHR, textStatus, errorThrown) {
-    if (errorThrown) {
-      console.log(errorThrown);
-    }
-    else {
-      console.log(textStatus);
-    }
-  },
-
-  /**
-   * Success handler
-   */
-  "success": function (data) {},
+    // Make the service call.
+    services.resource(options);
+  }
+  catch (error) {
+    console.log('Error: services/taxonomy_vocabulary.js');
+    console.log('Object: services.taxonomyVocabulary.update - ' + error);
+  }
 };
 
 /**
- * @constructor
- * @description Return an array of optionally paged tids based on a set of criteria.
+ * Deletes the specified taxonomy_vocabulary. Returns true if delete was successful.
+ *
+ * @param {object} options
+ * @param {string} options.vid
+ *        Required. The vocabulary ID.
+ *
+ * @param {string} options.hookError
+ *        Error handler hook.
+ * @param {string} options.hookSuccess
+ *        Success handler hook.
+ */
+services.taxonomyVocabulary.del = function (options) {
+  try {
+    // Build the options for the service call.
+    options = {
+      type: 'delete',
+      url: 'taxonomy_vocabulary/' + options.vid + '.json',
+      async: true,
+      success: this.hookSuccess,
+      error: this.hookError
+    };
+
+    // Make the service call.
+    services.resource(options);
+  }
+  catch (error) {
+    console.log('Error: services/taxonomy_vocabulary.js');
+    console.log('Object: services.taxonomyVocabulary.del - ' + error);
+  }
+};
+
+/**
+ * Return an array of optionally paged tids based on a set of criteria.
  *
  * @example
  * An example request might look like
@@ -428,144 +227,64 @@ var drupal_services_taxonomy_vocabulary_delete = {
  *
  * This would return an array of objects with only tid and name defined, where
  * tid = 7 and vid = 1.
+ *
+ * @param {string} options.hookError
+ *        Error handler hook.
+ * @param {string} options.hookSuccess
+ *        Success handler hook.
  */
-var drupal_services_taxonomy_vocabulary_index = {
-  /**
-   * Resource URL. "taxonomy_vocabulary.json"
-   */
-  "resource_path": "taxonomy_vocabulary.json",
+services.taxonomyVocabulary.index = function (options) {
+  try {
+    // Build the options for the service call.
+    options = {
+      type: 'delete',
+      url: 'taxonomy_vocabulary.json',
+      async: true,
+      success: this.hookSuccess,
+      error: this.hookError
+    };
 
-  /**
-   * Default Method: GET
-   */
-  "resource_type": "get",
-  /**
-   * Make a call to a Drupal Service Taxonomy Vocabulary Index Resource.
-   *
-   * @param {string} caller_options.error
-   *        Error handler hook.
-   * @param {string} caller_options.success
-   *        Success handler hook.
-   */
-  "resource_call": function (caller_options) {
-    try {
-      // Build the service resource call options.
-      options = {
-        "resource_path": this.resource_path,
-        "type": this.resource_type,
-        "async": true,
-        "error": this.error,
-        "success": this.success,
-      };
-
-      // Attach error/success hooks if provided.
-      if (caller_options.error) {
-        options.hook_error = caller_options.error;
-      }
-      if (caller_options.success) {
-        options.hook_success = caller_options.success;
-      }
-
-      // Make the service call.
-      drupal_services.resource_call(options);
-    }
-    catch (error) {
-      console.log("Error: services/taxonomy_vocabulary.js");
-      console.log("Object: drupal_services_taxonomy_vocabulary_index - " + error);
-    }
-  },
-
-  /**
-   * Error Handler
-   */
-  "error": function (jqXHR, textStatus, errorThrown) {
-    if (errorThrown) {
-      console.log(errorThrown);
-    }
-    else {
-      console.log(textStatus);
-    }
-  },
-
-  /**
-   * Success handler
-   */
-  "success": function (data) {},
+    // Make the service call.
+    services.resource(options);
+  }
+  catch (error) {
+    console.log('Error: services/taxonomy_vocabulary.js');
+    console.log('Object: services.taxonomyVocabulary.index - ' + error);
+  }
 };
 
 /**
- * @constructor
- * @description Services interface to taxonomy_get_tree().
+ * Services interface to taxonomy_get_tree().
+ *
+ * @param {object} options
+ * @param {string} options.vid
+ *        Required. The vocabulary ID.
+ *
+ * @param {string} options.hookError
+ *        Error handler hook.
+ * @param {string} options.hookSuccess
+ *        Success handler hook.
  */
-var drupal_services_taxonomy_vocabulary_get_tree = {
-  /**
-   * Resource URL. "taxonomy_vocabulary/getTree.json"
-   */
-  "resource_path": "taxonomy_vocabulary/getTree.json",
+services.taxonomyVocabulary.getTree = function (options) {
+  try {
+    // Build service call data string.
+    var data = 'vid=' + encodeURIComponent(options.vid);
 
-  /**
-   * Default Method: POST
-   */
-  "resource_type": "post",
+    // Build the options for the service call.
+    options = {
+      type: 'post',
+      url: 'taxonomy_vocabulary/getTree.json',
+      async: true,
+      success: this.hookSuccess,
+      error: this.hookError,
+      data: data
+    };
 
-  /**
-   * Make a call to a Drupal Service Taxonomy Vocabulary Get Tree Resource.
-   *
-   * @param {Object} caller_options
-   * @param {string} caller_options.vid
-   *        Required. The vocabulary ID.
-   *
-   * @param {string} caller_options.error
-   *        Error handler hook.
-   * @param {string} caller_options.success
-   *        Success handler hook.
-   */
-  "resource_call": function (caller_options) {
-    try {
-      // Build service call data string.
-      data = "vid=" + encodeURIComponent(caller_options.vid);
-
-      // Build the options to the service call.
-      options = {
-        "data": data,
-        "resource_path": this.resource_path,
-        "type": this.resource_type,
-        "async": true,
-        "success": this.success,
-        "error": this.error
-      };
-
-      // Attach error/success hooks if provided.resource_call
-      if (caller_options.error) {
-        options.hook_error = caller_options.error;
-      }
-      if (caller_options.success) {
-        options.hook_success = caller_options.success;
-      }
-
-      // Make the service call.
-      drupal_services.resource_call(options);
-    }
-    catch (error) {
-      console.log("Error: services/taxonomy_vocabulary.js");
-      console.log("Object: drupal_services_taxonomy_vocabulary_get_tree - " + error);
-    }
-  },
-
-  /**
-   * Error Handler
-   */
-  "error": function (jqXHR, textStatus, errorThrown) {
-    if (errorThrown) {
-      console.log(errorThrown);
-    }
-    else {
-      console.log(textStatus);
-    }
-  },
-
-  /**
-   * Success handler
-   */
-  "success": function (data) {},
+    // Make the service call.
+    services.resource(options);
+  }
+  catch (error) {
+    console.log('Error: services/taxonomy_vocabulary.js');
+    console.log('Object: services.taxonomyVocabulary.getTree - ' + error);
+  }
 };
