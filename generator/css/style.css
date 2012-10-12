@@ -1,0 +1,38 @@
+.syntaxhighlighter  {
+  padding:0;
+  margin:0 ;
+  overflow-y: hidden !important;
+}
+
+.output {
+  padding: 0 14px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+.hidden{display: none;}
+
+.right {float: right;}
+.left {float: left;}
+a {cursor: pointer;}
+
+@media (max-width: 767px) {
+  .form-horizontal .control-label {
+    float: none;
+    width: auto;
+    padding-top: 0;
+    text-align: left;
+  }
+  .form-horizontal .controls {
+    margin-left: 0;
+  }
+  .form-horizontal .control-list {
+    padding-top: 0;
+  }
+  .form-horizontal .form-actions {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
