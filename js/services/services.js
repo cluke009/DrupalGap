@@ -99,7 +99,24 @@ var services = services || {
    * @namespace
    * @name services.viewsDataSource
    */
-  viewsDataSource: {}
+  viewsDataSource: {},
+
+  // object literals can contain properties and methods.
+  // here, another object is defined for configuration
+  // purposes:
+  config: {
+    sitePath: 'http://localhost:8082',
+    endPoint: 'rest',
+    basePath: '?q=',
+    debug: 0
+  },
+
+  // override the current configuration
+  init: function (newConfig) {
+    if (typeof newConfig == 'object') {
+      $.extend(this.config , newConfig);
+    }
+  }
 };
 
 /**
@@ -126,39 +143,45 @@ var services = services || {
  * @param {int} options.debug
  *        Defaults to 0 or off. 1 to enable for easier debugging on hardware devices.
  */
-services.config = function(options) {
-  var defaultOptions = {
-    sitePath: 'http://localhost:8082',
-    endPoint: 'rest',
-    basePath: '?q=',
-    debug: 0
-  };
 
-  if (typeof options == 'object') {
-    options = $.extend(defaultOptions, options);
-  } else {
-    options = defaultOptions;
-  }
 
-  // Dynamically load debug files.
-  (function() {
-    if (options.debug === 1) {
-      $('head').append('<link>');
-      var css = $('head').children(':last');
-      css.attr({
-        rel: 'stylesheet',
-        type: 'text/css',
-        href: '/css/debug.css'
-      });
-      var js = document.createElement('script');
-      js.type = 'text/javascript';
-      js.src = '/js/debug.js';
-      $('head').append(js);
-    }
-  })();
 
-  return options;
-};
+
+// services.config = function(options) {
+//   var defaultOptions = {
+//     sitePath: 'http://localhost:8082',
+//     endPoint: 'rest',
+//     basePath: '?q=',
+//     debug: 0
+//   };
+// console.log(options);
+//   if (typeof options == 'object') {
+//     options = $.extend(defaultOptions, options);
+//   } else {
+//     options = defaultOptions;
+//   }
+// console.log(options);
+//   // Dynamically load debug files.
+//   (function() {
+//     if (options.debug === 1) {
+//       $('head').append('<link>');
+//       var css = $('head').children(':last');
+//       css.attr({
+//         rel: 'stylesheet',
+//         type: 'text/css',
+//         href: '/css/debug.css'
+//       });
+//       var js = document.createElement('script');
+//       js.type = 'text/javascript';
+//       js.src = '/js/debug.js';
+//       $('head').append(js);
+//     }
+//   })();
+
+//   return options;
+// };
+
+
 
 /**
  * Make a call to a Drupal Service Resource.
@@ -392,7 +415,7 @@ services.defaultStorageKey = function(type, url) {
  * Set default values for options if none were provided.
  */
 services.resourceGetOptions = function(options) {
-  var config = services.config();
+  var config = services.config;
 
   if (!options.sitePath) {
     options.sitePath = config.sitePath;
