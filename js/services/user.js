@@ -191,6 +191,12 @@ services.user.del = function (options) {
  * This would return an array of objects with only uid, name and mail defined,
  * where uid = 1.
  *
+ * @param {object} options
+ * @param {array} options.fields
+ *        An array of fields to pass in the url.
+ * @param {object} options.param
+ *        A json object containing url parameters.
+ *
  * @param {string} options.hookError
  *        Error handler hook.
  * @param {string} options.hookSuccess
@@ -198,10 +204,47 @@ services.user.del = function (options) {
  */
 services.user.index = function (options) {
   try {
+    // @see http://pkarl.com/articles/remove-undefined-and-empty-elements-javascript-arr/
+    var fields = options.fields;
+    var newArr = [];
+
+    // remove 'falsey' items by creating new array of true-y stuff
+    for (var index in fields) {
+      if(fields[index]) {
+        newArr.push( fields[index] );
+      }
+    }
+    fields = newArr;
+
+    // Append fields to urls.
+    var args = '';
+    if (fields.length > 0) {
+      args = 'fields=';
+      for (var i = 0; i < fields.length; i++) {
+        if (i !== fields.length - 1) {
+          args += fields[i] + ',';
+        }
+        else {
+          args += fields[i];
+        }
+      }
+    }
+
+    // Append parameters to url.
+    var params = options.params;
+    var args1 = '';
+    if (params) {
+      for (var k in params) {
+        if (params.hasOwnProperty(k)) {
+          args1 += '&parameters[' + k + ']=' + params[k];
+        }
+      }
+    }
+
     // Build the options for the service call.
     options = {
       type: 'get',
-      url: 'user.json',
+      url: 'user.json' + args + args1,
       async: true,
       success: this.hookSuccess,
       error: this.hookError
