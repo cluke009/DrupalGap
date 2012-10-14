@@ -20,24 +20,32 @@
 /**
  * An object with an active session name and id.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.success
  *        Success handler hook.
  */
 services.system.connect = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'system/connect.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/system.js');
@@ -52,9 +60,9 @@ services.system.connect = function (options) {
  * @param {string} options.name
  *        Required. The name of the variable you want.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.success
  *        Success handler hook.
  */
 services.system.getVariable = function (options) {
@@ -63,17 +71,25 @@ services.system.getVariable = function (options) {
     var data = 'name=' + encodeURIComponent(options.name);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'system/get_variable.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/system.js');
@@ -90,9 +106,9 @@ services.system.getVariable = function (options) {
  * @param {string} options.value
  *        Optional. The replacement value of the variable.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.success
  *        Success handler hook.
  */
 services.system.setVariable = function (options) {
@@ -102,17 +118,25 @@ services.system.setVariable = function (options) {
         data += '&value=' + encodeURIComponent(options.value);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'system/set_variable.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/system.js');
@@ -127,9 +151,9 @@ services.system.setVariable = function (options) {
  * @param {string} options.name
  *        Required. The name of the variable you want to delete.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.success
  *        Success handler hook.
  */
 services.system.delVariable = function (options) {
@@ -138,17 +162,25 @@ services.system.delVariable = function (options) {
     var data = 'name=' + encodeURIComponent(options.name);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'system/set_variable.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/system.js');

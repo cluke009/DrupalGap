@@ -234,6 +234,17 @@ services.resource = function(options) {
     var serviceResourceCallUrl  = options.sitePath + options.basePath;
         serviceResourceCallUrl += options.endPoint + '/' + options.url;
 
+    // Attach error/success hooks if provided.
+    var success = services.resourceSuccess;
+    if (options.success) {
+      success = [options.success, services.resourceSuccess];
+    }
+
+    var error = services.resourceError;
+    if (options.error) {
+      error = [options.error, services.resourceError];
+    }
+
     // If we loaded the service resource result from local storage,
     // parse it out, otherwise make the service resource call.
     if (result) {
@@ -257,12 +268,8 @@ services.resource = function(options) {
           dataType: options.dataType,
           async: options.async,
           contentType: options.contentType,
-          success: function(data, textStatus, errorThrown) {
-            services.resourceSuccess(data, textStatus, errorThrown);
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            services.resourceError(jqXHR, textStatus, errorThrown);
-          },
+          success: hookSuccess,
+          error: hookError,
           xhrFields: {
             withCredentials: true
           },
@@ -280,18 +287,14 @@ services.resource = function(options) {
           dataType: options.dataType,
           async: options.async,
           contentType: options.contentType,
+          success: success,
+          error: error,
           xhrFields: {
             withCredentials: true
           },
           beforeSend: function(jqXHR) {
             jqXHR.withCredentials = true;
           }
-        })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-          services.resourceError(jqXHR, textStatus, errorThrown);
-        })
-        .done(function(data) {
-          services.resourceSuccess(data);
         });
       }
     }
