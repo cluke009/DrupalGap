@@ -236,13 +236,16 @@ services.resource = function(options) {
 
     // Attach error/success hooks if provided.
     var success = services.resourceSuccess;
+    var error = services.resourceError;
+    var complete = services.resourceComplete;
     if (options.success) {
       success = [options.success, services.resourceSuccess];
     }
-
-    var error = services.resourceError;
     if (options.error) {
       error = [options.error, services.resourceError];
+    }
+    if (options.complete) {
+      complete = [options.complete, services.resourceComplete];
     }
 
     // If we loaded the service resource result from local storage,
@@ -268,8 +271,9 @@ services.resource = function(options) {
           dataType: options.dataType,
           async: options.async,
           contentType: options.contentType,
-          success: hookSuccess,
-          error: hookError,
+          success: success,
+          error: error,
+          complete: complete,
           xhrFields: {
             withCredentials: true
           },
@@ -289,6 +293,7 @@ services.resource = function(options) {
           contentType: options.contentType,
           success: success,
           error: error,
+          complete: complete,
           xhrFields: {
             withCredentials: true
           },
@@ -333,6 +338,26 @@ services.resourceError = function(jqXHR, textStatus, errorThrown) {
 };
 
 /**
+ * A function to be called when the request finishes
+ * (after success and error callbacks are executed)
+ *
+ * @param  {object} jqXHR
+ *         The jQuery XMLHttpRequest
+ * @param  {string} textStatus
+ *         categorizing the status of the request ("success", "notmodified", "error", "timeout", "abort", or "parsererror")
+ * @return {string}
+ *         console.log('COMPLETE:\n' + JSON.stringify(result, undefined, 2));
+ */
+services.resourceComplete = function(jqXHR, textStatus) {
+  // Log the error to the console.
+  var result = {
+    'jqXHR': jqXHR,
+    'textStatus': textStatus
+  };
+  console.log('COMPLETE:\n' + JSON.stringify(result, undefined, 2));
+};
+
+/**
  * Asynchronous ajax success call back function.
  *
  * @param {object} data
@@ -340,20 +365,9 @@ services.resourceError = function(jqXHR, textStatus, errorThrown) {
  *       and why the this.options approach didn't work as expected earlier.
  *       Save the result to local storage, if necessary.
  */
-services.resourceSuccess = function(data) {
+services.resourceSuccess = function(data, textStatus, jqXHR) {
   // Print data to console.
   console.log('RESPONSE:\n' + JSON.stringify(data, undefined, 2));
-
-  if (data.saveToLocalStorage == '1') {
-    window.localStorage.setItem(data.localStorageKey, JSON.stringify(data, undefined, 2));
-    console.log('saving service resource to local storage (' + data.localStorageKey + ')');
-  }
-  else {
-    console.log('NOT saving service resource to local storage (' + data.localStorageKey + ')');
-  }
-  result = data;
-  // Clean up service resource result local storage dependencies.
-  // servicesResourceCleanLocalStorageDependencies(data);
 };
 
 /**

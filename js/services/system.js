@@ -42,6 +42,9 @@ services.system.connect = function (options) {
       if (options.error){
         props.error = options.error;
       }
+      if (options.complete){
+        props.complete = options.complete;
+      }
     }
 
     // Make the service call.
@@ -64,6 +67,8 @@ services.system.connect = function (options) {
  *        Error handler hook.
  * @param {string} options.success
  *        Success handler hook.
+ * @param {string} options.complete
+ *        Complete handler hook.
  */
 services.system.getVariable = function (options) {
   try {
@@ -85,6 +90,9 @@ services.system.getVariable = function (options) {
       }
       if (options.error){
         props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
       }
     }
 
@@ -110,6 +118,8 @@ services.system.getVariable = function (options) {
  *        Error handler hook.
  * @param {string} options.success
  *        Success handler hook.
+ * @param {string} options.complete
+ *        Complete handler hook.
  */
 services.system.setVariable = function (options) {
   try {
@@ -133,6 +143,9 @@ services.system.setVariable = function (options) {
       if (options.error){
         props.error = options.error;
       }
+      if (options.complete){
+        props.complete = options.complete;
+      }
     }
 
     // Make the service call.
@@ -155,6 +168,8 @@ services.system.setVariable = function (options) {
  *        Error handler hook.
  * @param {string} options.success
  *        Success handler hook.
+ * @param {string} options.complete
+ *        Complete handler hook.
  */
 services.system.delVariable = function (options) {
   try {
@@ -176,6 +191,9 @@ services.system.delVariable = function (options) {
       }
       if (options.error){
         props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
       }
     }
 
