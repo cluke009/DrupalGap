@@ -15,16 +15,16 @@ $(document).ready(function () {
     }
   }
   console.log = function (message) {
-    var now = new Date()
+    var now = new Date();
     var h = now.getHours();
     var m = now.getMinutes();
     var s = now.getSeconds();
     var ms = now.getMilliseconds();
-    var now = '<span class="timestamp">' + h + ':' + m + ':' + s + ':' + ms + '</span> ';
+    now = '<span class="timestamp">' + h + ':' + m + ':' + s + ':' + ms + '</span> ';
     console.olog(message);
     $('.debugDiv').prepend('<pre>' + now + drupalgap_syntax_highlight(message) + '</pre>');
   };
-  console.error = console.debug = console.info = console.log
+  console.error = console.debug = console.info = console.log;
 });
 
 /**
