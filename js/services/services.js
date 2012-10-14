@@ -51,6 +51,7 @@ var services = services || {
    * @name services.comment
    */
   comment: {},
+
   /**
    * Namespace for interacting with the services file group.
    *
@@ -58,6 +59,7 @@ var services = services || {
    * @name services.file
    */
   file: {},
+
   /**
    * Namespace for interacting with the services node group.
    *
@@ -65,6 +67,7 @@ var services = services || {
    * @name services.node
    */
   node: {},
+
   /**
    * Namespace for interacting with the system comment group.
    *
@@ -72,6 +75,7 @@ var services = services || {
    * @name services.system
    */
   system: {},
+
   /**
    * Namespace for interacting with the services taxonomyTerm group.
    *
@@ -79,6 +83,7 @@ var services = services || {
    * @name services.taxonomyTerm
    */
   taxonomyTerm: {},
+
   /**
    * Namespace for interacting with the services taxonomyVocabulary group.
    *
@@ -86,6 +91,7 @@ var services = services || {
    * @name services.taxonomyVocabulary
    */
   taxonomyVocabulary: {},
+
   /**
    * Namespace for interacting with the services user group.
    *
@@ -93,31 +99,27 @@ var services = services || {
    * @name services.user
    */
   user: {},
+
   /**
    * Namespace for interacting with views_datasource.
    *
    * @namespace
    * @name services.viewsDataSource
    */
-  viewsDataSource: {},
-
-  // object literals can contain properties and methods.
-  // here, another object is defined for configuration
-  // purposes:
-  config: {
-    sitePath: 'http://localhost:8082',
-    endPoint: 'rest',
-    basePath: '?q=',
-    debug: 0
-  },
-
-  // override the current configuration
-  init: function (newConfig) {
-    if (typeof newConfig == 'object') {
-      $.extend(this.config , newConfig);
-    }
-  }
+  viewsDataSource: {}
 };
+
+/**
+ * Hold Default configuration settings.
+ *
+ * @type {object}
+ */
+services.config = {
+  sitePath: 'http://localhost:8082',
+  endPoint: 'rest',
+  basePath: '?q=',
+  debug: 0
+},
 
 /**
  * Drupal services configuration settings.
@@ -131,7 +133,7 @@ var services = services || {
  *   basePath: '?q=',
  *   debug: 0
  * };
- * services.config(options);
+ * services.init(options);
  *
  * @param {object} options
  * @param {string} options.sitePath
@@ -143,45 +145,29 @@ var services = services || {
  * @param {int} options.debug
  *        Defaults to 0 or off. 1 to enable for easier debugging on hardware devices.
  */
+services.init = function (options) {
+  // Extend services.config
+  if (typeof options == 'object') {
+    $.extend(this.config , options);
+  }
 
-
-
-
-// services.config = function(options) {
-//   var defaultOptions = {
-//     sitePath: 'http://localhost:8082',
-//     endPoint: 'rest',
-//     basePath: '?q=',
-//     debug: 0
-//   };
-// console.log(options);
-//   if (typeof options == 'object') {
-//     options = $.extend(defaultOptions, options);
-//   } else {
-//     options = defaultOptions;
-//   }
-// console.log(options);
-//   // Dynamically load debug files.
-//   (function() {
-//     if (options.debug === 1) {
-//       $('head').append('<link>');
-//       var css = $('head').children(':last');
-//       css.attr({
-//         rel: 'stylesheet',
-//         type: 'text/css',
-//         href: '/css/debug.css'
-//       });
-//       var js = document.createElement('script');
-//       js.type = 'text/javascript';
-//       js.src = '/js/debug.js';
-//       $('head').append(js);
-//     }
-//   })();
-
-//   return options;
-// };
-
-
+  // Dynamically load debug files.
+  (function() {
+    if (options.debug === 1) {
+      $('head').append('<link>');
+      var css = $('head').children(':last');
+      css.attr({
+        rel: 'stylesheet',
+        type: 'text/css',
+        href: '/css/debug.css'
+      });
+      var js = document.createElement('script');
+      js.type = 'text/javascript';
+      js.src = '/js/debug.js';
+      $('head').append(js);
+    }
+  })();
+},
 
 /**
  * Make a call to a Drupal Service Resource.
@@ -270,15 +256,13 @@ services.resource = function(options) {
           data: options.data + fields,
           dataType: options.dataType,
           async: options.async,
+          contentType: options.contentType,
           success: function(data, textStatus, errorThrown) {
-            // alert('success')
             services.resourceSuccess(data, textStatus, errorThrown);
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            // alert('fail')
             services.resourceError(jqXHR, textStatus, errorThrown);
           },
-          contentType: 'application/x-www-form-urlencoded',
           xhrFields: {
             withCredentials: true
           },
@@ -295,7 +279,7 @@ services.resource = function(options) {
           data: options.data + fields,
           dataType: options.dataType,
           async: options.async,
-          contentType: 'application/x-www-form-urlencoded',
+          contentType: options.contentType,
           xhrFields: {
             withCredentials: true
           },
@@ -317,7 +301,6 @@ services.resource = function(options) {
     console.log('Object: services.resource - ' + error);
     console.log(JSON.stringify(options, undefined, 2));
   }
-
 };
 
 /**
@@ -350,17 +333,15 @@ services.resourceError = function(jqXHR, textStatus, errorThrown) {
  * Asynchronous ajax success call back function.
  *
  * @param {object} data
+ * @todo Understand why the options variable is available here,
+ *       and why the this.options approach didn't work as expected earlier.
+ *       Save the result to local storage, if necessary.
  */
 services.resourceSuccess = function(data) {
-  // Hide the page loading message.
-  // $.mobile.hidePageLoadingMsg();
   // Print data to console.
   console.log('RESPONSE:\n' + JSON.stringify(data, undefined, 2));
-  // @todo - Understand why the options variable is available here,
-  // and why the this.options approach didn't work as expected earlier.
-  // Save the result to local storage, if necessary.
-  if (data.saveToLocalStorage == '1') {
 
+  if (data.saveToLocalStorage == '1') {
     window.localStorage.setItem(data.localStorageKey, JSON.stringify(data, undefined, 2));
     console.log('saving service resource to local storage (' + data.localStorageKey + ')');
   }
@@ -434,6 +415,9 @@ services.resourceGetOptions = function(options) {
   }
   if (!options.dataType) {
     options.dataType = 'json';
+  }
+  if (!options.contentType) {
+    options.contentType = 'application/x-www-form-urlencoded';
   }
   if (!options.async) {
     options.async = false;
