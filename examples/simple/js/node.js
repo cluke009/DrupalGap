@@ -1,20 +1,6 @@
 /*global services*/
 
 /**
- * Tab swapping.
- */
-$('a').live('click', function () {
-  var target = $(this.rel);
-  $('.content').not(target).hide();
-  target.toggle();
-
-  $('a.active').removeClass('active');
-  $(this).addClass('active');
-  $('body > div.content_active').removeClass('content_active');
-  $(this.rel).addClass('content_active');
-});
-
-/**
  * Handles the submission of the node retrieve form.
  */
 $('#submit_node_retrieve').live('click', function () {
@@ -82,8 +68,14 @@ $('#submit_node_delete').live('click', function () {
  * Handles the submission of the node index form.
  */
 $('#submit_node_index').live('click', function () {
+  var params = $('#input_node_index_params').val();
+  var fields = $('#input_node_index_fields').val();
+      fields = fields.split(',');
+
   // Build service call options.
   var options = {
+    params: $.parseJSON(params),
+    fields: fields,
     'success': function () {},
     'error': function () {}
   };

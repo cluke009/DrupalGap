@@ -1,6 +1,0 @@
-{
-  sitePath: 'http://localhost:8082',
-  endPoint: 'rest',
-  basePath: '?q=',
-  debug: 1
-}

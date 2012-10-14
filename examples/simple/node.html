@@ -1,51 +1,27 @@
-<!DOCTYPE HTML>
 <html>
-<head>
-  <title>Drupal Services</title>
-  <!-- Jquery lib -->
-  <script src="../../js/jquery-1.8.2.js"></script>
+  <head>
+  </head>
+  <body>
+      <div id="tabbed" class="nav">
+        <ul class="tab-headers tabs">
+          <li><a href="#section_node_retrieve">Retrieve</a></li>
+          <li><a href="#section_node_create">Create</a></li>
+          <li><a href="#section_node_update">Update</a></li>
+          <li><a href="#section_node_delete">Delete</a></li>
+          <li><a href="#section_node_index">Index</a></li>
+          <li><a href="#section_node_files">Files</a></li>
+          <li><a href="#section_node_comments">Comments</a></li>
+        </ul>
+        <div class="tab-wrapper">
 
-  <!-- Required for all requests -->
-  <script src="../../js/services/services.js"></script>
-  <script src="../../js/services/system.js"></script>
+          <div id="section_node_retrieve" class="tabcontent">
+            <h2>Node Retrieve</h2>
 
-  <!-- Required for this request -->
-  <script src="../../js/services/node.js"></script>
-  <script src="js/node.js"></script>
+            <label for="input_node_retrieve_nid">Node ID</label>
+            <input type="text" id="input_node_retrieve_nid" value="1" />
 
-  <!-- Simple CSS -->
-  <link type="text/css" rel="stylesheet" media="all" href="css/simple.css" />
-</head>
-<body>
-
-  <ul class="nav">
-    <li><a href="comment.html">Comment</a></li>
-    <li><a href="file.html">File</a></li>
-    <li><a href="node.html">Node</a></li>
-    <li><a href="system.html">System</a></li>
-    <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
-    <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
-    <li><a href="user.html">User</a></li>
-  </ul>
-
-  <div id="page_node">
-    <h1>Node</h1>
-    <a id="link_node_retrieve" rel="#section_node_retrieve" href="#">Retrieve</a>
-    <a id="link_node_create" rel="#section_node_create" href="#">Create</a>
-    <a id="link_node_update" rel="#section_node_update" href="#">Update</a>
-    <a id="link_node_login" rel="#section_node_delete" href="#">Delete</a>
-    <a id="link_node_index" rel="#section_node_index" href="#">Index</a>
-    <a id="link_node_files" rel="#section_node_files" href="#">Files</a>
-    <a id="link_node_comments" rel="#section_node_comments" href="#">Comments</a>
-
-    <div id="section_node_retrieve" class="content content_active">
-      <h2>Node Retrieve</h2>
-
-      <label for="input_node_retrieve_nid">Node ID</label>
-      <input type="text" id="input_node_retrieve_nid" value="1" />
-
-      <button type="button" id="submit_node_retrieve">Retrieve</button>
-    </div><!-- /section_node_login -->
+            <button type="button" id="submit_node_retrieve">Retrieve</button>
+          </div><!-- /section_node_login -->
 
     <div id="section_node_create" class="content">
       <h2>Node Create</h2>
@@ -94,6 +70,10 @@
 
     <div id="section_node_index" class="content">
       <h2>Node Index</h2>
+      <label for="input_node_index_fields">Fields</label>
+      <input type="text" id="input_node_index_fields" value="nid, vid" />
+      <label for="input_node_index_params">Parameters</label>
+      <input type="text" id="input_node_index_params" value='{"nid": "1"}' />
       <button type="button" id="submit_node_index">Get nodes</button>
     </div><!-- /section_node_index -->
 
@@ -110,8 +90,34 @@
       <input type="text" id="input_node_comments_nid" value="1" />
       <button type="button" id="submit_node_comments">Get comments</button>
     </div><!-- /section_node_comments -->
-  </div><!-- /page -->
-  <div class="debugDiv"></div>
 
-</body>
+        </div><!-- /tab-wrapper -->
+      </div><!-- /tabbed -->
+
+    <link rel="stylesheet" type="text/css" href="css/simple.css">
+    <script src="../../js/jquery-1.8.2.js"></script>
+    <script src="../../js/jqTabs.js"></script>
+    <script src="../../js/signals.min.js"></script>
+    <script src="../../js/hasher.min.js"></script>
+    <script src="../../js/services/services.js"></script>
+    <script src="../../js/services/node.js"></script>
+    <script src="../../js/consolelog.js"></script>
+    <script src="js/node.js"></script>
+    <script>
+      $(document).ready(function(){
+
+          var options = {
+            sitePath: 'http://localhost:8082',
+            endPoint: 'rest',
+            basePath: '/',
+            debug: 0
+          };
+          services.init(options);
+
+          var tabs = new jqTabs($("#tabbed"));
+        }
+      );
+    </script>
+    <div class="debugDiv"></div>
+  </body>
 </html>
