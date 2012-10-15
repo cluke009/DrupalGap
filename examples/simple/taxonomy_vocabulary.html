@@ -4,15 +4,29 @@
   <title>Drupal Services</title>
   <!-- Jquery lib -->
   <script src="../../js/jquery-1.8.2.js"></script>
+  <script src="../../js/jqTabs.js"></script>
+  <script src="../../js/signals.min.js"></script>
+  <script src="../../js/hasher.min.js"></script>
 
   <!-- Required for all requests -->
   <script src="../../js/services/services.js"></script>
-  <script src="../../js/services/system.js"></script>
 
   <!-- Required for this request -->
   <script src="../../js/services/taxonomy_vocabulary.js"></script>
   <script src="js/taxonomy_vocabulary.js"></script>
+  <script>
+    $(document).ready(function(){
+      var options = {
+        sitePath: 'http://localhost:8082',
+        endPoint: 'rest',
+        basePath: '/',
+        debug: 0
+      };
+      services.init(options);
 
+      var tabs = new jqTabs($("#tabbed"));
+    });
+  </script>
   <!-- Simple CSS -->
   <link type="text/css" rel="stylesheet" media="all" href="css/simple.css" />
 </head>
@@ -28,14 +42,17 @@
     <li><a href="user.html">User</a></li>
   </ul>
 
-  <div id="page_taxonomy_vocabulary">
     <h1>Taxonomy Vocabulary</h1>
-    <a id="link_taxonomy_vocabulary_retrieve" rel="#section_taxonomy_vocabulary_retrieve" href="#">Retrieve</a>
-    <a id="link_taxonomy_vocabulary_create" rel="#section_taxonomy_vocabulary_create" href="#">Create</a>
-    <a id="link_taxonomy_vocabulary_update" rel="#section_taxonomy_vocabulary_update" href="#">Update</a>
-    <a id="link_taxonomy_vocabulary_login" rel="#section_taxonomy_vocabulary_delete" href="#">Delete</a>
-    <a id="link_taxonomy_vocabulary_index" rel="#section_taxonomy_vocabulary_index" href="#">Index</a>
-    <a id="link_taxonomy_vocabulary_select_nodes" rel="#section_taxonomy_vocabulary_get_tree" href="#">getTree</a>
+      <div id="tabbed" class="nav">
+        <ul class="tab-headers tabs">
+          <li><a href="#section_taxonomy_vocabulary_retrieve">Retrieve</a></li>
+          <li><a href="#section_taxonomy_vocabulary_create">Create</a></li>
+          <li><a href="#section_taxonomy_vocabulary_update">Update</a></li>
+          <li><a href="#section_taxonomy_vocabulary_delete">Delete</a></li>
+          <li><a href="#section_taxonomy_vocabulary_index">Index</a></li>
+          <li><a href="#section_taxonomy_vocabulary_get_tree">getTree</a></li>
+        </ul>
+        <div class="tab-wrapper">
 
     <div id="section_taxonomy_vocabulary_retrieve" class="content content_active">
       <h2>Taxonomy Vocabulary Retrieve</h2>
@@ -149,8 +166,10 @@
       <input type="text" id="input_taxonomy_vocabulary_get_tree_vid" value="1" />
       <button type="button" id="submit_taxonomy_vocabulary_get_tree">Get tree</button>
     </div><!-- /section_taxonomy_vocabulary_get_tree -->
-  </div><!-- /page -->
-  <div class="debugDiv"></div>
+        </div><!-- /tab-wrapper -->
+      </div><!-- /tabbed -->
+
+      <div class="debugDiv"></div>
 
 </body>
 </html>

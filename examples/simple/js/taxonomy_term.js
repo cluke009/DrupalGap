@@ -1,18 +1,4 @@
 /**
- * Tab swapping.
- */
-$('a').live('click', function () {
-  var target = $(this.rel);
-  $('.content').not(target).hide();
-  target.toggle();
-
-  $('a.active').removeClass('active');
-  $(this).addClass('active');
-  $('body > div.content_active').removeClass('content_active');
-  $(this.rel).addClass('content_active');
-});
-
-/**
  * Handles the submission of the taxonomy_term retrieve form.
  */
 $('#submit_taxonomy_term_retrieve').live('click', function () {
@@ -23,7 +9,7 @@ $('#submit_taxonomy_term_retrieve').live('click', function () {
     "error": function () {}
   };
   // Make service call.
-  drupal_services_taxonomy_term_retrieve.resource_call(options);
+  services.taxonomyTerm.retrieve(options);
 });
 
 /**
@@ -41,7 +27,7 @@ $('#submit_taxonomy_term_create').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_taxonomy_term_create.resource_call(options);
+  services.taxonomyTerm.create(options);
 });
 
 /**
@@ -60,7 +46,7 @@ $('#submit_taxonomy_term_update').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_taxonomy_term_update.resource_call(options);
+  services.taxonomyTerm.update(options);
 });
 
 /**
@@ -74,7 +60,7 @@ $('#submit_taxonomy_term_delete').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_taxonomy_term_delete.resource_call(options);
+  services.taxonomyTerm.del(options);
 });
 
 /**
@@ -87,7 +73,7 @@ $('#submit_taxonomy_term_index').live('click', function () {
     "error": function () {}
   };
   // Load taxonomy_term via services call.
-  drupal_services_taxonomy_term_index.resource_call(options);
+  services.taxonomyTerm.index(options);
 });
 
 /**
@@ -101,5 +87,5 @@ $('#submit_taxonomy_term_select_nodes').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_taxonomy_term_select_nodes.resource_call(options);
+  services.taxonomyTerm.selectNodes(options);
 });

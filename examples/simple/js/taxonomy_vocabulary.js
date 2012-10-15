@@ -1,18 +1,4 @@
 /**
- * Tab swapping.
- */
-$('a').live('click', function () {
-  var target = $(this.rel);
-  $('.content').not(target).hide();
-  target.toggle();
-
-  $('a.active').removeClass('active');
-  $(this).addClass('active');
-  $('body > div.content_active').removeClass('content_active');
-  $(this.rel).addClass('content_active');
-});
-
-/**
  * Handles the submission of the taxonomy_vocabulary retrieve form.
  */
 $('#submit_taxonomy_vocabulary_retrieve').live('click', function () {
@@ -23,7 +9,7 @@ $('#submit_taxonomy_vocabulary_retrieve').live('click', function () {
     "error": function () {}
   };
   // Make service call.
-  drupal_services_taxonomy_vocabulary_retrieve.resource_call(options);
+  services.taxonomyVocabulary.retrieve(options);
 });
 
 /**
@@ -49,7 +35,7 @@ $('#submit_taxonomy_vocabulary_create').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_taxonomy_vocabulary_create.resource_call(options);
+  services.taxonomyVocabulary.create(options);
 });
 
 /**
@@ -75,7 +61,7 @@ $('#submit_taxonomy_vocabulary_update').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_taxonomy_vocabulary_update.resource_call(options);
+  services.taxonomyVocabulary.update(options);
 });
 
 /**
@@ -89,7 +75,7 @@ $('#submit_taxonomy_vocabulary_delete').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_taxonomy_vocabulary_delete.resource_call(options);
+  services.taxonomyVocabulary.del(options);
 });
 
 /**
@@ -102,7 +88,7 @@ $('#submit_taxonomy_vocabulary_index').live('click', function () {
     "error": function () {}
   };
   // Load taxonomy_vocabulary via services call.
-  drupal_services_taxonomy_vocabulary_index.resource_call(options);
+  services.taxonomyVocabulary.index(options);
 });
 
 /**
@@ -116,5 +102,5 @@ $('#submit_taxonomy_vocabulary_get_tree').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_taxonomy_vocabulary_get_tree.resource_call(options);
+  services.taxonomyVocabulary.getTree(options);
 });
