@@ -1,18 +1,4 @@
 /**
- * Tab swapping.
- */
-$('a').live('click', function () {
-  var target = $(this.rel);
-  $('.content').not(target).hide();
-  target.toggle();
-
-  $('a.active').removeClass('active');
-  $(this).addClass('active');
-  $('body > div.content_active').removeClass('content_active');
-  $(this.rel).addClass('content_active');
-});
-
-/**
  * Handles the submission of the file retrieve form.
  */
 $('#submit_file_retrieve').live('click', function () {
@@ -23,7 +9,7 @@ $('#submit_file_retrieve').live('click', function () {
       "error": function () {}
     };
     // Make service call.
-    drupal_services_file_retrieve.resource_call(options);
+    services.file.retrieve(options);
 });
 
 /**
@@ -38,7 +24,7 @@ $('#submit_file_create').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_file_create.resource_call(options);
+  services.file.create(options);
 });
 
 /**
@@ -52,7 +38,7 @@ $('#submit_file_delete').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_file_delete.resource_call(options);
+  services.file.del(options);
 });
 
 /**
@@ -65,7 +51,7 @@ $('#submit_file_index').live('click', function () {
     "error": function () {}
   };
   // Load file via services call.
-  drupal_services_file_index.resource_call(options);
+  services.file.index(options);
 });
 
 /**
@@ -80,5 +66,5 @@ $('#submit_file_create_raw').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_file_create_raw.resource_call(options);
+  services.file.createRaw(options);
 });

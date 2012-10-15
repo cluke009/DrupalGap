@@ -13,24 +13,20 @@
 
   <!-- Required for this request -->
   <script src="../../js/services/comment.js"></script>
+  <script src="js/comment.js"></script>
+  <script>
+    $(document).ready(function(){
+      var options = {
+        sitePath: 'http://localhost:8082',
+        endPoint: 'rest',
+        basePath: '/',
+        debug: 0
+      };
+      services.init(options);
 
-
-
-
-    <script>
-      $(document).ready(function(){
-        var options = {
-          sitePath: 'http://localhost:8082',
-          endPoint: 'rest',
-          basePath: '/',
-          debug: 0
-        };
-        services.init(options);
-
-        var tabs = new jqTabs($("#tabbed"));
-      });
-    </script>
-    <script src="js/comment.js"></script>
+      var tabs = new jqTabs($("#tabbed"));
+    });
+  </script>
   <!-- Simple CSS -->
   <link type="text/css" rel="stylesheet" media="all" href="css/simple.css" />
 </head>
