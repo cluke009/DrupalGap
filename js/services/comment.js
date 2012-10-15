@@ -39,18 +39,29 @@ services.comment.create = function (options) {
         data += '&subject=' + encodeURIComponent(options.subject);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'comment.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/comment.js');
@@ -73,16 +84,27 @@ services.comment.create = function (options) {
 services.comment.retrieve = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
       url: 'comment/' + options.cid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/comment.js');
@@ -118,18 +140,29 @@ services.comment.update = function (options) {
         data += '&subject=' + encodeURIComponent(options.subject);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'put',
       url: 'comment/' + options.cid + '.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/comment.js');
@@ -152,16 +185,27 @@ services.comment.update = function (options) {
 services.comment.del = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'delete',
       url: 'comment/' + options.cid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/comment.js');
@@ -213,10 +257,10 @@ services.comment.index = function (options) {
       args = 'fields=';
       for (var i = 0; i < fields.length; i++) {
         if (i !== fields.length - 1) {
-          args += fields[i] + ',';
+          args +=  $.trim(fields[i]) + ',';
         }
         else {
-          args += fields[i];
+          args +=  $.trim(fields[i]);
         }
       }
     }
@@ -227,22 +271,33 @@ services.comment.index = function (options) {
     if (params) {
       for (var k in params) {
         if (params.hasOwnProperty(k)) {
-          args1 += '&parameters[' + k + ']=' + params[k];
+          args1 += '&parameters[' +  $.trim(k) + ']=' +  $.trim(params[k]);
         }
       }
     }
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
-      url: 'comment.json' + args + args1,
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      url: 'comment.json?' + args + args1,
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/comment.js');
@@ -268,17 +323,28 @@ services.comment.countAll = function (options) {
     var data = 'nid=' + options.nid;
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'comment/countAll.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/comment.js');
@@ -305,7 +371,7 @@ services.comment.countNew = function (options) {
         data += '&since=' + options.since;
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'comment/countNew.json',
       async: true,
@@ -314,8 +380,21 @@ services.comment.countNew = function (options) {
       data: data
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/comment.js');
