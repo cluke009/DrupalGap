@@ -85,11 +85,11 @@ services.system.getVariable = function (options) {
 
     // Attach error/success hooks if provided.
     if (options !== undefined) {
-      if (options.success){
-        props.success = options.success;
-      }
       if (options.error){
         props.error = options.error;
+      }
+      if (options.success){
+        props.success = options.success;
       }
       if (options.complete){
         props.complete = options.complete;
@@ -137,11 +137,11 @@ services.system.setVariable = function (options) {
 
     // Attach error/success hooks if provided.
     if (options !== undefined) {
-      if (options.success){
-        props.success = options.success;
-      }
       if (options.error){
         props.error = options.error;
+      }
+      if (options.success){
+        props.success = options.success;
       }
       if (options.complete){
         props.complete = options.complete;
@@ -179,18 +179,18 @@ services.system.delVariable = function (options) {
     // Build the options for the service call.
     var props = {
       type: 'post',
-      url: 'system/set_variable.json',
+      url: 'system/del_variable.json',
       async: true,
       data: data
     };
 
     // Attach error/success hooks if provided.
     if (options !== undefined) {
-      if (options.success){
-        props.success = options.success;
-      }
       if (options.error){
         props.error = options.error;
+      }
+      if (options.success){
+        props.success = options.success;
       }
       if (options.complete){
         props.complete = options.complete;
