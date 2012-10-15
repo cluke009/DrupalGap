@@ -165,8 +165,7 @@ services.node.update = function (options) {
     }
 
     // Build service call data string.
-    var data  = 'type=' + encodeURIComponent(options.type);
-        data += '&title=' + encodeURIComponent(options.title);
+    var data = '&title=' + encodeURIComponent(options.title);
         data += '&body[' + options.language + '][][value]=' + encodeURIComponent(options.body);
         data += '&language=' + encodeURIComponent(options.language);
 
@@ -346,7 +345,7 @@ services.node.index = function (options) {
  * @param {string} options.hookSuccess
  *        Success handler hook.
  */
-services.node.getFiles = function (options) {
+services.node.files = function (options) {
   try {
     // Build the options for the service call.
     var props = {
@@ -373,7 +372,7 @@ services.node.getFiles = function (options) {
   }
   catch (error) {
     console.log('Error: services/node.js');
-    console.log('Object: services.node.getFiles - ' + error);
+    console.log('Object: services.node.files - ' + error);
   }
 };
 
