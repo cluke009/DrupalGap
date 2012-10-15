@@ -35,7 +35,6 @@
  *   }
  * };
  */
-
 var servicesResourceCallResult;
 var result;
 
@@ -153,6 +152,10 @@ services.init = function (options) {
 
   // Dynamically load debug files.
   (function() {
+    if (!window.console) console = {
+      log: function() {},
+      error: function() {}
+    };
     if (options.debug === 1) {
       $('head').append('<link>');
       var css = $('head').children(':last');
