@@ -234,7 +234,7 @@ services.resource = function(options) {
     var serviceResourceCallUrl  = options.sitePath + options.basePath;
         serviceResourceCallUrl += options.endPoint + '/' + options.url;
 
-    // Attach error/success hooks if provided.
+    // Attach error/success/complete hooks if provided.
     var success = services.resourceSuccess;
     var error = services.resourceError;
     var complete = services.resourceComplete;
@@ -326,15 +326,7 @@ services.resourceError = function(jqXHR, textStatus, errorThrown) {
     'textStatus': textStatus,
     'errorThrown': errorThrown
   };
-  console.log('RESPONSE:\n' + JSON.stringify(result, undefined, 2));
-
-  // Alert the user.
-  if (errorThrown) {
-    console.log(errorThrown);
-  }
-  else {
-    console.log(textStatus);
-  }
+  console.log('ERROR:\n' + JSON.stringify(result, undefined, 2));
 };
 
 /**
@@ -366,8 +358,13 @@ services.resourceComplete = function(jqXHR, textStatus) {
  *       Save the result to local storage, if necessary.
  */
 services.resourceSuccess = function(data, textStatus, jqXHR) {
-  // Print data to console.
-  console.log('RESPONSE:\n' + JSON.stringify(data, undefined, 2));
+  // Log the error to the console.
+  // var result = {
+  //   'data': data,
+  //   'textStatus': textStatus,
+  //   'jqXHR': jqXHR
+  // };
+  console.log('SUCCESS:\n' + JSON.stringify(data, undefined, 2));
 };
 
 /**
