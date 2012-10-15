@@ -202,6 +202,6 @@ services.system.delVariable = function (options) {
   }
   catch (error) {
     console.log('Error: services/system.js');
-    console.log('Object: services.system.setVariable - ' + error);
+    console.log('Object: services.system.delVariable - ' + error);
   }
 };

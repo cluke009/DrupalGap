@@ -304,9 +304,9 @@ services.resource = function(options) {
       }
     }
   }
-  catch (error) {
+  catch (e) {
     console.log('Error: services/services.js');
-    console.log('Object: services.resource - ' + error);
+    console.log('Object: services.resource - ' + e);
     console.log(JSON.stringify(options, undefined, 2));
   }
 };
