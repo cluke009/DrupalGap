@@ -62,18 +62,29 @@ services.taxonomyVocabulary.create = function (options) {
         data += '&weight=' + encodeURIComponent(options.weight);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'taxonomy_vocabulary.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_vocabulary.js');
@@ -96,16 +107,27 @@ services.taxonomyVocabulary.create = function (options) {
 services.taxonomyVocabulary.retrieve = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
       url: 'taxonomy_vocabulary/' + options.vid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_vocabulary.js');
@@ -166,18 +188,29 @@ services.taxonomyVocabulary.update = function (options) {
         data += '&weight=' + encodeURIComponent(options.weight);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'put',
       url: 'taxonomy_vocabulary/' + options.vid + '.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_vocabulary.js');
@@ -200,16 +233,27 @@ services.taxonomyVocabulary.update = function (options) {
 services.taxonomyVocabulary.del = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'delete',
       url: 'taxonomy_vocabulary/' + options.vid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_vocabulary.js');
@@ -259,10 +303,10 @@ services.taxonomyVocabulary.index = function (options) {
       args = 'fields=';
       for (var i = 0; i < fields.length; i++) {
         if (i !== fields.length - 1) {
-          args += fields[i] + ',';
+          args += $.trim(fields[i]) + ',';
         }
         else {
-          args += fields[i];
+          args += $.trim(fields[i]);
         }
       }
     }
@@ -273,22 +317,33 @@ services.taxonomyVocabulary.index = function (options) {
     if (params) {
       for (var k in params) {
         if (params.hasOwnProperty(k)) {
-          args1 += '&parameters[' + k + ']=' + params[k];
+          args1 += '&parameters[' + $.trim(k) + ']=' + $.trim(params[k]);
         }
       }
     }
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'delete',
-      url: 'taxonomy_vocabulary.json' + args + args1,
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      url: 'taxonomy_vocabulary.json?' + args + args1,
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_vocabulary.js');
@@ -314,17 +369,28 @@ services.taxonomyVocabulary.getTree = function (options) {
     var data = 'vid=' + encodeURIComponent(options.vid);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'taxonomy_vocabulary/getTree.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_vocabulary.js');

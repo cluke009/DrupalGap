@@ -285,10 +285,10 @@ services.node.index = function (options) {
       args = 'fields=';
       for (var i = 0; i < fields.length; i++) {
         if (i !== fields.length - 1) {
-          args += fields[i] + ',';
+          args += $.trim(fields[i]) + ',';
         }
         else {
-          args += fields[i];
+          args += $.trim(fields[i]);
         }
       }
     }
@@ -299,7 +299,7 @@ services.node.index = function (options) {
     if (params) {
       for (var k in params) {
         if (params.hasOwnProperty(k)) {
-          args1 += '&parameters[' + k + ']=' + params[k];
+          args1 += '&parameters[' + $.trim(k) + ']=' + $.trim(params[k]);
         }
       }
     }

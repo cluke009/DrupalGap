@@ -39,18 +39,29 @@ services.taxonomyTerm.create = function (options) {
         data += '&parent=' + encodeURIComponent(options.parent);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'taxonomy_term.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_term.js');
@@ -73,16 +84,27 @@ services.taxonomyTerm.create = function (options) {
 services.taxonomyTerm.retrieve = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
       url: 'taxonomy_term/' + options.tid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_term.js');
@@ -122,25 +144,35 @@ services.taxonomyTerm.update = function (options) {
         data += '&parent=' + encodeURIComponent(options.parent);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'put',
       url: 'taxonomy_term/' + options.tid + '/.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_term.js');
     console.log('Object: services.taxonomyTerm.update - ' + error);
   }
 };
-
 
 /**
  * Deletes the specified taxonomy_term. Returns true if delete was successful.
@@ -157,16 +189,27 @@ services.taxonomyTerm.update = function (options) {
 services.taxonomyTerm.del = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'delete',
       url: 'taxonomy_term/' + options.tid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_term.js');
@@ -216,10 +259,10 @@ services.taxonomyTerm.index = function (options) {
       args = 'fields=';
       for (var i = 0; i < fields.length; i++) {
         if (i !== fields.length - 1) {
-          args += fields[i] + ',';
+          args += $.trim(fields[i]) + ',';
         }
         else {
-          args += fields[i];
+          args += $.trim(fields[i]);
         }
       }
     }
@@ -230,22 +273,33 @@ services.taxonomyTerm.index = function (options) {
     if (params) {
       for (var k in params) {
         if (params.hasOwnProperty(k)) {
-          args1 += '&parameters[' + k + ']=' + params[k];
+          args1 += '&parameters[' + $.trim(k) + ']=' + $.trim(params[k]);
         }
       }
     }
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
-      url: 'taxonomy_term.json' + args + args1,
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      url: 'taxonomy_term.json?' + args + args1,
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_term.js');
@@ -271,17 +325,28 @@ services.taxonomyTerm.selectNodes = function (options) {
     var data = 'tid=' + encodeURIComponent(options.tid);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'taxonomy_term/selectNodes.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/taxonomy_term.js');
