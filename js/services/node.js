@@ -64,18 +64,29 @@ services.node.create = function (options) {
         data += '&language=' + encodeURIComponent(options.language);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'node.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/node.js');
@@ -98,16 +109,27 @@ services.node.create = function (options) {
 services.node.retrieve = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
       url: 'node/' + options.nid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/node.js');
@@ -149,18 +171,29 @@ services.node.update = function (options) {
         data += '&language=' + encodeURIComponent(options.language);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'put',
       url: 'node/' + options.nid + '.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/node.js');
@@ -183,16 +216,27 @@ services.node.update = function (options) {
 services.node.del = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'delete',
       url: 'node/' + options.nid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/node.js');
@@ -262,16 +306,27 @@ services.node.index = function (options) {
     }
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
       url: 'node.json?' + args + args1,
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/node.js');
@@ -294,16 +349,27 @@ services.node.index = function (options) {
 services.node.getFiles = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
       url: 'node/' + options.nid + '/files.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/node.js');
@@ -326,16 +392,27 @@ services.node.getFiles = function (options) {
 services.node.comments = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
       url: 'node/' + options.nid + '/comments.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/node.js');

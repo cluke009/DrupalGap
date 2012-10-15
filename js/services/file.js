@@ -30,18 +30,29 @@ services.file.create = function (options) {
         data += '&filename=' + encodeURIComponent(options.filename);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'file.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/file.js');
@@ -64,16 +75,27 @@ services.file.create = function (options) {
 services.file.retrieve = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
       url: 'file/' + options.fid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/file.js');
@@ -96,16 +118,27 @@ services.file.retrieve = function (options) {
 services.file.del = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'delete',
       url: 'file/' + options.fid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/file.js');
@@ -178,16 +211,27 @@ services.file.index = function (options) {
     }
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
-      url: 'file.json' + args + args1,
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      url: 'file.json?' + args + args1,
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/file.js');
@@ -216,18 +260,29 @@ services.file.createRaw = function (options) {
         data += '&filename=' + encodeURIComponent(options.filename);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'file.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/file.js');
