@@ -34,11 +34,7 @@
  * Make services.system.connect call
  */
 $('#submit_system_connect').live('click', function () {
-  // Build service call options.
-  var options = {
-hookSuccess: function () { console.log('te');},
-    success: function () { alert('test');}
-  };
+
   // Make service call.
   services.system.connect();
 });

@@ -4,15 +4,33 @@
   <title>Drupal Services</title>
   <!-- Jquery lib -->
   <script src="../../js/jquery-1.8.2.js"></script>
+  <script src="../../js/jqTabs.js"></script>
+  <script src="../../js/signals.min.js"></script>
+  <script src="../../js/hasher.min.js"></script>
 
   <!-- Required for all requests -->
   <script src="../../js/services/services.js"></script>
-  <script src="../../js/services/system.js"></script>
 
   <!-- Required for this request -->
   <script src="../../js/services/comment.js"></script>
-  <script src="js/comment.js"></script>
 
+
+
+
+    <script>
+      $(document).ready(function(){
+        var options = {
+          sitePath: 'http://localhost:8082',
+          endPoint: 'rest',
+          basePath: '/',
+          debug: 0
+        };
+        services.init(options);
+
+        var tabs = new jqTabs($("#tabbed"));
+      });
+    </script>
+    <script src="js/comment.js"></script>
   <!-- Simple CSS -->
   <link type="text/css" rel="stylesheet" media="all" href="css/simple.css" />
 </head>
@@ -28,90 +46,100 @@
     <li><a href="user.html">User</a></li>
   </ul>
 
-  <div id="page_comment">
     <h1>Comment</h1>
-    <a id="link_comment_retrieve" rel="#section_comment_retrieve" href="#">Retrieve</a>
-    <a id="link_comment_create" rel="#section_comment_create" href="#">Create</a>
-    <a id="link_comment_update" rel="#section_comment_update" href="#">Update</a>
-    <a id="link_comment_login" rel="#section_comment_delete" href="#">Delete</a>
-    <a id="link_comment_index" rel="#section_comment_index" href="#">Index</a>
-    <a id="link_comment_count_all" rel="#section_comment_count_all" href="#">Count All</a>
-    <a id="link_comment_count_new" rel="#section_comment_count_new" href="#">Count New</a>
+      <div id="tabbed" class="nav">
+        <ul class="tab-headers tabs">
+          <li><a href="#section_comment_retrieve">Retrieve</a></li>
+          <li><a href="#section_comment_create" >Create</a></li>
+          <li><a href="#section_comment_update">Update</a></li>
+          <li><a href="#section_comment_delete">Delete</a></li>
+          <li><a href="#section_comment_index">Index</a></li>
+          <li><a href="#section_comment_count_all">Count All</a></li>
+          <li><a href="#section_comment_count_new">Count New</a></li>
+        </ul>
+        <div class="tab-wrapper">
 
-    <div id="section_comment_retrieve" class="content content_active">
-      <h2>Comment Retrieve</h2>
-      <label for="input_comment_retrieve_cid">Comment ID</label>
-      <input type="text" id="input_comment_retrieve_cid" value="1" />
+          <div id="section_comment_retrieve" class="tabcontent">
+            <h2>Comment Retrieve</h2>
+            <label for="input_comment_retrieve_cid">Comment ID</label>
+            <input type="text" id="input_comment_retrieve_cid" value="1" />
 
-      <button type="button" id="submit_comment_retrieve">Retrieve</button>
-    </div><!-- /section_comment_login -->
+            <button type="button" id="submit_comment_retrieve">Retrieve</button>
+          </div><!-- /section_comment_login -->
 
-    <div id="section_comment_create" class="content">
-      <h2>Comment Create</h2>
-      <label for="input_comment_create_nid">Node ID</label>
-      <input type="text" id="input_comment_create_nid" value="1" />
+          <div id="section_comment_create" class="tabcontent">
+            <h2>Comment Create</h2>
+            <label for="input_comment_create_nid">Node ID</label>
+            <input type="text" id="input_comment_create_nid" value="1" />
 
-      <label for="input_comment_create_language">Language</label>
-      <input type="text" id="input_comment_create_language" />
+            <label for="input_comment_create_language">Language</label>
+            <input type="text" id="input_comment_create_language" />
 
-      <label for="input_comment_create_subject">Subject</label>
-      <input type="text" id="input_comment_create_subject" />
+            <label for="input_comment_create_subject">Subject</label>
+            <input type="text" id="input_comment_create_subject" />
 
-      <label for="input_comment_create_comment_body">Body</label>
-      <textarea id="input_comment_create_comment_body" rows="4"></textarea>
+            <label for="input_comment_create_comment_body">Body</label>
+            <textarea id="input_comment_create_comment_body" rows="4"></textarea>
 
-      <button type="button" id="submit_comment_create">Create</button>
-    </div><!-- /section_comment_create -->
+            <button type="button" id="submit_comment_create">Create</button>
+          </div><!-- /section_comment_create -->
 
-    <div id="section_comment_update" class="content">
-      <h2>Comment Update</h2>
-      <label for="input_comment_update_language">Language</label>
-      <input type="text" id="input_comment_update_language" />
+          <div id="section_comment_update" class="tabcontent">
+            <h2>Comment Update</h2>
+            <label for="input_comment_update_language">Language</label>
+            <input type="text" id="input_comment_update_language" />
 
-      <label for="input_comment_update_cid">Comment ID</label>
-      <input type="text" id="input_comment_update_cid" value="1" />
+            <label for="input_comment_update_cid">Comment ID</label>
+            <input type="text" id="input_comment_update_cid" value="1" />
 
-      <label for="input_comment_update_subject">Subject</label>
-      <input type="text" id="input_comment_update_subject" />
+            <label for="input_comment_update_subject">Subject</label>
+            <input type="text" id="input_comment_update_subject" />
 
-      <label for="input_comment_update_comment_body">Body</label>
-      <textarea id="input_comment_update_comment_body" rows="4"></textarea>
+            <label for="input_comment_update_comment_body">Body</label>
+            <textarea id="input_comment_update_comment_body" rows="4"></textarea>
 
-      <button type="button" id="submit_comment_update">Update</button>
-    </div><!-- /section_comment_update -->
+            <button type="button" id="submit_comment_update">Update</button>
+          </div><!-- /section_comment_update -->
 
-    <div id="section_comment_delete" class="content">
-      <h2>Comment Delete</h2>
-      <label for="input_comment_delete_cid">Comment ID</label>
-      <input type="text" id="input_comment_delete_cid" value="1" />
+          <div id="section_comment_delete" class="tabcontent">
+            <h2>Comment Delete</h2>
+            <label for="input_comment_delete_cid">Comment ID</label>
+            <input type="text" id="input_comment_delete_cid" value="1" />
 
-      <button type="button" id="submit_comment_delete">Delete</button>
-    </div><!-- /section_comment_retrieve -->
+            <button type="button" id="submit_comment_delete">Delete</button>
+          </div><!-- /section_comment_retrieve -->
 
-    <div id="section_comment_index" class="content">
-      <h2>Comment Index</h2>
-      <button type="button" id="submit_comment_index">Get comments</button>
-    </div><!-- /section_comment_index -->
+          <div id="section_comment_index" class="tabcontent">
+            <h2>Comment Index</h2>
+            <label for="input_comment_index_fields">Fields</label>
+            <input type="text" id="input_comment_index_fields" value="nid,cid" />
+            <label for="input_comment_index_params">Parameters</label>
+            <input type="text" id="input_comment_index_params" value='{"uid": "1"}' />
+            <button type="button" id="submit_comment_index">Get comments</button>
+          </div><!-- /section_comment_index -->
 
-    <div id="section_comment_count_all" class="content">
-      <h2>Comment Count All</h2>
-      <label for="input_comment_count_all_nid">Node ID</label>
-      <input type="text" id="input_comment_count_all_nid" value="1" />
-      <button type="button" id="submit_comment_count_all">Get comment count</button>
-    </div><!-- /section_comment_count_all -->
+          <div id="section_comment_count_all" class="tabcontent">
+            <h2>Comment Count All</h2>
+            <label for="input_comment_count_all_nid">Node ID</label>
+            <input type="text" id="input_comment_count_all_nid" value="1" />
+            <button type="button" id="submit_comment_count_all">Get comment count</button>
+          </div><!-- /section_comment_count_all -->
 
-    <div id="section_comment_count_new" class="content">
-      <h2>Comment Count New</h2>
-      <label for="input_comment_count_new_nid">Node ID</label>
-      <input type="text" id="input_comment_count_new_nid" value="1" />
+          <div id="section_comment_count_new" class="tabcontent">
+            <h2>Comment Count New</h2>
+            <label for="input_comment_count_new_nid">Node ID</label>
+            <input type="text" id="input_comment_count_new_nid" value="1" />
 
-      <label for="input_comment_count_new_since">Since</label>
-      <p>Timestamp to indicate what nodes are new. Defaults to time of last user acces to node</p>
-      <input type="text" id="input_comment_count_new_since" value="Unix timestamp" />
-      <button type="button" id="submit_comment_count_new">Get new comment count</button>
-    </div><!-- /section_comment_count_new -->
-  </div><!-- /page -->
-  <div class="debugDiv"></div>
+            <label for="input_comment_count_new_since">Since</label>
+            <p>Timestamp to indicate what nodes are new. Defaults to time of last user acces to node</p>
+            <input type="text" id="input_comment_count_new_since" value="Unix timestamp" />
+            <button type="button" id="submit_comment_count_new">Get new comment count</button>
+          </div><!-- /section_comment_count_new -->
+
+        </div><!-- /tab-wrapper -->
+      </div><!-- /tabbed -->
+
+      <div class="debugDiv"></div>
 
 </body>
 </html>

@@ -4,6 +4,7 @@
 $('#submit_system_connect').live('click', function () {
   try {
     options = {
+      async: false,
       "error": function (jqXHR, textStatus, errorThrown) {
         if (errorThrown) {
           console.error(errorThrown);
@@ -14,11 +15,11 @@ $('#submit_system_connect').live('click', function () {
       },
       "success": function (inner_data) {
         // Session id came back, everything is ok...
-        console.log("Setup Complete!");
-      },
+        console.log(inner_data);
+      }
     };
     // Make service call.
-    drupal_services_system_connect.resource_call(options);
+    services.system.connect();
   }
   catch (error) {
     console.log("errorThrown: #submit_system_connect - " + error);

@@ -51,7 +51,7 @@ input, textarea, label { display:block; }
 
 /* NAVIGATION */
 .nav { list-style-type:none;}
-.nav li { margin:0 .5em; float:left; }
+.nav li { margin:0 .5em; float:left; list-style-type:none;}
 
 /* MEDIA QUERIES */
 @media only screen and (min-width: 480px) {
