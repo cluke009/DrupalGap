@@ -46,18 +46,29 @@ services.user.create = function (options) {
         data += '&roles=' + encodeURIComponent(options.roles);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'user.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/user.js');
@@ -80,16 +91,27 @@ services.user.create = function (options) {
 services.user.retrieve = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
       url: 'user/' + options.uid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/user.js');
@@ -131,22 +153,40 @@ services.user.update = function (options) {
         data += '&mail=' + encodeURIComponent(options.mail);
         data += '&current_pass=' + encodeURIComponent(options.currentPass);
         data += '&pass=' + encodeURIComponent(options.pass);
-        data += '&status=' + encodeURIComponent(options.status);
-        data += '&roles=' + encodeURIComponent(options.roles);
+
+    // Add status and roles.
+    if (options.status) {
+      data += '&status=' + encodeURIComponent(options.status);
+    }
+    if (options.roles) {
+      data += '&roles=' + encodeURIComponent(options.roles);
+    }
+
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'put',
       url: 'user/' + options.uid + '.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/user.js');
@@ -163,16 +203,27 @@ services.user.update = function (options) {
 services.user.del = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'delete',
       url: 'user/' + options.uid + '.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/user.js');
@@ -222,10 +273,10 @@ services.user.index = function (options) {
       args = 'fields=';
       for (var i = 0; i < fields.length; i++) {
         if (i !== fields.length - 1) {
-          args += fields[i] + ',';
+          args += $.trim(fields[i]) + ',';
         }
         else {
-          args += fields[i];
+          args += $.trim(fields[i]);
         }
       }
     }
@@ -236,22 +287,33 @@ services.user.index = function (options) {
     if (params) {
       for (var k in params) {
         if (params.hasOwnProperty(k)) {
-          args1 += '&parameters[' + k + ']=' + params[k];
+          args1 += '&parameters[' + $.trim(k) + ']=' + $.trim(params[k]);
         }
       }
     }
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'get',
-      url: 'user.json' + args + args1,
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      url: 'user.json?' + args + args1,
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/user.js');
@@ -282,18 +344,29 @@ services.user.login = function (options) {
         data += '&password=' + encodeURIComponent(options.pass);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'user/login.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/user.js');
@@ -312,16 +385,27 @@ services.user.login = function (options) {
 services.user.logout = function (options) {
   try {
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'user/logout.json',
-      async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      async: true
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/user.js');
@@ -353,18 +437,29 @@ services.user.register = function (options) {
         data += '&pass=' + encodeURIComponent(options.pass);
 
     // Build the options for the service call.
-    options = {
+    var props = {
       type: 'post',
       url: 'user/register.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
       data: data,
       fields: options.fields
     };
 
+    // Attach error/success hooks if provided.
+    if (options !== undefined) {
+      if (options.success){
+        props.success = options.success;
+      }
+      if (options.error){
+        props.error = options.error;
+      }
+      if (options.complete){
+        props.complete = options.complete;
+      }
+    }
+
     // Make the service call.
-    services.resource(options);
+    services.resource(props);
   }
   catch (error) {
     console.log('Error: services/user.js');
