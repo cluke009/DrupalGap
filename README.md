@@ -19,7 +19,7 @@ Add a new endpoint and enable all resources
 --------
 Place these settings in a javscript file somewhere.
 
-<pre>
+```javascript
 var options = {
   sitePath: 'http://localhost:8082',
   endPoint: 'rest',
@@ -27,7 +27,7 @@ var options = {
   debug: 0
 };
 services.init(options);
-</pre>
+```
 
 3. Enable CORS
 --------
@@ -36,14 +36,14 @@ Add this code to the end of settings.php.
 
 This will allow your app to connect to Drupal from any domain.
 
-<pre>
+```php
 if (isset($_SERVER['HTTP_ORIGIN'])){
   $origin = $_SERVER['HTTP_ORIGIN'];
   drupal_add_http_header('Access-Control-Allow-Origin', $origin);
   drupal_add_http_header('Access-Control-Allow-Credentials', 'true');
   drupal_add_http_header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
 }
-</pre>
+```
 
 Comparison
 ========
