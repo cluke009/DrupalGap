@@ -7,8 +7,8 @@ services.viewsDataSource.drupalgapComments = function (options) {
       endPoint: '',
       url: 'drupalgap/views_datasource/drupalgap_comments',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      success: this.successs,
+      error: this.error
     };
 
     // Make the service call.
@@ -27,8 +27,8 @@ services.viewsDataSource.drupalgap_content = function (options) {
       type: 'get',
       url: 'drupalgap/views_datasource/drupalgap_content',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError
+      success: this.successs,
+      error: this.error
     };
 
     // Make the service call.
