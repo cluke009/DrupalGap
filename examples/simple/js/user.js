@@ -1,18 +1,4 @@
 /**
- * Tab swapping.
- */
-$('a').live('click', function () {
-  var target = $(this.rel);
-  $('.content').not(target).hide();
-  target.toggle();
-
-  $('a.active').removeClass('active');
-  $(this).addClass('active');
-  $('body > div.content_active').removeClass('content_active');
-  $(this.rel).addClass('content_active');
-});
-
-/**
  * Handles the submission of the user login form.
  */
 $('#submit_user_login').live('click', function () {
@@ -24,25 +10,26 @@ $('#submit_user_login').live('click', function () {
     "error": function () {}
   };
   // Make service call.
-  drupal_services_user_login.resource_call(options);
+  services.user.login(options);
 });
 
 /**
  * Handles the submission of the user edit form.
  */
-$('#submit_user_edit').live('click', function () {
+$('#submit_user_update').live('click', function () {
   // Build the service resource call options.
+  console.log($('#input_user_update_current_pass').val())
   options = {
-    "uid"          : $('#input_user_edit_uid').val(),
-    "name"         : $('#input_user_edit_name').val(),
-    "mail"         : $('#input_user_edit_mail').val(),
-    "current_pass" : $('#input_user_edit_current_pass').val(),
-    "pass"         : $('#input_user_edit_password').val(),
+    "uid"          : $('#input_user_update_uid').val(),
+    "name"         : $('#input_user_update_name').val(),
+    "mail"         : $('#input_user_update_mail').val(),
+    "currentPass" : $('#input_user_update_current_pass').val(),
+    "pass"         : $('#input_user_update_password').val(),
     "success": function () {},
     "error": function () {}
   };
   // Make the service resource call.
-  drupal_services_user_update.resource_call(options);
+  services.user.update(options);
 });
 
 /**
@@ -58,7 +45,7 @@ $('#submit_user_register').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_user_register.resource_call(options);
+  services.user.register(options);
 });
 
 /**
@@ -71,7 +58,7 @@ $('#link_user_logout').live('click', function () {
     "error": function () {}
   };
   // Make service call.
-  drupal_services_user_logout.resource_call(options);
+  services.user.logout(options);
 });
 
 /**
@@ -85,7 +72,21 @@ $('#submit_user_retrieve').live('click', function () {
     "error": function () {}
   };
   // Make service call.
-  drupal_services_user_retrieve.resource_call(options);
+  services.user.retrieve(options);
+});
+
+/**
+ * Make services.user.retrieve call
+ */
+$('#submit_user_delete').live('click', function () {
+  // Make call to the bundled user login service resource.
+  options = {
+    "uid": $('#input_user_delete_uid').val(),
+    "success": function () {},
+    "error": function () {}
+  };
+  // Make service call.
+  services.user.del(options);
 });
 
 /**
@@ -98,7 +99,7 @@ $('#submit_user_index').live('click', function () {
     "error": function () {}
   };
   // Make service call.
-  drupal_services_user_index.resource_call(options);
+  services.user.index(options);
 });
 
 /**
@@ -116,5 +117,5 @@ $('#submit_user_create').live('click', function () {
     "error": function () {}
   };
   // Make the service call.
-  drupal_services_user_create.resource_call(options);
+  services.user.create(options);
 });
