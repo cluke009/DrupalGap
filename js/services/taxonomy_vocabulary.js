@@ -40,9 +40,9 @@
  * @param {string} options.weight
  *        Optional. Set the weight to display the vocabulary in the list.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyVocabulary.create = function (options) {
@@ -99,9 +99,9 @@ services.taxonomyVocabulary.create = function (options) {
  * @param {string} options.vid
  *        Optional. The Vocabulary ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyVocabulary.retrieve = function (options) {
@@ -166,9 +166,9 @@ services.taxonomyVocabulary.retrieve = function (options) {
  * @param {string} options.vid
  *        Optional. The vocabulary ID to update.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyVocabulary.update = function (options) {
@@ -225,9 +225,9 @@ services.taxonomyVocabulary.update = function (options) {
  * @param {string} options.vid
  *        Required. The vocabulary ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyVocabulary.del = function (options) {
@@ -278,9 +278,9 @@ services.taxonomyVocabulary.del = function (options) {
  * @param {object} options.param
  *        A json object containing url parameters.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyVocabulary.index = function (options) {
@@ -358,9 +358,9 @@ services.taxonomyVocabulary.index = function (options) {
  * @param {string} options.vid
  *        Required. The vocabulary ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyVocabulary.getTree = function (options) {

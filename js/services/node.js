@@ -45,9 +45,9 @@
  * @param {object} options.fields
  *        Optional. Additional parameters you want to send.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.node.create = function (options) {
@@ -101,9 +101,9 @@ services.node.create = function (options) {
  * @param {string} options.nid
  *        Required. The node ID the comment belongs to.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.node.retrieve = function (options) {
@@ -152,9 +152,9 @@ services.node.retrieve = function (options) {
  * @param {string} options.nid
  *        Optional. Node ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.node.update = function (options) {
@@ -207,9 +207,9 @@ services.node.update = function (options) {
  * @param {string} options.nid
  *        Required. The node ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.node.del = function (options) {
@@ -260,9 +260,9 @@ services.node.del = function (options) {
  * @param {object} options.param
  *        A json object containing url parameters.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.node.index = function (options) {
@@ -340,9 +340,9 @@ services.node.index = function (options) {
  * @param {string} options.nid
  *        Required. The node ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.node.files = function (options) {
@@ -383,9 +383,9 @@ services.node.files = function (options) {
  * @param {string} options.nid
  *        Required. The node ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.node.comments = function (options) {

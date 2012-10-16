@@ -20,8 +20,8 @@
  *       type: 'post',
  *       url: 'node.json',
  *       async: true,
- *       success: this.hookSuccess,
- *       error: this.hookError,
+ *       success: this.successs,
+ *       error: this.error,
  *       data: data,
  *       fields: options.fields
  *     };
@@ -116,7 +116,7 @@ var services = services || {
 services.config = {
   sitePath: 'http://localhost:8082',
   endPoint: 'rest',
-  basePath: '?q=',
+  basePath: '/',
   debug: 0
 },
 
@@ -129,7 +129,7 @@ services.config = {
  * var options = {
  *   sitePath: 'http://localhost:8082',
  *   endPoint: 'rest',
- *   basePath: '?q=',
+ *   basePath: '/',
  *   debug: 0
  * };
  * services.init(options);
@@ -210,9 +210,9 @@ services.init = function (options) {
  *        false - make the call synchronously (default) - @todo default should be true
  *        true - make the call asynchronously
  *
- * @param {function} options.hookError
+ * @param {function} options.error
  *        The user's error call back function.
- * @param {function} options.hookSuccess
+ * @param {function} options.successs
  *        The user's success call back function.
  */
 services.resource = function(options) {

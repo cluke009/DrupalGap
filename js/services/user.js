@@ -30,9 +30,9 @@
  *        array formatted with '<role id>' => '<role id>', not including
  *        the authenticated user role, which is given by default.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.user.create = function (options) {
@@ -83,9 +83,9 @@ services.user.create = function (options) {
  * @param {string} options.uid
  *        Required. The user ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.user.retrieve = function (options) {
@@ -141,9 +141,9 @@ services.user.retrieve = function (options) {
  *        array formatted with '<role id>' => '<role id>', not including
  *        the authenticated user role, which is given by default.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.user.update = function (options) {
@@ -248,9 +248,9 @@ services.user.del = function (options) {
  * @param {object} options.param
  *        A json object containing url parameters.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.user.index = function (options) {
@@ -332,9 +332,9 @@ services.user.index = function (options) {
  * @param {string} options.pass
  *        Required. The password value.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.user.login = function (options) {
@@ -377,9 +377,9 @@ services.user.login = function (options) {
 /**
  * Logout the current user.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.user.logout = function (options) {
@@ -424,9 +424,9 @@ services.user.logout = function (options) {
  * @param {string} options.pass
  *        Required. The users password.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.user.register = function (options) {

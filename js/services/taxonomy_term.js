@@ -24,9 +24,9 @@
  * @param {string} options.parent
  *        Optional. Parent term ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyTerm.create = function (options) {
@@ -76,9 +76,9 @@ services.taxonomyTerm.create = function (options) {
  * @param {string} options.tid
  *        Required. Term ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyTerm.retrieve = function (options) {
@@ -129,9 +129,9 @@ services.taxonomyTerm.retrieve = function (options) {
  * @param {string} options.parent
  *        Optional. Parent term ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyTerm.update = function (options) {
@@ -181,9 +181,9 @@ services.taxonomyTerm.update = function (options) {
  * @param {string} options.tid
  *        Required. The Term ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyTerm.del = function (options) {
@@ -234,9 +234,9 @@ services.taxonomyTerm.del = function (options) {
  * @param {object} options.param
  *        A json object containing url parameters.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyTerm.index = function (options) {
@@ -314,9 +314,9 @@ services.taxonomyTerm.index = function (options) {
  * @param {string} options.tid
  *        Required. The term ID.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.taxonomyTerm.selectNodes = function (options) {

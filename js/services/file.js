@@ -18,9 +18,9 @@
  * @param {string} options.filename
  *        Required. The filename with extension.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.file.create = function (options) {
@@ -67,9 +67,9 @@ services.file.create = function (options) {
  * @param {string} options.fid
  *        Required. The file ID to retrieve.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.file.retrieve = function (options) {
@@ -110,9 +110,9 @@ services.file.retrieve = function (options) {
  * @param {string} options.fid
  *        Required. The file ID to retrieve.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.file.del = function (options) {
@@ -166,9 +166,9 @@ services.file.del = function (options) {
  * @param {object} options.param
  *        A json object containing url parameters.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.file.index = function (options) {
@@ -248,9 +248,9 @@ services.file.index = function (options) {
  * @param {string} options.filename
  *        Required. The filename with extension.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.file.createRaw = function (options) {

@@ -21,9 +21,9 @@
  * @param {string} options.language
  *        Optional. The language of the comment.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.comment.create = function (options) {
@@ -76,9 +76,9 @@ services.comment.create = function (options) {
  * @param {string} options.cid
  *        Required. The Comment ID the comment you want.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.comment.retrieve = function (options) {
@@ -123,9 +123,9 @@ services.comment.retrieve = function (options) {
  * @param {string} options.language
  *        Optional. The language of the comment.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.comment.update = function (options) {
@@ -177,9 +177,9 @@ services.comment.update = function (options) {
  * @param {string} options.cid
  *        Required. The comment ID to delete.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.comment.del = function (options) {
@@ -232,9 +232,9 @@ services.comment.del = function (options) {
  * @param {object} options.param
  *        A json object containing url parameters.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.comment.index = function (options) {
@@ -312,9 +312,9 @@ services.comment.index = function (options) {
  * @param {string} options.nid
  *        Required. The node ID the comment belongs to.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.comment.countAll = function (options) {
@@ -359,9 +359,9 @@ services.comment.countAll = function (options) {
  * @param {string} options.nid
  *        Required. The node ID the comment belongs to.
  *
- * @param {string} options.hookError
+ * @param {string} options.error
  *        Error handler hook.
- * @param {string} options.hookSuccess
+ * @param {string} options.successs
  *        Success handler hook.
  */
 services.comment.countNew = function (options) {
@@ -375,8 +375,8 @@ services.comment.countNew = function (options) {
       type: 'post',
       url: 'comment/countNew.json',
       async: true,
-      success: this.hookSuccess,
-      error: this.hookError,
+      success: this.successs,
+      error: this.error,
       data: data
     };
 
