@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="stylesheet" href="lib/qunit.css" type="text/css" media="screen" />
+        <script src="lib/qunit.js"></script>
+        <script src="lib/testswarm.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="lib/json2.js"></script>
+        <script src="js/jquery.mockjax.js"></script>
+        <script src="../js/services/services.js"></script>
+        <script src="../js/services/system.js"></script>
+        <script src="../js/services/comment.js"></script>
+        <script src="../js/services/file.js"></script>
+        <script src="../js/services/node.js"></script>
+        <script src="../js/services/taxonomy_term.js"></script>
+        <script src="../js/services/taxonomy_vocabulary.js"></script>
+        <script src="../js/services/user.js"></script>
+        <script src="js/services.test.js"></script>
+        <script type="text/javascript">
+            // Set init so we connect to the mockjax server.
+            var options = {
+              sitePath: '',
+              endPoint: 'rest',
+              basePath: '/',
+              debug: 0
+            };
+            services.init(options);
+        </script>
+        <title>MockJax Tests - </title>
+      </head>
+    <body>
+        <h1 id="qunit-header">
+            MockJax
+            <a href="?jquery=1.3.2">jQuery 1.3.2</a>
+            <a href="?jquery=1.4.4">jQuery 1.4.4</a>
+            <a href="?jquery=1.5.2">jQuery 1.5.2</a>
+            <a href="?jquery=1.6.4">jQuery 1.6.4</a>
+            <a href="?jquery=1.7">jQuery 1.7</a>
+            <a href="?jquery=git">jQuery Latest (git)</a>
+        </h1>
+        <h2 id="qunit-banner"></h2>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests"></ol>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+{
+    "vid": "1",
+    "name": "rabrubon",
+    "machine_name": "rabrubon",
+    "description": "description of rabrubon",
+    "hierarchy": "1",
+    "module": "taxonomy",
+    "weight": "7",
+    "rdf_mapping": {
+        "rdftype": [
+            "skos:ConceptScheme"
+        ],
+        "name": {
+            "predicates": [
+                "dc:title"
+            ]
+        },
+        "description": {
+            "predicates": [
+                "rdfs:comment"
+            ]
+        }
+    }
+}

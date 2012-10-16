@@ -1,0 +1,41 @@
+{
+    "sessid": "-_ZqA_PA9b7weBE2ybP2tzRJwdPPmIM9jf9xZoAY92k",
+    "session_name": "SESSbce8863eabfd478fab0d5a5077b9e512",
+    "user": {
+        "uid": "1",
+        "name": "root",
+        "mail": "root@example.com",
+        "theme": "",
+        "signature": "",
+        "signature_format": "filtered_html",
+        "created": "1348954171",
+        "access": "1350341984",
+        "login": 1350343216,
+        "status": "1",
+        "timezone": "UTC",
+        "language": "",
+        "picture": null,
+        "init": "root@example.com",
+        "data": false,
+        "roles": {
+            "2": "authenticated user",
+            "3": "administrator"
+        },
+        "rdf_mapping": {
+            "rdftype": [
+                "sioc:UserAccount"
+            ],
+            "name": {
+                "predicates": [
+                    "foaf:name"
+                ]
+            },
+            "homepage": {
+                "predicates": [
+                    "foaf:page"
+                ],
+                "type": "rel"
+            }
+        }
+    }
+}

@@ -1,0 +1,94 @@
+{
+    "vid": "37",
+    "uid": "40",
+    "title": "Incassum Te",
+    "log": "",
+    "status": "1",
+    "comment": "2",
+    "promote": "1",
+    "sticky": "0",
+    "nid": "37",
+    "type": "page",
+    "language": "und",
+    "created": "1349254066",
+    "changed": "1350323682",
+    "tnid": "0",
+    "translate": "0",
+    "revision_timestamp": "1350323682",
+    "revision_uid": "1",
+    "body": {
+        "und": [
+            {
+                "value": "Esse euismod jumentum mauris pala secundum suscipit verto vulpes. Cui decet in minim nimis quae quia quis tego ut. Causa cogo meus molior quidem. Importunus lenis te. Facilisis nobis occuro paratus pecus pneum refero suscipit tation zelus. Eros ex inhibeo jus letalis pala refero ut vereor. Melior scisco virtus. Et interdico mauris nostrud sagaciter sed. Antehabeo diam quis.\r\n\r\nCui defui ibidem nimis pneum praesent refero utrum. Amet et laoreet magna minim plaga sed. Euismod ibidem immitto incassum lobortis molior pala quibus saluto. Appellatio gemino iusto letalis molior saepius. Consequat decet imputo lucidus obruo quis ratis virtus. Distineo ibidem imputo. Comis eros esca huic similis sudo. Dolor eligo exputo lenis metuo nostrud obruo plaga usitas vicis. Facilisis genitus incassum nibh secundum vulputate.\r\n\r\nFacilisi obruo tego tincidunt zelus. Eum mos nunc premo venio. Inhibeo paratus quidne virtus. Ea eum jumentum laoreet plaga rusticus singularis te vel virtus. Appellatio haero nimis usitas. Consectetuer ea euismod hendrerit incassum letalis turpis typicus volutpat. Abluo acsi commodo gilvus illum luptatum metuo minim uxor.\r\n\r\nElit eros olim persto saluto sit turpis validus. Esse gravis jumentum lucidus nibh suscipit. Abigo esca lobortis populus tation vicis vindico. Abico damnum immitto ludus torqueo turpis usitas virtus ymo.\r\n\r\n",
+                "summary": "",
+                "format": "plain_text",
+                "safe_value": "<p>Esse euismod jumentum mauris pala secundum suscipit verto vulpes. Cui decet in minim nimis quae quia quis tego ut. Causa cogo meus molior quidem. Importunus lenis te. Facilisis nobis occuro paratus pecus pneum refero suscipit tation zelus. Eros ex inhibeo jus letalis pala refero ut vereor. Melior scisco virtus. Et interdico mauris nostrud sagaciter sed. Antehabeo diam quis.</p>\n<p>Cui defui ibidem nimis pneum praesent refero utrum. Amet et laoreet magna minim plaga sed. Euismod ibidem immitto incassum lobortis molior pala quibus saluto. Appellatio gemino iusto letalis molior saepius. Consequat decet imputo lucidus obruo quis ratis virtus. Distineo ibidem imputo. Comis eros esca huic similis sudo. Dolor eligo exputo lenis metuo nostrud obruo plaga usitas vicis. Facilisis genitus incassum nibh secundum vulputate.</p>\n<p>Facilisi obruo tego tincidunt zelus. Eum mos nunc premo venio. Inhibeo paratus quidne virtus. Ea eum jumentum laoreet plaga rusticus singularis te vel virtus. Appellatio haero nimis usitas. Consectetuer ea euismod hendrerit incassum letalis turpis typicus volutpat. Abluo acsi commodo gilvus illum luptatum metuo minim uxor.</p>\n<p>Elit eros olim persto saluto sit turpis validus. Esse gravis jumentum lucidus nibh suscipit. Abigo esca lobortis populus tation vicis vindico. Abico damnum immitto ludus torqueo turpis usitas virtus ymo.</p>\n",
+                "safe_summary": ""
+            }
+        ]
+    },
+    "field_filetest": [],
+    "rdf_mapping": {
+        "rdftype": [
+            "foaf:Document"
+        ],
+        "title": {
+            "predicates": [
+                "dc:title"
+            ]
+        },
+        "created": {
+            "predicates": [
+                "dc:date",
+                "dc:created"
+            ],
+            "datatype": "xsd:dateTime",
+            "callback": "date_iso8601"
+        },
+        "changed": {
+            "predicates": [
+                "dc:modified"
+            ],
+            "datatype": "xsd:dateTime",
+            "callback": "date_iso8601"
+        },
+        "body": {
+            "predicates": [
+                "content:encoded"
+            ]
+        },
+        "uid": {
+            "predicates": [
+                "sioc:has_creator"
+            ],
+            "type": "rel"
+        },
+        "name": {
+            "predicates": [
+                "foaf:name"
+            ]
+        },
+        "comment_count": {
+            "predicates": [
+                "sioc:num_replies"
+            ],
+            "datatype": "xsd:integer"
+        },
+        "last_activity": {
+            "predicates": [
+                "sioc:last_activity_date"
+            ],
+            "datatype": "xsd:dateTime",
+            "callback": "date_iso8601"
+        }
+    },
+    "cid": "293",
+    "last_comment_timestamp": "1350324046",
+    "last_comment_name": "",
+    "last_comment_uid": "1",
+    "comment_count": "4",
+    "name": "licrawe",
+    "picture": "35",
+    "data": null,
+    "path": "http://localhost:8082/node/37"
+}

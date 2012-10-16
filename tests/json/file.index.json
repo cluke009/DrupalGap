@@ -1,0 +1,202 @@
+[
+    {
+        "fid": "89",
+        "uid": "1",
+        "filename": "octocat.jpeg",
+        "uri": "http://localhost:8082/rest/file/89",
+        "filemime": "image/jpeg",
+        "filesize": "24125",
+        "status": "1",
+        "timestamp": "1350329390"
+    },
+    {
+        "fid": "88",
+        "uid": "1",
+        "filename": "octocat.jpg",
+        "uri": "http://localhost:8082/rest/file/88",
+        "filemime": "image/jpeg",
+        "filesize": "24125",
+        "status": "1",
+        "timestamp": "1350329326"
+    },
+    {
+        "fid": "87",
+        "uid": "1",
+        "filename": "octocat.jpg",
+        "uri": "http://localhost:8082/rest/file/87",
+        "filemime": "image/jpeg",
+        "filesize": "24125",
+        "status": "1",
+        "timestamp": "1350329320"
+    },
+    {
+        "fid": "75",
+        "uid": "1",
+        "filename": "ima535B.tmp.png",
+        "uri": "http://localhost:8082/rest/file/75",
+        "filemime": "image/png",
+        "filesize": "2610",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "76",
+        "uid": "1",
+        "filename": "ima53C9.tmp.png",
+        "uri": "http://localhost:8082/rest/file/76",
+        "filemime": "image/png",
+        "filesize": "1527",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "77",
+        "uid": "1",
+        "filename": "ima5418.tmp.png",
+        "uri": "http://localhost:8082/rest/file/77",
+        "filemime": "image/png",
+        "filesize": "2542",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "78",
+        "uid": "1",
+        "filename": "ima5477.tmp.jpg",
+        "uri": "http://localhost:8082/rest/file/78",
+        "filemime": "image/jpg",
+        "filesize": "5376",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "79",
+        "uid": "1",
+        "filename": "ima54C6.tmp.png",
+        "uri": "http://localhost:8082/rest/file/79",
+        "filemime": "image/png",
+        "filesize": "785",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "80",
+        "uid": "1",
+        "filename": "ima5524.tmp.png",
+        "uri": "http://localhost:8082/rest/file/80",
+        "filemime": "image/png",
+        "filesize": "1949",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "81",
+        "uid": "1",
+        "filename": "ima55A2.tmp.png",
+        "uri": "http://localhost:8082/rest/file/81",
+        "filemime": "image/png",
+        "filesize": "1073",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "82",
+        "uid": "1",
+        "filename": "ima5601.tmp.jpg",
+        "uri": "http://localhost:8082/rest/file/82",
+        "filemime": "image/jpg",
+        "filesize": "6783",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "83",
+        "uid": "1",
+        "filename": "ima567F.tmp.jpg",
+        "uri": "http://localhost:8082/rest/file/83",
+        "filemime": "image/jpg",
+        "filesize": "6852",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "84",
+        "uid": "1",
+        "filename": "ima56FC.tmp.jpg",
+        "uri": "http://localhost:8082/rest/file/84",
+        "filemime": "image/jpg",
+        "filesize": "7531",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "85",
+        "uid": "1",
+        "filename": "ima57D8.tmp.jpg",
+        "uri": "http://localhost:8082/rest/file/85",
+        "filemime": "image/jpg",
+        "filesize": "7257",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "86",
+        "uid": "1",
+        "filename": "ima5884.tmp.jpg",
+        "uri": "http://localhost:8082/rest/file/86",
+        "filemime": "image/jpg",
+        "filesize": "3843",
+        "status": "1",
+        "timestamp": "1350321933"
+    },
+    {
+        "fid": "74",
+        "uid": "1",
+        "filename": "octocat.jpg",
+        "uri": "http://localhost:8082/rest/file/74",
+        "filemime": "image/jpeg",
+        "filesize": "24125",
+        "status": "1",
+        "timestamp": "1349689456"
+    },
+    {
+        "fid": "73",
+        "uid": "1",
+        "filename": "octocat.jpg",
+        "uri": "http://localhost:8082/rest/file/73",
+        "filemime": "image/jpeg",
+        "filesize": "24125",
+        "status": "1",
+        "timestamp": "1349689361"
+    },
+    {
+        "fid": "71",
+        "uid": "1",
+        "filename": "fil988D.tmp",
+        "uri": "http://localhost:8082/rest/file/71",
+        "filemime": "application/octet-stream",
+        "filesize": "24125",
+        "status": "1",
+        "timestamp": "1349689128"
+    },
+    {
+        "fid": "70",
+        "uid": "1",
+        "filename": "README.txt",
+        "uri": "http://localhost:8082/rest/file/70",
+        "filemime": "text/plain",
+        "filesize": "1235",
+        "status": "1",
+        "timestamp": "1349688494"
+    },
+    {
+        "fid": "1",
+        "uid": "6",
+        "filename": "picture-6.png",
+        "uri": "http://localhost:8082/rest/file/1",
+        "filemime": "image/png",
+        "filesize": "910",
+        "status": "1",
+        "timestamp": "1349426696"
+    }
+]
