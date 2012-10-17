@@ -4,11 +4,12 @@
 $('#submit_comment_retrieve').live('click', function () {
   // Make call to the bundled user login service resource.
   options = {
-    "cid": $('#input_comment_retrieve_cid').val(),
-    "success": function () {
-      console.log("success asdasdasd");
+    cid: $('#input_comment_retrieve_cid').val(),
+    success: function () {
+      console.log('Comment retrieved.');
     }
   };
+
   // Make service call.
   services.comment.retrieve(options);
 });
@@ -19,17 +20,14 @@ $('#submit_comment_retrieve').live('click', function () {
 $('#submit_comment_create').live('click', function () {
   // Build service call options.
   options = {
-    "subject": $('#input_comment_create_subject').val(),
-    "body": $('#input_comment_create_comment_body').val(),
-    "nid": $('#input_comment_create_nid').val(),
-    "language": $('#input_comment_create_language').val(),
-    "success": function () {
-      console.log("success asdasdasd");
-    },
-    "complete": function () {
-      console.log("complete asdasdasd");
-    }
+    subject: $('#input_comment_create_subject').val(),
+    body: $('#input_comment_create_comment_body').val(),
+    nid: $('#input_comment_create_nid').val(),
+    language: $('#input_comment_create_language').val(),
+    success: function () {},
+    complete: function () {}
   };
+
   // Make the service call.
   services.comment.create(options);
 });
@@ -40,17 +38,18 @@ $('#submit_comment_create').live('click', function () {
 $('#submit_comment_update').live('click', function () {
   // Build service call options.
   options = {
-    "subject": $('#input_comment_update_subject').val(),
-    "body": $('#input_comment_update_comment_body').val(),
-    "cid": $('#input_comment_update_cid').val(),
-    "language": $('#input_comment_update_language').val(),
-    "success": function () {
-      console.log('test')
+    subject: $('#input_comment_update_subject').val(),
+    body: $('#input_comment_update_comment_body').val(),
+    cid: $('#input_comment_update_cid').val(),
+    language: $('#input_comment_update_language').val(),
+    success: function () {
+      console.log('success');
     },
-    "error": function () {
-      console.log('error')
+    error: function () {
+      console.log('error');
     }
   };
+
   // Make the service call.
   services.comment.update(options);
 });
@@ -61,10 +60,11 @@ $('#submit_comment_update').live('click', function () {
 $('#submit_comment_delete').live('click', function () {
   // Build service call options.
   options = {
-    "cid": $('#input_comment_delete_cid').val(),
-    "success": function () {},
-    "error": function () {}
+    cid: $('#input_comment_delete_cid').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make the service call.
   services.comment.del(options);
 });
@@ -73,7 +73,7 @@ $('#submit_comment_delete').live('click', function () {
  * Handles the submission of the comment index form.
  */
 $('#submit_comment_index').live('click', function () {
-    // Build service call options.
+  // Build service call options.
   var params = $('#input_comment_index_params').val();
   var fields = $('#input_comment_index_fields').val();
       fields = fields.split(',');
@@ -82,11 +82,12 @@ $('#submit_comment_index').live('click', function () {
   var options = {
     params: $.parseJSON(params),
     fields: fields,
-    'success': function () {},
-    'error': function () {}
+    success: function () {},
+    error: function () {}
   };
-    // Make the service call.
-    services.comment.index(options);
+
+  // Make the service call.
+  services.comment.index(options);
 });
 
 /**
@@ -95,10 +96,11 @@ $('#submit_comment_index').live('click', function () {
 $('#submit_comment_count_all').live('click', function () {
   // Build service call options.
   options = {
-    "nid": $('#input_comment_count_all_nid').val(),
-    "success": function () {},
-    "error": function () {}
+    nid: $('#input_comment_count_all_nid').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make the service call.
   services.comment.countAll(options);
 });
@@ -109,11 +111,12 @@ $('#submit_comment_count_all').live('click', function () {
 $('#submit_comment_count_new').live('click', function () {
   // Build service call options.
   options = {
-    "nid": $('#input_comment_count_new_nid').val(),
-    "since": $('#input_comment_count_new_since').val(),
-    "success": function () {},
-    "error": function () {}
+    nid: $('#input_comment_count_new_nid').val(),
+    since: $('#input_comment_count_new_since').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make the service call.
   services.comment.countNew(options);
 });

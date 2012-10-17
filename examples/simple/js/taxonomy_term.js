@@ -4,10 +4,11 @@
 $('#submit_taxonomy_term_retrieve').live('click', function () {
   // Build service call options.
   options = {
-    "tid": $('#input_taxonomy_term_retrieve_tid').val(),
-    "success": function () {},
-    "error": function () {}
+    tid: $('#input_taxonomy_term_retrieve_tid').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make service call.
   services.taxonomyTerm.retrieve(options);
 });
@@ -18,14 +19,15 @@ $('#submit_taxonomy_term_retrieve').live('click', function () {
 $('#submit_taxonomy_term_create').live('click', function () {
   // Build service call options.
   options = {
-    "vid": $('#input_taxonomy_term_create_vid').val(),
-    "name": $('#input_taxonomy_term_create_name').val(),
-    "description": $('#input_taxonomy_term_create_description').val(),
-    "weight": $('#input_taxonomy_term_create_weight').val(),
-    "parent": $('#input_taxonomy_term_create_parent').val(),
-    "success": function () {},
-    "error": function () {}
+    vid: $('#input_taxonomy_term_create_vid').val(),
+    name: $('#input_taxonomy_term_create_name').val(),
+    description: $('#input_taxonomy_term_create_description').val(),
+    weight: $('#input_taxonomy_term_create_weight').val(),
+    parent: $('#input_taxonomy_term_create_parent').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make the service call.
   services.taxonomyTerm.create(options);
 });
@@ -36,15 +38,16 @@ $('#submit_taxonomy_term_create').live('click', function () {
 $('#submit_taxonomy_term_update').live('click', function () {
   // Build service call options.
   options = {
-    "vid": $('#input_taxonomy_term_update_vid').val(),
-    "tid": $('#input_taxonomy_term_update_tid').val(),
-    "name": $('#input_taxonomy_term_update_name').val(),
-    "description": $('#input_taxonomy_term_update_description').val(),
-    "weight": $('#input_taxonomy_term_update_weight').val(),
-    "parent": $('#input_taxonomy_term_update_parent').val(),
-    "success": function () {},
-    "error": function () {}
+    vid: $('#input_taxonomy_term_update_vid').val(),
+    tid: $('#input_taxonomy_term_update_tid').val(),
+    name: $('#input_taxonomy_term_update_name').val(),
+    description: $('#input_taxonomy_term_update_description').val(),
+    weight: $('#input_taxonomy_term_update_weight').val(),
+    parent: $('#input_taxonomy_term_update_parent').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make the service call.
   services.taxonomyTerm.update(options);
 });
@@ -55,10 +58,11 @@ $('#submit_taxonomy_term_update').live('click', function () {
 $('#submit_taxonomy_term_delete').live('click', function () {
   // Build service call options.
   options = {
-    "tid": $('#input_taxonomy_term_delete_tid').val(),
-    "success": function () {},
-    "error": function () {}
+    tid: $('#input_taxonomy_term_delete_tid').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make the service call.
   services.taxonomyTerm.del(options);
 });
@@ -69,9 +73,10 @@ $('#submit_taxonomy_term_delete').live('click', function () {
 $('#submit_taxonomy_term_index').live('click', function () {
   // Build service call options.
   options = {
-    "success": function () {},
-    "error": function () {}
+    success: function () {},
+    error: function () {}
   };
+
   // Load taxonomy_term via services call.
   services.taxonomyTerm.index(options);
 });
@@ -82,10 +87,11 @@ $('#submit_taxonomy_term_index').live('click', function () {
 $('#submit_taxonomy_term_select_nodes').live('click', function () {
   // Build service call options.
   options = {
-    "tid": $('#input_taxonomy_term_select_nodes_tid').val(),
-    "success": function () {},
-    "error": function () {}
+    tid: $('#input_taxonomy_term_select_nodes_tid').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make the service call.
   services.taxonomyTerm.selectNodes(options);
 });

@@ -4,11 +4,12 @@
 $('#submit_user_login').live('click', function () {
   // Make call to the bundled user login service resource.
   options = {
-    "name": $('#input_user_login_username').val(),
-    "pass": $('#input_user_login_password').val(),
-    "success": function () {},
-    "error": function () {}
+    name: $('#input_user_login_username').val(),
+    pass: $('#input_user_login_password').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make service call.
   services.user.login(options);
 });
@@ -18,17 +19,17 @@ $('#submit_user_login').live('click', function () {
  */
 $('#submit_user_update').live('click', function () {
   // Build the service resource call options.
-  console.log($('#input_user_update_current_pass').val())
   options = {
-    "uid"          : $('#input_user_update_uid').val(),
-    "name"         : $('#input_user_update_name').val(),
-    "mail"         : $('#input_user_update_mail').val(),
-    "currentPass" : $('#input_user_update_current_pass').val(),
-    "pass"         : $('#input_user_update_password').val(),
-    "success": function () {},
-    "error": function () {}
+    uid: $('#input_user_update_uid').val(),
+    name: $('#input_user_update_name').val(),
+    mail: $('#input_user_update_mail').val(),
+    currentPass: $('#input_user_update_current_pass').val(),
+    pass: $('#input_user_update_password').val(),
+    success: function () {},
+    error: function () {}
   };
-  // Make the service resource call.
+
+  // Make service call.
   services.user.update(options);
 });
 
@@ -38,12 +39,13 @@ $('#submit_user_update').live('click', function () {
 $('#submit_user_register').live('click', function () {
   // Build service call options.
   options = {
-    "name": $('#input_user_register_name').val(),
-    "mail": $('#input_user_register_mail').val(),
-    "pass": $('#input_user_register_pass').val(),
-    "success": function () {},
-    "error": function () {}
+    name: $('#input_user_register_name').val(),
+    mail: $('#input_user_register_mail').val(),
+    pass: $('#input_user_register_pass').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make the service call.
   services.user.register(options);
 });
@@ -54,9 +56,10 @@ $('#submit_user_register').live('click', function () {
 $('#link_user_logout').live('click', function () {
   // Make call to the bundled user login service resource.
   options = {
-    "success": function () {},
-    "error": function () {}
+    success: function () {},
+    error: function () {}
   };
+
   // Make service call.
   services.user.logout(options);
 });
@@ -67,10 +70,11 @@ $('#link_user_logout').live('click', function () {
 $('#submit_user_retrieve').live('click', function () {
   // Make call to the bundled user login service resource.
   options = {
-    "uid": $('#input_user_retrieve_uid').val(),
-    "success": function () {},
-    "error": function () {}
+    uid: $('#input_user_retrieve_uid').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make service call.
   services.user.retrieve(options);
 });
@@ -81,10 +85,11 @@ $('#submit_user_retrieve').live('click', function () {
 $('#submit_user_delete').live('click', function () {
   // Make call to the bundled user login service resource.
   options = {
-    "uid": $('#input_user_delete_uid').val(),
-    "success": function () {},
-    "error": function () {}
+    uid: $('#input_user_delete_uid').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make service call.
   services.user.del(options);
 });
@@ -95,9 +100,10 @@ $('#submit_user_delete').live('click', function () {
 $('#submit_user_index').live('click', function () {
   // Make call to the bundled user login service resource.
   options = {
-    "success": function () {},
-    "error": function () {}
+    success: function () {},
+    error: function () {}
   };
+
   // Make service call.
   services.user.index(options);
 });
@@ -108,14 +114,15 @@ $('#submit_user_index').live('click', function () {
 $('#submit_user_create').live('click', function () {
   // Build service call options.
   options = {
-    "name": $('#input_user_create_name').val(),
-    "mail": $('#input_user_create_mail').val(),
-    "pass": $('#input_user_create_pass').val(),
-    "status": $('#input_user_create_status').val(),
-    "notify": $('#input_user_create_notify').val(),
-    "success": function () {},
-    "error": function () {}
+    name: $('#input_user_create_name').val(),
+    mail: $('#input_user_create_mail').val(),
+    pass: $('#input_user_create_pass').val(),
+    status: $('#input_user_create_status').val(),
+    notify: $('#input_user_create_notify').val(),
+    success: function () {},
+    error: function () {}
   };
+
   // Make the service call.
   services.user.create(options);
 });
