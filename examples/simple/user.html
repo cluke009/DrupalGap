@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Drupal Services</title>
-  <!-- Jquery lib -->
+<title>Drupal Services</title>
+  <!-- Jquery libs -->
   <script src="../../js/jquery-1.8.2.js"></script>
   <script src="../../js/jqTabs.js"></script>
   <script src="../../js/signals.min.js"></script>
@@ -14,6 +14,8 @@
   <!-- Required for this request -->
   <script src="../../js/services/user.js"></script>
   <script src="js/user.js"></script>
+
+  <!-- Services config -->
   <script>
     $(document).ready(function(){
       var options = {
@@ -23,132 +25,171 @@
         debug: 0
       };
       services.init(options);
-
       var tabs = new jqTabs($("#tabbed"));
     });
   </script>
+
   <!-- Simple CSS -->
-  <link type="text/css" rel="stylesheet" media="all" href="css/simple.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/simple.css"/>
 </head>
 <body>
 
-  <ul class="nav">
+<h1>User</h1>
+<div id="tabbed" class="nav">
+  <ul class="nav-primary">
     <li><a href="comment.html">Comment</a></li>
     <li><a href="file.html">File</a></li>
     <li><a href="node.html">Node</a></li>
-    <li><a href="system.html">System</a></li>
+    <li><a href="index.html">System</a></li>
     <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
     <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
-    <li><a href="user.html">User</a></li>
+    <li><a href="user.html" class="active">User</a></li>
   </ul>
+  <ul class="tab-headers nav-secondary">
+    <li><a href="#section_user_login">Login</a></li>
+    <li><a href="#section_user_register">Register</a></li>
+    <li><a href="#section_user_update">Update</a></li>
+    <li><a href="#section_user_retrieve">Retrieve</a></li>
+    <li><a href="#section_user_delete">Delete</a></li>
+    <li><a href="#section_user_create">Create</a></li>
+    <li><a href="#section_user_index">Index</a></li>
+    <li><a href="#" id="link_user_logout">Logout</a></li>
+  </ul>
+  <div class="tab-wrapper">
 
-    <h1>User</h1>
-      <div id="tabbed" class="nav">
-        <ul class="tab-headers tabs">
-          <li><a href="#section_user_login">Login</a></li>
-          <li><a href="#section_user_register">Register</a></li>
-          <li><a href="#section_user_update">Update</a></li>
-          <li><a href="#section_user_retrieve">Retrieve</a></li>
-          <li><a href="#section_user_delete">Delete</a></li>
-          <li><a href="#section_user_create">Create</a></li>
-          <li><a href="#section_user_index">Index</a></li>
-          <li><a href="#" id="link_user_logout">Logout</a></li>
-        </ul>
-        <div class="tab-wrapper">
+    <!--
 
+      USER LOGIN
+
+    -->
     <div id="section_user_login" class="content content_active">
       <h2>User Login</h2>
+
       <label for="input_user_login_username">Username</label>
-      <input type="text" id="input_user_login_username" />
+      <input type="text" id="input_user_login_username"/>
 
       <label for="input_user_login_password">Password</label>
-      <input type="password" id="input_user_login_password" />
+      <input type="password" id="input_user_login_password"/>
 
       <button type="button" id="submit_user_login">Login</button>
-    </div><!-- /section_user_login -->
+    </div>
 
+    <!--
+
+      USER REGISTER
+
+    -->
     <div id="section_user_register" class="content">
       <h2>User Register</h2>
-      <p>This example provides no validation and simply passes all fields along.</p>
 
+      <p>This example provides no validation and simply passes all fields along.</p>
       <label for="input_user_register_name">Username</label>
-      <input type="text" id="input_user_register_name" />
+      <input type="text" id="input_user_register_name"/>
 
       <label for="input_user_register_mail">E-mail address</label>
-      <input type="text" id="input_user_register_mail" />
+      <input type="text" id="input_user_register_mail"/>
 
       <label for="input_user_register_pass">Password</label>
-      <input type="password" id="input_user_register_pass" />
+      <input type="password" id="input_user_register_pass"/>
 
       <button type="button" id="submit_user_register">Create new account</button>
-    </div><!-- /section_user_register -->
+    </div>
 
+    <!--
+
+      USER UPDATE
+
+    -->
     <div id="section_user_update" class="content">
-      <h2>User Edit</h2>
-      <p>This example provides no validation and simply passes the new password field along.</p>
+      <h2>User Update</h2>
 
+      <p>This example provides no validation and simply passes the new password field along.</p>
       <label for="input_user_update_uid">User ID</label>
-      <input type="text" id="input_user_update_uid" />
+      <input type="text" id="input_user_update_uid"/>
 
       <label for="input_user_update_name">Username</label>
-      <input type="text" id="input_user_update_name" />
+      <input type="text" id="input_user_update_name"/>
 
       <label for="input_user_update_mail">E-mail address</label>
-      <input type="text" id="input_user_update_mail" />
+      <input type="text" id="input_user_update_mail"/>
 
       <label for="input_user_update_current_pass">Current password</label>
-      <input type="password" id="input_user_update_current_pass" />
+      <input type="password" id="input_user_update_current_pass"/>
 
       <label for="input_user_update_password">New password</label>
-      <input type="password" id="input_user_update_password" />
+      <input type="password" id="input_user_update_password"/>
 
       <button type="button" data-theme="b" id="submit_user_update">Submit</button>
-    </div><!-- /section_user_update -->
+    </div>
 
+    <!--
+
+      USER RETRIEVE
+
+    -->
     <div id="section_user_retrieve" class="content">
       <h2>User Retrieve</h2>
+
       <label for="input_user_retrieve_uid">User ID</label>
-      <input type="text" id="input_user_retrieve_uid" value="1" />
+      <input type="text" id="input_user_retrieve_uid" value="1"/>
 
       <button type="button" id="submit_user_retrieve">Retrieve</button>
-    </div><!-- /section_user_retrieve -->
+    </div>
 
+    <!--
+
+      USER DELETE
+
+    -->
     <div id="section_user_delete" class="content">
       <h2>User Delete</h2>
+
       <label for="input_user_delete_uid">User ID</label>
-      <input type="text" id="input_user_delete_uid" value="1" />
+      <input type="text" id="input_user_delete_uid" value="1"/>
 
       <button type="button" id="submit_user_delete">Delete</button>
-    </div><!-- /section_user_retrieve -->
+    </div>
 
+    <!--
+
+      USER CREATE
+
+    -->
     <div id="section_user_create" class="content">
       <h2>User Create</h2>
+
       <label for="input_user_create_name">Username</label>
-      <input type="text" id="input_user_create_name" />
+      <input type="text" id="input_user_create_name"/>
 
       <label for="input_user_create_mail">E-mail address</label>
-      <input type="text" id="input_user_create_mail" />
+      <input type="text" id="input_user_create_mail"/>
 
       <label for="input_user_create_pass">Password</label>
-      <input type="password" id="input_user_create_pass" />
+      <input type="password" id="input_user_create_pass"/>
 
       <label for="input_user_create_status">Status</label>
-      <input type="text" id="input_user_create_status" value="0" />
+      <input type="text" id="input_user_create_status" value="0"/>
 
       <label for="input_user_create_notify">Notify</label>
-      <input type="text" id="input_user_create_notify" value="0" />
+      <input type="text" id="input_user_create_notify" value="0"/>
 
       <button type="button" id="submit_user_create">Create</button>
-    </div><!-- /section_user_create -->
+    </div>
 
+    <!--
+
+      USER INDEX
+
+    -->
     <div id="section_user_index" class="content">
       <h2>User Index</h2>
-      <button type="button" id="submit_user_index">Get users</button>
-    </div><!-- /section_user_index -->
-        </div><!-- /tab-wrapper -->
-      </div><!-- /tabbed -->
 
-      <div class="debugDiv"></div>
+      <button type="button" id="submit_user_index">Get users</button>
+    </div>
+
+  </div><!-- /tab-wrapper -->
+</div><!-- /tabbed -->
+<div class="debugDiv"></div>
 
 </body>
 </html>

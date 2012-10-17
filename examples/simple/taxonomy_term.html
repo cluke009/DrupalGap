@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Drupal Services</title>
-  <!-- Jquery lib -->
+  <!-- Jquery libs -->
   <script src="../../js/jquery-1.8.2.js"></script>
   <script src="../../js/jqTabs.js"></script>
   <script src="../../js/signals.min.js"></script>
@@ -14,6 +14,8 @@
   <!-- Required for this request -->
   <script src="../../js/services/taxonomy_term.js"></script>
   <script src="js/taxonomy_term.js"></script>
+
+  <!-- Services config -->
   <script>
     $(document).ready(function(){
       var options = {
@@ -23,113 +25,147 @@
         debug: 0
       };
       services.init(options);
-
       var tabs = new jqTabs($("#tabbed"));
     });
   </script>
 
   <!-- Simple CSS -->
-  <link type="text/css" rel="stylesheet" media="all" href="css/simple.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/simple.css"/>
 </head>
 <body>
-
-  <ul class="nav">
+<h1>Taxonomy Term</h1>
+<div id="tabbed" class="nav">
+  <ul class="nav-primary">
     <li><a href="comment.html">Comment</a></li>
     <li><a href="file.html">File</a></li>
     <li><a href="node.html">Node</a></li>
-    <li><a href="system.html">System</a></li>
-    <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
+    <li><a href="index.html">System</a></li>
+    <li><a href="taxonomy_term.html" class="active">Taxonomy Term</a></li>
     <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
     <li><a href="user.html">User</a></li>
   </ul>
-
-    <h1>Taxonomy Term</h1>
-      <div id="tabbed" class="nav">
-        <ul class="tab-headers tabs">
+  <ul class="tab-headers nav-secondary">
     <li><a href="#section_taxonomy_term_retrieve">Retrieve</a></li>
     <li><a href="#section_taxonomy_term_create">Create</a></li>
     <li><a href="#section_taxonomy_term_update">Update</a></li>
     <li><a href="#section_taxonomy_term_delete">Delete</a></li>
     <li><a href="#section_taxonomy_term_index">Index</a></li>
     <li><a href="#section_taxonomy_term_select_nodes">Select Nodes</a></li>
-        </ul>
-        <div class="tab-wrapper">
+  </ul>
+  <div class="tab-wrapper">
 
+    <!--
+
+      TAXONOMY TERM RETRIEVE
+
+    -->
     <div id="section_taxonomy_term_retrieve" class="content content_active">
       <h2>Taxonomy Term Retrieve</h2>
+
       <label for="input_taxonomy_term_retrieve_tid">Taxonomy Term ID</label>
-      <input type="text" id="input_taxonomy_term_retrieve_tid" value="1" />
+      <input type="text" id="input_taxonomy_term_retrieve_tid" value="1"/>
 
       <button type="button" id="submit_taxonomy_term_retrieve">Retrieve</button>
-    </div><!-- /section_taxonomy_term_login -->
+    </div>
 
+    <!--
+
+      TAXONOMY TERM CREATE
+
+    -->
     <div id="section_taxonomy_term_create" class="content">
       <h2>Taxonomy Term Create</h2>
+
       <p>This will submit a new term to the top level of the 'Tags' vocabulary.</p>
       <label for="input_taxonomy_term_create_vid">Vocabulary ID</label>
-      <input type="text" id="input_taxonomy_term_create_vid" value="1" />
+      <input type="text" id="input_taxonomy_term_create_vid" value="1"/>
 
       <label for="input_taxonomy_term_create_name">Name</label>
-      <input type="text" id="input_taxonomy_term_create_name" />
+      <input type="text" id="input_taxonomy_term_create_name"/>
 
       <label for="input_taxonomy_term_create_description">Description</label>
       <textarea id="input_taxonomy_term_create_description" rows="4"></textarea>
 
       <label for="input_taxonomy_term_create_weight">Weight</label>
-      <input type="text" id="input_taxonomy_term_create_weight" value="0" />
+      <input type="text" id="input_taxonomy_term_create_weight" value="0"/>
 
       <label for="input_taxonomy_term_create_parent">Parent</label>
-      <input type="text" id="input_taxonomy_term_create_parent" value="0" />
+      <input type="text" id="input_taxonomy_term_create_parent" value="0"/>
 
       <button type="button" id="submit_taxonomy_term_create">Create</button>
-    </div><!-- /section_taxonomy_term_create -->
+    </div>
 
+    <!--
+
+      TAXONOMY TERM UPDATE
+
+    -->
     <div id="section_taxonomy_term_update" class="content">
       <h2>Taxonomy Term Update</h2>
+
       <label for="input_taxonomy_term_update_vid">Vocabulary ID</label>
-      <input type="text" id="input_taxonomy_term_update_vid" value="1" />
+      <input type="text" id="input_taxonomy_term_update_vid" value="1"/>
 
       <label for="input_taxonomy_term_update_tid">Term ID</label>
-      <input type="text" id="input_taxonomy_term_update_tid" value="1" />
+      <input type="text" id="input_taxonomy_term_update_tid" value="1"/>
 
       <label for="input_taxonomy_term_update_name">Name</label>
-      <input type="text" id="input_taxonomy_term_update_name" />
+      <input type="text" id="input_taxonomy_term_update_name"/>
 
       <label for="input_taxonomy_term_update_description">Description</label>
       <textarea id="input_taxonomy_term_update_description" rows="4"></textarea>
 
       <label for="input_taxonomy_term_update_weight">Weight</label>
-      <input type="text" id="input_taxonomy_term_update_weight" value="0" />
+      <input type="text" id="input_taxonomy_term_update_weight" value="0"/>
 
       <label for="input_taxonomy_term_update_parent">Parent</label>
-      <input type="text" id="input_taxonomy_term_update_parent" value="0" />
+      <input type="text" id="input_taxonomy_term_update_parent" value="0"/>
 
       <button type="button" id="submit_taxonomy_term_update">Update</button>
-    </div><!-- /section_taxonomy_term_update -->
+    </div>
 
+    <!--
+
+      TAXONOMY TERM DELETE
+
+    -->
     <div id="section_taxonomy_term_delete" class="content">
       <h2>Taxonomy Term Delete</h2>
+
       <label for="input_taxonomy_term_delete_tid">Taxonomy Term ID</label>
-      <input type="text" id="input_taxonomy_term_delete_tid" value="1" />
+      <input type="text" id="input_taxonomy_term_delete_tid" value="1"/>
 
       <button type="button" id="submit_taxonomy_term_delete">Delete</button>
-    </div><!-- /section_taxonomy_term_retrieve -->
+    </div>
 
+    <!--
+
+      TAXONOMY TERM INDEX
+
+    -->
     <div id="section_taxonomy_term_index" class="content">
       <h2>Taxonomy Term Index</h2>
-      <button type="button" id="submit_taxonomy_term_index">Get taxonomy_terms</button>
-    </div><!-- /section_taxonomy_term_index -->
 
+      <button type="button" id="submit_taxonomy_term_index">Get taxonomy_terms</button>
+    </div>
+
+    <!--
+
+      TAXONOMY TERM SELECT NODES
+
+    -->
     <div id="section_taxonomy_term_select_nodes" class="content">
       <h2>Taxonomy Term Select Nodes</h2>
-      <label for="input_taxonomy_term_select_nodes_tid">Term ID</label>
-      <input type="text" id="input_taxonomy_term_select_nodes_tid" value="1" />
-      <button type="button" id="submit_taxonomy_term_select_nodes">Get nodes</button>
-    </div><!-- /section_taxonomy_term_select_nodes -->
-        </div><!-- /tab-wrapper -->
-      </div><!-- /tabbed -->
 
-      <div class="debugDiv"></div>
+      <label for="input_taxonomy_term_select_nodes_tid">Term ID</label>
+      <input type="text" id="input_taxonomy_term_select_nodes_tid" value="1"/>
+
+      <button type="button" id="submit_taxonomy_term_select_nodes">Get nodes</button>
+    </div>
+
+  </div><!-- /tab-wrapper -->
+</div><!-- /tabbed -->
+<div class="debugDiv"></div>
 
 </body>
 </html>
