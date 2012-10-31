@@ -1,1 +1,73 @@
-My GitHub Page
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>DrupalGap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="examples/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="examples/bootstrap/css/bootstrap-responsive.css">
+</head>
+<body  class="container-fluid">
+  <div class="row-fluid">
+    <div class="offset1 span10">
+      <h1>DrupalGap Setup</h1>
+      <h3>1. Enable Module</h3>
+      <p><a href="http://drupal.org/project/services">Enable the Services module.</a></p>
+      <p>Add a new endpoint and enable all resources</p>
+
+      <h3>2. Edit services.js</h3>
+      <p>Open js/services/services.js and configure your site_path and endpoint.</p>
+
+      <h3>3. Enable <a href="http://www.w3.org/TR/cors/">CORS</a></h3>
+      <p>Add this code to the end of settings.php.</p>
+      <p>This will allow your app to connect to Drupal from any domain.</p>
+      <pre>
+
+if (isset($_SERVER['HTTP_ORIGIN'])){
+  $origin = $_SERVER['HTTP_ORIGIN'];
+  drupal_add_http_header('Access-Control-Allow-Origin', $origin);
+  drupal_add_http_header('Access-Control-Allow-Credentials', 'true');
+  drupal_add_http_header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+}
+      </pre>
+
+      <h3>4. Check out some examples</h3>
+      <p>You will want to test these on a web server or from a hardware device.</p>
+      <p>There are currently 3 examples to choose from.</p>
+      <ul>
+        <li>The <a href="examples/simple/index.html">Simple example</a> which has a bare minimum of markup and is meant to showcse the quickest way to get started.</li>
+        <li>The <a href="examples/bootstrap/index.html">Twitter Bootstrap example</a> which has more markup but looks much nicer.</li>
+        <li>The <a href="examples/jqm/index.html">jQuery Mobile example</a> which is ready to drop into PhoneGap.</li>
+        <li>You can also read some <a href="jsdocs/index.html">documentation</a></li>.
+      </ul>
+
+      <h3>Goals</h3>
+      <p>Eventually this project should accomplish a few things:</p>
+      <ul>
+        <li>Provide simple javascript api for working with Drupal services module</li>
+        <li>Provide bare bones examples of how to connect to each service without anything extra, similar to the <a href="http://drupal.org/project/examples">examples module</a></li>
+        <li>Provide a sample "app" with all those extras that aren't packaged into core</li>
+        <!-- <li>Remove dependency on DrupalGap, but keeping it as an optional subcomponent</li> -->
+      </ul>
+
+      <h3>Current state</h3>
+      <p>The master branch is fairly stable at the moment and probably will not change considerably in the future.</p>
+      <p>Master should also be mostly compatible with any existing DrupalGap apps.</p>
+      <p>I have moved my development to the <a href="https://github.com/cluke009/DrupalGap/tree/dev">dev branch</a> as I have some significant refactoring I would like to do.</p>
+      <p>This branch will probably exist without working examples for some time. You will have to rely on jsdocs for help.</p>
+
+    </div><!-- /offset1 span10 -->
+  </div><!-- /row-fluid -->
+
+  <!-- Zepto lib -->
+  <script src="js/jquery-1.8.2.js"></script>
+
+  <!-- Services JS -->
+  <script src="js/services/drupalgap.js"></script>
+  <script src="js/services/services.js"></script>
+  <script src="js/services/system.js"></script>
+  <script src="js/drupalgap.js"></script>
+
+  <!-- This page -->
+  <script src="js/pages/setup.js"></script>
+</body>
+</html>
