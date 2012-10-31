@@ -4,14 +4,30 @@
   <title>Drupal Services</title>
   <!-- Jquery lib -->
   <script src="../../js/jquery-1.8.2.js"></script>
+  <script src="../../js/jqTabs.js"></script>
+  <script src="../../js/signals.min.js"></script>
+  <script src="../../js/hasher.min.js"></script>
 
   <!-- Required for all requests -->
   <script src="../../js/services/services.js"></script>
-  <script src="../../js/services/system.js"></script>
 
   <!-- Required for this request -->
   <script src="../../js/services/file.js"></script>
   <script src="js/file.js"></script>
+
+  <!-- Services config -->
+  <script>
+    $(document).ready(function(){
+      var options = {
+        sitePath: 'http://localhost:8082',
+        endPoint: 'rest',
+        basePath: '/',
+        debug: 0
+      };
+      services.init(options);
+      var tabs = new jqTabs($("#tabbed"));
+    });
+  </script>
 
   <!-- Bootstrap CSS -->
   <link type="text/css" rel="stylesheet" media="all" href="css/bootstrap.css" />
@@ -21,42 +37,46 @@
       padding-top: 60px;
       padding-bottom: 40px;
     }
-    .content{ display:none; }
-    .content_active{ display:block; }
   </style>
 </head>
 <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container-fluid">
-        <a class="brand" href="index.html">Drupal Services</a>
-        <div class="nav-collapse collapse">
-          <ul class="nav">
-            <li><a href="comment.html">Comment</a></li>
-            <li><a href="file.html">File</a></li>
-            <li><a href="node.html">Node</a></li>
-            <li><a href="system.html">System</a></li>
-            <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
-            <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
-            <li><a href="user.html">User</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="brand" href="index.html">Drupal Services</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="comment.html">Comment</a></li>
+          <li><a href="file.html">File</a></li>
+          <li><a href="node.html">Node</a></li>
+          <li><a href="index.html">System</a></li>
+          <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
+          <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
+          <li><a href="user.html">User</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
     </div>
   </div>
+</div>
 
-  <div id="page_file" class="container-fluid">
-    <div class="row-fluid">
-      <div class="offset1 span10">
-        <h1>File</h1>
-        <ul class="nav nav-pills">
-          <li class="active"><a id="link_file_retrieve" rel="#section_file_retrieve" href="#">Retrieve</a></li>
-          <li><a id="link_file_create" rel="#section_file_create" href="#">Create</a></li>
-          <li><a id="link_file_login" rel="#section_file_delete" href="#">Delete</a></li>
-          <li><a id="link_file_index" rel="#section_file_index" href="#">Index</a></li>
-          <li><a id="link_file_create" rel="#section_file_create_raw" href="#">Create Raw</a></li>
-        </ul>
+<div id="page_file" class="container-fluid">
+  <div class="row-fluid">
+    <div id="tabbed" class="offset1 span10 nav">
+      <h1>File</h1>
+      <ul class="nav nav-pills tab-headers">
+        <li><a href="#section_file_retrieve">Retrieve</a></li>
+        <li><a href="#section_file_create">Create</a></li>
+        <li><a href="#section_file_delete">Delete</a></li>
+        <li><a href="#section_file_index">Index</a></li>
+        <li><a href="#section_file_create_raw">Create Raw</a></li>
+      </ul>
+      <div class="tab-wrapper">
 
+        <!--
+
+          FILE RETRIEVE
+
+        -->
         <div id="section_file_retrieve" class="content content_active">
           <h2>File Retrieve</h2>
           <form>
@@ -66,13 +86,18 @@
               <button type="submit" class="btn" id="submit_file_retrieve">Retrieve</button>
             </div>
           </form>
-        </div><!-- /section_file_login -->
+        </div>
 
+        <!--
+
+          FILE CREATE
+
+        -->
         <div id="section_file_create" class="content">
           <h2>File Create</h2>
           <form>
             <label for="input_file_create_filename">File Name</label>
-            <input type="text" id="input_file_create_filename" />
+            <input type="text" id="input_file_create_filename" value="octocat64.jpg" />
 
             <label for="input_file_create_file">Base64 encoded text</label>
             <textarea id="input_file_create_file" rows="4"></textarea>
@@ -80,8 +105,13 @@
               <button type="submit" class="btn" id="submit_file_create">Upload</button>
             </div>
           </form>
-        </div><!-- /section_file_create -->
+        </div>
 
+        <!--
+
+          FILE DELETE
+
+        -->
         <div id="section_file_delete" class="content">
           <h2>File Delete</h2>
           <form>
@@ -91,8 +121,13 @@
            <button type="submit" class="btn" id="submit_file_delete">Delete</button>
           </div>
         </form>
-        </div><!-- /section_file_retrieve -->
+        </div>
 
+        <!--
+
+          FILE INDEX
+
+        -->
         <div id="section_file_index" class="content">
           <h2>File Index</h2>
           <form>
@@ -100,8 +135,13 @@
               <button type="submit" class="btn" id="submit_file_index">Get files</button>
             </div>
           </form>
-        </div><!-- /section_file_index -->
+        </div>
 
+        <!--
+
+          FILE CREATE RAW
+
+        -->
         <div id="section_file_create_raw" class="content">
           <h2>File Create Raw</h2>
           <form>
@@ -114,10 +154,12 @@
               <button type="submit" class="btn" id="submit_file_create_raw">Create raw</button>
             </div>
           </form>
-        </div><!-- /section_file_create_raw -->
+        </div>
+
         <div class="debugDiv"></div>
       </div><!-- /offset1 span10 -->
     </div><!-- /row-fluid -->
   </div><!-- /page -->
+</div>
 </body>
 </html>

@@ -4,14 +4,30 @@
   <title>Drupal Services</title>
   <!-- Jquery lib -->
   <script src="../../js/jquery-1.8.2.js"></script>
+  <script src="../../js/jqTabs.js"></script>
+  <script src="../../js/signals.min.js"></script>
+  <script src="../../js/hasher.min.js"></script>
 
   <!-- Required for all requests -->
   <script src="../../js/services/services.js"></script>
-  <script src="../../js/services/system.js"></script>
 
   <!-- Required for this request -->
   <script src="../../js/services/node.js"></script>
   <script src="js/node.js"></script>
+
+  <!-- Services config -->
+  <script>
+    $(document).ready(function(){
+      var options = {
+        sitePath: 'http://localhost:8082',
+        endPoint: 'rest',
+        basePath: '/',
+        debug: 0
+      };
+      services.init(options);
+      var tabs = new jqTabs($("#tabbed"));
+    });
+  </script>
 
   <!-- Bootstrap CSS -->
   <link type="text/css" rel="stylesheet" media="all" href="css/bootstrap.css" />
@@ -21,45 +37,49 @@
       padding-top: 60px;
       padding-bottom: 40px;
     }
-    .content{ display:none; }
-    .content_active{ display:block; }
   </style>
 </head>
 <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container-fluid">
-        <a class="brand" href="index.html">Drupal Services</a>
-        <div class="nav-collapse collapse">
-          <ul class="nav">
-            <li><a href="comment.html">Comment</a></li>
-            <li><a href="file.html">File</a></li>
-            <li><a href="node.html">Node</a></li>
-            <li><a href="system.html">System</a></li>
-            <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
-            <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
-            <li><a href="user.html">User</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="brand" href="index.html">Drupal Services</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="comment.html">Comment</a></li>
+          <li><a href="file.html">File</a></li>
+          <li><a href="node.html">Node</a></li>
+          <li><a href="index.html">System</a></li>
+          <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
+          <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
+          <li><a href="user.html">User</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
     </div>
   </div>
+</div>
 
-  <div id="page_node" class="container-fluid">
-    <div class="row-fluid">
-      <div class="offset1 span10">
-        <h1>Node</h1>
-        <ul class="nav nav-pills">
-          <li class="active"><a id="link_node_retrieve" rel="#section_node_retrieve" href="#">Retrieve</a></li>
-          <li><a id="link_node_create" rel="#section_node_create" href="#">Create</a></li>
-          <li><a id="link_node_update" rel="#section_node_update" href="#">Update</a></li>
-          <li><a id="link_node_login" rel="#section_node_delete" href="#">Delete</a></li>
-          <li><a id="link_node_index" rel="#section_node_index" href="#">Index</a></li>
-          <li><a id="link_node_files" rel="#section_node_files" href="#">Files</a></li>
-          <li><a id="link_node_comments" rel="#section_node_comments" href="#">Comments</a></li>
-        </ul>
+<div id="page_node" class="container-fluid">
+  <div class="row-fluid">
+    <div id="tabbed" class="offset1 span10 nav">
+      <h1>Node</h1>
+      <ul class="nav nav-pills tab-headers">
+        <li><a href="#section_node_retrieve">Retrieve</a></li>
+        <li><a href="#section_node_create">Create</a></li>
+        <li><a href="#section_node_update">Update</a></li>
+        <li><a href="#section_node_delete">Delete</a></li>
+        <li><a href="#section_node_index">Index</a></li>
+        <li><a href="#section_node_files">Files</a></li>
+        <li><a href="#section_node_comments">Comments</a></li>
+      </ul>
+      <div class="tab-wrapper">
 
-        <div id="section_node_retrieve" class="content content_active">
+        <!--
+
+          NODE RETRIEVE
+
+        -->
+        <div id="section_node_retrieve" class="tabcontent">
           <h2>Node Retrieve</h2>
           <form>
             <label for="input_node_retrieve_nid">Node ID</label>
@@ -68,8 +88,13 @@
               <button type="submit" id="submit_node_retrieve" class="btn">Retrieve</button>
             </div>
           </form>
-        </div><!-- /section_node_login -->
+        </div>
 
+        <!--
+
+          NODE CREATE
+
+        -->
         <div id="section_node_create" class="content">
           <h2>Node Create</h2>
           <form>
@@ -88,8 +113,13 @@
              <button type="submit" id="submit_node_create" class="btn">Create</button>
            </div>
          </form>
-        </div><!-- /section_node_create -->
+        </div>
 
+        <!--
+
+          NODE UPDATE
+
+        -->
         <div id="section_node_update" class="content">
           <h2>Node Update</h2>
           <form>
@@ -111,8 +141,13 @@
               <button type="submit" id="submit_node_update" class="btn">Update</button>
             </div>
           </form>
-        </div><!-- /section_node_update -->
+        </div>
 
+        <!--
+
+          NODE DELETE
+
+        -->
         <div id="section_node_delete" class="content">
           <h2>Node Delete</h2>
           <form>
@@ -122,15 +157,25 @@
               <button type="submit" id="submit_node_delete" class="btn">Delete</button>
             </div>
           </form>
-        </div><!-- /section_node_retrieve -->
+        </div>
 
+        <!--
+
+          NODE INDEX
+
+        -->
         <div id="section_node_index" class="content">
           <h2>Node Index</h2>
           <div>
             <button type="submit" id="submit_node_index" class="btn">Get nodes</button>
           </div>
-        </div><!-- /section_node_index -->
+        </div>
 
+        <!--
+
+          NODE FILES
+
+        -->
         <div id="section_node_files" class="content">
           <h2>Node Files</h2>
           <form>
@@ -140,8 +185,13 @@
               <button type="submit" id="submit_node_files" class="btn">Get files</button>
             </div>
           </form>
-        </div><!-- /section_node_files -->
+        </div>
 
+        <!--
+
+          NODE COMMENTS
+
+        -->
         <div id="section_node_comments" class="content">
           <h2>Node Comments</h2>
           <form>
@@ -151,10 +201,12 @@
               <button type="submit" id="submit_node_comments" class="btn">Get comments</button>
             </div>
           </form>
-        </div><!-- /section_node_comments -->
+        </div>
+
         <div class="debugDiv"></div>
       </div><!-- /offset1 span10 -->
     </div><!-- /row-fluid -->
   </div><!-- /page -->
+</div>
 </body>
 </html>
