@@ -104,7 +104,7 @@ $('#submit_node_files').live('click', function () {
 /**
  * Handles the submission of the node comments form.
  */
-$('#submit_node_comments').live(click, function () {
+$('#submit_node_comments').live('click', function () {
   // Build service call options.
   var options = {
     nid: $('#input_node_comments_nid').val(),

@@ -26,54 +26,60 @@
 </head>
 <body>
 <h1>System</h1>
-<ul class="nav-primary">
-  <li><a href="comment.html">Comment</a></li>
-  <li><a href="file.html">File</a></li>
-  <li><a href="node.html">Node</a></li>
-  <li><a href="index.html" class="active">System</a></li>
-  <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
-  <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
-  <li><a href="user.html">User</a></li>
-</ul>
-<p><a href="http://drupal.org/node/129812">What does system.connect do?</a></p>
+<div id="tabbed" class="nav">
+  <ul class="nav-primary">
+    <li><a href="comment.html">Comment</a></li>
+    <li><a href="file.html">File</a></li>
+    <li><a href="node.html">Node</a></li>
+    <li><a href="index.html" class="active">System</a></li>
+    <li><a href="taxonomy_term.html">Taxonomy Term</a></li>
+    <li><a href="taxonomy_vocabulary.html">Taxonomy Vocabulary</a></li>
+    <li><a href="user.html">User</a></li>
+  </ul>
+  <div class="tab-wrapper">
 
-<!--
+    <p><a href="http://drupal.org/node/129812">What does system.connect do?</a></p>
 
-  SYSTEM CONNECT
+    <!--
 
--->
-<button id="submit_system_connect">System Connect</button>
+      SYSTEM CONNECT
 
-<!--
+    -->
+    <button id="submit_system_connect">System Connect</button>
 
-  DELETE VARIABLE
+    <!--
 
--->
-<button id="submit_system_connect_del_variable">Delete Variable</button>
-<p>Be careful setting and deleting variables as it's possible to break your site by altering the wrong one.</p>
-<p>I used 'site_mail' as the default option because it accepts a single string.</p>
+      DELETE VARIABLE
 
-<!--
+    -->
+    <button id="submit_system_connect_del_variable">Delete Variable</button>
+    <p>Be careful setting and deleting variables as it's possible to break your site by altering the wrong one.</p>
+    <p>I used 'site_mail' as the default option because it accepts a single string.</p>
 
-  GET VARIABLE
+    <!--
 
--->
-<div>
-  <label for="input_system_get_variable">Get variable</label>
-  <input type="text" id="input_system_get_variable" value="site_mail"/>
-  <button id="submit_system_connect_get_variable">Submit</button>
-</div>
+      GET VARIABLE
 
-<!--
+    -->
+    <div>
+      <label for="input_system_get_variable">Get variable</label>
+      <input type="text" id="input_system_get_variable" value="site_mail"/>
+      <button id="submit_system_connect_get_variable">Submit</button>
+    </div>
 
-  SET VARIABLE
+    <!--
 
--->
-<div>
-  <label for="input_system_set_variable">Set variable</label>
-  <input type="text" id="input_system_set_variable"/>
-  <button id="submit_system_connect_set_variable">Submit</button>
-</div>
+      SET VARIABLE
+
+    -->
+    <div>
+      <label for="input_system_set_variable">Set variable</label>
+      <input type="text" id="input_system_set_variable"/>
+      <button id="submit_system_connect_set_variable">Submit</button>
+    </div>
+
+  </div><!-- /tab-wrapper -->
+</div><!-- /tabbed -->
 
 <div class="debugDiv"></div>
 
