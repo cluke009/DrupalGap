@@ -1,0 +1,37 @@
+{
+    "tid": "1",
+    "vid": "1",
+    "name": "spap",
+    "description": "description of spap",
+    "format": "plain_text",
+    "weight": "4",
+    "vocabulary_machine_name": "rabrubon",
+    "rdf_mapping": {
+        "rdftype": [
+            "skos:Concept"
+        ],
+        "name": {
+            "predicates": [
+                "rdfs:label",
+                "skos:prefLabel"
+            ]
+        },
+        "description": {
+            "predicates": [
+                "skos:definition"
+            ]
+        },
+        "vid": {
+            "predicates": [
+                "skos:inScheme"
+            ],
+            "type": "rel"
+        },
+        "parent": {
+            "predicates": [
+                "skos:broader"
+            ],
+            "type": "rel"
+        }
+    }
+}

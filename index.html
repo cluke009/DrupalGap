@@ -1,15 +1,79 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
 <head>
-  <title>DrupalGap</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="examples/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="examples/bootstrap/css/bootstrap-responsive.css">
+<meta charset="utf-8">
+<title>DrupalGap</title>
+<meta name="description" content="">
+<meta name="author" content="Geraldo Ramos">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Styles -->
+<link rel="stylesheet" href="assets/vendor/syntaxhighlighter/styles/shCoreDefault.css"/>
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css"/>
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap-responsive.css"/>
+<link rel="stylesheet" href="assets/css/style.css"/>
 </head>
-<body  class="container-fluid">
+<body>
+
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+</div>
+</div>
+<div class="row-fluid">
+<div class="span12">
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="container">
+                  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </a>
+                  <a class="brand" href="index.html">DrupalGap</a>
+                  <div class="nav-collapse">
+                    <ul class="nav">
+                      <li class="active"><a href="index.html">Home</a></li>
+                      <li><a href="builder.html">Builder</a></li>
+                      <li><a href="docs">jsDocs</a></li>
+                      <li><a href="https://github.com/cluke009/DrupalGap/issues">Issues</a></li>
+                    </ul>
+
+<!--                     <form class="navbar-search pull-left" action="">
+                      <input type="text" class="search-query span2" placeholder="Search">
+                    </form>
+                    <ul class="nav pull-right">
+                      <li><a href="#">Link</a></li>
+                      <li class="divider-vertical"></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#">Separated link</a></li>
+                        </ul>
+                      </li>
+                    </ul>-->
+                  </div><!-- /.nav-collapse -->
+                </div>
+              </div><!-- /navbar-inner -->
+            </div><!-- /navbar -->
+
+</div>
+</div>
+</div>
+
+<div class="container-fluid">
+
+
   <div class="row-fluid">
-    <div class="offset1 span10">
+    <div class="span12">
+    <div class="page-header">
       <h1>DrupalGap Setup</h1>
+    </div>
       <h3>1. Enable Module</h3>
       <p><a href="http://drupal.org/project/services">Enable the Services module.</a></p>
       <p>Add a new endpoint and enable all resources</p>
@@ -57,17 +121,8 @@ if (isset($_SERVER['HTTP_ORIGIN'])){
 
     </div><!-- /offset1 span10 -->
   </div><!-- /row-fluid -->
-
-  <!-- Zepto lib -->
-  <script src="js/jquery-1.8.2.js"></script>
-
-  <!-- Services JS -->
-  <script src="js/services/drupalgap.js"></script>
-  <script src="js/services/services.js"></script>
-  <script src="js/services/system.js"></script>
-  <script src="js/drupalgap.js"></script>
-
-  <!-- This page -->
-  <script src="js/pages/setup.js"></script>
+</div>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

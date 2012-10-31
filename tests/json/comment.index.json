@@ -1,0 +1,22 @@
+[
+    {
+        "nid": "37",
+        "cid": "293",
+        "uri": "http://localhost:8082/rest/comment/293"
+    },
+    {
+        "nid": "37",
+        "cid": "292",
+        "uri": "http://localhost:8082/rest/comment/292"
+    },
+    {
+        "nid": "37",
+        "cid": "288",
+        "uri": "http://localhost:8082/rest/comment/288"
+    },
+    {
+        "nid": "37",
+        "cid": "287",
+        "uri": "http://localhost:8082/rest/comment/287"
+    }
+]

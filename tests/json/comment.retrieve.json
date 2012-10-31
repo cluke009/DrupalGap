@@ -1,0 +1,91 @@
+{
+    "cid": "291",
+    "pid": "0",
+    "nid": "37",
+    "uid": "1",
+    "subject": "Acsi appellatio",
+    "hostname": "127.0.0.1",
+    "created": "1350322399",
+    "changed": "1350322399",
+    "status": "1",
+    "thread": "05/",
+    "name": "root",
+    "mail": "",
+    "homepage": "",
+    "language": "und",
+    "node_type": "comment_node_page",
+    "registered_name": "root",
+    "u_uid": "1",
+    "signature": "",
+    "signature_format": "filtered_html",
+    "picture": "0",
+    "new": 1,
+    "comment_body": {
+        "und": [
+            {
+                "value": "Aliquam erat haero. Adipiscing comis et exerci iaceo importunus oppeto proprius secundum sed. Capto causa diam et ex quae quia roto rusticus vero. Duis persto velit. Appellatio blandit caecus consequat damnum melior pecus roto tum utinam.",
+                "format": "filtered_html",
+                "safe_value": "<p>Aliquam erat haero. Adipiscing comis et exerci iaceo importunus oppeto proprius secundum sed. Capto causa diam et ex quae quia roto rusticus vero. Duis persto velit. Appellatio blandit caecus consequat damnum melior pecus roto tum utinam.</p>\n"
+            }
+        ]
+    },
+    "rdf_mapping": {
+        "rdftype": [
+            "sioc:Post",
+            "sioct:Comment"
+        ],
+        "title": {
+            "predicates": [
+                "dc:title"
+            ]
+        },
+        "created": {
+            "predicates": [
+                "dc:date",
+                "dc:created"
+            ],
+            "datatype": "xsd:dateTime",
+            "callback": "date_iso8601"
+        },
+        "changed": {
+            "predicates": [
+                "dc:modified"
+            ],
+            "datatype": "xsd:dateTime",
+            "callback": "date_iso8601"
+        },
+        "comment_body": {
+            "predicates": [
+                "content:encoded"
+            ]
+        },
+        "pid": {
+            "predicates": [
+                "sioc:reply_of"
+            ],
+            "type": "rel"
+        },
+        "uid": {
+            "predicates": [
+                "sioc:has_creator"
+            ],
+            "type": "rel"
+        },
+        "name": {
+            "predicates": [
+                "foaf:name"
+            ]
+        }
+    },
+    "rdf_data": {
+        "date": {
+            "property": [
+                "dc:date",
+                "dc:created"
+            ],
+            "content": "2012-10-15T17:33:19+00:00",
+            "datatype": "xsd:dateTime"
+        },
+        "nid_uri": "/node/37"
+    }
+}

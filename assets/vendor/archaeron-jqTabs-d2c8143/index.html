@@ -1,0 +1,138 @@
+<html>
+  <head>
+  </head>
+  <body>
+      <div id="tabbed">
+        <ul class="tab-headers tabs">
+          <li><a href="#section_node_retrieve">Retrieve</a></li>
+          <li><a href="#section_node_create">Create</a></li>
+          <li><a href="#section_node_update">Update</a></li>
+          <li><a href="#section_node_delete">Delete</a></li>
+          <li><a href="#section_node_index">Index</a></li>
+          <li><a href="#section_node_files">Files</a></li>
+          <li><a href="#section_node_comments">Comments</a></li>
+        </ul>
+        <div class="tab-wrapper">
+
+          <div id="section_node_retrieve" class="tabcontent">
+            <h2>Node Retrieve</h2>
+
+            <label for="input_node_retrieve_nid">Node ID</label>
+            <input type="text" id="input_node_retrieve_nid" value="1" />
+
+            <button type="button" id="submit_node_retrieve">Retrieve</button>
+          </div><!-- /section_node_login -->
+
+    <div id="section_node_create" class="content">
+      <h2>Node Create</h2>
+      <label for="input_node_create_type">Content Type</label>
+      <input type="text" id="input_node_create_type" value="page" />
+
+      <label for="input_node_create_language">Language</label>
+      <input type="text" id="input_node_create_language" />
+
+      <label for="input_node_create_title">Title</label>
+      <input type="text" id="input_node_create_title" />
+
+      <label for="input_node_create_body">Body</label>
+      <textarea id="input_node_create_body" rows="4"></textarea>
+
+      <button type="button" id="submit_node_create">Create</button>
+    </div><!-- /section_node_create -->
+
+    <div id="section_node_update" class="content">
+      <h2>Node Update</h2>
+      <label for="input_node_update_type">Content Type</label>
+      <input type="text" id="input_node_update_type" value="page" />
+
+      <label for="input_node_update_language">Language</label>
+      <input type="text" id="input_node_update_language" />
+
+      <label for="input_node_update_nid">Node ID</label>
+      <input type="text" id="input_node_update_nid" value="1" />
+
+      <label for="input_node_update_title">Title</label>
+      <input type="text" id="input_node_update_title" />
+
+      <label for="input_node_update_body">Body</label>
+      <textarea id="input_node_update_body" rows="4"></textarea>
+
+      <button type="button" id="submit_node_update">Update</button>
+    </div><!-- /section_node_update -->
+
+    <div id="section_node_delete" class="content">
+      <h2>Node Delete</h2>
+      <label for="input_node_delete_nid">Node ID</label>
+      <input type="text" id="input_node_delete_nid" />
+
+      <button type="button" id="submit_node_delete">Delete</button>
+    </div><!-- /section_node_retrieve -->
+
+    <div id="section_node_index" class="content">
+      <h2>Node Index</h2>
+      <button type="button" id="submit_node_index">Get nodes</button>
+    </div><!-- /section_node_index -->
+
+    <div id="section_node_files" class="content">
+      <h2>Node Files</h2>
+      <label for="input_node_files_nid">Node ID</label>
+      <input type="text" id="input_node_files_nid" value="1" />
+      <button type="button" id="submit_node_files">Get files</button>
+    </div><!-- /section_node_files -->
+
+    <div id="section_node_comments" class="content">
+      <h2>Node Comments</h2>
+      <label for="input_node_comments_nid">Node ID</label>
+      <input type="text" id="input_node_comments_nid" value="1" />
+      <button type="button" id="submit_node_comments">Get comments</button>
+    </div><!-- /section_node_comments -->
+
+        </div><!-- /tab-wrapper -->
+      </div><!-- /tabbed -->
+    <style>
+      #content
+      {
+        margin: 20px;
+      }
+
+      .hidden
+      {
+        display: none;
+      }
+
+      .active
+      {
+        color: blue;
+      }
+    </style>
+    <style media="print">
+      .hidden
+      {
+        display: block;
+      }
+      .tabs
+      {
+        display: none;
+      }
+      .btn
+      {
+        display: none;
+      }
+      .tabcontent
+      {
+        margin-bottom: 20px;
+      }
+    </style>
+    <script src="thirdparty/js/jquery-1.7.1.min.js"></script>
+    <script src="jqTabs.js"></script>
+    <script>
+      $(document).ready(
+        function()
+        {
+          var tabs = new jqTabs($("#tabbed"));
+
+        }
+      );
+    </script>
+  </body>
+</html>

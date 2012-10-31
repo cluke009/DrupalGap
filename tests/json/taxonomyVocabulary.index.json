@@ -1,0 +1,62 @@
+[
+    {
+        "vid": "1",
+        "name": "rabrubon",
+        "machine_name": "rabrubon",
+        "description": "description of rabrubon",
+        "hierarchy": "1",
+        "module": "taxonomy",
+        "weight": "7",
+        "uri": "http://localhost:8082/rest/taxonomy_vocabulary/2"
+    },
+    {
+        "vid": "14",
+        "name": "test",
+        "machine_name": "undefined",
+        "description": "Description",
+        "hierarchy": "0",
+        "module": "",
+        "weight": "0",
+        "uri": "http://localhost:8082/rest/taxonomy_vocabulary/14"
+    },
+    {
+        "vid": "9",
+        "name": "dewdewedff",
+        "machine_name": "machine_name",
+        "description": "",
+        "hierarchy": "0",
+        "module": "",
+        "weight": "0",
+        "uri": "http://localhost:8082/rest/taxonomy_vocabulary/9"
+    },
+    {
+        "vid": "10",
+        "name": "dewdewedff",
+        "machine_name": "machine_namesd",
+        "description": "",
+        "hierarchy": "0",
+        "module": "",
+        "weight": "0",
+        "uri": "http://localhost:8082/rest/taxonomy_vocabulary/10"
+    },
+    {
+        "vid": "20",
+        "name": "asdasd",
+        "machine_name": "jiojiojiojiojio",
+        "description": null,
+        "hierarchy": "0",
+        "module": "taxonomy",
+        "weight": "0",
+        "uri": "http://localhost:8082/rest/taxonomy_vocabulary/20"
+    },
+    {
+        "vid": "13",
+        "name": "asd",
+        "machine_name": "asd",
+        "description": "asd",
+        "hierarchy": "0",
+        "module": "",
+        "weight": "0",
+        "uri": "http://localhost:8082/rest/taxonomy_vocabulary/13"
+    }
+]

@@ -1,0 +1,11 @@
+{
+    "name": "root",
+    "mail": "root@example.com",
+    "current_pass": "root",
+    "pass": "root",
+    "uid": "1",
+    "roles": {
+        "2": "authenticated user",
+        "3": "administrator"
+    }
+}
